@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/raw_bei"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_head_height"
+        android:background="@color/mainColor"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@drawable/selector_textcolor_white_mainadd"
+            android:textSize="@dimen/textsize_medium"
+            android:gravity="center"
+            android:text="取消"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_main_title"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="创作"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/creation_vedio"
+        android:background="@mipmap/raw_vedio"
+        android:layout_above="@+id/creation_text"
+        android:layout_marginBottom="50dp"
+            />
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/creation_text"
+        android:background="@mipmap/raw_text"
+            />
+
+
+
+</RelativeLayout>
