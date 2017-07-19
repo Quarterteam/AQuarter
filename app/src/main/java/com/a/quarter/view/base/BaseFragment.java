@@ -21,11 +21,6 @@ public abstract class BaseFragment<P extends BasePresenter, C extends BaseCallba
     protected P mPresenter;
     protected C mCallback;
 
-//    public static BaseFragment getInstance(){
-////        BaseFragment frag = new BaseFragment();
-//        return frag;
-//    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
