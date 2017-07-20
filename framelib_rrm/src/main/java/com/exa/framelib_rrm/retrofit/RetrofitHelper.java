@@ -96,12 +96,14 @@ public class RetrofitHelper {
     }
 
     public OkHttpClient getOkHttpClient() {
-        File httpCacheDirectory = new File(App.getInstance().getExternalFilesDir("test").getPath());
-        Cache cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);
-        OkHttpClient.Builder builder = null;
-        builder = new OkHttpClient.Builder();
+        //设置缓存路径
+        File cacheFile = new File(App.getInstance().getCacheDir(), "cacheData");
+        //设置缓存大小
+        Cache cache = new Cache(cacheFile, 10 * 1024 * 1024);
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new HttpRequestInterceptor())
                 .addInterceptor(new CacheInterceptor())
+                .addNetworkInterceptor(new CacheInterceptor())
                 .cache(cache)
                 .connectTimeout(Constants.DEFAILT_TIMEOUT, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(false);
