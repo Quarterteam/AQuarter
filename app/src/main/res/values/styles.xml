@@ -23,4 +23,20 @@
         <item name="colorControlActivated">@color/mainAdd</item>
     </style>
 
+
+    <style name="tablayout_recommand_frgament" parent="AppTheme">
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="tablayout_recommand_frgament2" parent="AppTheme">
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="tablayout_recommand_frgament3" parent="AppTheme">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+    <style name="linearlayout_recommand_fragment" parent="AppTheme">
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
 </resources>

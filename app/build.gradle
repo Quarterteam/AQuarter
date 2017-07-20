@@ -28,4 +28,8 @@ dependencies {
     compile 'com.zhy:autolayout:1.4.5'
     //ButterKnife
     compile 'com.jakewharton:butterknife:7.0.1'
+
+    //tablayout
+    compile 'com.android.support:design:23.2.1'
+
 }
