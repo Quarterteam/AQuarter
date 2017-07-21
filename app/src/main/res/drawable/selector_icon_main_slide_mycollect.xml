@@ -6,9 +6,9 @@
         android:height="@dimen/main_slide_icon_size">
         <selector>
             <item
-                android:drawable="@mipmap/ic_launcher"
+                android:drawable="@mipmap/my_collect_pressed"
                 android:state_pressed="true" />
-            <item android:drawable="@mipmap/my_collect"/>
+            <item android:drawable="@mipmap/my_collect_default"/>
         </selector>
     </item>
 </layer-list>
