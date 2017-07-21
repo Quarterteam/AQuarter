@@ -1,18 +1,18 @@
 package com.a.quarter.view.fragment.video;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 
 import com.a.quarter.R;
 import com.a.quarter.view.base.BaseFragment;
+import com.a.quarter.view.fragment.video.adapter.VideoFragVpAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import static com.a.quarter.view.utils.TabUnderlineUtil.setIndicator;
 
 /**
  * 视频
@@ -20,9 +20,12 @@ import butterknife.OnClick;
 public class VideoFragment extends BaseFragment {
 
     @Bind(R.id.video_TabLayout)
-    TabLayout videoTabLayout;
-    @Bind(R.id.video_FrameLayout)
-    FrameLayout videoFrameLayout;
+    TabLayout mTabLayout;
+    @Bind(R.id.video_ViewPager)
+    ViewPager mViewPager;
+
+    private ArrayList<String> mListTitle=new ArrayList<>();
+    private ArrayList<Fragment> mListFrag=new ArrayList<>();
 
     @Override
     protected int getContentViewId() {
@@ -31,29 +34,39 @@ public class VideoFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
+        mListTitle.add("热门");
+        mListTitle.add("附近");
+        // TODO:  遍历 listtitle 集合 将title 添加经 TabLayou 中
+        for (int i = 0; i < mListTitle.size(); i++) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(mListTitle.get(i)));
+        }
 
+        //添加 Fragment
+        mListFrag.add(new VHotFragment());
+        mListFrag.add(new VVicinityFragment());
+
+        VideoFragVpAdapter mAdapter = new VideoFragVpAdapter(getFragmentManager(), mListFrag, mListTitle);
+
+        //给ViewPager设置适配器
+       mViewPager.setAdapter(mAdapter);
+        //将TabLayout和ViewPager关联起来。
+        mTabLayout.setupWithViewPager(mViewPager);
+        //给TabLayout设置适配器
+        mTabLayout.setTabsFromPagerAdapter(mAdapter);
     }
 
     @Override
     protected void initDatas() {
 
     }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    @OnClick(R.id.video_TabLayout)
-    public void onClick() {
+    public void onStart() {
+        super.onStart();
+        mTabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                setIndicator(mTabLayout, 60, 60);
+            }
+        });
     }
 }
