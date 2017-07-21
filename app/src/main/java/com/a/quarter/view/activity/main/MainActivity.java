@@ -64,7 +64,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     @Override
-    protected void initViews() {radioGroupNav.setOnCheckedChangeListener(this);
+    protected void initViews() {
+        radioGroupNav.setOnCheckedChangeListener(this);
         radioButtonRecommend.setChecked(true);
         slidingMenu = SlidingMenuUtils.initSlidingMenu(this, this);
     }
