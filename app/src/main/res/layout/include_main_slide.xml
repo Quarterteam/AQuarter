@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/main_slide_width"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/user_bg"/>
+
+    <TextView
+        android:id="@+id/tv_edit_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_main_title"
+        android:textColor="@color/white"
+        android:layout_alignBottom="@id/iv_bg"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="编辑个性签名"/>
+
+    <com.exa.framelib_rrm.base.view.CircleImageView
+        android:id="@+id/iv_user_icon"
+        android:layout_above="@id/tv_edit_sign"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="30dp"
+        android:padding="5dp"
+        android:src="@mipmap/user_icon"/>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="@dimen/textsize_main_title"
+        android:textColor="@color/white"
+        android:layout_alignTop="@id/iv_user_icon"
+        android:layout_toRightOf="@id/iv_user_icon"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="center"
+        android:text="姓名"/>
+
+    <ImageView
+        android:id="@+id/iv_sex_icon"
+        android:layout_alignTop="@id/iv_user_icon"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/female"/>
+
+    <TextView
+        android:id="@+id/tv_my_follow"
+        android:layout_below="@id/iv_bg"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/selector_icon_main_slide_myfollow"
+        style="@style/TextView.MainSlide.Item.Type1"
+        android:text="我的关注"/>
+
+    <TextView
+        android:id="@+id/tv_my_collection"
+        android:layout_below="@id/tv_my_follow"
+        android:drawableLeft="@drawable/selector_icon_main_slide_mycollect"
+        style="@style/TextView.MainSlide.Item.Type1"
+        android:text="我的收藏"/>
+
+    <TextView
+        android:id="@+id/tv_search_friend"
+        android:layout_below="@id/tv_my_collection"
+        android:drawableLeft="@drawable/selector_icon_main_slide_searchfriend"
+        style="@style/TextView.MainSlide.Item.Type1"
+        android:text="搜索好友"/>
+
+    <TextView
+        android:id="@+id/tv_msg_notify"
+        android:layout_below="@id/tv_search_friend"
+        android:drawableLeft="@drawable/selector_icon_main_slide_msgnotify"
+        style="@style/TextView.MainSlide.Item.Type1"
+        android:text="消息通知"/>
+
+    <TextView
+        android:id="@+id/tv_my_work"
+        android:layout_alignParentBottom="true"
+        android:drawableTop="@drawable/selector_icon_main_slide_mywork"
+        style="@style/TextView.MainSlide.Item.Type2"
+        android:text="我的作品"/>
+
+    <TextView
+        android:id="@+id/tv_settings"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:drawableTop="@drawable/selector_icon_main_slide_settings"
+        style="@style/TextView.MainSlide.Item.Type2"
+        android:text="设置"/>
+
+</RelativeLayout>

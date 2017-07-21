@@ -1,4 +1,4 @@
-package com.a.quarter.view.activity;
+package com.a.quarter.view.activity.follow;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,14 +15,14 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class HotFollowActivity extends BaseActivity {
 
     @Bind(R.id.activity_framlayout)
     FrameLayout activityFramlayout;
 
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_main;
+        return R.layout.activity_hot_follow;
     }
 
     @Override

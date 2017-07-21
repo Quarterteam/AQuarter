@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
  * Created by acer on 2017/7/17.
  * 需要做的有：
  * Activity的添加和移除；
- * 头部布局统一管理；（头部一般都是什么样的？）
+ * 头部布局统一管理；
  * Prsenter和Callback的关联和解除关联；
  * 继承AutoLayoutActivity，用于屏幕适配；
  * 设置状态栏颜色和是否使用状态栏所占空间；
@@ -30,16 +30,19 @@ public abstract class BaseActivity<P extends BasePresenter, C extends BaseCallba
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //overridePendingTransition(R.anim.right_in, R.anim.left_out);
         setContentView(getContentViewId());
         ButterKnife.bind(this);
         //设置状态栏
-        StatusBarCompat.compat(this, ContextCompat.getColor(this, R.color.mainColor), false);
+        setStatusBar();
 
         //添加Activity到集合中
         App.getInstance().addActivity(this);
         initViews();
         initDatas();
+    }
+
+    protected void setStatusBar() {
+        StatusBarCompat.compat(this, ContextCompat.getColor(this, R.color.mainColor), false);
     }
 
     /**获取本页面的布局id*/

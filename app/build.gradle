@@ -28,6 +28,7 @@ dependencies {
     compile 'com.zhy:autolayout:1.4.5'
     //ButterKnife
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile project(':slidingmenulibrary')
 
     //tablayout
     compile 'com.android.support:design:23.2.1'

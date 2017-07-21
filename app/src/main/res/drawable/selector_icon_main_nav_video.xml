@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="@dimen/main_nav_icon_size"
+        android:height="@dimen/main_nav_icon_size">
+        <selector>
+            <item
+                android:drawable="@mipmap/video_checked"
+                android:state_checked="true" />
+            <item android:drawable="@mipmap/video_default"/>
+        </selector>
+    </item>
+</layer-list>
