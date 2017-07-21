@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -16,10 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.view.activity.login.LoginActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
+import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.DensityUtils;
 import com.exa.framelib_rrm.utils.LogUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
@@ -49,6 +52,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private JokeFragment jokeFragment;
     private VideoFragment videoFragment;
     private SlidingMenu slidingMenu;
+    private SlidingMenuUtils slidingMenuUtils;
 
     @Override
     protected int getContentViewId() {
@@ -60,14 +64,28 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void setStatusBar() {
         //设置状态栏为透明，并且使用状态栏所占空间
         StatusBarCompat.compat(this, ContextCompat.getColor(this, android.R.color.transparent), true);
-        findViewById(R.id.rl_root).setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            //如果可以使用状态栏所占的空间，左侧的SlidingMenu使用了状态栏所占的空间，
+            //需要给右侧的主布局加上一个高度等于状态栏高度的paddingTop，让头部不被状态栏挡住
+            findViewById(R.id.rl_root).setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
+        }
     }
 
     @Override
     protected void initViews() {
+        initRadioButton();
         radioGroupNav.setOnCheckedChangeListener(this);
         radioButtonRecommend.setChecked(true);
-        slidingMenu = SlidingMenuUtils.initSlidingMenu(this, this);
+
+        slidingMenuUtils = new SlidingMenuUtils();
+        slidingMenu = slidingMenuUtils.initSlidingMenu(this, this);
+        slidingMenuUtils.initDrawables();
+    }
+
+    private void initRadioButton() {
+        DrawableUtils.scaleDrawableTop(this, R.drawable.selector_icon_main_nav_recommend, radioButtonRecommend);
+        DrawableUtils.scaleDrawableTop(this, R.drawable.selector_icon_main_nav_joke, radioButtonJoke);
+        DrawableUtils.scaleDrawableTop(this, R.drawable.selector_icon_main_nav_video, radioButtonVideo);
     }
 
     @Override
@@ -93,6 +111,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 if(slidingMenu!=null){
                     slidingMenu.toggle();
                 }
+                break;
+            case R.id.iv_user_icon:
+                ActivityUtils.jumpIn(this, LoginActivity.class);
                 break;
             default:
                 break;

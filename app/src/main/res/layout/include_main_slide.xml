@@ -59,44 +59,44 @@
         android:id="@+id/tv_my_follow"
         android:layout_below="@id/iv_bg"
         android:layout_marginTop="10dp"
-        android:drawableLeft="@drawable/selector_icon_main_slide_myfollow"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="我的关注"/>
+    <!--android:drawableLeft="@drawable/selector_icon_main_slide_myfollow"-->
 
     <TextView
         android:id="@+id/tv_my_collection"
         android:layout_below="@id/tv_my_follow"
-        android:drawableLeft="@drawable/selector_icon_main_slide_mycollect"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="我的收藏"/>
+    <!--android:drawableLeft="@drawable/selector_icon_main_slide_mycollect"-->
 
     <TextView
         android:id="@+id/tv_search_friend"
         android:layout_below="@id/tv_my_collection"
-        android:drawableLeft="@drawable/selector_icon_main_slide_searchfriend"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="搜索好友"/>
+    <!--android:drawableLeft="@drawable/selector_icon_main_slide_searchfriend"-->
 
     <TextView
         android:id="@+id/tv_msg_notify"
         android:layout_below="@id/tv_search_friend"
-        android:drawableLeft="@drawable/selector_icon_main_slide_msgnotify"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="消息通知"/>
+    <!--android:drawableLeft="@drawable/selector_icon_main_slide_msgnotify"-->
 
     <TextView
         android:id="@+id/tv_my_work"
         android:layout_alignParentBottom="true"
-        android:drawableTop="@drawable/selector_icon_main_slide_mywork"
         style="@style/TextView.MainSlide.Item.Type2"
         android:text="我的作品"/>
+    <!--android:drawableTop="@drawable/selector_icon_main_slide_mywork"-->
 
     <TextView
         android:id="@+id/tv_settings"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:drawableTop="@drawable/selector_icon_main_slide_settings"
         style="@style/TextView.MainSlide.Item.Type2"
         android:text="设置"/>
+    <!--android:drawableTop="@drawable/selector_icon_main_slide_settings"-->
 
 </RelativeLayout>

@@ -111,7 +111,7 @@ public class RetrofitHelper {
 //                builder.addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
 //                    @Override
 //                    public void log(String message) {
-//                        if(!TextUtils.isEmpty(message)){
+//                        if(!TextFormatUtils.isEmpty(message)){
 //                            if(message.startsWith("{") || message.startsWith("[")){
 //                                FrameLifeCircleLogUtils.i("收到返回的数据："+message);
 //                            }

@@ -3,6 +3,8 @@ package com.a.quarter.view.activity.main;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -12,7 +14,22 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
  */
 public class SlidingMenuUtils {
 
-    public static SlidingMenu initSlidingMenu(Activity activity, final View.OnClickListener onClickListener) {
+    private ImageView ivBg;
+    private TextView tvEditSign;
+    private ImageView ivUserIcon;
+    private TextView tvUserName;
+    private ImageView ivSexIcon;
+
+    private Context context;
+    private TextView tvMyFollow;
+    private TextView tvMyCollection;
+    private TextView tvMsgNotify;
+    private TextView tvSearchFriend;
+    private TextView tvMyWork;
+    private TextView tvSettings;
+
+    public SlidingMenu initSlidingMenu(Activity activity, final View.OnClickListener onClickListener) {
+        this.context = activity.getApplicationContext();
         int pixels = activity.getResources().getDisplayMetrics().widthPixels;
         int slidingmenuWidth = activity.getResources().getDimensionPixelOffset(R.dimen.main_slide_width);
         //final SlidingMenu slidingMenu = new SlidingMenu(this);
@@ -27,22 +44,53 @@ public class SlidingMenuUtils {
         slidingMenu.setMode(SlidingMenu.LEFT);
         //设置住屏幕滑出的宽度
         //slidingMenu.setBehindOffset(pixels / 3);
-        if(pixels - slidingmenuWidth>0){
+        if(pixels/4 - slidingmenuWidth>0){
             slidingMenu.setBehindOffset(pixels - slidingmenuWidth);
         }else{
-            slidingMenu.setBehindOffset(pixels / 3);
+            slidingMenu.setBehindOffset(pixels/4);
         }
         //slidingMenu.attachToActivity(HomeActivity.this, SlidingMenu.SLIDING_CONTENT);
         slidingMenu.setMenu(R.layout.include_main_slide);
-        slidingMenu.findViewById(R.id.tv_my_follow).setOnClickListener(onClickListener);
-        slidingMenu.findViewById(R.id.tv_my_collection).setOnClickListener(onClickListener);
-        slidingMenu.findViewById(R.id.tv_msg_notify).setOnClickListener(onClickListener);
-        slidingMenu.findViewById(R.id.tv_search_friend).setOnClickListener(onClickListener);
-        slidingMenu.findViewById(R.id.tv_my_work).setOnClickListener(onClickListener);
-        slidingMenu.findViewById(R.id.tv_settings).setOnClickListener(onClickListener);
+        tvMyFollow = (TextView)slidingMenu.findViewById(R.id.tv_my_follow);
+        tvMyFollow.setOnClickListener(onClickListener);
+        tvMyCollection = (TextView)slidingMenu.findViewById(R.id.tv_my_collection);
+        tvMyCollection.setOnClickListener(onClickListener);
+        tvMsgNotify = (TextView)slidingMenu.findViewById(R.id.tv_msg_notify);
+        tvMsgNotify.setOnClickListener(onClickListener);
+        tvSearchFriend = (TextView)slidingMenu.findViewById(R.id.tv_search_friend);
+        tvSearchFriend.setOnClickListener(onClickListener);
+        tvMyWork = (TextView)slidingMenu.findViewById(R.id.tv_my_work);
+        tvMyWork.setOnClickListener(onClickListener);
+        tvSettings = (TextView)slidingMenu.findViewById(R.id.tv_settings);
+        tvSettings.setOnClickListener(onClickListener);
+
+//        slidingMenu.findViewById(R.id.iv_bg).setOnClickListener(onClickListener);
+//        slidingMenu.findViewById(R.id.tv_edit_sign).setOnClickListener(onClickListener);
+//        slidingMenu.findViewById(R.id.iv_user_icon).setOnClickListener(onClickListener);
+//        slidingMenu.findViewById(R.id.tv_user_name).setOnClickListener(onClickListener);
+//        slidingMenu.findViewById(R.id.iv_sex_icon).setOnClickListener(onClickListener);
+
+        this.ivBg = (ImageView)slidingMenu.findViewById(R.id.iv_bg);
+        this.tvEditSign = (TextView)slidingMenu.findViewById(R.id.tv_edit_sign);
+        this.ivUserIcon = (ImageView)slidingMenu.findViewById(R.id.iv_user_icon);
+        this.tvUserName = (TextView)slidingMenu.findViewById(R.id.tv_user_name);
+        this.ivSexIcon = (ImageView)slidingMenu.findViewById(R.id.iv_sex_icon);
+
+        tvEditSign.setOnClickListener(onClickListener);
+        ivUserIcon.setOnClickListener(onClickListener);
+
         slidingMenu.setOffsetFadeDegree(0.4f);
 
         return slidingMenu;
+    }
+
+    public void initDrawables(){
+        DrawableUtils.scaleDrawableLeft(context, R.drawable.selector_icon_main_slide_myfollow, tvMyFollow);
+        DrawableUtils.scaleDrawableLeft(context, R.drawable.selector_icon_main_slide_mycollect, tvMyCollection);
+        DrawableUtils.scaleDrawableLeft(context, R.drawable.selector_icon_main_slide_msgnotify, tvMsgNotify);
+        DrawableUtils.scaleDrawableLeft(context, R.drawable.selector_icon_main_slide_searchfriend, tvSearchFriend);
+        DrawableUtils.scaleDrawableTop(context, R.drawable.selector_icon_main_slide_mywork, tvMyWork);
+        DrawableUtils.scaleDrawableTop(context, R.drawable.selector_icon_main_slide_settings, tvSettings);
     }
 
 }
