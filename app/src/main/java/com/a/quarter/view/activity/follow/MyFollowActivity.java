@@ -1,8 +1,5 @@
 package com.a.quarter.view.activity.follow;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.a.quarter.R;
 import com.a.quarter.view.base.BaseActivity;
 
