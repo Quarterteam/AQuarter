@@ -18,7 +18,7 @@
             android:name="design_height"
             android:value="1280" />
 
-        <activity android:name=".view.activity.MainActivity">
+        <activity android:name=".view.activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

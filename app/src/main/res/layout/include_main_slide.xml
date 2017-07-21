@@ -7,41 +7,43 @@
     <ImageView
         android:id="@+id/iv_bg"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_height="230dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/user_bg"/>
 
     <TextView
         android:id="@+id/tv_my_follow"
         android:layout_below="@id/iv_bg"
-        android:drawableLeft="@mipmap/ic_launcher"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/selector_icon_main_slide_myfollow"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="我的关注"/>
 
     <TextView
         android:id="@+id/tv_my_collection"
         android:layout_below="@id/tv_my_follow"
-        android:drawableLeft="@mipmap/ic_launcher"
+        android:drawableLeft="@drawable/selector_icon_main_slide_mycollect"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="我的收藏"/>
 
     <TextView
         android:id="@+id/tv_search_friend"
         android:layout_below="@id/tv_my_collection"
-        android:drawableLeft="@mipmap/ic_launcher"
+        android:drawableLeft="@drawable/selector_icon_main_slide_searchfriend"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="搜索好友"/>
 
     <TextView
         android:id="@+id/tv_msg_notify"
         android:layout_below="@id/tv_search_friend"
-        android:drawableLeft="@mipmap/ic_launcher"
+        android:drawableLeft="@drawable/selector_icon_main_slide_msgnotify"
         style="@style/TextView.MainSlide.Item.Type1"
         android:text="消息通知"/>
 
     <TextView
         android:id="@+id/tv_my_work"
         android:layout_alignParentBottom="true"
-        android:drawableTop="@mipmap/ic_launcher"
+        android:drawableTop="@drawable/selector_icon_main_slide_mywork"
         style="@style/TextView.MainSlide.Item.Type2"
         android:text="我的作品"/>
 
@@ -49,7 +51,7 @@
         android:id="@+id/tv_settings"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:drawableTop="@mipmap/ic_launcher"
+        android:drawableTop="@drawable/selector_icon_main_slide_settings"
         style="@style/TextView.MainSlide.Item.Type2"
         android:text="设置"/>
 

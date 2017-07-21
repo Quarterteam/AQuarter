@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:drawable="@mipmap/joke_checked"></item>
-    <item android:drawable="@mipmap/joke_default"></item>
-</selector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="@dimen/main_nav_icon_size"
+        android:height="@dimen/main_nav_icon_size">
+        <selector>
+            <item
+                android:drawable="@mipmap/joke_checked"
+                android:state_checked="true"/>
+            <item android:drawable="@mipmap/joke_default"/>
+        </selector>
+    </item>
+</layer-list>

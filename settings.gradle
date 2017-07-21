@@ -1,1 +1,1 @@
-include ':app', ':framelib_rrm'
+include ':app', ':framelib_rrm', ':slidingmenulibrary'

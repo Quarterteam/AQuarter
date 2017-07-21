@@ -2,25 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:background="@color/mainColor"
     android:layout_height="@dimen/main_head_height">
 
-    <ImageView
+    <com.exa.framelib_rrm.base.view.CircleImageView
+        android:id="@+id/iv_left"
         android:layout_width="@dimen/main_head_height"
         android:layout_height="@dimen/main_head_height"
         android:padding="5dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/user_icon"/>
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
+        android:textSize="@dimen/textsize_main_title"
+        android:textColor="@color/white"
         android:text="推荐"/>
 
     <ImageView
+        android:id="@+id/iv_right"
         android:layout_width="@dimen/main_head_height"
         android:layout_height="@dimen/main_head_height"
-        android:padding="5dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:padding="10dp"
+        android:src="@mipmap/write_article"/>
 
 </LinearLayout>
