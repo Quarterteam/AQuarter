@@ -17,8 +17,8 @@ import butterknife.ButterKnife;
 
 public class HotFollowActivity extends BaseActivity {
 
-    @Bind(R.id.activity_framlayout)
-    FrameLayout activityFramlayout;
+//    @Bind(R.id.activity_framlayout)
+//    FrameLayout activityFramlayout;
 
     @Override
     protected int getContentViewId() {
@@ -28,11 +28,11 @@ public class HotFollowActivity extends BaseActivity {
     @Override
     protected void initViews() {
 
-        FragmentManager manager = getSupportFragmentManager();
-        ArrayList<Fragment> fragments = new ArrayList<>();
-        RecommandFragment rFragment = new RecommandFragment();
-        fragments.add(rFragment);
-        FragmentUtils.setDefaultFragment(manager,R.id.activity_framlayout,fragments);
+//        FragmentManager manager = getSupportFragmentManager();
+//        ArrayList<Fragment> fragments = new ArrayList<>();
+//        RecommandFragment rFragment = new RecommandFragment();
+//        fragments.add(rFragment);
+//        FragmentUtils.setDefaultFragment(manager,R.id.activity_framlayout,fragments);
 
     }
 
@@ -41,10 +41,10 @@ public class HotFollowActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        // TODO: add setContentView(...) invocation
+//        ButterKnife.bind(this);
+//    }
 }
