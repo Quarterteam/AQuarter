@@ -76,19 +76,72 @@
     </style>
 
 
-    <style name="tablayout_recommand_frgament" parent="AppTheme">
+    <style name="TextView.Tablayout.Text1" parent="AppTheme">
         <item name="android:background">@color/white</item>
-    </style>
-    <style name="tablayout_recommand_frgament2" parent="AppTheme">
-        <item name="android:textSize">22sp</item>
-    </style>
-    <style name="tablayout_recommand_frgament3" parent="AppTheme">
-        <item name="android:textColor">@color/colorAccent</item>
-    </style>
-    <style name="linearlayout_recommand_fragment" parent="AppTheme">
         <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/blue</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+
+
+    </style>
+
+    <style name="TextView.Tablayout.Text" parent="AppTheme">
+        <item name="android:textSize">20dp</item>
+
+    </style>
+
+    <style name="Style.Linearlayout.Type" parent="AppTheme">
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignBottom">@id/recommand_fragment_viewpager</item>
+    </style>
+
+    <style name="Fram.Recommend.Type" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_below">@id/recommand_frgament_tablayout</item>
+    </style>
+
+    <style name="Fram.Recommend.Item.Image" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/frag_recommend_item_nickname</item>
+        <item name="android:layout_toRightOf">@id/re_iamge_item</item>
+        <item name="android:layout_alignTop">@id/re_iamge_item</item>
+
+    </style>
+
+    <style name="Fram.Recommend.Item.Time" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/frag_recommend_item_time</item>
+        <item name="android:layout_below">@id/re_textNickName_item</item>
+        <item name="android:layout_toRightOf">@id/re_iamge_item</item>
+
+
+    </style>
+
+    <style name="Fram.Recommend.Item.player" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/frag_recommend_item_player</item>
+        <item name="android:layout_below">@id/re_iamge_item</item>
+        <item name="android:layout_marginTop">@dimen/frag_recommend_tab_indicate</item>
+
+
     </style>
 
 
