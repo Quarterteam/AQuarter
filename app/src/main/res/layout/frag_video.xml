@@ -4,10 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="视频"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/video_TabLayout"
+        ></android.support.design.widget.TabLayout>
 
+    <FrameLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/video_FrameLayout"
+        ></FrameLayout>
 </LinearLayout>
