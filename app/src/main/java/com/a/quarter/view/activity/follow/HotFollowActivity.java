@@ -1,19 +1,7 @@
 package com.a.quarter.view.activity.follow;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.widget.FrameLayout;
-
 import com.a.quarter.R;
 import com.a.quarter.view.base.BaseActivity;
-import com.a.quarter.view.fragment.RecommandFragment;
-import com.exa.framelib_rrm.utils.FragmentUtils;
-
-import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class HotFollowActivity extends BaseActivity {
 
@@ -28,11 +16,6 @@ public class HotFollowActivity extends BaseActivity {
     @Override
     protected void initViews() {
 
-//        FragmentManager manager = getSupportFragmentManager();
-//        ArrayList<Fragment> fragments = new ArrayList<>();
-//        RecommandFragment rFragment = new RecommandFragment();
-//        fragments.add(rFragment);
-//        FragmentUtils.setDefaultFragment(manager,R.id.activity_framlayout,fragments);
 
     }
 

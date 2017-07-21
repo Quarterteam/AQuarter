@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/re_iamge_item"
+        style="@style/Fram.Recommend.Item.Image" />
+
+    <TextView
+        android:id="@+id/re_textNickName_item"
+        style="@style/Fram.Recommend.Item.Nickname"
+        android:text="hello" />
+
+    <TextView
+        android:id="@+id/re_textTime_item"
+        style="@style/Fram.Recommend.Item.Time"
+        android:text="hello" />
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:id="@+id/re_player_item"
+        style="@style/Fram.Recommend.Item.player"></fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
+</RelativeLayout>
