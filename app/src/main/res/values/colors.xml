@@ -14,4 +14,7 @@
     <color name="mainBackground">@color/white</color>
     <color name="mainNav">@color/black</color>
 
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#0080FF</color>
+    <color name="black">#000000</color>
 </resources>

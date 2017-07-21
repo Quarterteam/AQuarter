@@ -28,7 +28,7 @@ public abstract class BaseActivity<P extends BasePresenter, C extends BaseCallba
     protected C mCallback;
 
     @Override
-    protected final void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
         ButterKnife.bind(this);
