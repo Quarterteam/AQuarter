@@ -1,36 +1,32 @@
 package com.a.quarter.view.activity.main;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.app.App;
+import com.a.quarter.model.bean.User;
+import com.a.quarter.model.utils.DrawableUtils;
+import com.a.quarter.model.utils.SlidingMenuUtils;
 import com.a.quarter.view.activity.login.LoginActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
 import com.exa.framelib_rrm.utils.ActivityUtils;
-import com.exa.framelib_rrm.utils.DensityUtils;
-import com.exa.framelib_rrm.utils.LogUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
+import com.exa.framelib_rrm.utils.T;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
@@ -80,6 +76,22 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         slidingMenuUtils = new SlidingMenuUtils();
         slidingMenu = slidingMenuUtils.initSlidingMenu(this, this);
         slidingMenuUtils.initDrawables();
+        if(App.isLogin()){
+            User user = App.getUser();
+            slidingMenuUtils.tvUserName.setText(user.userName);
+            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+            if("男".equals(user.userSex)){
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
+            }else{
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.user_icon);
+            }
+            ivLeft.setImageResource(R.mipmap.user_icon);
+        }else{
+            slidingMenuUtils.tvUserName.setText("点击头像登录");
+            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.default_no_avatar);
+            slidingMenuUtils.ivSexIcon.setImageDrawable(null);
+            ivLeft.setImageResource(R.mipmap.default_no_avatar);
+        }
     }
 
     private void initRadioButton() {
@@ -113,7 +125,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 }
                 break;
             case R.id.iv_user_icon:
-                ActivityUtils.jumpIn(this, LoginActivity.class);
+//                if(!App.isLogin()){
+                    ActivityUtils.jumpForResult(1, this, LoginActivity.class);
+//                }else{TODO
+//                    T.showShort(getApplicationContext(), "已登录");
+//                }
                 break;
             default:
                 break;
@@ -202,4 +218,20 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //登录成功后，从登录页面返回
+        if(requestCode == 1 && resultCode == 1){
+            User user = App.getUser();
+            slidingMenuUtils.tvUserName.setText(user.userName);
+            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+            if("男".equals(user.userSex)){
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
+            }else{
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
+            }
+            ivLeft.setImageResource(R.mipmap.user_icon);
+        }
+    }
 }

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
 //        applicationId "com.exa.framelib_rrm" //Error:Library projects cannot set applicationId. applicationId is set to 'com.exa.framelib_rrm' in default config.
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"

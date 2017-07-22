@@ -17,9 +17,9 @@ public class SlidingMenuUtils {
 
     private ImageView ivBg;
     private TextView tvEditSign;
-    private ImageView ivUserIcon;
-    private TextView tvUserName;
-    private ImageView ivSexIcon;
+    public ImageView ivUserIcon;
+    public TextView tvUserName;
+    public ImageView ivSexIcon;
 
     private Context context;
     private TextView tvMyFollow;

@@ -2,7 +2,6 @@ package com.exa.framelib_rrm.app;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 
 import java.util.ArrayList;
 
@@ -13,9 +12,9 @@ import java.util.ArrayList;
  * 本类的静态实例;
  * Activity管理，用于一键退出;
  */
-public class App extends Application{
+public class BaseApp extends Application{
 
-    private static App instance;
+    private static BaseApp instance;
     private ArrayList<Activity> activitys;//使用ArrayList好，还是使用HashSet好？
 
     @Override
@@ -29,7 +28,7 @@ public class App extends Application{
     }
 
     //方便在任何地方得到本类实例，能够使用ApplicationContext或者调用本类里方法
-    public static App getInstance(){
+    public static BaseApp getInstance0(){
         return instance;
     }
 

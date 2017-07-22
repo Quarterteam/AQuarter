@@ -58,9 +58,9 @@ public abstract class BaseCallback<R, H, TAG extends BaseTag> implements BaseIVi
                 onRequestEnd(tag);
             }
         }else{
-            //ToastUtils.show(mAppContext, "获取到的结果为null");
+            T.showShort(mAppContext, "获取到的结果为null");
             onRequestEnd(tag);
-            throw new RuntimeException("获取到的结果为null");
+//            throw new RuntimeException("获取到的结果为null");
         }
 
     }
@@ -91,6 +91,7 @@ public abstract class BaseCallback<R, H, TAG extends BaseTag> implements BaseIVi
             //在这里统一吐司提示了参数错误的原因，开发时在框架之外只需在onCheckParamsLegality方法返回需要提示的字符串
             //如果参数都正确，返回null就行
         }else if(e instanceof HttpException){//retrofit2.adapter.rxjava2.HttpException: HTTP 504 Unsatisfiable Request (only-if-cached)
+            onRequestEnd(tag);
             LogUtils.i("errorMsg="+e.getMessage());
             T.showShort(mAppContext, "请求未成功！");
         }else{

@@ -3,7 +3,7 @@ package com.exa.framelib_rrm.retrofit;
 import android.text.TextUtils;
 
 import com.exa.framelib_rrm.BuildConfig;
-import com.exa.framelib_rrm.app.App;
+import com.exa.framelib_rrm.app.BaseApp;
 import com.exa.framelib_rrm.base.model.system.Constants;
 import com.google.gson.Gson;
 
@@ -97,7 +97,7 @@ public class RetrofitHelper {
 
     public OkHttpClient getOkHttpClient() {
         //设置缓存路径
-        File cacheFile = new File(App.getInstance().getCacheDir(), "cacheData");
+        File cacheFile = new File(BaseApp.getInstance0().getCacheDir(), "cacheData");
         //设置缓存大小
         Cache cache = new Cache(cacheFile, 10 * 1024 * 1024);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

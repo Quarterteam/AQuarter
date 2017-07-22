@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
 import com.a.quarter.R;
-import com.exa.framelib_rrm.app.App;
+import com.a.quarter.app.App;
+import com.exa.framelib_rrm.app.BaseApp;
 import com.exa.framelib_rrm.base.presenter.BasePresenter;
 import com.exa.framelib_rrm.base.view.BaseCallback;
+import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -36,7 +38,7 @@ public abstract class BaseActivity<P extends BasePresenter, C extends BaseCallba
         setStatusBar();
 
         //添加Activity到集合中
-        App.getInstance().addActivity(this);
+        BaseApp.getInstance0().addActivity(this);
         initViews();
         initDatas();
     }
@@ -75,7 +77,9 @@ public abstract class BaseActivity<P extends BasePresenter, C extends BaseCallba
         }
         ButterKnife.unbind(this);
         //把Activity从集合中移除
-        App.getInstance().removeActivity(this);
+        BaseApp.getInstance0().removeActivity(this);
+        //如果有软键盘的话，关闭软键盘
+        ActivityUtils.closeKeyBoardIfNeed(this);
         super.onDestroy();
     }
 
