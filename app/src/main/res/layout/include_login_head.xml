@@ -30,6 +30,7 @@
         android:layout_height="@dimen/main_head_height"
         android:padding="10dp"
         android:scaleType="centerInside"
+        android:visibility="invisible"
         android:src="@mipmap/ic_launcher"/>
 
 </LinearLayout>

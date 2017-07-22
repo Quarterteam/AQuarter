@@ -1,6 +1,7 @@
 package com.a.quarter.view.activity.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.a.quarter.presenter.login.LoginPresenter;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
 import com.exa.framelib_rrm.rx.RxCallback;
+import com.exa.framelib_rrm.utils.FrameLifeCircleLogUtils;
 import com.exa.framelib_rrm.utils.T;
 import com.exa.framelib_rrm.utils.TextFormatUtils;
 
@@ -59,6 +61,7 @@ public class RegisterActivity extends BaseActivity<LoginPresenter, RegisterActiv
 
     @Override
     protected void initDatas() {
+        //关联Presenter和callback
         bindPresenter(new LoginPresenter(), new RegisterCallback(this, getApplicationContext()));
     }
 
@@ -94,23 +97,24 @@ public class RegisterActivity extends BaseActivity<LoginPresenter, RegisterActiv
         return false;
     }
 
-    private User user;
+    //开始注册
+    private User tempUser;
     private void register() {
-        if (user == null) {
-            user = new User();
+        if (tempUser == null) {
+            tempUser = new User();
         }
-        user.reset();
-        user.userHead = "";
-        user.userName = etUsername.getText().toString().trim();
-        user.userPassword = etPassword.getText().toString().trim();
-        user.userPasswordConfirm = etPasswordConfirm.getText().toString().trim();
-        user.userPhone = etPhone.getText().toString().trim();
+        tempUser.reset();
+        tempUser.userHead = "";
+        tempUser.userName = etUsername.getText().toString().trim();
+        tempUser.userPassword = etPassword.getText().toString().trim();
+        tempUser.userPasswordConfirm = etPasswordConfirm.getText().toString().trim();
+        tempUser.userPhone = etPhone.getText().toString().trim();
         if(rBtnSexMale.isChecked()){
-            user.userSex = "男";
+            tempUser.userSex = "男";
         }else{
-            user.userSex = "女";
+            tempUser.userSex = "女";
         }
-        mPresenter.register(user);
+        mPresenter.register(tempUser);
     }
 
     //校验注册时需要的参数的格式是否正确
@@ -141,6 +145,7 @@ public class RegisterActivity extends BaseActivity<LoginPresenter, RegisterActiv
         return null;
     }
 
+    //注册的结果监听
     static class RegisterCallback extends RxCallback<RegisterResponse, RegisterActivity, BaseTag> {
 
         public RegisterCallback(RegisterActivity host, Context mContext) {
@@ -160,23 +165,25 @@ public class RegisterActivity extends BaseActivity<LoginPresenter, RegisterActiv
         }
 
         @Override
-        protected boolean onDealNextResponse(RegisterResponse response, BaseTag tag) {
-            if(response.code == 200){
-                T.showShort(mAppContext, "注册成功！");
-                //关闭本页面
-                getHost().setResult(1);
-                getHost().finish();
-            }else{
-                T.showShort(mAppContext, "注册失败！");
-            }
-            return super.onDealNextResponse(response, tag);
-        }
-
-        @Override
         public void onRequestEnd(BaseTag tag) {
             //请求结束后，让注册按钮可点击
             getHost().btnRegister.setEnabled(true);
             getHost().btnRegister.setText("注册");
+        }
+
+        @Override
+        protected void onDealNextResponse(RegisterResponse response, BaseTag tag) {
+            if(response.code == 200){
+                getHost().btnRegister.setEnabled(false);
+                T.showShort(mAppContext, "注册成功！");
+                //关闭本页面
+                Intent intent = new Intent();
+                intent.putExtra("phone", getHost().tempUser.userPhone);
+                getHost().setResult(1, intent);
+                getHost().finish();
+            }else{
+                T.showShort(mAppContext, "注册失败！");
+            }
         }
     }
 

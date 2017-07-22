@@ -10,12 +10,9 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.LoginResponse;
-import com.a.quarter.model.bean.User;
 import com.a.quarter.presenter.login.LoginPresenter;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
-import com.exa.framelib_rrm.base.presenter.BasePresenter;
-import com.exa.framelib_rrm.base.view.BaseCallback;
 import com.exa.framelib_rrm.rx.RxCallback;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.T;
@@ -104,7 +101,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.Lo
         }
     }
 
-    //回调
+    //登录结果的监听
     static class LoginCallback extends RxCallback<LoginResponse, LoginActivity, BaseTag> {
 
         public LoginCallback(LoginActivity host, Context mContext) {
@@ -125,7 +122,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.Lo
         }
 
         @Override
-        protected boolean onDealNextResponse(LoginResponse response, BaseTag tag) {
+        protected void onDealNextResponse(LoginResponse response, BaseTag tag) {
             if("200".equals(response.code)){
                 T.showShort(mAppContext, "登录成功！");
                 App.getInstance().saveUserInfo(response.user);
@@ -136,7 +133,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.Lo
                 T.showShort(mAppContext, "登录失败！");
                 App.getInstance().clearUserInfo();
             }
-            return super.onDealNextResponse(response,tag);
         }
 
         @Override
@@ -153,11 +149,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.Lo
         super.onActivityResult(requestCode, resultCode, data);
         //注册成功后，从注册页面返回
         if(requestCode == 1 && resultCode == 1){
-//            btnLogin.setText("已登录");
-//            btnLogin.setEnabled(false);
-//            //关闭本页面
-//            setResult(1);
-//            finish();
+            if(data!=null){
+                //显示回传过来的手机号
+                etName.setText(data.getStringExtra("phone"));
+            }
         }
     }
 

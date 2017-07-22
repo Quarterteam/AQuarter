@@ -50,23 +50,19 @@ public abstract class BaseCallback<R, H, TAG extends BaseTag> implements BaseIVi
         //FrameLifeCircleLogUtils.i("返回的数据为："+response.toString());
         //FrameLifeCircleLogUtils.log("onNextResponse BaseCallback", tag);
 
+        onRequestEnd(tag);
+
         if(response!=null){
-            if(onDealNextResponse(response, tag)){
-                //表明子类需要父类onNextResponse方法里的内容不被执行
-            }else{
-                //表明子类需要父类onNextResponse方法里的内容被执行，也就是需要onRequestEnd方法在这里调用
-                onRequestEnd(tag);
-            }
+            onDealNextResponse(response, tag);
         }else{
             T.showShort(mAppContext, "获取到的结果为null");
-            onRequestEnd(tag);
 //            throw new RuntimeException("获取到的结果为null");
         }
 
     }
 
     /**处理得到的结果*/
-    protected abstract boolean onDealNextResponse(R response, TAG tag);
+    protected abstract void onDealNextResponse(R response, TAG tag);
 
     @Override
     public void onProgressUpdate(long progress, TAG tag) {
