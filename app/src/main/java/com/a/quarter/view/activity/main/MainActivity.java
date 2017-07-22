@@ -69,10 +69,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initViews() {
+        //初始化底部导航
         initRadioButton();
         radioGroupNav.setOnCheckedChangeListener(this);
         radioButtonRecommend.setChecked(true);
 
+        //初始化侧滑菜单
         slidingMenuUtils = new SlidingMenuUtils();
         slidingMenu = slidingMenuUtils.initSlidingMenu(this, this);
         slidingMenuUtils.initDrawables();
@@ -92,6 +94,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             slidingMenuUtils.ivSexIcon.setImageDrawable(null);
             ivLeft.setImageResource(R.mipmap.default_no_avatar);
         }
+
+        //发表文章
+        findViewById(R.id.iv_right).setOnClickListener(this);
     }
 
     private void initRadioButton() {
@@ -113,6 +118,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 if(slidingMenu!=null){
                     slidingMenu.toggle();
                 }
+                break;
+            case R.id.iv_right:
+//                if(App.isLogin()){
+                    ActivityUtils.jumpIn(this, PublishArticleActivity.class);
+//                }else{
+//                    T.showShort(getApplicationContext(), "没有登录");
+//                }
                 break;
             case R.id.tv_my_follow:
             case R.id.tv_my_collection:

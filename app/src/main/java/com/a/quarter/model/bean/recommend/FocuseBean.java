@@ -1,4 +1,4 @@
-package com.a.quarter.view.bean.recommend;
+package com.a.quarter.model.bean.recommend;
 
 /**
  * desc:

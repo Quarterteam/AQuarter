@@ -11,4 +11,9 @@
         <attr name="pet_iconShow" format="integer"/>
         <attr name="pet_iconHide" format="integer"/>
     </declare-styleable>
+
+    <!--自定义ImageView的宽高比 -->
+    <declare-styleable name="WHImageView">
+        <attr name="w_d_h" format="string"/>
+    </declare-styleable>
 </resources>

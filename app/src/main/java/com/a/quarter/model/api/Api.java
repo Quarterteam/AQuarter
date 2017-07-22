@@ -26,4 +26,8 @@ public interface Api {
     Observable<RegisterResponse> register(@FieldMap HashMap<String, String> map);
     //java.lang.IllegalArgumentException: @FieldMap parameters can only be used with form encoding. (parameter #1)
 
+    @POST(Constants.REGISTER)
+    @FormUrlEncoded
+    Observable<RegisterResponse> publishArticle(@FieldMap HashMap<String, String> map);
+
 }

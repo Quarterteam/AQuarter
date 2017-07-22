@@ -50,7 +50,7 @@ public abstract class BaseCallback<R, H, TAG extends BaseTag> implements BaseIVi
         //FrameLifeCircleLogUtils.i("返回的数据为："+response.toString());
         //FrameLifeCircleLogUtils.log("onNextResponse BaseCallback", tag);
 
-        onRequestEnd(tag);
+        onRequestEnd(tag);//改在这里调用了
 
         if(response!=null){
             onDealNextResponse(response, tag);

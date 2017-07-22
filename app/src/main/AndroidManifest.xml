@@ -25,16 +25,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.login.LoginActivity" >
-            <!--<intent-filter>
+        <activity android:name=".view.activity.login.LoginActivity">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-            </activity>
+            </intent-filter>
+            -->
+        </activity>
         <activity android:name=".view.activity.login.RegisterActivity" />
-        <activity android:name=".view.activity.follow.MyFollowActivity"/>
-        <activity android:name=".view.activity.follow.HotFollowActivity"></activity>
+        <activity android:name=".view.activity.follow.MyFollowActivity" />
+        <activity android:name=".view.activity.follow.HotFollowActivity" />
+        <activity android:name=".view.activity.main.PublishArticleActivity"></activity>
     </application>
 
 </manifest>

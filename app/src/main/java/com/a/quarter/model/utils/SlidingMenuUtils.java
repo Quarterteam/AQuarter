@@ -32,8 +32,6 @@ public class SlidingMenuUtils {
     public SlidingMenu initSlidingMenu(Activity activity, final View.OnClickListener onClickListener) {
         this.context = activity.getApplicationContext();
         int pixels = activity.getResources().getDisplayMetrics().widthPixels;
-        int slidingmenuWidth = activity.getResources().getDimensionPixelOffset(R.dimen.main_slide_width);
-        //final SlidingMenu slidingMenu = new SlidingMenu(this);
         final SlidingMenu slidingMenu = (SlidingMenu)activity.findViewById(R.id.slidingmenulayout);
         //改为在xml里定义的方式，是为了实现既能使用状态栏的空间，又能自由设置状态栏的颜色。
         //因为SlidingMenu属于自定义控件，对于这样的控件是整个Activity第一个控件的情况，沉浸效果无法实现，
@@ -43,13 +41,9 @@ public class SlidingMenuUtils {
 
         //从左边滑出
         slidingMenu.setMode(SlidingMenu.LEFT);
-        //设置住屏幕滑出的宽度
-        //slidingMenu.setBehindOffset(pixels / 3);
-        if(pixels/4 - slidingmenuWidth>0){
-            slidingMenu.setBehindOffset(pixels - slidingmenuWidth);
-        }else{
-            slidingMenu.setBehindOffset(pixels/4);
-        }
+        //设置滑出后屏幕的剩余宽度
+        slidingMenu.setBehindOffset(pixels/4);
+
         //slidingMenu.attachToActivity(HomeActivity.this, SlidingMenu.SLIDING_CONTENT);
         slidingMenu.setMenu(R.layout.include_main_slide);
         tvMyFollow = (TextView)slidingMenu.findViewById(R.id.tv_my_follow);

@@ -44,10 +44,10 @@ public class RecommendFragment extends BaseFragment implements TabLayout.OnTabSe
         tablayout.addTab(tablayout.newTab().setText("关注"));
 
         FragmentTransaction transaction = manager.beginTransaction();
-        if (hotFragment==null){
-            hotFragment=new HotFragment();
+        if (hotFragment == null) {
+            hotFragment = new HotFragment();
         }
-        transaction.add(R.id.recommad_framlayout,hotFragment);
+        transaction.add(R.id.recommad_framlayout, hotFragment);
         transaction.commit();
         tablayout.getTabAt(0).select();
 
@@ -61,26 +61,12 @@ public class RecommendFragment extends BaseFragment implements TabLayout.OnTabSe
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    @Override
     public void onTabSelected(TabLayout.Tab tab) {
         transaction = manager.beginTransaction();
-        if (tab.getText().equals("热门")){
-showFrag(0);
+        if (tab.getText().equals("热门")) {
+            showFrag(0);
             hideFrag(1);
-        }else {
+        } else {
             showFrag(1);
             hideFrag(0);
         }
@@ -103,8 +89,8 @@ showFrag(0);
         switch (i) {
             case 0:
                 if (hotFragment == null) {
-                hotFragment = new HotFragment();
-                transaction.add(R.id.recommad_framlayout, hotFragment, "hotFragment");
+                    hotFragment = new HotFragment();
+                    transaction.add(R.id.recommad_framlayout, hotFragment, "hotFragment");
                 }
                 transaction.show(hotFragment);
                 break;
