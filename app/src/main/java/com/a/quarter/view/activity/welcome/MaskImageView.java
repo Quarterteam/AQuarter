@@ -107,4 +107,10 @@ public class MaskImageView extends ImageView{
         invalidate();
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        removeCallbacks(runnable);
+        animationListener = null;
+    }
 }
