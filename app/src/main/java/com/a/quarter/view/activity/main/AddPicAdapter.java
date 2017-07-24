@@ -56,7 +56,7 @@ public class AddPicAdapter extends RecyclerView.Adapter{
 //            picHolder.
         }else if(viewType == TYPE_ADD){
             AddIconViewHolder iconHolder = (AddIconViewHolder)holder;
-            iconHolder.ivAddIcon.setImageResource(R.mipmap.add_file);
+            iconHolder.ivAddIcon.setImageResource(R.mipmap.add_pic);
         }
     }
 

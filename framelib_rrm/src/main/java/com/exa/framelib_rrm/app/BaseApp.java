@@ -3,6 +3,8 @@ package com.exa.framelib_rrm.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 /**
@@ -16,6 +18,7 @@ public class BaseApp extends Application{
 
     private static BaseApp instance;
     private ArrayList<Activity> activitys;//使用ArrayList好，还是使用HashSet好？
+    private Gson gson;
 
     @Override
     public void onCreate() {
@@ -67,6 +70,13 @@ public class BaseApp extends Application{
         }
         instance = null;
         super.onTerminate();
+    }
+
+    public static Gson getGson(){
+        if(instance.gson==null){
+            instance.gson = new Gson();
+        }
+        return instance.gson;
     }
 
 }

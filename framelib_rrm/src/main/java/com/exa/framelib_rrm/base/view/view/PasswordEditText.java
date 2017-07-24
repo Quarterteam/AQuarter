@@ -1,4 +1,4 @@
-package com.exa.framelib_rrm.base.view;
+package com.exa.framelib_rrm.base.view.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -11,10 +11,7 @@ import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.inputmethod.EditorInfo;
 

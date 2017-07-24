@@ -11,7 +11,7 @@
         android:layout_height="@dimen/main_head_height"
         android:scaleType="centerInside"
         android:background="@drawable/selector_bg_transparent_graytranslucent"
-        android:padding="10dp"
+        android:padding="12.5dp"
         android:src="@mipmap/arrow_left_light"/>
 
     <TextView

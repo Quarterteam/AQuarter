@@ -1,4 +1,4 @@
-package com.exa.framelib_rrm.base.view;
+package com.exa.framelib_rrm.base.view.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

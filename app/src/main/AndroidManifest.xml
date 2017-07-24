@@ -19,11 +19,11 @@
             android:value="1280" />
 
         <activity android:name=".view.activity.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".view.activity.login.LoginActivity">
 
@@ -38,7 +38,15 @@
         <activity android:name=".view.activity.login.RegisterActivity" />
         <activity android:name=".view.activity.follow.MyFollowActivity" />
         <activity android:name=".view.activity.follow.HotFollowActivity" />
-        <activity android:name=".view.activity.main.PublishArticleActivity"></activity>
+        <activity android:name=".view.activity.main.PublishArticleActivity" />
+        <activity android:name=".view.activity.welcome.WelcomeActivity"
+            android:theme="@style/Theme.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

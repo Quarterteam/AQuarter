@@ -14,10 +14,16 @@ import retrofit2.http.Url;
 //因为方法返回值需要的泛型不一样，所以无法写成一两个方法统一代替所有接口对应的方法
 public interface ApiService {
 
-    @POST
-    Observable<String> simplePost(@Url String url, @FieldMap Map<String, String> map);
-
+    /**GET请求，无参数，返回类型为json字符串*/
     @GET
-    Observable<String> simpleGet(@Url String url);
+    Observable<String> get(@Url String url);
+
+    /**POST请求，无参数，返回类型为json字符串*/
+    @POST
+    Observable<String> post(@Url String url);
+
+    /**POST请求，有参数，返回类型为son字符串*/
+    @POST
+    Observable<String> postWithParams(@Url String url, @FieldMap Map<String, String> map);
 
 }

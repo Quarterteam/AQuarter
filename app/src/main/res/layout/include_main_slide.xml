@@ -15,20 +15,20 @@
         android:id="@+id/tv_edit_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/textsize_main_title"
+        android:textSize="@dimen/textsize_small"
         android:textColor="@color/white"
         android:layout_alignBottom="@id/iv_bg"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:text="编辑个性签名"/>
 
-    <com.exa.framelib_rrm.base.view.CircleImageView
+    <com.exa.framelib_rrm.base.view.view.CircleImageView
         android:id="@+id/iv_user_icon"
         android:layout_above="@id/tv_edit_sign"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="30dp"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:layout_marginLeft="20dp"
         android:padding="5dp"
         android:src="@mipmap/user_icon"/>
 
@@ -36,21 +36,21 @@
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:textSize="@dimen/textsize_main_title"
+        android:textSize="@dimen/textsize_medium"
         android:textColor="@color/white"
         android:layout_alignTop="@id/iv_user_icon"
         android:layout_toRightOf="@id/iv_user_icon"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         android:gravity="center"
         android:text="姓名"/>
 
     <ImageView
         android:id="@+id/iv_sex_icon"
         android:layout_alignTop="@id/iv_user_icon"
-        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/tv_user_name"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@mipmap/female"/>

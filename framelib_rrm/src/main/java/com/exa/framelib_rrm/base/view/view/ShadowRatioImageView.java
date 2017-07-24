@@ -1,4 +1,4 @@
-package com.exa.framelib_rrm.base.view;
+package com.exa.framelib_rrm.base.view.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;

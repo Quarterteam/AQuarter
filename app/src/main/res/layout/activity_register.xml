@@ -25,7 +25,7 @@
             android:drawableLeft="@mipmap/edit_username"
             style="@style/EditText.Login"/>
 
-        <com.exa.framelib_rrm.base.view.PasswordEditText
+        <com.exa.framelib_rrm.base.view.view.PasswordEditText
             android:id="@+id/et_password"
             android:hint="请输入密码"
             android:drawableLeft="@mipmap/edit_password"
@@ -34,7 +34,7 @@
             android:inputType="textPassword"
             style="@style/EditText.Login" />
 
-        <com.exa.framelib_rrm.base.view.PasswordEditText
+        <com.exa.framelib_rrm.base.view.view.PasswordEditText
             android:id="@+id/et_password_confirm"
             android:hint="请再次输入密码"
             android:drawableLeft="@mipmap/edit_password"

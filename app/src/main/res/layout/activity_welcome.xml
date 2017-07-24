@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:id="@+id/rl_root"
+    tools:context="com.a.quarter.view.activity.welcome.WelcomeActivity">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <com.a.quarter.view.activity.welcome.MaskImageView
+            android:id="@+id/iv_entering_logo"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:src="@mipmap/entering_logo"/>
+
+        <!--<com.eftimoff.androipathview.PathView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pathView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:pathWidth="2px"
+            app:svg="@raw/circle_progressbar" />-->
+        <!--app:pathColor="@android:color/white"-->
+        <!--app:pathWidth="5"-->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="正在读取一刻钟..."
+            android:textColor="#F55C54"
+            android:textSize="@dimen/textsize_medium" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        style="@android:style/Widget.ProgressBar"
+        android:indeterminateDrawable="@drawable/welcome_color_progressbar_circle"
+        android:visibility="gone"/>
+    <!--android:progressDrawable="@drawable/welcome_color_progressbar_circle"-->
+
+</RelativeLayout>
