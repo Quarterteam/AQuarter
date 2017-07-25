@@ -31,11 +31,9 @@
         android:id="@+id/re_player_item"
         style="@style/Fram.Recommend.Item.player"></fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
 
-   <!--<android.support.v7.widget.RecyclerView-->
-       <!--android:layout_width="wrap_content"-->
-       <!--android:layout_height="wrap_content"-->
-       <!--android:id="@+id/re_recycle"-->
-       <!--android:layout_below="@id/re_player_item"-->
-       <!---->
-       <!--&gt;</android.support.v7.widget.RecyclerVie/w>-->
+    <android.support.v7.widget.RecyclerView
+       style="@style/re.recycler"
+        android:id="@+id/re_hot_recycler"
+
+        ></android.support.v7.widget.RecyclerView>
 </RelativeLayout>

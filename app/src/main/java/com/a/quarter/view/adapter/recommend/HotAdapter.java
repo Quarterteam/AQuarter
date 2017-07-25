@@ -1,12 +1,17 @@
 package com.a.quarter.view.adapter.recommend;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,10 +28,9 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
  * date:
  */
 
-public class HotAdapter extends RecyclerView.Adapter  {
+public class HotAdapter extends RecyclerView.Adapter   {
     Context context;
     ArrayList<String> list = new ArrayList<>();
-    private MyHolder holder1;
 
     public HotAdapter(Context context) {
         this.context = context;
@@ -46,31 +50,38 @@ public class HotAdapter extends RecyclerView.Adapter  {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        holder1 = (MyHolder) holder;
+
+     final  MyHolder   holder1 = (MyHolder) holder;
         holder1.nickName.setText("hello");
         holder1.time.setText(list.get(position));
-        holder1.vg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+        holder1.add.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                switch (i){
-                    case R.id.re_btn_add:
-                        holder1.report.setVisibility(View.INVISIBLE);
-                        Log.i("---","000");
+            public void onClick(View view) {
+                System.out.println("------------------");
 
-                        break;
-                    case R.id.re_btn_shiled:
-                        Log.i("---","000");
 
-                        break;
-                    case R.id.re_btn_report:
-                        Log.i("---","000");
+                        if (holder1.add.isChecked()){
+                            Drawable drawable = context.getResources().getDrawable(R.mipmap.one);
+                            holder1.add.setCompoundDrawablesRelativeWithIntrinsicBounds(null, drawable, null, null);  //设置drawableTop
 
-                        break;
-                    case R.id.re_btn_copyLink:
-                        Log.i("---","000");
+                            holder1.shiled.setVisibility(View.VISIBLE);
+                            holder1.report.setVisibility(View.VISIBLE);
+                            holder1.copyLink.setVisibility(View.VISIBLE);
+                            System.out.println("----1--------------");
 
-                        break;
-                }
+                        }else {
+                            Drawable drawable = context.getResources().getDrawable(R.mipmap.ic_launcher);
+                            holder1.add.setCompoundDrawablesRelativeWithIntrinsicBounds(null, drawable, null, null);  //设置drawableTop
+
+                            holder1.shiled.setVisibility(View.INVISIBLE);
+                            holder1.report.setVisibility(View.INVISIBLE);
+                            holder1.copyLink.setVisibility(View.INVISIBLE);
+                            System.out.println("--------2----------");
+
+                        }
+
             }
         });
     }
@@ -83,18 +94,17 @@ public class HotAdapter extends RecyclerView.Adapter  {
 
 
 
-
     static class MyHolder extends RecyclerView.ViewHolder {
 
         private final TextView nickName;
         private final TextView time;
         private final JCVideoPlayer player;
         private final View include;
-        private final RadioGroup vg;
-        private final RadioButton shiled;
-        private final RadioButton copyLink;
-        private final RadioButton add;
-        private final RadioButton report;
+        private final RecyclerView recyclerView;
+        private final CheckBox copyLink;
+        private final CheckBox report;
+        private final CheckBox shiled;
+        private final CheckBox add;
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -104,12 +114,13 @@ public class HotAdapter extends RecyclerView.Adapter  {
             player = (JCVideoPlayer) itemView.findViewById(R.id.re_player_item);
             include = itemView.findViewById(R.id.include_re_btn);
 
-            vg = (RadioGroup) include.findViewById(R.id.re_vg);
+            copyLink = (CheckBox) include.findViewById(R.id.check_re_copyLink);
 
-            shiled = (RadioButton) include.findViewById(R.id.re_btn_shiled);
-            copyLink = (RadioButton) include.findViewById(R.id.re_btn_copyLink);
-            add = (RadioButton) include.findViewById(R.id.re_btn_add);
-            report = (RadioButton) include.findViewById(R.id.re_btn_report);
+            report = (CheckBox) include.findViewById(R.id.check_re_report);
+            shiled = (CheckBox) include.findViewById(R.id.check_re_shiled);
+            add = (CheckBox) include.findViewById(R.id.check_re_add);
+
+            recyclerView = (RecyclerView) itemView.findViewById(R.id.re_hot_recycler);
 
         }
 
