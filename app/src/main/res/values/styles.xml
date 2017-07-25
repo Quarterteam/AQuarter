@@ -123,6 +123,7 @@
     <style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red</item>
         <item name="android:textSize">@dimen/frag_recommend_item_nickname</item>
         <item name="android:layout_toRightOf">@id/re_iamge_item</item>
         <item name="android:layout_alignTop">@id/re_iamge_item</item>
@@ -144,6 +145,7 @@
         <item name="android:layout_height">@dimen/frag_recommend_item_player</item>
         <item name="android:layout_below">@id/re_iamge_item</item>
         <item name="android:layout_marginTop">@dimen/frag_recommend_tab_indicate</item>
+        <item name="android:layout_marginBottom">@dimen/frag_recommend_item_distance</item>
 
 
     </style>
@@ -177,5 +179,35 @@
         <item name="android:textSize">@dimen/textsize_main_nav</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="RadioButton.Re" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">helo</item>
+
+        <item name="android:button">@null</item>
+
+        <item name="android:drawableTop">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="RadioButton.Re02" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableTop">@mipmap/ic_launcher</item>
+    </style>
+
+
+    <style name="RadioButton.add" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+
+
+
 
 </resources>

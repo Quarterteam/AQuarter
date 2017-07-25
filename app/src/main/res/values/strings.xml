@@ -1,4 +1,10 @@
 <resources>
     <!--<string name="app_name">AQuarter</string>-->
     <string name="app_name">一刻钟</string>
+
+
+    <string name="re_btn01">屏蔽他</string>
+
+    <string name="re_btn02">举报</string>
+    <string name="re_btn03">复制链接</string>
 </resources>
