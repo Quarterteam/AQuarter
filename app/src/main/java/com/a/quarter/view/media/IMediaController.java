@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package media;
+package com.a.quarter.view.media;
 
 import android.view.View;
 import android.widget.MediaController;

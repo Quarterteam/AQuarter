@@ -12,7 +12,7 @@
     <dimen name="main_slide_icon_size">20dp</dimen>
     <dimen name="login_margin">30dp</dimen>
     <dimen name="frag_recommend_tab_indicate">5dp</dimen>
-    <dimen name="frag_recommend_item_nickname">20sp</dimen>
+    <dimen name="frag_recommend_item_nickname">22sp</dimen>
     <dimen name="frag_recommend_item_time">18sp</dimen>
     <dimen name="frag_recommend_item_player">300dp</dimen>
     <dimen name="textsize_large">17.5sp</dimen>
@@ -20,5 +20,6 @@
     <dimen name="textsize_small">12.5sp</dimen>
 
     <dimen name="frag_recommend_item_distance">10dp</dimen>
+    <dimen name="frag_recommend_item_content">25sp</dimen>
 
 </resources>

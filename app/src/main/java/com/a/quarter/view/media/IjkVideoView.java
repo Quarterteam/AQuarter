@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package media;
+package com.a.quarter.view.media;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -37,7 +37,8 @@ import android.widget.FrameLayout;
 import android.widget.MediaController;
 import android.widget.TableLayout;
 
-import com.wang.myapplication.R;
+
+import com.a.quarter.R;
 
 import java.io.File;
 import java.io.IOException;

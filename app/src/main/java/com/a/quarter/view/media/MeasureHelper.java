@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package media;
+package com.a.quarter.view.media;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import com.wang.myapplication.R;
+
+import com.a.quarter.R;
 
 import java.lang.ref.WeakReference;
 

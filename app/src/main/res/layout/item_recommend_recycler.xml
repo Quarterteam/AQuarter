@@ -4,7 +4,7 @@
     android:padding="10dp"
     android:layout_height="match_parent">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/re_iamge_item"
         style="@style/Fram.Recommend.Item.Image"
         android:layout_alignParentTop="true"
@@ -21,15 +21,24 @@
         style="@style/Fram.Recommend.Item.Time"
         android:text="hello" />
 
+    <TextView
+        android:id="@+id/re_textTime_content"
+        style="@style/Fram.Recommend.Item.Content"
+        android:text="helloffffdedafafaffffffffffffffff3ewaeaa"
+        android:layout_below="@id/re_iamge_item"
+        />
+
+
     <include
         style="@style/RadioButton.add"
         android:id="@+id/include_re_btn"
-        layout="@layout/include_re_btn"></include>
+        layout="@layout/include_re_btn"
+       ></include>
 
-    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+    <com.a.quarter.view.media.IjkVideoView
         android:layout_marginTop="20dp"
         android:id="@+id/re_player_item"
-        style="@style/Fram.Recommend.Item.player"></fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
+        style="@style/Fram.Recommend.Item.player"></com.a.quarter.view.media.IjkVideoView>
 
     <android.support.v7.widget.RecyclerView
        style="@style/re.recycler"

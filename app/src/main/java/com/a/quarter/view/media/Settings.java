@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package media;
+package com.a.quarter.view.media;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.wang.myapplication.R;
+import com.a.quarter.R;
 
 public class Settings {
     private Context mAppContext;

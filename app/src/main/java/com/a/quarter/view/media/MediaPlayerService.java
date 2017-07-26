@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package media;
+package com.a.quarter.view.media;
 
 import android.app.Service;
 import android.content.Context;

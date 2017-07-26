@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout
     android:orientation="horizontal"
-    android:layout_height="match_parent">
-    <CheckBox
-        android:id="@+id/check_re_shiled"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_re_shiled"
         android:text="@string/re_btn01"
         style="@style/re.check"
-        android:drawableTop="@mipmap/ic_launcher"
+        android:drawableTop="@mipmap/shiled"
          />
-    <CheckBox
-        android:id="@+id/check_re_report"
+    <TextView
+        android:id="@+id/text_re_report"
 
         style="@style/re.check"
         android:text="@string/re_btn02"
-        android:drawableTop="@mipmap/ic_launcher"
+        android:drawableTop="@mipmap/report"
 
        />
-    <CheckBox
-        android:id="@+id/check_re_copyLink"
+    <TextView
+        android:id="@+id/text_re_copyLink"
 
         style="@style/re.check"
         android:text="@string/re_btn03"
-        android:drawableTop="@mipmap/ic_launcher"
+        android:drawableTop="@mipmap/copylink"
         />
-    <CheckBox
-        android:id="@+id/check_re_add"
-
+    <ImageView
+        android:id="@+id/text_re_add"
         style="@style/re.check02"
-        android:drawableTop="@mipmap/ic_launcher" />
 
-</LinearLayout>
+        />
+
+</RelativeLayout>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package media;
+package com.a.quarter.view.media;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;

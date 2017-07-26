@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         ActivityUtils.jumpIn(WelcomeActivity.this, MainActivity.class);
                         finish();
                     }
-                }, 3000);
+                }, 3000);// TODO: 2017/7/26 修改时间3000
             }
         });
         iv.startAnim();
