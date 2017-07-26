@@ -178,4 +178,7 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="TabLayout.MyFollow.TextStyle" parent="Control">
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
 </resources>

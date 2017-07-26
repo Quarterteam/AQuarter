@@ -1,7 +1,7 @@
 package com.a.quarter.presenter.publish;
 
 import com.a.quarter.model.api.Api;
-import com.a.quarter.model.bean.RegisterResponse;
+import com.a.quarter.model.bean.login.RegisterResponse;
 import com.exa.framelib_rrm.retrofit.RetrofitHelper;
 import com.exa.framelib_rrm.rx.RxBasePresenter;
 import com.exa.framelib_rrm.rx.RxHelper;

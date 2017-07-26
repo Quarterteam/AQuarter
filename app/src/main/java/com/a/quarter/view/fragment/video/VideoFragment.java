@@ -1,5 +1,6 @@
 package com.a.quarter.view.fragment.video;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -65,7 +66,9 @@ public class VideoFragment extends BaseFragment {
         mTabLayout.post(new Runnable() {
             @Override
             public void run() {
-                setIndicator(mTabLayout, 60, 60);
+//                setIndicator(mTabLayout, 60, 60);
+//                setIndicator(mTabLayout, 60, 60, getActivity());
+                setIndicator(mTabLayout, 15);
             }
         });
     }

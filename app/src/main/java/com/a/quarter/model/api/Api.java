@@ -1,7 +1,7 @@
 package com.a.quarter.model.api;
 
-import com.a.quarter.model.bean.LoginResponse;
-import com.a.quarter.model.bean.RegisterResponse;
+import com.a.quarter.model.bean.login.LoginResponse;
+import com.a.quarter.model.bean.login.RegisterResponse;
 import com.a.quarter.model.utils.Constants;
 
 import java.util.HashMap;
@@ -26,7 +26,7 @@ public interface Api {
     Observable<RegisterResponse> register(@FieldMap HashMap<String, String> map);
     //java.lang.IllegalArgumentException: @FieldMap parameters can only be used with form encoding. (parameter #1)
 
-    @POST(Constants.REGISTER)
+    @POST(Constants.PUBLISH_ARTICLE)
     @FormUrlEncoded
     Observable<RegisterResponse> publishArticle(@FieldMap HashMap<String, String> map);
 

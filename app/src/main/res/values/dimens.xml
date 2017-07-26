@@ -18,4 +18,6 @@
     <dimen name="textsize_large">17.5sp</dimen>
     <dimen name="textsize_medium">15sp</dimen>
     <dimen name="textsize_small">12.5sp</dimen>
+    <dimen name="myfollow_list_item_height">75dp</dimen>
+    <dimen name="myfollow_list_item_widget_margin">15dp</dimen>
 </resources>

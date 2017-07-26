@@ -3,10 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.a.quarter.view.activity.follow.HotFollowActivity">
+    android:background="@color/lightgray"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.activity.main.HotFollowActivity">
+
+    <include
+        android:id="@+id/inc_head"
+        layout="@layout/include_login_head"/>
+
+    <!--<EditText
+        android:id="@+id/et_search"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/inc_head"
+        android:layout_alignBottom="@id/inc_head"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/main_head_height"
+        android:layout_marginRight="@dimen/main_head_height"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/gray"/>-->
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_below="@id/inc_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/mainColor"
+        app:tabIndicatorHeight="@dimen/frag_recommend_tab_indicate"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/mainColor"
+        app:tabTextAppearance="@style/TabLayout.MyFollow.TextStyle"
+        android:background="@color/white"
+        app:tabTextColor="@color/black"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_below="@id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"/>
 
 </RelativeLayout>

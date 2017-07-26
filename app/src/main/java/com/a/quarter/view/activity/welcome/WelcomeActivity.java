@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         ActivityUtils.jumpIn(WelcomeActivity.this, MainActivity.class);
                         finish();
                     }
-                }, 3000);
+                }, 2000);
             }
         });
         iv.startAnim();

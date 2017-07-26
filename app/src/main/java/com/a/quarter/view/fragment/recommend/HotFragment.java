@@ -27,7 +27,6 @@ public class HotFragment extends BaseFragment {
     LinearLayout linearlayout;
     @Bind(R.id.recommand_fragemnt_recyclerview)
     RecyclerView recyclerview;
-
     
     @Override
     protected int getContentViewId() {
