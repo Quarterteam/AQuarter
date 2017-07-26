@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.app.App;
-import com.a.quarter.model.bean.PublishArticleResponse;
+import com.a.quarter.model.bean.main.AddPicItemBean;
+import com.a.quarter.model.bean.main.PublishArticleResponse;
 import com.a.quarter.presenter.publish.PublishArticlePresenter;
+import com.a.quarter.view.adapter.main.AddPicAdapter;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
 import com.exa.framelib_rrm.rx.RxCallback;

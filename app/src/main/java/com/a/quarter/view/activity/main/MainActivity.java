@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.app.App;
-import com.a.quarter.model.bean.User;
-import com.a.quarter.model.utils.DrawableUtils;
-import com.a.quarter.model.utils.SlidingMenuUtils;
+import com.a.quarter.model.bean.login.User;
+import com.a.quarter.view.utils.DrawableUtils;
+import com.a.quarter.view.utils.SlidingMenuUtils;
 import com.a.quarter.view.activity.login.LoginActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
@@ -23,7 +23,6 @@ import com.a.quarter.view.fragment.video.VideoFragment;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
-import com.exa.framelib_rrm.utils.T;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import butterknife.Bind;
@@ -127,10 +126,14 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //                }
                 break;
             case R.id.tv_my_follow:
+                ActivityUtils.jumpIn(this, MyFollowActivity.class);
+                break;
+            case R.id.tv_search_friend:
+                ActivityUtils.jumpIn(this, SearchFriendActivity.class);
+                break;
             case R.id.tv_my_collection:
             case R.id.tv_my_work:
             case R.id.tv_settings:
-            case R.id.tv_search_friend:
             case R.id.tv_msg_notify:
                 if(slidingMenu!=null){
                     slidingMenu.toggle();

@@ -1,4 +1,4 @@
-package com.a.quarter.model.bean;
+package com.a.quarter.model.bean.login;
 
 /**
  * Created by acer on 2017/7/22.

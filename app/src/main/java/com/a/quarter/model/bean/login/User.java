@@ -1,4 +1,4 @@
-package com.a.quarter.model.bean;
+package com.a.quarter.model.bean.login;
 
 import android.content.Context;
 import android.content.SharedPreferences;

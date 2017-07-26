@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.app.App;
-import com.a.quarter.model.bean.LoginResponse;
+import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.presenter.login.LoginPresenter;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.base.model.http.tag.BaseTag;

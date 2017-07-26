@@ -37,7 +37,7 @@
         <item name="android:background">@drawable/selector_bg_white_graytranslucent</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_nav</item>
+        <item name="android:textColor">@drawable/selector_textcolor_mainnav</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:paddingBottom">5dp</item>
@@ -51,7 +51,7 @@
         <!--<item name="android:background">@drawable/selector_bg_white_gray</item>-->
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/textsize_small</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_slide</item>
+        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
         <item name="android:paddingLeft">30dp</item>
         <item name="android:paddingRight">30dp</item>
         <item name="android:drawablePadding">10dp</item>
@@ -67,7 +67,7 @@
         <!--<item name="android:background">@drawable/selector_bg_white_gray</item>-->
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/textsize_small</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_slide</item>
+        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:drawablePadding">5dp</item>
@@ -196,7 +196,7 @@
     <style name="TextView.FindPwd" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_slide</item>
+        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
         <item name="android:gravity">center</item>
     </style>
@@ -324,4 +324,7 @@
     </style>
 
 
+    <style name="TabLayout.MyFollow.TextStyle" parent="Control">
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
 </resources>

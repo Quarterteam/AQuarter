@@ -15,6 +15,7 @@ import java.lang.reflect.Field;
  */
 
 public class TabUnderlineUtil {
+
     public static void setIndicator(TabLayout tabs, int leftDip, int rightDip) {
         Class<?> tabLayout = tabs.getClass();
         Field tabStrip = null;
@@ -34,6 +35,7 @@ public class TabUnderlineUtil {
 
         int left = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, leftDip, Resources.getSystem().getDisplayMetrics());
         int right = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rightDip, Resources.getSystem().getDisplayMetrics());
+
         for (int i = 0; i < llTab.getChildCount(); i++) {
             View child = llTab.getChildAt(i);
             child.setPadding(0, 0, 0, 0);
@@ -44,4 +46,5 @@ public class TabUnderlineUtil {
             child.invalidate();
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.a.quarter.view.activity.main;
+package com.a.quarter.view.adapter.main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.main.AddPicItemBean;
 
 import java.util.ArrayList;
 

@@ -7,6 +7,11 @@
 
     <string name="re_btn02">举报</string>
     <string name="re_btn03">复制链接</string>
+    <string name="users_might_interest">你可能感兴趣的用户</string>
+    <string name="change_to_next">换一批</string>
+    <string name="add_follow">+ 关注</string>
+    <string name="name_example">阿诺马斯丁</string>
+    <string name="info_example">吃货们快戳我</string>
 
     <string name="N_A">N/A</string>
     <string name="close">Close</string>

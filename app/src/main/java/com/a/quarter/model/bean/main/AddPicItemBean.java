@@ -1,4 +1,4 @@
-package com.a.quarter.view.activity.main;
+package com.a.quarter.model.bean.main;
 
 public class AddPicItemBean {
 	public int type;

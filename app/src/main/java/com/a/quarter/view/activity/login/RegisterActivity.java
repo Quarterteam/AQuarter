@@ -2,7 +2,6 @@ package com.a.quarter.view.activity.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -12,19 +11,16 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.a.quarter.R;
-import com.a.quarter.app.App;
-import com.a.quarter.model.bean.RegisterResponse;
-import com.a.quarter.model.bean.User;
+import com.a.quarter.model.bean.login.RegisterResponse;
+import com.a.quarter.model.bean.login.User;
 import com.a.quarter.presenter.login.LoginPresenter;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
 import com.exa.framelib_rrm.rx.RxCallback;
-import com.exa.framelib_rrm.utils.FrameLifeCircleLogUtils;
 import com.exa.framelib_rrm.utils.T;
 import com.exa.framelib_rrm.utils.TextFormatUtils;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity<LoginPresenter, RegisterActivity.RegisterCallback> implements View.OnClickListener {

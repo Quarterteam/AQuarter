@@ -1,4 +1,4 @@
-package com.a.quarter.model.utils;
+package com.a.quarter.view.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
-import com.a.quarter.model.utils.DrawableUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**

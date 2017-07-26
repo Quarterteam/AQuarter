@@ -1,10 +1,9 @@
 package com.a.quarter.app;
 
-import com.a.quarter.model.bean.User;
+import com.a.quarter.model.bean.login.User;
 import com.a.quarter.model.utils.Constants;
 import com.exa.framelib_rrm.app.BaseApp;
 import com.exa.framelib_rrm.retrofit.RetrofitHelper;
-import com.exa.framelib_rrm.utils.SPUtils;
 
 /**
  * Created by acer on 2017/7/21.

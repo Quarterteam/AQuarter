@@ -22,4 +22,6 @@
     <dimen name="frag_recommend_item_distance">10dp</dimen>
     <dimen name="frag_recommend_item_content">25sp</dimen>
 
+    <dimen name="myfollow_list_item_height">75dp</dimen>
+    <dimen name="myfollow_list_item_widget_margin">15dp</dimen>
 </resources>

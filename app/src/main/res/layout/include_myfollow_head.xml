@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/mainColor"
     android:layout_width="match_parent"
     android:layout_height="@dimen/main_head_height">
@@ -18,19 +17,21 @@
         android:id="@+id/tv_head"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:gravity="center"
         android:textSize="@dimen/textsize_main_title"
         android:textColor="@color/white"
         android:text="头部标题"/>
 
-    <ImageView
-        android:id="@+id/iv_toolbar"
-        android:layout_width="@dimen/main_head_height"
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/main_head_height"
-        android:padding="13dp"
-        android:scaleType="centerInside"
-        android:visibility="invisible"
-        android:src="@mipmap/ic_launcher"/>
+        android:padding="10dp"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_medium"
+        android:textColor="@drawable/selector_textcolor_white_mainadd"
+        android:background="@drawable/selector_bg_transparent_graytranslucent"
+        android:text="热门关注"/>
 
-</LinearLayout>
+</RelativeLayout>
