@@ -185,7 +185,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:text">helo</item>
-        <item name="android:visibility">gone</item>
+
         <item name="android:button">@null</item>
 
         <item name="android:drawableTop">@mipmap/ic_launcher</item>
@@ -206,37 +206,8 @@
         <item name="android:layout_alignParentRight">true</item>
     </style>
 
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@id/re_player_item"-->
-
-    <style name="re.add" parent="Control">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentRight">true</item>
-    </style>
 
 
-    <style name="re.recycler" parent="Control">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:layout_below">@id/re_player_item</item>
-</style>
 
-    <style name="re.check" parent="Control">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:button">@null</item>
-        <item name="android:visibility">gone</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_weight">1</item>
-    </style>
 
-    <style name="re.check02" parent="Control">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:button">@null</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_weight">1</item>
-    </style>
 </resources>
