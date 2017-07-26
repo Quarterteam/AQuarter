@@ -1,4 +1,4 @@
-package com.a.quarter.model.utils;
+package com.a.quarter.view.utils;
 
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;

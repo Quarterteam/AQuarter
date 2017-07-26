@@ -1,4 +1,4 @@
-package com.a.quarter.model.utils;
+package com.a.quarter.view.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

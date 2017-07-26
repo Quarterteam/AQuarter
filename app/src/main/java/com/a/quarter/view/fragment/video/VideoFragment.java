@@ -66,9 +66,7 @@ public class VideoFragment extends BaseFragment {
         mTabLayout.post(new Runnable() {
             @Override
             public void run() {
-//                setIndicator(mTabLayout, 60, 60);
-//                setIndicator(mTabLayout, 60, 60, getActivity());
-                setIndicator(mTabLayout, 15);
+                setIndicator(mTabLayout, 60, 60);
             }
         });
     }
