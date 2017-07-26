@@ -70,14 +70,24 @@ public class SearchFriendListAdapter extends RecyclerView.Adapter{
             HistoryHolder holder2 = (HistoryHolder)holder;
             historyBean = (SearchFriendHistory)list.get(position);
             holder2.tvName.setText(historyBean.name);
+            if(position < list.size()-1 && list.get(position+1).itemType != TYPE_HISTORY){
+                holder2.line.setVisibility(View.GONE);
+            }else{
+                holder2.line.setVisibility(View.VISIBLE);
+            }
         }else if(viewType == TYPE_INTEREST_TITLE){
             //InterestTitleHolder holder3 = (InterestTitleHolder)holder;
 
-        }else{
+        }else if(viewType == TYPE_INTEREST){
             InterestHolder holder4 = (InterestHolder)holder;
             interestBean = (SearchFriendInterest) list.get(position);
             holder4.tvName.setText(interestBean.name);
             holder4.tvInfo.setText(interestBean.info);
+            if(position < list.size()-1 && list.get(position+1).itemType != TYPE_INTEREST){
+                holder4.line.setVisibility(View.GONE);
+            }else{
+                holder4.line.setVisibility(View.VISIBLE);
+            }
         }
     }
 

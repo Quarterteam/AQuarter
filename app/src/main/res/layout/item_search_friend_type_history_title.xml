@@ -19,6 +19,7 @@
         android:gravity="center"
         android:padding="5dp"
         android:textSize="@dimen/textsize_small"
+        android:textColor="@drawable/selector_textcolor_gray_main"
         android:text="清空搜索历史"/>
 
 </RelativeLayout>

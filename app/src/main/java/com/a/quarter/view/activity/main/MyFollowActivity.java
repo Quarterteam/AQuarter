@@ -11,6 +11,7 @@ import com.a.quarter.R;
 import com.a.quarter.view.adapter.main.FragmentVpAdapter;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.main.FollowListFragment;
+import com.a.quarter.view.utils.TabLayoutUtils;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 
 import java.util.ArrayList;
@@ -68,6 +69,8 @@ public class MyFollowActivity extends BaseActivity implements View.OnClickListen
         mTabLayout.setupWithViewPager(mViewPager);
         //给TabLayout设置适配器
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
+
+        TabLayoutUtils.setIndicator(mTabLayout, 0);
 
     }
 

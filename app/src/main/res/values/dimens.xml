@@ -14,10 +14,13 @@
     <dimen name="frag_recommend_tab_indicate">5dp</dimen>
     <dimen name="frag_recommend_item_nickname">20sp</dimen>
     <dimen name="frag_recommend_item_time">18sp</dimen>
-    <dimen name="frag_recommend_item_player">200dp</dimen>
+    <dimen name="frag_recommend_item_player">300dp</dimen>
     <dimen name="textsize_large">17.5sp</dimen>
     <dimen name="textsize_medium">15sp</dimen>
     <dimen name="textsize_small">12.5sp</dimen>
+
+    <dimen name="frag_recommend_item_distance">10dp</dimen>
+
     <dimen name="myfollow_list_item_height">75dp</dimen>
     <dimen name="myfollow_list_item_widget_margin">15dp</dimen>
 </resources>

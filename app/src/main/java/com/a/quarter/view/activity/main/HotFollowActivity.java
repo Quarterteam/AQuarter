@@ -44,8 +44,16 @@ public class HotFollowActivity extends BaseActivity implements View.OnClickListe
         ivToolbar.setImageResource(R.mipmap.search_friend);
         ivToolbar.setBackgroundResource(R.drawable.selector_bg_transparent_graytranslucent);
         ivToolbar.setVisibility(View.VISIBLE);
+    }
 
-        //初始化TabLayout和ViewPager
+    @Override
+    protected void initDatas() {
+        setUpTabVp();
+    }
+
+    //初始化TabLayout和ViewPager
+    private void setUpTabVp() {
+        //初始化title数据
         ArrayList<String> mTitleList = new ArrayList<String>();
         mTitleList.add("新闻");
         mTitleList.add("爆笑");
@@ -53,9 +61,6 @@ public class HotFollowActivity extends BaseActivity implements View.OnClickListe
         mTitleList.add("美食");
         mTitleList.add("网红");
         mTitleList.add("颜值");
-        for (int i = 0; i < mTitleList.size(); i++) {
-            mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(i)));
-        }
 
         //添加 Fragment
         ArrayList<Fragment> mFragList = new ArrayList<Fragment>();
@@ -63,32 +68,10 @@ public class HotFollowActivity extends BaseActivity implements View.OnClickListe
             mFragList.add(new FollowListFragment());
         }
 
-//        FragmentVpAdapter mAdapter = new FragmentVpAdapter(getSupportFragmentManager(), mFragList, mTitleList);
-//
-//        //给ViewPager设置适配器
-//        mViewPager.setAdapter(mAdapter);
-//        //将TabLayout和ViewPager关联起来。
-//        mTabLayout.setupWithViewPager(mViewPager);
-//        //给TabLayout设置适配器
-//        mTabLayout.setTabsFromPagerAdapter(mAdapter);
-
-//        ObjectAnimator animator = new ObjectAnimator();
-//        animator.
-
-//        String[] titles = {
-//                "新闻",
-//                "爆笑",
-//                "感人",
-//                "美食",
-//                "网红",
-//                "颜值",
-//        };
+        //关联TabLayout和Viewpager
         TabLayoutUtils.setAda(mTabLayout, mViewPager, getSupportFragmentManager(), mFragList, mTitleList);
-    }
-
-    @Override
-    protected void initDatas() {
-
+        //设置tab下划线长度
+        TabLayoutUtils.setIndicator(mTabLayout, 0);
     }
 
     @OnClick({R.id.iv_back, R.id.iv_toolbar})

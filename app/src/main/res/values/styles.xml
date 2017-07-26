@@ -37,7 +37,7 @@
         <item name="android:background">@drawable/selector_bg_white_graytranslucent</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_nav</item>
+        <item name="android:textColor">@drawable/selector_textcolor_mainnav</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:paddingBottom">5dp</item>
@@ -51,7 +51,7 @@
         <!--<item name="android:background">@drawable/selector_bg_white_gray</item>-->
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/textsize_small</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_slide</item>
+        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
         <item name="android:paddingLeft">30dp</item>
         <item name="android:paddingRight">30dp</item>
         <item name="android:drawablePadding">10dp</item>
@@ -67,7 +67,7 @@
         <!--<item name="android:background">@drawable/selector_bg_white_gray</item>-->
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/textsize_small</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_slide</item>
+        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:drawablePadding">5dp</item>
@@ -123,6 +123,7 @@
     <style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red</item>
         <item name="android:textSize">@dimen/frag_recommend_item_nickname</item>
         <item name="android:layout_toRightOf">@id/re_iamge_item</item>
         <item name="android:layout_alignTop">@id/re_iamge_item</item>
@@ -144,6 +145,7 @@
         <item name="android:layout_height">@dimen/frag_recommend_item_player</item>
         <item name="android:layout_below">@id/re_iamge_item</item>
         <item name="android:layout_marginTop">@dimen/frag_recommend_tab_indicate</item>
+        <item name="android:layout_marginBottom">@dimen/frag_recommend_item_distance</item>
 
 
     </style>
@@ -173,10 +175,111 @@
     <style name="TextView.FindPwd" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
-        <item name="android:textColor">@drawable/selector_textcolor_main_slide</item>
+        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="RadioButton.Re" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">helo</item>
+
+        <item name="android:button">@null</item>
+
+        <item name="android:drawableTop">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="RadioButton.Re02" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableTop">@mipmap/ic_launcher</item>
+    </style>
+
+
+    <style name="RadioButton.add" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+<!--Joke界面-->
+    <style name="Linear_match_ver" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="Linear_match_hor" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="Linear_wrap_ver" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="Linear_wrap_hor" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="View.H" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+
+    </style>
+    <style name="Joke.image.text" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+
+    <style name="TextView.Joke.Title" parent="Control" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/redAdd</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingLeft">13dp</item>
+    </style>
+    <style name="TextView.Joke.Content" parent="Control" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+    <style name="Joke.TextView.Time" parent="Control" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:paddingLeft">23dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+
+
+
+    <style name="Joke.image" parent="Control">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+
 
     <style name="TabLayout.MyFollow.TextStyle" parent="Control">
         <item name="android:textSize">@dimen/textsize_medium</item>

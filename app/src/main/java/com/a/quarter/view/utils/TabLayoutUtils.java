@@ -40,12 +40,18 @@ public class TabLayoutUtils {
         tab.setupWithViewPager(viewpager);
         // //设置适配器
         // viewpager.setAdapter(pagerAda);
-        //设置TabLayout下划线的长度
+    }
+
+    /**
+     * 设置TabLayout下划线的长度
+     * @param tab TabLayout
+     * @param offset 一个tab上的指示器线条长度需要比TextView上的文字的总宽度多出的一侧的距离
+     * */
+    public static void setIndicator(final TabLayout tab, final int offset){
         tab.post(new Runnable() {
             @Override
             public void run() {
-                //setIndicator(tab,60,60);
-                setIndicator(tab, 25);
+                setIndicatorInternal(tab, offset);
             }
         });
     }
@@ -97,11 +103,11 @@ public class TabLayoutUtils {
 //    }
 
     /**
-     * @param tabs TabLayout
+     * @param tab TabLayout
      * @param offset 一个tab上的指示器线条长度需要比TextView上的文字的总宽度多出的一侧的距离
      * */
-    public static void setIndicator(TabLayout tabs, int offset) {
-        Class<?> tabLayout = tabs.getClass();
+    public static void setIndicatorInternal(TabLayout tab, int offset) {
+        Class<?> tabLayout = tab.getClass();
         Field tabStrip = null;
         try {
             tabStrip = tabLayout.getDeclaredField("mTabStrip");
@@ -112,7 +118,7 @@ public class TabLayoutUtils {
         tabStrip.setAccessible(true);
         LinearLayout llTab = null;
         try {
-            llTab = (LinearLayout) tabStrip.get(tabs);
+            llTab = (LinearLayout) tabStrip.get(tab);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             return;

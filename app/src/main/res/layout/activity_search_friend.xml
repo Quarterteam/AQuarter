@@ -15,12 +15,13 @@
         android:id="@+id/tv_cancel"
         android:layout_below="@id/inc_head"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_alignParentRight="true"
         android:gravity="center"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:layout_marginRight="5dp"
+        android:textColor="@drawable/selector_textcolor_gray_main"
         android:text="取消"/>
 
     <EditText
@@ -31,14 +32,17 @@
         android:background="@drawable/shape_bg_et_search_friend"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="30dp"/>
+        android:textColor="@color/gray"
+        android:hint="输入ID或好友名"
+        android:textSize="@dimen/textsize_medium"
+        android:layout_height="35dp"/>
 
     <ImageView
         android:id="@+id/iv_search"
         android:layout_below="@id/inc_head"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="10dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="13dp"
         android:src="@mipmap/search_friend"/>
 
     <android.support.v7.widget.RecyclerView

@@ -19,7 +19,7 @@
         android:layout_alignParentRight="true"
         android:gravity="center"
         android:paddingRight="8dp"
-        android:textColor="@color/mainColor"
+        android:textColor="@drawable/selector_textcolor_main_add"
         android:textSize="@dimen/textsize_small"
         android:text="@string/change_to_next"/>
 

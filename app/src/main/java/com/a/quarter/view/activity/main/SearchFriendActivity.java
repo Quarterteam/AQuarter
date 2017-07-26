@@ -15,6 +15,7 @@ import com.a.quarter.model.bean.main.SearchFriendHistory;
 import com.a.quarter.model.bean.main.SearchFriendInterest;
 import com.a.quarter.view.adapter.main.SearchFriendListAdapter;
 import com.a.quarter.view.base.BaseActivity;
+import com.exa.framelib_rrm.utils.T;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//搜索好友页面
 public class SearchFriendActivity extends BaseActivity implements View.OnClickListener{
 
     @Bind(R.id.iv_back)
@@ -77,11 +79,11 @@ public class SearchFriendActivity extends BaseActivity implements View.OnClickLi
                 break;
 
             case R.id.tv_cancel:
-
+                T.showShort(getApplicationContext(), "取消");
                 break;
 
             case R.id.iv_search:
-
+                T.showShort(getApplicationContext(), "搜索");
                 break;
 
             default:
