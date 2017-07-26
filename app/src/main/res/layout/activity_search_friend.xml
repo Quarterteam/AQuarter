@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/inc_head"
-        layout="@layout/include_login_head"/>
+        layout="@layout/include_head_iv_tv_iv"/>
 
     <TextView
         android:id="@+id/tv_cancel"

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:background="@color/red"
+    android:background="@color/mainColor"
     android:layout_width="match_parent"
     android:layout_height="@dimen/main_head_height">
 
@@ -34,31 +33,4 @@
         android:visibility="invisible"
         android:src="@mipmap/ic_launcher"/>
 
-</LinearLayout>-->
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/main_head_height">
-
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="@dimen/main_head_height"
-        android:layout_height="@dimen/main_head_height"
-        android:scaleType="centerInside"
-        android:background="@drawable/selector_bg_transparent_graytranslucent"
-        android:padding="12.5dp"
-        android:src="@mipmap/arrow_left_light"/>
-
-    <TextView
-        android:id="@+id/tv_right"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/main_head_height"
-        android:padding="10dp"
-        android:gravity="center"
-        android:textSize="@dimen/textsize_medium"
-        android:textColor="@drawable/selector_textcolor_white_mainadd"
-        android:background="@drawable/selector_bg_transparent_graytranslucent"
-        android:text="热门关注"/>
-
-</RelativeLayout>
+</LinearLayout>

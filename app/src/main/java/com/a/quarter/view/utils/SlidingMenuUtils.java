@@ -3,16 +3,19 @@ package com.a.quarter.view.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.exa.framelib_rrm.base.view.view.BaseThemeManager;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.suke.widget.SwitchButton;
 
 /**
  * Created by acer on 2017/7/20.
  */
-public class SlidingMenuUtils {
+public class SlidingMenuUtils implements SwitchButton.OnCheckedChangeListener {
 
     private ImageView ivBg;
     private TextView tvEditSign;
@@ -27,6 +30,8 @@ public class SlidingMenuUtils {
     private TextView tvSearchFriend;
     private TextView tvMyWork;
     private TextView tvSettings;
+    private CheckedTextView tvLightMode;
+    private SwitchButton switchButton;
 
     public SlidingMenu initSlidingMenu(Activity activity, final View.OnClickListener onClickListener) {
         this.context = activity.getApplicationContext();
@@ -69,9 +74,12 @@ public class SlidingMenuUtils {
         this.ivUserIcon = (ImageView)slidingMenu.findViewById(R.id.iv_user_icon);
         this.tvUserName = (TextView)slidingMenu.findViewById(R.id.tv_user_name);
         this.ivSexIcon = (ImageView)slidingMenu.findViewById(R.id.iv_sex_icon);
+        this.tvLightMode = (CheckedTextView)slidingMenu.findViewById(R.id.tv_light_mode);
+        this.switchButton = (SwitchButton)slidingMenu.findViewById(R.id.switchButton);
 
         tvEditSign.setOnClickListener(onClickListener);
         ivUserIcon.setOnClickListener(onClickListener);
+        switchButton.setOnCheckedChangeListener(this);
 
         slidingMenu.setOffsetFadeDegree(0.4f);
 
@@ -85,6 +93,18 @@ public class SlidingMenuUtils {
         DrawableUtils.scaleDrawableLeft(context, R.drawable.selector_icon_main_slide_searchfriend, tvSearchFriend);
         DrawableUtils.scaleDrawableTop(context, R.drawable.selector_icon_main_slide_mywork, tvMyWork);
         DrawableUtils.scaleDrawableTop(context, R.drawable.selector_icon_main_slide_settings, tvSettings);
+        DrawableUtils.scaleDrawableLeft(context, R.drawable.selector_icon_main_slide_light_mode, tvLightMode);
     }
 
+    @Override
+    public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+        tvLightMode.setChecked(isChecked);
+        if(isChecked){
+            tvLightMode.setText("夜间模式");
+        }else{
+            tvLightMode.setText("日间模式");
+        }
+        //切换背景颜色
+        //ThemeManager.switchThemeMode();
+    }
 }

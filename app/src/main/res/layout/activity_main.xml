@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainColor">
+    android:id="@+id/rl_root"
+    android:background="@color/mainBackground">
 
     <include
         android:id="@+id/main_head"
         layout="@layout/include_main_head"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/mainColor" />
 
     <RadioGroup
         android:id="@+id/radioGroupNav"
@@ -17,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/white"
         android:padding="0dp">
 
         <RadioButton
@@ -45,8 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/radioGroupNav"
-        android:layout_below="@id/main_head"
-        android:background="@color/white"/>
+        android:layout_below="@id/main_head"/>
 
     <View
         android:layout_above="@id/radioGroupNav"

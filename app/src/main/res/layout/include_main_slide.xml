@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/main_slide_width"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/iv_bg"
@@ -98,5 +98,29 @@
         style="@style/TextView.MainSlide.Item.Type2"
         android:text="设置"/>
     <!--android:drawableTop="@drawable/selector_icon_main_slide_settings"-->
+
+    <CheckedTextView
+        android:id="@+id/tv_light_mode"
+        android:layout_above="@id/tv_my_work"
+        style="@style/TextView.MainSlide.Item.Type1"
+        android:drawableRight="@null"
+        android:textColor="@color/black"
+        android:text="日间模式"/>
+
+    <com.suke.widget.SwitchButton
+        android:id="@+id/switchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_light_mode"
+        android:layout_alignBottom="@id/tv_light_mode"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dp"
+        app:swbtn_show_indicator="false"
+        app:swbtn_button_color="@color/white"
+        app:swbtn_background="#FFF"
+        app:swbtn_checked_color="#00E266"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/tv_my_work" />
 
 </RelativeLayout>

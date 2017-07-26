@@ -23,4 +23,8 @@
     <color name="gray">#BBBBBB</color>
     <color name="redAdd">#FF4646</color>
 
+    <!--夜间模式用到的颜色-->
+    <color name="mainColor_night">@color/darkgray</color>
+    <color name="mainAdd_night">@color/gray</color>
+    <color name="mainBackground_night">@color/dimgrey</color>
 </resources>
