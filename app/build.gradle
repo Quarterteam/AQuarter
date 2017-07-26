@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.a.quarter"
-        minSdkVersion 9
+        minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -16,6 +16,26 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a'
+            universalApk true
+        }
+    }
+}
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
     }
 }
 
@@ -31,4 +51,9 @@ dependencies {
     compile project(':slidingmenulibrary')
     compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
+
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.6.1'
+    compile(name: 'ijkplayer-java-release', ext: 'aar')
+
 }
