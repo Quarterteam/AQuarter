@@ -49,6 +49,8 @@
         <activity android:name=".view.activity.main.SearchFriendActivity" />
         <activity android:name=".view.activity.login.ThirdPartyLoginActivity"
             android:theme="@style/Theme.FullScreen"></activity>
+<!--设置页面-->
+        <activity android:name=".view.activity.configure.SlidingmenuToActivity"></activity>
     </application>
 
 </manifest>

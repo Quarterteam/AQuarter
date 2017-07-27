@@ -77,4 +77,8 @@
     <string name="VideoView_player_AndroidMediaPlayer">Player: AndroidMediaPlayer</string>
     <string name="VideoView_player_IjkMediaPlayer">Player: IjkMediaPlayer</string>
     <string name="VideoView_player_IjkExoMediaPlayer">Player: IjkExoMediaPlayer</string>
+ <!--configure button-->
+    <string name="Button_Configure_exitLogin">退出登录</string>
+    <string name="title_Configure_back">返回</string>
+
 </resources>

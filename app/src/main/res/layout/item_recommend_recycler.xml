@@ -4,7 +4,7 @@
     android:padding="10dp"
     android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.exa.framelib_rrm.base.view.view.CircleImageView
         android:id="@+id/re_iamge_item"
         style="@style/Fram.Recommend.Item.Image"
         android:layout_alignParentTop="true"

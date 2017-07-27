@@ -8,7 +8,8 @@
         android:layout_height="1dp"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:id="@+id/textView" />
 
     <com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
         xmlns:sliding="http://schemas.android.com/apk/res-auto"
@@ -17,7 +18,10 @@
         android:layout_height="match_parent"
         sliding:touchModeAbove="margin"
         sliding:viewAbove="@layout/activity_main"
-        android:background="@color/mainBackground"/>
+        android:background="@color/mainBackground"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <!--sliding:behindOffset="0dp"-->
     <!--sliding:behindScrollScale="1"-->
     <!--sliding:fadeDegree="0.7"-->

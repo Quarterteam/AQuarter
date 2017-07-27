@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/setting_include_head"
+        layout="@layout/include_main_head"></include>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/setting_recycler"
+        style="@style/SlidMenuto.Setting.Recycler.Type"></android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/setting_button_exit"
+        style="@style/SlidMenuto.Setting.Button.Type" />
+</RelativeLayout>
