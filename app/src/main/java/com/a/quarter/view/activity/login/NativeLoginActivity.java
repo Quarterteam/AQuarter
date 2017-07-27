@@ -21,23 +21,27 @@ import com.exa.framelib_rrm.utils.TextFormatUtils;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-/**登录页面*/
-public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.LoginCallback> implements View.OnClickListener{
+/**原生登录页面*/
+public class NativeLoginActivity extends BaseActivity<LoginPresenter, NativeLoginActivity.LoginCallback> implements View.OnClickListener{
     @Bind(R.id.et_username)
     EditText etName;
     @Bind(R.id.et_password)
     EditText etPassword;
     @Bind(R.id.btn_login)
     Button btnLogin;
+    @Bind(R.id.tv_right)
+    TextView tvRight;
 
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_login;
+        return R.layout.activity_native_login;
     }
 
     @Override
     protected void initViews() {
-        ((TextView)findViewById(R.id.tv_head)).setText("登 录");
+        //((TextView)findViewById(R.id.tv_right)).setText("注册账号");
+        tvRight.setText("注册账号");
+        tvRight.setOnClickListener(this);
     }
 
     @Override
@@ -46,14 +50,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.Lo
         bindPresenter(new LoginPresenter(), new LoginCallback(this, getApplicationContext()));
     }
 
-    @OnClick({R.id.tv_goRegister, R.id.btn_login, R.id.iv_back})
+    @OnClick({R.id.tv_visitor_login, R.id.btn_login, R.id.iv_back})
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.tv_goRegister:
-                if(!isLogining()) {
-                    ActivityUtils.jumpForResult(1, this, RegisterActivity.class);
-                }
+            case R.id.tv_visitor_login:
+                T.showShort(getApplicationContext(), "游客登录");
                 break;
             case R.id.btn_login:
                 login();
@@ -61,6 +63,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.Lo
             case R.id.iv_back:
                 if(!isLogining()){
                     finish();
+                }
+                break;
+            case R.id.tv_right:
+                if(!isLogining()) {
+                    ActivityUtils.jumpForResult(1, this, NativeRegisterActivity.class);
                 }
                 break;
             default:
@@ -102,9 +109,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginActivity.Lo
     }
 
     //登录结果的监听
-    static class LoginCallback extends RxCallback<LoginResponse, LoginActivity, BaseTag> {
+    static class LoginCallback extends RxCallback<LoginResponse, NativeLoginActivity, BaseTag> {
 
-        public LoginCallback(LoginActivity host, Context mContext) {
+        public LoginCallback(NativeLoginActivity host, Context mContext) {
             super(host, mContext);
         }
 

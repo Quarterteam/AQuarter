@@ -11,7 +11,7 @@
 
     <include
         android:id="@+id/inc_head"
-        layout="@layout/include_login_head"/>
+        layout="@layout/include_head_iv_tv_iv"/>
 
     <!--<EditText
         android:id="@+id/et_search"

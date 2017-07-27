@@ -24,4 +24,6 @@
 
     <dimen name="myfollow_list_item_height">75dp</dimen>
     <dimen name="myfollow_list_item_widget_margin">15dp</dimen>
+
+    <dimen name="login_option_width">450px</dimen>
 </resources>

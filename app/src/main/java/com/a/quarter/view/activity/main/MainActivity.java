@@ -13,9 +13,10 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
+import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.view.utils.DrawableUtils;
 import com.a.quarter.view.utils.SlidingMenuUtils;
-import com.a.quarter.view.activity.login.LoginActivity;
+import com.a.quarter.view.activity.login.NativeLoginActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
@@ -48,6 +49,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private VideoFragment videoFragment;
     private SlidingMenu slidingMenu;
     private SlidingMenuUtils slidingMenuUtils;
+    private View mHead;
+    //private View mRoot;
 
     @Override
     protected int getContentViewId() {
@@ -57,17 +60,19 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void setStatusBar() {
+        mHead = findViewById(R.id.main_head);
         //设置状态栏为透明，并且使用状态栏所占空间
         StatusBarCompat.compat(this, ContextCompat.getColor(this, android.R.color.transparent), true);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             //如果可以使用状态栏所占的空间，左侧的SlidingMenu使用了状态栏所占的空间，
             //需要给右侧的主布局加上一个高度等于状态栏高度的paddingTop，让头部不被状态栏挡住
-            findViewById(R.id.rl_root).setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
+            mHead.setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
         }
     }
 
     @Override
     protected void initViews() {
+        //mRoot = findViewById(R.id.rl_root);
         //初始化底部导航
         initRadioButton();
         radioGroupNav.setOnCheckedChangeListener(this);
@@ -141,8 +146,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             case R.id.iv_user_icon:
 //                if(!App.isLogin()){
-                    ActivityUtils.jumpForResult(1, this, LoginActivity.class);
-//                }else{TODO
+                    ActivityUtils.jumpForResult(1, this, ThirdPartyLoginActivity.class);
+//                }else{TODO 跳转到个人中心页面
 //                    T.showShort(getApplicationContext(), "已登录");
 //                }
                 break;
@@ -248,5 +253,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             }
             ivLeft.setImageResource(R.mipmap.user_icon);
         }
-    }
+    }//13567890550
+
 }

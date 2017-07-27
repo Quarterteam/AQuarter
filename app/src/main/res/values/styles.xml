@@ -23,8 +23,7 @@
         <item name="colorControlActivated">@color/mainAdd</item>
     </style>
 
-    <style name="Theme.FullScreen" parent="AppTheme">
-        <item name="android:windowNoTitle">true</item>
+    <style name="Theme.FullScreen" parent="Theme.Main">
         <item name="android:windowFullscreen">true</item>
     </style>
 
@@ -34,7 +33,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:button">@null</item>
-        <item name="android:background">@drawable/selector_bg_white_graytranslucent</item>
+        <item name="android:background">@drawable/selector_bg_transparent_graytranslucent</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
         <item name="android:textColor">@drawable/selector_textcolor_mainnav</item>
@@ -190,13 +189,13 @@
         <!--<item name="android:textColor">@drawable/selector_login_btn_textcolor</item>-->
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/textsize_main_slide</item>
-        <item name="android:background">@drawable/selector_bg_maincolor_graytranslucent</item>
+        <item name="android:background">@drawable/selector_bg_btn_login</item>
     </style>
 
     <style name="TextView.FindPwd" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
-        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
+        <item name="android:textColor">@drawable/selector_textcolor_white_mainadd</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
         <item name="android:gravity">center</item>
     </style>
