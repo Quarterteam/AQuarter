@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/re_iamge_item"
+        style="@style/Fram.Recommend.Item.Image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/re_textNickName_item"
+        style="@style/Fram.Recommend.Item.Nickname"
+        android:text="hello" />
+
+    <TextView
+        android:id="@+id/re_textTime_item"
+        style="@style/Fram.Recommend.Item.Time"
+        android:text="hello" />
+
+    <include
+        style="@style/RadioButton.add"
+        android:id="@+id/include_re_btn"
+        layout="@layout/include_re_btn"></include>
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:layout_marginTop="20dp"
+        android:id="@+id/re_player_item"
+        style="@style/Fram.Recommend.Item.player"></fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
+
+   <!--<android.support.v7.widget.RecyclerView-->
+       <!--android:layout_width="wrap_content"-->
+       <!--android:layout_height="wrap_content"-->
+       <!--android:id="@+id/re_recycle"-->
+       <!--android:layout_below="@id/re_player_item"-->
+       <!---->
+       <!--&gt;</android.support.v7.widget.RecyclerVie/w>-->
+</RelativeLayout>

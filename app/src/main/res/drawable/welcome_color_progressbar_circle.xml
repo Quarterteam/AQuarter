@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromDegrees="0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:toDegrees="720">
+    <!--android:toDegrees 这个属性 就是控制转动幅度的 可以设置大于360 数值大 就看起来转动快些了的-->
+
+    <!--<shape
+        android:innerRadiusRatio="3"
+        android:shape="ring"
+        android:thicknessRatio="8"
+        android:useLevel="false">
+
+        &lt;!&ndash;<gradient
+            android:centerColor="@color/mainColor"
+            android:centerY="0.50"
+            android:endColor="@color/mainAdd"
+            android:startColor="@color/aliceblue"
+            android:type="sweep"
+            android:useLevel="false"/>&ndash;&gt;
+
+        <stroke
+            android:color="@color/gray"
+            android:width="3dp"
+            android:dashGap="100px"
+            android:dashWidth="100px"/>
+
+    </shape>-->
+
+    <!--<shape
+        android:shape="ring"
+        android:thickness="3dp"
+        android:useLevel="false">
+
+        <stroke
+            android:color="@color/gray"
+            android:width="3dp"
+            android:dashWidth="50px"
+            android:dashGap="50px"/>
+
+    </shape>--><!--圆环显示有内层和外层2个-->
+
+    <shape
+        android:shape="oval" ><!--椭圆-->
+
+        <solid android:color="@color/translucent"/>
+
+        <stroke
+            android:width="3dp"
+            android:dashWidth="35dp"
+            android:dashGap="40dp"
+            android:color="@color/lightgray"/>
+
+        <!--<gradient
+            android:startColor="@color/mainColor"
+            android:endColor="@color/mainAdd"
+            android:angle="180"/>-->
+    </shape>
+
+</rotate>

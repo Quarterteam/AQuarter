@@ -13,8 +13,10 @@ public class Constants {
 
     //log相关
     public static final String LOG_TAG = "framelib_rrm";
-    public static boolean IS_DEBUG = BuildConfig.DEBUG;
+//    public static boolean IS_DEBUG = BuildConfig.DEBUG;在这里不好用
+//    public static boolean IS_DEBUG = false;
+    public static boolean IS_DEBUG = true;
 
     //是否缓存了网络数据
-    public static boolean cacheNet = true;//RetrofitHelper使用了缓存拦截器，所以这里设置为true
+    public static boolean cacheNet = true;//RetrofitHelper使用了缓存拦截器，所以这里设置为true（缓存对登录注册时有影响吗？）
 }

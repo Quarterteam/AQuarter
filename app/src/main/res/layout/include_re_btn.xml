@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/re_vg"
+    android:orientation="horizontal">
+    <RadioButton
+        android:layout_weight="1"
+        style="@style/RadioButton.Re"
+        android:text="@string/re_btn01"
+        android:id="@+id/re_btn_shiled"
+       />
+    <RadioButton
+        android:layout_weight="1"
+
+        style="@style/RadioButton.Re"
+        android:text="@string/re_btn02"
+        android:id="@+id/re_btn_report"
+        />
+    <RadioButton
+        android:layout_weight="1"
+
+        style="@style/RadioButton.Re"
+        android:text="@string/re_btn03"
+        android:id="@+id/re_btn_copyLink"
+        />
+    <RadioButton
+        android:layout_weight="1"
+
+        style="@style/RadioButton.Re02"
+        android:id="@+id/re_btn_add"
+        />
+</RadioGroup>
+</LinearLayout>

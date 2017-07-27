@@ -50,23 +50,19 @@ public abstract class BaseCallback<R, H, TAG extends BaseTag> implements BaseIVi
         //FrameLifeCircleLogUtils.i("返回的数据为："+response.toString());
         //FrameLifeCircleLogUtils.log("onNextResponse BaseCallback", tag);
 
+        onRequestEnd(tag);//改在这里调用了
+
         if(response!=null){
-            if(onDealNextResponse(response, tag)){
-                //表明子类需要父类onNextResponse方法里的内容不被执行
-            }else{
-                //表明子类需要父类onNextResponse方法里的内容被执行，也就是需要onRequestEnd方法在这里调用
-                onRequestEnd(tag);
-            }
+            onDealNextResponse(response, tag);
         }else{
-            //ToastUtils.show(mAppContext, "获取到的结果为null");
-            onRequestEnd(tag);
-            throw new RuntimeException("获取到的结果为null");
+            T.showShort(mAppContext, "获取到的结果为null");
+//            throw new RuntimeException("获取到的结果为null");
         }
 
     }
 
     /**处理得到的结果*/
-    protected abstract boolean onDealNextResponse(R response, TAG tag);
+    protected abstract void onDealNextResponse(R response, TAG tag);
 
     @Override
     public void onProgressUpdate(long progress, TAG tag) {
@@ -91,6 +87,7 @@ public abstract class BaseCallback<R, H, TAG extends BaseTag> implements BaseIVi
             //在这里统一吐司提示了参数错误的原因，开发时在框架之外只需在onCheckParamsLegality方法返回需要提示的字符串
             //如果参数都正确，返回null就行
         }else if(e instanceof HttpException){//retrofit2.adapter.rxjava2.HttpException: HTTP 504 Unsatisfiable Request (only-if-cached)
+            onRequestEnd(tag);
             LogUtils.i("errorMsg="+e.getMessage());
             T.showShort(mAppContext, "请求未成功！");
         }else{

@@ -6,4 +6,25 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="PasswordEditText">
+        <attr name="pet_iconShow" format="integer"/>
+        <attr name="pet_iconHide" format="integer"/>
+    </declare-styleable>
+
+    <!--自定义ImageView的宽高比 -->
+    <declare-styleable name="WHImageView">
+        <attr name="w_d_h" format="string"/>
+    </declare-styleable>
+
+
+    <!--SVG图片和动画-->
+    <declare-styleable name="PathView">
+        <attr name="pathColor" format="color|reference"/>
+        <attr name="pathWidth" format="dimension|reference"/>
+        <attr name="svg" format="reference"/>
+        <attr name="fill" format="boolean"/>
+        <attr name="fillColor" format="color|reference"/>
+        <attr name="naturalColors" format="boolean"/>
+    </declare-styleable>
 </resources>

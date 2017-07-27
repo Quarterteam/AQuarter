@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.exa.framelib_rrm.app.App;
+import com.exa.framelib_rrm.app.BaseApp;
 
 /**
  * 跟网络相关的工具类
@@ -71,7 +71,7 @@ public class NetUtils {
 
     public static boolean isConnected() {
         try {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) App.getInstance()
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) BaseApp.getInstance0()
                     .getSystemService(Activity.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
             if(mNetworkInfo!=null){

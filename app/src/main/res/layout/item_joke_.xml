@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<View
+    android:id="@+id/v_perch"
+    android:layout_width="match_parent"
+    android:layout_height="10dp"></View>
+
+    <com.exa.framelib_rrm.base.view.view.CircleImageView
+        android:id="@+id/joke_Image_title"
+        android:layout_below="@id/v_perch"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="20dp"
+        android:src="@mipmap/user_icon" />
+
+    <TextView
+        android:id="@+id/joke_Text_title"
+        style="@style/TextView.Joke.Title"
+        android:layout_toRightOf="@id/joke_Image_title"
+        android:text="天蝎喝牛奶" />
+
+    <TextView
+        android:id="@+id/joke_Text_time"
+        style="@style/Joke.TextView.Time"
+        android:layout_below="@id/joke_Text_title"
+        android:layout_toRightOf="@id/joke_Image_title"
+        android:text="2017-7-20" />
+
+        <TextView
+            android:id="@+id/joke_text_rigth1"
+            style="@style/Joke.image.text"
+            android:drawableTop="@mipmap/follow_default"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/joke_text_rigth2"
+            android:drawableTop="@mipmap/mtransmit"
+            style="@style/Joke.image.text"
+            android:visibility="invisible"
+             />
+
+        <TextView
+            android:id="@+id/joke_text_rigth3"
+            style="@style/Joke.image.text"
+            android:drawableTop="@mipmap/message"
+            android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/joke_image_rigth"
+        android:layout_below="@id/v_perch"
+        style="@style/Joke.image"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/show" />
+
+    <TextView
+        android:id="@+id/joke_text"
+        style="@style/TextView.Joke.Content"
+        android:layout_below="@id/joke_Image_title"
+        android:layout_weight="1"
+        android:text="内容展示内容展示示内内容展示内容展示内示内示内容展示内容展示内容展示内示内示内容展示内容展示内容展示内示内示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示" />
+
+    <View
+        style="@style/View.H"
+        android:layout_below="@id/joke_text"></View>
+</RelativeLayout>

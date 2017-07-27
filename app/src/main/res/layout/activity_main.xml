@@ -11,40 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!--<include
-        android:id="@+id/main_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        layout="@layout/include_main_nav" />-->
-    <!--android:layout_height="@dimen/main_nav_height"-->
-
     <RadioGroup
         android:id="@+id/radioGroupNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:background="@color/white"
         android:padding="0dp">
 
         <RadioButton
             android:id="@+id/radioButtonRecommend"
             style="@style/RadioButton.MainNav"
-            android:drawableTop="@drawable/selector_icon_main_nav_recommend"
             android:text="推荐" />
         <!--android:drawableTop="@drawable/selector_icon_main_nav_recommend"-->
 
         <RadioButton
             android:id="@+id/radioButtonJoke"
             style="@style/RadioButton.MainNav"
-            android:drawableTop="@drawable/selector_icon_main_nav_joke"
             android:text="段子" />
+        <!--android:drawableTop="@drawable/layerlist_icon_main_nav_joke"-->
 
         <RadioButton
             android:id="@+id/radioButtonVideo"
             style="@style/RadioButton.MainNav"
-            android:drawableTop="@drawable/selector_icon_main_nav_video"
             android:text="视频" />
+        <!--android:drawableTop="@drawable/layerlist_icon_main_nav_video"-->
 
     </RadioGroup>
 

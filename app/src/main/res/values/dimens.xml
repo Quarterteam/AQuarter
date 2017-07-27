@@ -2,12 +2,25 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="textsize_main_nav">15sp</dimen>
+    <dimen name="textsize_main_nav">12sp</dimen>
     <dimen name="main_nav_height">75dp</dimen>
     <dimen name="main_head_height">45dp</dimen>
     <dimen name="main_slide_width">350dp</dimen>
-    <dimen name="textsize_main_slide">15sp</dimen>
+    <dimen name="textsize_main_slide">13sp</dimen>
     <dimen name="textsize_main_title">18.5sp</dimen>
     <dimen name="main_nav_icon_size">30dp</dimen>
     <dimen name="main_slide_icon_size">20dp</dimen>
+    <dimen name="login_margin">30dp</dimen>
+    <dimen name="frag_recommend_tab_indicate">5dp</dimen>
+    <dimen name="frag_recommend_item_nickname">20sp</dimen>
+    <dimen name="frag_recommend_item_time">18sp</dimen>
+    <dimen name="frag_recommend_item_player">300dp</dimen>
+    <dimen name="textsize_large">17.5sp</dimen>
+    <dimen name="textsize_medium">15sp</dimen>
+    <dimen name="textsize_small">12.5sp</dimen>
+
+    <dimen name="frag_recommend_item_distance">10dp</dimen>
+
+    <dimen name="myfollow_list_item_height">75dp</dimen>
+    <dimen name="myfollow_list_item_widget_margin">15dp</dimen>
 </resources>

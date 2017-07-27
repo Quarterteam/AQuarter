@@ -3,6 +3,7 @@ package com.a.quarter.view.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment<P extends BasePresenter, C extends BaseCallback> extends Fragment {
 
     protected View mView;
+    protected FragmentActivity  mActivity;
     protected P mPresenter;
     protected C mCallback;
 
@@ -26,6 +28,8 @@ public abstract class BaseFragment<P extends BasePresenter, C extends BaseCallba
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(getContentViewId(), container, false);
         ButterKnife.bind(this, mView);
+
+       mActivity= getActivity();
         return mView;
     }
 

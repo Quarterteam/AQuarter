@@ -1,33 +1,31 @@
 package com.a.quarter.view.activity.main;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
+import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.app.App;
+import com.a.quarter.model.bean.login.User;
+import com.a.quarter.view.utils.DrawableUtils;
+import com.a.quarter.view.utils.SlidingMenuUtils;
+import com.a.quarter.view.activity.login.LoginActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
-import com.exa.framelib_rrm.utils.DensityUtils;
-import com.exa.framelib_rrm.utils.LogUtils;
+import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
@@ -49,6 +47,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private JokeFragment jokeFragment;
     private VideoFragment videoFragment;
     private SlidingMenu slidingMenu;
+    private SlidingMenuUtils slidingMenuUtils;
 
     @Override
     protected int getContentViewId() {
@@ -60,14 +59,49 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void setStatusBar() {
         //设置状态栏为透明，并且使用状态栏所占空间
         StatusBarCompat.compat(this, ContextCompat.getColor(this, android.R.color.transparent), true);
-        findViewById(R.id.rl_root).setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            //如果可以使用状态栏所占的空间，左侧的SlidingMenu使用了状态栏所占的空间，
+            //需要给右侧的主布局加上一个高度等于状态栏高度的paddingTop，让头部不被状态栏挡住
+            findViewById(R.id.rl_root).setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
+        }
     }
 
     @Override
     protected void initViews() {
+        //初始化底部导航
+        initRadioButton();
         radioGroupNav.setOnCheckedChangeListener(this);
         radioButtonRecommend.setChecked(true);
-        slidingMenu = SlidingMenuUtils.initSlidingMenu(this, this);
+
+        //初始化侧滑菜单
+        slidingMenuUtils = new SlidingMenuUtils();
+        slidingMenu = slidingMenuUtils.initSlidingMenu(this, this);
+        slidingMenuUtils.initDrawables();
+        if(App.isLogin()){
+            User user = App.getUser();
+            slidingMenuUtils.tvUserName.setText(user.userName);
+            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+            if("男".equals(user.userSex)){
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
+            }else{
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.user_icon);
+            }
+            ivLeft.setImageResource(R.mipmap.user_icon);
+        }else{
+            slidingMenuUtils.tvUserName.setText("点击头像登录");
+            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.default_no_avatar);
+            slidingMenuUtils.ivSexIcon.setImageDrawable(null);
+            ivLeft.setImageResource(R.mipmap.default_no_avatar);
+        }
+
+        //发表文章
+        findViewById(R.id.iv_right).setOnClickListener(this);
+    }
+
+    private void initRadioButton() {
+        DrawableUtils.scaleDrawableTop(this, R.drawable.selector_icon_main_nav_recommend, radioButtonRecommend);
+        DrawableUtils.scaleDrawableTop(this, R.drawable.selector_icon_main_nav_joke, radioButtonJoke);
+        DrawableUtils.scaleDrawableTop(this, R.drawable.selector_icon_main_nav_video, radioButtonVideo);
     }
 
     @Override
@@ -84,15 +118,33 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     slidingMenu.toggle();
                 }
                 break;
+            case R.id.iv_right:
+//                if(App.isLogin()){
+                    ActivityUtils.jumpIn(this, PublishArticleActivity.class);
+//                }else{
+//                    T.showShort(getApplicationContext(), "没有登录");
+//                }
+                break;
             case R.id.tv_my_follow:
+                ActivityUtils.jumpIn(this, MyFollowActivity.class);
+                break;
+            case R.id.tv_search_friend:
+                ActivityUtils.jumpIn(this, SearchFriendActivity.class);
+                break;
             case R.id.tv_my_collection:
             case R.id.tv_my_work:
             case R.id.tv_settings:
-            case R.id.tv_search_friend:
             case R.id.tv_msg_notify:
                 if(slidingMenu!=null){
                     slidingMenu.toggle();
                 }
+                break;
+            case R.id.iv_user_icon:
+//                if(!App.isLogin()){
+                    ActivityUtils.jumpForResult(1, this, LoginActivity.class);
+//                }else{TODO
+//                    T.showShort(getApplicationContext(), "已登录");
+//                }
                 break;
             default:
                 break;
@@ -181,4 +233,20 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //登录成功后，从登录页面返回
+        if(requestCode == 1 && resultCode == 1){
+            User user = App.getUser();
+            slidingMenuUtils.tvUserName.setText(user.userName);
+            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+            if("男".equals(user.userSex)){
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
+            }else{
+                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
+            }
+            ivLeft.setImageResource(R.mipmap.user_icon);
+        }
+    }
 }
