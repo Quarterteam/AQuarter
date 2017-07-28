@@ -38,5 +38,3 @@ local.properties
 # Log Files
 *.log
 /gradle/
-!/gradle/
-/app/

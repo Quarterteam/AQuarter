@@ -7,4 +7,5 @@ package com.a.quarter.view.activity.main;
  */
 
 public class ShareActivity {
+
 }

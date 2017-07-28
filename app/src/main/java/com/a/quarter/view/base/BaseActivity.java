@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
 import com.a.quarter.R;
-import com.a.quarter.app.App;
 import com.exa.framelib_rrm.app.BaseApp;
 import com.exa.framelib_rrm.base.presenter.BasePresenter;
 import com.exa.framelib_rrm.base.view.BaseCallback;

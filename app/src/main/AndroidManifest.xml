@@ -44,6 +44,7 @@
         <activity android:name=".view.activity.main.MyFollowActivity" />
         <activity android:name=".view.activity.main.HotFollowActivity" />
         <activity android:name=".view.activity.main.PublishArticleActivity" />
+        <activity android:name=".view.adapter.video.VHotFragDetails"/>
         <activity
             android:name=".view.activity.welcome.WelcomeActivity"
             android:theme="@style/Theme.FullScreen">
