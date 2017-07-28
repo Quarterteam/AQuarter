@@ -58,7 +58,6 @@ public class HotAdapter extends RecyclerView.Adapter {
         if (datas != null) {
             list.addAll(datas);
 
-
         }
     }
 
