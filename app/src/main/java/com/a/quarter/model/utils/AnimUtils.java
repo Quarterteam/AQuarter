@@ -24,26 +24,48 @@ public static PointF getWei(View t){
     //   System.out.println("图片各个角Left："+t.getLeft()+"Right："+t.getRight()+"Top："+t.getTop()+"Bottom："+t.getBottom());
 }
     /*
-       复合动画：平移加渐变
-        */
-    public static AnimatorSet setJokeAnimShow(View view ,Float traStart, Float traEnd,Float rotStart, Float rotEnd ){
+        段子界面
+        复合动画：平移加渐变
+         */
+    public static AnimatorSet setTransAlpha(View view, Float traStart, Float traEnd, Float alpStart, Float alpEnd) {
+        view.setVisibility(View.VISIBLE);
         ObjectAnimator translationX = ObjectAnimator.ofFloat(view, "translationX", traStart, traEnd);
-        ObjectAnimator alpha = ObjectAnimator.ofFloat(view, "alpha", rotStart, rotEnd);
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(view, "alpha", alpStart, alpEnd);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.play(translationX).with(alpha);
-        animatorSet.setDuration(1000);
+        animatorSet.setDuration(800);
         return animatorSet;
-
     }
+
     /*
+    段子界面
     双复合动画：使复合动画 同时播放
      */
-    public static void getSetAnimator(AnimatorSet anim1,AnimatorSet anim2,AnimatorSet anim3){
+    public static void getSetAnimator(AnimatorSet... anim) {
         AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.play(anim1).with(anim2).with(anim3);
-        animatorSet2.setDuration(1000);
+        animatorSet2.play(anim[0]).with(anim[1]).with(anim[2]);
+        animatorSet2.setDuration(800);
         animatorSet2.start();
-
     }
 
+    /*
+      用户界面
+     不同控件复合动画：渐变加旋转
+      */
+    public static void setTransRot(Float rotStart, Float rotEnd, Float alpStart, Float alpEnd, int visible, View... view) {
+
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(view[0], "alpha", alpStart, alpEnd);
+        ObjectAnimator alpha2 = ObjectAnimator.ofFloat(view[1], "alpha", alpStart, alpEnd);
+        ObjectAnimator alpha3 = ObjectAnimator.ofFloat(view[2], "alpha", alpStart, alpEnd);
+        ObjectAnimator rotation = ObjectAnimator.ofFloat(view[3], "rotation", rotStart, rotEnd);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(alpha).with(alpha2).with(alpha3).with(rotation);
+        animatorSet.setDuration(300);
+        animatorSet.start();
+        for (int i = 0; i < view.length - 1; i++) {
+            view[i].setVisibility(visible);
+        }
+
+
+    }
 }

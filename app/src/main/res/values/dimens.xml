@@ -29,4 +29,21 @@
 
     <!--设置退出登录的字体-->
     <dimen name="textSize_configure_exitLogin">20sp</dimen>
+
+    <!--joke界面字体-->
+    <dimen name="textSize_joke_image_text">10sp</dimen>
+    <dimen name="textSize_joke_title">12sp</dimen>
+    <dimen name="textSize_joke_content">14sp</dimen>
+    <dimen name="textSize_joke_time">10sp</dimen>
+    <dimen name="textSize_joke_fans">11sp</dimen>
+    <dimen name="textSize_joke_favour">10sp</dimen>
+    <dimen name="textSize_joke_attention">12sp</dimen>
+    <dimen name="textSize_joke_woke">14sp</dimen>
+    <!-- 用户界面字体-->
+    <dimen name="textSize_joke_texttitle">14sp</dimen>
+    <dimen name="textSize_joke_text">10sp</dimen>
+    <!-- 用户界面字体-->
+    <dimen name="textSize_joke_inform">16sp</dimen>
+    <dimen name="textSize_joke_msg">11sp</dimen>
+
 </resources>

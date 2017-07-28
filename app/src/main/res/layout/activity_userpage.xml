@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/userpage_image_show"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@mipmap/bg11" />
+
+    <ImageView
+        android:id="@+id/userpage_image_back"
+        style="@style/userpage.Image"
+        android:background="@mipmap/arrow_left_white_1" />
+
+    <TextView
+        android:id="@+id/userpage_text_title"
+        style="@style/userpage.Text.center"
+        android:text="Mc 跨足令" />
+
+    <ImageView
+        android:id="@+id/userpage_image_comment"
+        style="@style/userpage.Image"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/msg" />
+
+    <ImageView
+        android:id="@+id/userpage_image_share"
+        style="@style/userpage.Image"
+        android:layout_toLeftOf="@id/userpage_image_comment"
+        android:background="@mipmap/share" />
+
+    <com.exa.framelib_rrm.base.view.view.CircleImageView
+        android:id="@+id/detail_image_title"
+        style="@style/userpage.Image.Title" />
+
+    <TextView
+        android:id="@+id/userpage_text_fans"
+        style="@style/userpage.Text.Fans"
+        android:layout_below="@id/userpage_image_show"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/detail_image_title"
+        android:text="15548545 " />
+
+    <TextView
+        android:id="@+id/fans"
+        style="@style/userpage.Text.Fans"
+        android:layout_below="@id/userpage_image_show"
+        android:layout_toRightOf="@id/userpage_text_fans"
+        android:text="粉丝" />
+
+    <View
+        android:id="@+id/view_ver"
+        style="@style/View.V"
+        android:layout_below="@id/userpage_image_show"
+        android:layout_toRightOf="@id/fans"></View>
+
+    <TextView
+        android:id="@+id/userpage_text_attention"
+        style="@style/userpage.Text.Fans"
+        android:layout_below="@id/userpage_image_show"
+        android:layout_toRightOf="@id/view_ver"
+        android:text="17" />
+
+    <TextView
+        style="@style/userpage.Text.Fans"
+        android:layout_below="@id/userpage_image_show"
+        android:layout_toRightOf="@id/userpage_text_attention"
+        android:text="关注" />
+
+    <TextView
+        android:id="@+id/userpage_Text_favour"
+        style="@style/userpage.Text.Favour"
+        android:layout_below="@id/userpage_image_show"
+        android:text="16" />
+
+    <TextView
+        android:id="@+id/userpage_Text_attention"
+        style="@style/userpage.Text.attention"
+        android:text="+关注" />
+
+    <LinearLayout
+        android:id="@+id/linwoke"
+        style="@style/Linear_wrap_hor"
+        android:layout_below="@id/userpage_Text_attention"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+
+            android:id="@+id/wokes1"
+            style="@style/userpage.Image.woke"
+            android:text="作品  (" />
+
+        <TextView
+            android:id="@+id/userpage_Text_wokes"
+            style="@style/userpage.Image.woke2"
+            android:text="3" />
+
+        <TextView
+            style="@style/userpage.Image.woke2"
+            android:text=")" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_hor"
+        android:layout_width="80dp"
+        android:layout_height="3dp"
+        android:layout_below="@id/linwoke"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/blue"></View>
+
+    <View
+        android:id="@+id/view_horr"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_below="@id/view_hor"
+        android:background="@color/grayAdd"></View>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/userpage_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view_horr"
+        android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+</RelativeLayout>
