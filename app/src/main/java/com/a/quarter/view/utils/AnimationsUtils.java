@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.exa.framelib_rrm.utils.LogUtils;
 import com.exa.framelib_rrm.utils.T;
 
 import java.io.FileFilter;
@@ -50,14 +51,15 @@ public class AnimationsUtils {
 
     }
     public static void setAnimationSet(int million, View view, float tfrom, float tto, float afrom, float ato) {
-
+        LogUtils.i("setAnimationSet1");
+        LogUtils.i("million="+million+", view="+view+", Vis="+view.getVisibility()+", tfrom="+tfrom+", tto="+tto+", afrom="+afrom+", ato="+ato);
         ObjectAnimator moveIn = ObjectAnimator.ofFloat(view, "translationX", tfrom, tto);
         ObjectAnimator fadeInOut = ObjectAnimator.ofFloat(view, "alpha", afrom, ato);
         AnimatorSet animSet = new AnimatorSet();
         animSet.play(moveIn).with(fadeInOut);
         animSet.setDuration(million);
         animSet.start();
-
+        LogUtils.i("setAnimationSet2");
     }
 
 

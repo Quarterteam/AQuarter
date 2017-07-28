@@ -50,7 +50,7 @@ public class NativeLoginActivity extends BaseActivity<LoginPresenter, NativeLogi
         bindPresenter(new LoginPresenter(), new LoginCallback(this, getApplicationContext()));
     }
 
-    @OnClick({R.id.tv_visitor_login, R.id.btn_login, R.id.iv_back})
+    @OnClick({R.id.tv_visitor_login, R.id.btn_login, R.id.iv_back, R.id.tv_go_find_pwd})
     @Override
     public void onClick(View v) {
         switch(v.getId()){
@@ -68,6 +68,11 @@ public class NativeLoginActivity extends BaseActivity<LoginPresenter, NativeLogi
             case R.id.tv_right:
                 if(!isLogining()) {
                     ActivityUtils.jumpForResult(1, this, NativeRegisterActivity.class);
+                }
+                break;
+            case R.id.tv_go_find_pwd:
+                if(!isLogining()) {
+                    ActivityUtils.jumpIn(this, FindPwdActivity.class);
                 }
                 break;
             default:

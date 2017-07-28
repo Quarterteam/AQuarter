@@ -1,5 +1,7 @@
 package com.a.quarter.model.api;
 
+import com.a.quarter.model.bean.login.ChangePwdResponse;
+import com.a.quarter.model.bean.login.VertifyCodeResponse;
 import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.model.bean.login.RegisterResponse;
 import com.a.quarter.model.utils.Constants;
@@ -30,4 +32,15 @@ public interface Api {
     @FormUrlEncoded
     Observable<RegisterResponse> publishArticle(@FieldMap HashMap<String, String> map);
 
+    @POST(Constants.GET_VERTIFY_CODE)
+    @FormUrlEncoded
+    Observable<VertifyCodeResponse> getVertifyCode(@Field("phone") String phone);
+
+    @POST(Constants.NEXT_STEP)
+    @FormUrlEncoded
+    Observable<String> nextStep(@Field("phone") String phone, @Field("vertify_code") String vertifyCode);
+
+    @POST(Constants.CHANGE_PASSWORD)
+    @FormUrlEncoded
+    Observable<ChangePwdResponse> changePwd(@Field("password") String pwd);
 }

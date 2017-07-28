@@ -32,6 +32,7 @@ import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ItemBean;
 import com.a.quarter.view.media.IjkVideoView;
 import com.a.quarter.view.utils.AnimationsUtils;
+import com.exa.framelib_rrm.utils.LogUtils;
 
 import java.util.ArrayList;
 
@@ -98,6 +99,7 @@ public class HotAdapter extends RecyclerView.Adapter {
                         public void onAnimationStart(Animation animation) {
 
 
+                            LogUtils.i("onAnimationStart1");
                             holder1.add.setImageResource(R.mipmap.packup);
                             setVisibility(holder1.copyLink, View.VISIBLE);
                             setVisibility(holder1.report, View.VISIBLE);
@@ -105,7 +107,7 @@ public class HotAdapter extends RecyclerView.Adapter {
                             AnimationsUtils.setAnimationSet(1200, holder1.copyLink, x, -(holder1.add.getWidth() * 1.2f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.report, x, -(holder1.add.getWidth() * 3f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.shade, x, -(holder1.add.getWidth() * 4.2f), 0f, 1f);
-
+                            LogUtils.i("onAnimationStart2");
                         }
 
                         @Override

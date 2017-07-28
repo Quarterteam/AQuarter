@@ -8,13 +8,12 @@
     android:background="@mipmap/bg9"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".view.activity.login.NativeLoginActivity">
+    tools:context=".view.activity.login.ChangePwdActivity">
 
     <include layout="@layout/include_login_head"/>
 
     <com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/iv_icon_login"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
         android:layout_width="100dp"
@@ -34,15 +33,18 @@
         android:paddingRight="10dp"
         android:background="@drawable/shape_bg_rl_login_input">
 
-        <EditText
-            android:id="@+id/et_username"
-            android:hint="账号"
+        <com.exa.framelib_rrm.base.view.view.PasswordEditText
+            android:id="@+id/et_pwd"
+            android:hint="输入大小写和数字，密码不能超过8位"
             style="@style/EditText.Login"
+            app:pet_iconShow="@drawable/icon_password_visible"
+            app:pet_iconHide="@drawable/icon_password_invisible"
+            android:inputType="textPassword"
             android:background="@null"/>
 
         <View
             android:id="@+id/line"
-            android:layout_below="@id/et_username"
+            android:layout_below="@id/et_pwd"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginLeft="0dp"
@@ -50,9 +52,9 @@
             android:background="@color/darkgray"/>
 
         <com.exa.framelib_rrm.base.view.view.PasswordEditText
-            android:id="@+id/et_password"
+            android:id="@+id/et_pwd_confirm"
             android:layout_below="@id/line"
-            android:hint="密码"
+            android:hint="请再次输入密码"
             app:pet_iconShow="@drawable/icon_password_visible"
             app:pet_iconHide="@drawable/icon_password_invisible"
             android:inputType="textPassword"
@@ -62,38 +64,12 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_done"
         android:layout_marginLeft="@dimen/login_margin"
         android:layout_marginRight="@dimen/login_margin"
+        android:layout_marginBottom="@dimen/login_margin"
         style="@style/Button.Login"
-        android:text="登 录"/>
-
-   <!-- <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingRight="@dimen/login_margin"
-        android:paddingLeft="@dimen/login_margin">
-
-        <TextView
-            android:id="@+id/tv_goRegister"
-            style="@style/TextView.FindPwd"
-            android:text="注册账号"/>
-
-        <TextView
-            android:id="@+id/tv_goFindPwd"
-            style="@style/TextView.FindPwd"
-            android:layout_alignParentRight="true"
-            android:text="忘记密码"/>
-
-    </RelativeLayout>-->
-
-    <TextView
-        android:id="@+id/tv_go_find_pwd"
-        style="@style/TextView.FindPwd"
-        android:layout_marginRight="@dimen/login_margin"
-        android:layout_gravity="right"
-        android:layout_alignParentRight="true"
-        android:text="忘记密码"/>
+        android:text="完 成"/>
 
     <TextView
         android:id="@+id/tv_visitor_login"
