@@ -350,5 +350,8 @@
         <item name="android:textSize">@dimen/textSize_configure_exitLogin</item>
     </style>
 
-
+    <style name="SlidMenuto.Configure.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>
