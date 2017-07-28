@@ -84,21 +84,24 @@ public class HotAdapter extends RecyclerView.Adapter {
             public void onClick(View view) {
 
 
+
                 final float x = holder1.add.getX();
 
                 if (!list.get(position).getCheck()) {
                     list.get(position).setCheck(false);
 
-                    Animation animation = AnimationsUtils.getRotaAnimation(context, R.anim.anim, holder1.add);
+//                    Animation animation = AnimationsUtils.getRotaAnimation(context, R.anim.anim, holder1.add);
 
+                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.anim);
                     animation.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
+
+
                             holder1.add.setImageResource(R.mipmap.packup);
                             setVisibility(holder1.copyLink, View.VISIBLE);
                             setVisibility(holder1.report, View.VISIBLE);
                             setVisibility(holder1.shade, View.VISIBLE);
-
                             AnimationsUtils.setAnimationSet(1200, holder1.copyLink, x, -(holder1.add.getWidth() * 1.2f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.report, x, -(holder1.add.getWidth() * 3f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.shade, x, -(holder1.add.getWidth() * 4.2f), 0f, 1f);

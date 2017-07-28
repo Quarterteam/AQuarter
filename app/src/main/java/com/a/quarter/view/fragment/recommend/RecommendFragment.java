@@ -17,6 +17,8 @@ import com.a.quarter.view.fragment.video.VideoFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.a.quarter.view.utils.TabUnderlineUtil.setIndicator;
+
 /**
  * 推荐
  */
@@ -121,6 +123,18 @@ public class RecommendFragment extends BaseFragment implements TabLayout.OnTabSe
             default:
                 break;
         }
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        tablayout.post(new Runnable() {
+            @Override
+            public void run() {
+                setIndicator(tablayout, 60, 60);
+            }
+        });
     }
 
 }
