@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@mipmap/bg9"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".view.activity.login.NativeLoginActivity">
+
+    <include layout="@layout/include_login_head"/>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_icon_login"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/bg15"
+        android:scaleType="centerInside"
+        app:riv_corner_radius="15dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_margin"
+        android:layout_marginRight="@dimen/login_margin"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/shape_bg_rl_login_input">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:hint="请输入用户名"
+            style="@style/EditText.Login"
+            android:background="@null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@color/darkgray"/>
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:hint="请输入手机号"
+            style="@style/EditText.Login"
+            android:background="@null"/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@color/darkgray"/>
+
+        <com.exa.framelib_rrm.base.view.view.PasswordEditText
+            android:id="@+id/et_password"
+            android:hint="输入大小写和数字，密码不能超过8位"
+            app:pet_iconShow="@drawable/icon_password_visible"
+            app:pet_iconHide="@drawable/icon_password_invisible"
+            android:inputType="textPassword"
+            android:background="@null"
+            style="@style/EditText.Login" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/login_margin"
+        android:layout_marginTop="5dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbtn_sex_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_small"
+            android:text="男"/>
+
+        <RadioButton
+            android:id="@+id/rbtn_sex_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_small"
+            android:text="女"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_marginLeft="@dimen/login_margin"
+        android:layout_marginRight="@dimen/login_margin"
+        android:layout_marginTop="@dimen/login_margin"
+        style="@style/Button.Login"
+        android:text="注 册"/>
+
+    <!-- <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:paddingRight="@dimen/login_margin"
+         android:paddingLeft="@dimen/login_margin">
+
+         <TextView
+             android:id="@+id/tv_goRegister"
+             style="@style/TextView.FindPwd"
+             android:text="注册账号"/>
+
+         <TextView
+             android:id="@+id/tv_goFindPwd"
+             style="@style/TextView.FindPwd"
+             android:layout_alignParentRight="true"
+             android:text="忘记密码"/>
+
+     </RelativeLayout>-->
+
+    <!--<TextView
+        android:id="@+id/tv_goFindPwd"
+        style="@style/TextView.FindPwd"
+        android:layout_marginRight="@dimen/login_margin"
+        android:layout_gravity="right"
+        android:layout_alignParentRight="true"
+        android:text="忘记密码"/>-->
+
+    <TextView
+        android:id="@+id/tv_visitor_login"
+        style="@style/TextView.FindPwd"
+        android:paddingRight="@dimen/login_margin"
+        android:paddingLeft="@dimen/login_margin"
+        android:layout_marginTop="35dp"
+        android:textSize="@dimen/textsize_medium"
+        android:layout_gravity="center_horizontal"
+        android:text="游客登录"/>
+
+</LinearLayout>

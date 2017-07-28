@@ -13,9 +13,12 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
+import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
+import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.view.utils.DrawableUtils;
+import com.a.quarter.view.utils.IntentUtils;
 import com.a.quarter.view.utils.SlidingMenuUtils;
-import com.a.quarter.view.activity.login.LoginActivity;
+import com.a.quarter.view.activity.login.NativeLoginActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
@@ -48,26 +51,30 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private VideoFragment videoFragment;
     private SlidingMenu slidingMenu;
     private SlidingMenuUtils slidingMenuUtils;
+    private View mHead;
+    //private View mRoot;
 
     @Override
     protected int getContentViewId() {
-        //return R.layout.activity_main;
+//        return R.layout.activity_main;
         return R.layout.slidingmenu_wraper;
     }
 
     @Override
     protected void setStatusBar() {
+        mHead = findViewById(R.id.main_head);
         //设置状态栏为透明，并且使用状态栏所占空间
         StatusBarCompat.compat(this, ContextCompat.getColor(this, android.R.color.transparent), true);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //如果可以使用状态栏所占的空间，左侧的SlidingMenu使用了状态栏所占的空间，
             //需要给右侧的主布局加上一个高度等于状态栏高度的paddingTop，让头部不被状态栏挡住
-            findViewById(R.id.rl_root).setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
+            mHead.setPadding(0, ScreenUtils.getStatusHeight(this), 0, 0);
         }
     }
 
     @Override
     protected void initViews() {
+        //mRoot = findViewById(R.id.rl_root);
         //初始化底部导航
         initRadioButton();
         radioGroupNav.setOnCheckedChangeListener(this);
@@ -77,17 +84,17 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         slidingMenuUtils = new SlidingMenuUtils();
         slidingMenu = slidingMenuUtils.initSlidingMenu(this, this);
         slidingMenuUtils.initDrawables();
-        if(App.isLogin()){
+        if (App.isLogin()) {
             User user = App.getUser();
             slidingMenuUtils.tvUserName.setText(user.userName);
             slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
-            if("男".equals(user.userSex)){
+            if ("男".equals(user.userSex)) {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
-            }else{
+            } else {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.user_icon);
             }
             ivLeft.setImageResource(R.mipmap.user_icon);
-        }else{
+        } else {
             slidingMenuUtils.tvUserName.setText("点击头像登录");
             slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.default_no_avatar);
             slidingMenuUtils.ivSexIcon.setImageDrawable(null);
@@ -112,37 +119,40 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @OnClick(R.id.iv_left)
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.iv_left:
-                if(slidingMenu!=null){
+                if (slidingMenu != null) {
                     slidingMenu.toggle();
                 }
                 break;
             case R.id.iv_right:
 //                if(App.isLogin()){
-                    ActivityUtils.jumpIn(this, PublishArticleActivity.class);
+                ActivityUtils.jumpIn(this, PublishArticleActivity.class);
 //                }else{
 //                    T.showShort(getApplicationContext(), "没有登录");
 //                }
                 break;
             case R.id.tv_my_follow:
                 ActivityUtils.jumpIn(this, MyFollowActivity.class);
+
                 break;
             case R.id.tv_search_friend:
                 ActivityUtils.jumpIn(this, SearchFriendActivity.class);
                 break;
             case R.id.tv_my_collection:
             case R.id.tv_my_work:
+                setIntent("mywork");
             case R.id.tv_settings:
+                setIntent("setting");
             case R.id.tv_msg_notify:
-                if(slidingMenu!=null){
-                    slidingMenu.toggle();
-                }
+                if (slidingMenu != null) {
+                slidingMenu.toggle();
+            }
                 break;
             case R.id.iv_user_icon:
 //                if(!App.isLogin()){
-                    ActivityUtils.jumpForResult(1, this, LoginActivity.class);
-//                }else{TODO
+                ActivityUtils.jumpForResult(1, this, ThirdPartyLoginActivity.class);
+//                }else{TODO 跳转到个人中心页面
 //                    T.showShort(getApplicationContext(), "已登录");
 //                }
                 break;
@@ -152,6 +162,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private FragmentTransaction t;
+
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         t = getSupportFragmentManager().beginTransaction();
@@ -211,6 +222,14 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
     }
 
+    public void setIntent(String tag) {
+        Intent intent = new Intent(this, SlidingmenuToActivity.class);
+        intent.putExtra("tag", tag);
+        startActivity(intent);
+
+//        finish();
+    }
+
     private void hideFrag(int i) {
         switch (i) {
             case 0:
@@ -237,16 +256,19 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //登录成功后，从登录页面返回
-        if(requestCode == 1 && resultCode == 1){
+        if (requestCode == 1 && resultCode == 1) {
             User user = App.getUser();
             slidingMenuUtils.tvUserName.setText(user.userName);
             slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
-            if("男".equals(user.userSex)){
+            if ("男".equals(user.userSex)) {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
-            }else{
+            } else {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
             }
             ivLeft.setImageResource(R.mipmap.user_icon);
         }
-    }
+
+
+    }//13567890550
+
 }

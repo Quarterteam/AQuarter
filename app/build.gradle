@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.a.quarter"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //指明ijkplayerlib包
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -37,8 +38,16 @@ repositories {
     flatDir {
         dirs 'libs' //this way we can find the .aar file in libs folder
     }
+
 }
 
+//指明ijkplayer.aar的位置
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -53,8 +62,8 @@ dependencies {
 
     //tablayout
     compile 'com.android.support:design:23.2.1'
-    //jiecao
-    compile 'fm.jiecao:jiecaovideoplayer:2.0'
+    //recycler
+    compile 'com.android.support:recyclerview-v7:23.2.0'
 
     //Ijkplayer 使用
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.1'

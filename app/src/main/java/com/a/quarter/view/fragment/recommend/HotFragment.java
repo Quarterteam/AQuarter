@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.recommend.ItemBean;
 import com.a.quarter.view.adapter.recommend.HotAdapter;
 import com.a.quarter.view.base.BaseFragment;
 
@@ -61,9 +62,9 @@ public class HotFragment extends BaseFragment {
         HotAdapter hotAdapter = new HotAdapter(mActivity);
         recyclerview.setAdapter(hotAdapter);
 
-        ArrayList<String> strings = new ArrayList<>();
+        ArrayList<ItemBean> strings = new ArrayList<>();
         for (int i = 0; i <5 ; i++) {
-            strings.add("2029-0"+i);
+            strings.add(new ItemBean("2017-6-01 12:45",true));
         }
 
         hotAdapter.setData(strings);

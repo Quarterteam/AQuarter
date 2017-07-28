@@ -1,5 +1,4 @@
 <resources>
-    <!--<string name="app_name">AQuarter</string>-->
     <string name="app_name">一刻钟</string>
 
 
@@ -12,6 +11,9 @@
     <string name="add_follow">+ 关注</string>
     <string name="name_example">阿诺马斯丁</string>
     <string name="info_example">吃货们快戳我</string>
+
+
+
     <string name="N_A">N/A</string>
     <string name="close">Close</string>
     <string name="exit">Exit</string>
@@ -77,4 +79,10 @@
     <string name="VideoView_player_AndroidMediaPlayer">Player: AndroidMediaPlayer</string>
     <string name="VideoView_player_IjkMediaPlayer">Player: IjkMediaPlayer</string>
     <string name="VideoView_player_IjkExoMediaPlayer">Player: IjkExoMediaPlayer</string>
+
+
+ <!--configure button-->
+    <string name="Button_Configure_exitLogin">退出登录</string>
+    <string name="title_Configure_back">返回</string>
+
 </resources>

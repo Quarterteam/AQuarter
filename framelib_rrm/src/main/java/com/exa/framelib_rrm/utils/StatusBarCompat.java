@@ -33,7 +33,7 @@ public class StatusBarCompat {
     }
 
     @SuppressLint("InlinedApi") @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private static void compat(Activity activity, int statusColor) {
+    public static void compat(Activity activity, int statusColor) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {// 4.4 全透明状态栏
             Window window = activity.getWindow();

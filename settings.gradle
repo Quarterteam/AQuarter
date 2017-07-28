@@ -1,1 +1,4 @@
-include ':app', ':framelib_rrm', ':slidingmenulibrary', 'Ijkplayer'
+
+include ':app', ':framelib_rrm', ':slidingmenulibrary'
+
+

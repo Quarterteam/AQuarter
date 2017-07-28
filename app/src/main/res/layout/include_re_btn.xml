@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RadioGroup
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/re_vg"
-    android:orientation="horizontal">
-    <RadioButton
-        android:layout_weight="1"
-        style="@style/RadioButton.Re"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_re_shiled"
         android:text="@string/re_btn01"
-        android:id="@+id/re_btn_shiled"
-       />
-    <RadioButton
-        android:layout_weight="1"
+        style="@style/re.check"
+        android:drawableTop="@mipmap/shiled"
+         />
+    <TextView
+        android:id="@+id/text_re_report"
 
-        style="@style/RadioButton.Re"
+        style="@style/re.check"
         android:text="@string/re_btn02"
-        android:id="@+id/re_btn_report"
-        />
-    <RadioButton
-        android:layout_weight="1"
+        android:drawableTop="@mipmap/report"
 
-        style="@style/RadioButton.Re"
+       />
+    <TextView
+        android:id="@+id/text_re_copyLink"
+
+        style="@style/re.check"
         android:text="@string/re_btn03"
-        android:id="@+id/re_btn_copyLink"
+        android:drawableTop="@mipmap/copylink"
         />
-    <RadioButton
-        android:layout_weight="1"
+    <ImageView
+        android:id="@+id/text_re_add"
+        style="@style/re.check02"
 
-        style="@style/RadioButton.Re02"
-        android:id="@+id/re_btn_add"
         />
-</RadioGroup>
-</LinearLayout>
+
+</RelativeLayout>

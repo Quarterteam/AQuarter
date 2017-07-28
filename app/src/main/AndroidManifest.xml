@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.a.quarter">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:name=".app.App"
@@ -22,25 +23,11 @@
             android:value="1280" />
 
         <activity android:name=".view.activity.main.MainActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".view.activity.login.LoginActivity">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
-        <activity android:name=".view.activity.login.RegisterActivity" />
+        <activity android:name=".view.activity.login.NativeLoginActivity"
+            android:theme="@style/Theme.FullScreen"/>
+        <activity android:name=".view.activity.login.NativeRegisterActivity"
+            android:theme="@style/Theme.FullScreen"/>
         <activity android:name=".view.activity.main.MyFollowActivity" />
         <activity android:name=".view.activity.main.HotFollowActivity" />
         <activity android:name=".view.activity.main.PublishArticleActivity" />
@@ -54,7 +41,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.main.SearchFriendActivity"></activity>
+        <activity android:name=".view.activity.main.SearchFriendActivity" />
+        <activity android:name=".view.activity.login.ThirdPartyLoginActivity"
+            android:theme="@style/Theme.FullScreen"></activity>
+<!--设置页面-->
+        <activity android:name=".view.activity.configure.SlidingmenuToActivity"></activity>
     </application>
 
 </manifest>

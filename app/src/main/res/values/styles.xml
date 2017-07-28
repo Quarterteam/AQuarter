@@ -23,18 +23,17 @@
         <item name="colorControlActivated">@color/mainAdd</item>
     </style>
 
-    <style name="Theme.FullScreen" parent="AppTheme">
-        <item name="android:windowNoTitle">true</item>
+    <style name="Theme.FullScreen" parent="Theme.Main">
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="Control" ></style>
+    <style name="Control"></style>
     <style name="RadioButton.MainNav" parent="Control">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:button">@null</item>
-        <item name="android:background">@drawable/selector_bg_white_graytranslucent</item>
+        <item name="android:background">@drawable/selector_bg_transparent_graytranslucent</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
         <item name="android:textColor">@drawable/selector_textcolor_mainnav</item>
@@ -95,7 +94,7 @@
     </style>
 
     <style name="TextView.Tablayout.Text" parent="AppTheme">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
 
     </style>
 
@@ -115,15 +114,16 @@
     </style>
 
     <style name="Fram.Recommend.Item.Image" parent="AppTheme">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:src">@mipmap/ic_launcher</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:src">@mipmap/bg5</item>
     </style>
 
     <style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/red</item>
+        <item name="android:layout_marginLeft">@dimen/frag_recommend_item_distance</item>
         <item name="android:textSize">@dimen/frag_recommend_item_nickname</item>
         <item name="android:layout_toRightOf">@id/re_iamge_item</item>
         <item name="android:layout_alignTop">@id/re_iamge_item</item>
@@ -133,17 +133,37 @@
     <style name="Fram.Recommend.Item.Time" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/frag_recommend_tab_indicate</item>
+
         <item name="android:textSize">@dimen/frag_recommend_item_time</item>
         <item name="android:layout_below">@id/re_textNickName_item</item>
         <item name="android:layout_toRightOf">@id/re_iamge_item</item>
+        <item name="android:layout_marginLeft">@dimen/frag_recommend_item_distance</item>
+
 
 
     </style>
 
+
+
+
+    <style name="Fram.Recommend.Item.Content" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/frag_recommend_item_content</item>
+        <item name="android:layout_below">@id/re_textNickName_item</item>
+        <item name="android:layout_marginTop">@dimen/frag_recommend_item_distance</item>
+
+
+
+    </style>
+
+
+
     <style name="Fram.Recommend.Item.player" parent="AppTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/frag_recommend_item_player</item>
-        <item name="android:layout_below">@id/re_iamge_item</item>
+        <item name="android:layout_below">@id/re_textTime_content</item>
         <item name="android:layout_marginTop">@dimen/frag_recommend_tab_indicate</item>
         <item name="android:layout_marginBottom">@dimen/frag_recommend_item_distance</item>
 
@@ -169,13 +189,13 @@
         <!--<item name="android:textColor">@drawable/selector_login_btn_textcolor</item>-->
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/textsize_main_slide</item>
-        <item name="android:background">@drawable/selector_bg_maincolor_graytranslucent</item>
+        <item name="android:background">@drawable/selector_bg_btn_login</item>
     </style>
 
     <style name="TextView.FindPwd" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
-        <item name="android:textColor">@drawable/selector_textcolor_black_main</item>
+        <item name="android:textColor">@drawable/selector_textcolor_white_mainadd</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
         <item name="android:gravity">center</item>
     </style>
@@ -204,8 +224,30 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/frag_recommend_item_distance</item>
+
+        <item name="android:layout_marginTop">@dimen/frag_recommend_item_distance</item>
     </style>
-<!--Joke界面-->
+
+
+    <style name="re.check" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:visibility">gone</item>
+
+
+    </style>
+
+    <style name="re.check02" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@mipmap/show</item>
+        <item name="android:layout_alignParentRight">true</item>
+
+    </style>
+    <!--Joke界面-->
     <style name="Linear_match_ver" parent="Control">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -238,7 +280,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginLeft">8dp</item>
@@ -268,20 +310,48 @@
         <item name="android:paddingLeft">23dp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
-
-
-
-
     <style name="Joke.image" parent="Control">
         <item name="android:layout_width">25dp</item>
         <item name="android:layout_height">25dp</item>
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:layout_marginRight">8dp</item>
     </style>
-
+    <style name="re.recycler" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/re_player_item</item>
+    </style>
 
 
     <style name="TabLayout.MyFollow.TextStyle" parent="Control">
         <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+
+  
+
+    <!--设置页面的recycler-->
+    <style name="SlidMenuto.Setting.Recycler.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/setting_include_head</item>
+    </style>
+
+
+<!--设置页面的button-->
+    <style name="SlidMenuto.Setting.Button.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_marginTop">@dimen/frag_recommend_item_distance</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_below">@id/setting_recycler</item>
+        <item name="android:text">@string/Button_Configure_exitLogin</item>
+        <item name="android:textSize">@dimen/textSize_configure_exitLogin</item>
+    </style>
+
+    <style name="SlidMenuto.Configure.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 </resources>
