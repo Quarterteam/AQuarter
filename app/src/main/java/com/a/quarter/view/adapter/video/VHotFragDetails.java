@@ -56,7 +56,7 @@ public class VHotFragDetails extends BaseActivity {
     protected void initViews() {
         Intent intent = getIntent();
         String key = intent.getStringExtra("key");
-        Log.e("key-------",key);
+        Log.e("key",key);
 
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
