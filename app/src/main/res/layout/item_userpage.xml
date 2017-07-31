@@ -32,15 +32,12 @@
 
     <ImageView
         android:id="@+id/item_userpage_image_show"
-        style="@style/userpage.image.text"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="12dp"
+        style="@style/userpage.image.open"
         android:background="@mipmap/icon_open" />
 
     <TextView
         android:id="@+id/item_userpage_text_copylink"
         style="@style/userpage.image.text"
-        android:layout_marginTop="10dp"
         android:layout_toLeftOf="@id/item_userpage_image_show"
         android:drawableTop="@mipmap/copylink1"
         android:text="复制链接"
@@ -49,7 +46,6 @@
     <TextView
         android:id="@+id/item_userpage_text_report"
         style="@style/userpage.image.text"
-        android:layout_marginTop="10dp"
         android:layout_toLeftOf="@id/item_userpage_text_copylink"
         android:drawableTop="@mipmap/report1"
         android:text="举报"
@@ -59,7 +55,6 @@
     <TextView
         android:id="@+id/item_userpage_text_shiled"
         style="@style/userpage.image.text"
-        android:layout_marginTop="10dp"
         android:layout_toLeftOf="@id/item_userpage_text_report"
         android:drawableTop="@mipmap/shiled1"
         android:text="屏蔽"
@@ -71,11 +66,55 @@
         style="@style/userpage.Item.texttitle"
         android:layout_below="@id/item_userpage_Text_time"
         android:text="妹子智斗抢劫男，标题总是这样滴" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+    <RelativeLayout
+        android:id="@+id/Relate_user"
         android:layout_below="@id/item_userpage_Text"
-        android:layout_margin="10dp"
-        android:background="#9000"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.a.quarter.view.media.IjkVideoView
+            android:id="@+id/item_userpage_video"
+            style="@style/userpage.Item.IjkVideoView"
+            />
+        <ImageView
+            android:id="@+id/item_userpage_play"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/video_icon"/>
+
+         <LinearLayout
+             android:id="@+id/item_userpage_linear"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+      style="@style/Linear_wrap_ver"
+       >
+       <TextView
+           android:id="@+id/item_userpage_iv_like"
+           style="@style/userpage.image.text.videoRigth"
+           android:drawableTop="@mipmap/details_xi_whilt"
+           android:text="1254"/>
+       <TextView
+           android:id="@+id/item_userpage_iv_collect"
+           style="@style/userpage.image.text.videoRigth"
+           android:drawableTop="@mipmap/my_collect_whilt"
+           android:text="1254"/>
+       <TextView
+           android:id="@+id/item_userpage_iv_share"
+           style="@style/userpage.image.text.videoRigth"
+           android:drawableTop="@mipmap/share_whilt"
+           android:text="1254"/>
+       <TextView
+           android:id="@+id/item_userpage_iv_comment"
+           style="@style/userpage.image.text.videoRigth"
+           android:drawableTop="@mipmap/comment_whilt"
+
+           android:text="1254"/>
+   </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/item_userpage_recycler"
+        android:layout_below="@id/Relate_user"
+        style="@style/userpage.Item.Recycler"
+       ></android.support.v7.widget.RecyclerView>
 </RelativeLayout>

@@ -14,6 +14,7 @@ import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
 import com.a.quarter.view.activity.MsgInformActivity;
+import com.a.quarter.view.activity.MyCollectaActivity;
 import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.view.base.BaseActivity;
@@ -139,6 +140,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ActivityUtils.jumpIn(this, SearchFriendActivity.class);
                 break;
             case R.id.tv_my_collection:
+                ActivityUtils.jumpIn(this, MyCollectaActivity.class);
+                break;
             case R.id.tv_my_work:
                 setIntent("mywork");
             case R.id.tv_settings:
