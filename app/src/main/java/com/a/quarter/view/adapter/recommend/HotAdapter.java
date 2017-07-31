@@ -76,15 +76,13 @@ public class HotAdapter extends RecyclerView.Adapter {
         holder1.time.setText(list.get(position).getName());
 
         String s = Environment.getExternalStorageDirectory().getPath() + "/oppo.mp4";
-        Uri uri=Uri.parse(s);
-        holder1.player.setVideoURI(uri);
-        holder1.player.start();
+        //Uri uri=Uri.parse(s);
+        //holder1.player.setVideoURI(uri);
+        //holder1.player.start();
         holder1.add.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View view) {
-
-
 
                 final float x = holder1.add.getX();
 
@@ -99,7 +97,7 @@ public class HotAdapter extends RecyclerView.Adapter {
                         public void onAnimationStart(Animation animation) {
 
 
-                            LogUtils.i("onAnimationStart1");
+                            //LogUtils.i("onAnimationStart1");
                             holder1.add.setImageResource(R.mipmap.packup);
                             setVisibility(holder1.copyLink, View.VISIBLE);
                             setVisibility(holder1.report, View.VISIBLE);
@@ -107,7 +105,7 @@ public class HotAdapter extends RecyclerView.Adapter {
                             AnimationsUtils.setAnimationSet(1200, holder1.copyLink, x, -(holder1.add.getWidth() * 1.2f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.report, x, -(holder1.add.getWidth() * 3f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.shade, x, -(holder1.add.getWidth() * 4.2f), 0f, 1f);
-                            LogUtils.i("onAnimationStart2");
+                            //LogUtils.i("onAnimationStart2");
                         }
 
                         @Override

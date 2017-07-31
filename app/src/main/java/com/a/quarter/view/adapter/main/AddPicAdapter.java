@@ -80,7 +80,7 @@ public class AddPicAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     //删除本条目（本图片）
-                    if(position<list.size()-1){
+                    if(position<list.size()){
                         list.remove(position);// java.lang.IndexOutOfBoundsException: Invalid index 5, size is 5
                         notifyItemRemoved(position);
                     }

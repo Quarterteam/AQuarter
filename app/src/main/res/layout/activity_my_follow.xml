@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/lightgray"
+    android:background="@color/mainBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.main.MyFollowActivity">
 
@@ -20,14 +20,11 @@
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/mainColor"
         app:tabTextAppearance="@style/TabLayout.MyFollow.TextStyle"
-        android:background="@color/white"
         app:tabTextColor="@color/black"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -25,7 +25,7 @@ public class FollowListFragment extends BaseFragment {
     private ArrayList<FollowListItemBean> list;
     private FollowListAdapter adapter;
 
-    private  String url;
+    private String url;
 
     @Override
     protected int getContentViewId() {

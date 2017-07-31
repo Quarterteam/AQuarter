@@ -53,11 +53,7 @@
             android:theme="@style/Theme.FullScreen"></activity>
         <activity android:name=".view.activity.UserPageActivity"></activity>
         <activity android:name=".view.activity.MsgInformActivity"></activity>
-        <!--设置页面-->
-        <activity android:name=".view.activity.configure.SlidingmenuToActivity"></activity>
-        <activity
-            android:name=".view.activity.login.ThirdPartyLoginActivity"
-            android:theme="@style/Theme.FullScreen" />
+
         <!-- 设置页面 -->
         <activity android:name=".view.activity.configure.SlidingmenuToActivity" />
         <activity

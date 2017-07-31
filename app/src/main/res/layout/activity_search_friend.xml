@@ -32,7 +32,8 @@
         android:background="@drawable/shape_bg_et_search_friend"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:textColor="@color/gray"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
         android:hint="输入ID或好友名"
         android:textSize="@dimen/textsize_medium"
         android:layout_height="35dp"/>

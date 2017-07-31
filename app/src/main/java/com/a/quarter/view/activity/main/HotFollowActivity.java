@@ -1,21 +1,26 @@
 package com.a.quarter.view.activity.main;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
-import com.a.quarter.view.utils.TabLayoutUtils;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.main.FollowListFragment;
+import com.a.quarter.view.utils.TabLayoutUtils;
+import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.T;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HotFollowActivity extends BaseActivity implements View.OnClickListener {
@@ -30,6 +35,10 @@ public class HotFollowActivity extends BaseActivity implements View.OnClickListe
     ViewPager mViewPager;
     @Bind(R.id.iv_toolbar)
     ImageView ivToolbar;
+    @Bind(R.id.tv_cancel)
+    TextView tvCancel;
+    @Bind(R.id.et_search)
+    EditText etSearch;
 
     @Override
     protected int getContentViewId() {
@@ -44,6 +53,28 @@ public class HotFollowActivity extends BaseActivity implements View.OnClickListe
         ivToolbar.setImageResource(R.mipmap.search_friend);
         ivToolbar.setBackgroundResource(R.drawable.selector_bg_transparent_graytranslucent);
         ivToolbar.setVisibility(View.VISIBLE);
+
+        tvCancel.setOnClickListener(this);
+
+        etSearch.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    // 先隐藏键盘
+                    ActivityUtils.closeKeyBoard(HotFollowActivity.this, etSearch);
+                    //进行搜索操作的方法，在该方法中可以加入etSearch的非空判断
+                    search();
+                }
+                return false;
+            }
+
+        });
+    }
+
+    private void search() {
+        //TODO
+
     }
 
     @Override
@@ -82,10 +113,29 @@ public class HotFollowActivity extends BaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.iv_toolbar:
-                T.showShort(getApplicationContext(), "搜索");
+                //T.showShort(getApplicationContext(), "搜索");
+                showSearchState(true);
+                break;
+            case R.id.tv_cancel:
+                //T.showShort(getApplicationContext(), "搜索");
+                showSearchState(false);
                 break;
             default:
                 break;
+        }
+    }
+
+    private void showSearchState(boolean showEt) {
+        if(showEt){
+            ivToolbar.setVisibility(View.INVISIBLE);
+            tvCancel.setVisibility(View.VISIBLE);
+            etSearch.setVisibility(View.VISIBLE);
+        }else{
+            tvCancel.setVisibility(View.GONE);
+            etSearch.setVisibility(View.GONE);
+            ivToolbar.setVisibility(View.VISIBLE);
+            etSearch.setText("");
+            ActivityUtils.closeKeyBoard(this, etSearch);
         }
     }
 

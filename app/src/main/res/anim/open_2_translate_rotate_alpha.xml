@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="500"
+    android:fillAfter="true" >
+
+    <rotate
+        android:fromDegrees="360"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="0" />
+    <!--如果放在下面，这里设置的旋转中心点会失效-->
+
+    <translate
+        android:fromXDelta="50%p"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:toXDelta="0" />
+
+    <!--<rotate-->
+        <!--android:fromDegrees="1080"-->
+        <!--android:pivotX="50%"-->
+        <!--android:pivotY="50%"-->
+        <!--android:toDegrees="0" />-->
+
+    <alpha
+        android:fromAlpha="0"
+        android:toAlpha="1"/>
+
+
+</set>
