@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
+    >
+    <com.exa.framelib_rrm.base.view.view.CircleImageView
+        android:id="@+id/Iv_msg_title"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/user_icon" />
+    <ImageView
+        android:id="@+id/Iv_msg_rigth"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/bg5"/>
+    <LinearLayout
+        android:id="@+id/lin_item_mes"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/Iv_msg_title"
+       style="@style/Linear_wrap_ver">
+        <LinearLayout
+            style="@style/Linear_wrap_hor">
+        <TextView
+            android:id="@+id/tv_msg_name"
+           style="@style/Tv.Msg.item"
+            android:text="炸鸡和啤酒"
+            android:textColor="@color/blue"/>
+            <TextView
+                android:id="@+id/tv_msg_info"
+                style="@style/Tv.Msg.item"
+                android:text="评论了你的作品《"
+                />
+            <TextView
+                android:id="@+id/tv_msg_wokename"
+                style="@style/Tv.Msg.item"
+                android:text="风景"
+                android:textColor="@color/blue"
+                />
+            <TextView
+                style="@style/Tv.Msg.item"
+                android:text="》"
+                />
+        </LinearLayout>
+       <TextView
+           android:id="@+id/tv_msg_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="9sp"
+            android:layout_marginLeft="20dp"
+            android:text="03-05 15:30"
+            />
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:text="拍照水平很高"
+            />
+    </LinearLayout>
+<View
+    android:layout_below="@id/lin_item_mes"
+    android:layout_toRightOf="@id/Iv_msg_title"
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/grayAdd"></View>
+</RelativeLayout>

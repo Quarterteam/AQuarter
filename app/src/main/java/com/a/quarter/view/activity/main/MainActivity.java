@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
+import com.a.quarter.view.activity.MsgInformActivity;
 import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.utils.DrawableUtils;
@@ -21,6 +22,7 @@ import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
+
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
@@ -142,10 +144,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 setIntent("mywork");
             case R.id.tv_settings:
                 setIntent("setting");
-            case R.id.tv_msg_notify:
                 if (slidingMenu != null) {
-                slidingMenu.toggle();
-            }
+                    slidingMenu.toggle();
+                }
+                break;
+            case R.id.tv_msg_notify:
+
+                ActivityUtils.jumpIn(this, MsgInformActivity.class);
                 break;
             case R.id.iv_user_icon:
 //                if(!App.isLogin()){

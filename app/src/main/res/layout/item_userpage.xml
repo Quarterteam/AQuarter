@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view_userpage"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"></View>
+
+    <com.exa.framelib_rrm.base.view.view.CircleImageView
+        android:id="@+id/item_userpage_Image_title"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/view_userpage"
+        android:layout_marginLeft="20dp"
+        android:src="@mipmap/user_icon" />
+
+    <TextView
+        android:id="@+id/item_userpage_Text_title"
+        style="@style/TextView.Joke.Title"
+        android:layout_toRightOf="@id/item_userpage_Image_title"
+        android:text="天蝎喝牛奶" />
+
+    <TextView
+        android:id="@+id/item_userpage_Text_time"
+        style="@style/Joke.TextView.Time"
+        android:layout_below="@id/item_userpage_Text_title"
+        android:layout_toRightOf="@id/item_userpage_Image_title"
+        android:text="2017-7-20  14:20" />
+
+
+    <ImageView
+        android:id="@+id/item_userpage_image_show"
+        style="@style/userpage.image.text"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
+        android:background="@mipmap/icon_open" />
+
+    <TextView
+        android:id="@+id/item_userpage_text_copylink"
+        style="@style/userpage.image.text"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/item_userpage_image_show"
+        android:drawableTop="@mipmap/copylink1"
+        android:text="复制链接"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/item_userpage_text_report"
+        style="@style/userpage.image.text"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/item_userpage_text_copylink"
+        android:drawableTop="@mipmap/report1"
+        android:text="举报"
+        android:visibility="invisible" />
+
+
+    <TextView
+        android:id="@+id/item_userpage_text_shiled"
+        style="@style/userpage.image.text"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/item_userpage_text_report"
+        android:drawableTop="@mipmap/shiled1"
+        android:text="屏蔽"
+        android:visibility="invisible" />
+
+
+    <TextView
+        android:id="@+id/item_userpage_Text"
+        style="@style/userpage.Item.texttitle"
+        android:layout_below="@id/item_userpage_Text_time"
+        android:text="妹子智斗抢劫男，标题总是这样滴" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/item_userpage_Text"
+        android:layout_margin="10dp"
+        android:background="#9000"/>
+</RelativeLayout>
