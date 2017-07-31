@@ -1,10 +1,7 @@
-package com.a.quarter.view.utils;
+package com.a.quarter.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
-import com.exa.framelib_rrm.utils.T;
 
 /**
  * desc:页面跳转的工具类

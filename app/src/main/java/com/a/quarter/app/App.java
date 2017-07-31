@@ -4,12 +4,17 @@ import com.a.quarter.model.bean.login.User;
 import com.a.quarter.model.utils.Constants;
 import com.exa.framelib_rrm.app.BaseApp;
 import com.exa.framelib_rrm.retrofit.RetrofitHelper;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 /**
  * Created by acer on 2017/7/21.
  */
 public class App extends BaseApp {
-
+    {
+        PlatformConfig.setQQZone("1106087531", "QhOqaUeYytKEeeBB");
+    }
     //用户信息
     private User user;
 
@@ -20,6 +25,10 @@ public class App extends BaseApp {
 
         //获取用户信息
         user = User.getUserInfo();
+        //TODO QQ配置
+        UMShareAPI.get(this);
+        // TODO: 初始化Fresco
+        Fresco.initialize(this);
     }
 
     //获取本身的实例

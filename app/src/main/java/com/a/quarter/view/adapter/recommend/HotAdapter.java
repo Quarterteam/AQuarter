@@ -1,42 +1,27 @@
 package com.a.quarter.view.adapter.recommend;
 
-import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
-import android.app.assist.AssistStructure;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.IdRes;
-import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.RecyclerView;
-import android.text.BoringLayout;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ItemBean;
 import com.a.quarter.view.media.IjkVideoView;
-import com.a.quarter.view.utils.AnimationsUtils;
+import com.a.quarter.utils.AnimationsUtils;
 
 import java.util.ArrayList;
-
-import io.reactivex.processors.PublishProcessor;
-import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 
 /**

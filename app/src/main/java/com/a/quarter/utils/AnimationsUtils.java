@@ -1,28 +1,12 @@
-package com.a.quarter.view.utils;
+package com.a.quarter.utils;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.IntegerRes;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
-import android.view.animation.TranslateAnimation;
-import android.webkit.WebView;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.a.quarter.R;
-import com.exa.framelib_rrm.utils.T;
-
-import java.io.FileFilter;
 
 
 /**

@@ -1,14 +1,7 @@
-package com.a.quarter.view.utils;
-
-import android.content.Context;
-import android.content.res.Resources;
+package com.a.quarter.utils;
 
 import com.a.quarter.app.App;
 import com.exa.framelib_rrm.base.view.view.BaseThemeManager;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by acer on 2017/7/26.
