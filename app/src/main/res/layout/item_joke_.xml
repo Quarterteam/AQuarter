@@ -53,7 +53,7 @@
         android:layout_below="@id/v_perch"
         style="@style/Joke.image"
         android:layout_alignParentRight="true"
-        android:background="@mipmap/show" />
+        android:background="@mipmap/icon_open" />
 
     <TextView
         android:id="@+id/joke_text"

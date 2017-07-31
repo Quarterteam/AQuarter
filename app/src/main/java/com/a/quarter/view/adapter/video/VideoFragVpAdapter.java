@@ -1,4 +1,4 @@
-package com.a.quarter.view.fragment.video.adapter;
+package com.a.quarter.view.adapter.video;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

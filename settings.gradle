@@ -1,1 +1,4 @@
-include ':app', ':framelib_rrm', ':slidingmenulibrary', ':sample', ':library'
+
+include ':app', ':framelib_rrm', ':slidingmenulibrary'
+
+

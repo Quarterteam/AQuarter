@@ -1,13 +1,12 @@
 package com.a.quarter.view.fragment.video;
 
-import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.a.quarter.R;
 import com.a.quarter.view.base.BaseFragment;
-import com.a.quarter.view.fragment.video.adapter.VideoFragVpAdapter;
+import com.a.quarter.view.adapter.video.VideoFragVpAdapter;
 
 import java.util.ArrayList;
 
