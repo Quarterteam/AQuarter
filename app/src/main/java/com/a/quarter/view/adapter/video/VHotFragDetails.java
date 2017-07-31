@@ -105,7 +105,7 @@ public class VHotFragDetails extends BaseActivity {
               {
                   String titele="视频标题";
                   String content="视频内容";
-                  QQLoginShareUtils.setShare(url,titele,content);
+                  QQLoginShareUtils.setShare(url,titele,content,VHotFragDetails.this);
                }
                 break;
             case R.id.hotdetails_user:// TODO: 用户

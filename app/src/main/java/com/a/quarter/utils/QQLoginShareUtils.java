@@ -81,14 +81,14 @@ public class QQLoginShareUtils {
 
 
     // TODO: 链接分享
-    public static void setShare(String url, String title, String Description){
+    public static void setShare(String url, String title, String Description,Context con){
 
         UMWeb web = new UMWeb(url);
         web.setTitle(title);//标题
         //   web.setThumb(thumb);  //缩略图
         web.setDescription(Description);//描述
 
-        new ShareAction((Activity) context)
+        new ShareAction((Activity) con)
                 .setPlatform(SHARE_MEDIA.QQ)//传入平台
                 .withMedia(web)
                 . setCallback(shareListener)//回调监听器
