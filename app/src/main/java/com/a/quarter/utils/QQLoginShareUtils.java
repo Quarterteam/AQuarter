@@ -89,10 +89,11 @@ public class QQLoginShareUtils {
         web.setDescription(Description);//描述
 
         new ShareAction((Activity) con)
-                .setPlatform(SHARE_MEDIA.QQ)//传入平台
+               //
+                .setDisplayList( SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE)
                 .withMedia(web)
                 . setCallback(shareListener)//回调监听器
-                .share();
+                .open();
 
         Log.i("   setShare ","  ===========");
 
