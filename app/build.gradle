@@ -49,7 +49,7 @@ repositories {
     }
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile project(':framelib_rrm')
@@ -59,16 +59,23 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile project(':slidingmenulibrary')
     compile 'com.android.support:recyclerview-v7:23.2.1'
-
     //tablayout
     compile 'com.android.support:design:23.2.1'
     //recycler
     compile 'com.android.support:recyclerview-v7:23.2.0'
-
     //Ijkplayer 使用
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.6.1'
     compile(name: 'ijkplayer-java-release', ext: 'aar')
+    //todo QQ 的登陆 分享
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/umeng_social_tool.jar')
+    // 图片加载框架
+    compile 'com.facebook.fresco:fresco:1.4.0'
     //轮播图
     compile 'com.youth.banner:banner:1.4.9'
 

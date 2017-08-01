@@ -1,43 +1,27 @@
 package com.a.quarter.view.adapter.recommend;
 
-import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
-import android.app.assist.AssistStructure;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.IdRes;
-import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.RecyclerView;
-import android.text.BoringLayout;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ItemBean;
 import com.a.quarter.view.media.IjkVideoView;
-import com.a.quarter.view.utils.AnimationsUtils;
-import com.exa.framelib_rrm.utils.LogUtils;
+import com.a.quarter.utils.AnimationsUtils;
 
 import java.util.ArrayList;
-
-import io.reactivex.processors.PublishProcessor;
-import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 
 /**
@@ -59,6 +43,7 @@ public class HotAdapter extends RecyclerView.Adapter {
         if (datas != null) {
             list.addAll(datas);
 
+
         }
     }
 
@@ -76,13 +61,15 @@ public class HotAdapter extends RecyclerView.Adapter {
         holder1.time.setText(list.get(position).getName());
 
         String s = Environment.getExternalStorageDirectory().getPath() + "/oppo.mp4";
-        //Uri uri=Uri.parse(s);
-        //holder1.player.setVideoURI(uri);
-        //holder1.player.start();
+        Uri uri=Uri.parse(s);
+        holder1.player.setVideoURI(uri);
+        holder1.player.start();
         holder1.add.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View view) {
+
+
 
                 final float x = holder1.add.getX();
 
@@ -97,7 +84,6 @@ public class HotAdapter extends RecyclerView.Adapter {
                         public void onAnimationStart(Animation animation) {
 
 
-                            //LogUtils.i("onAnimationStart1");
                             holder1.add.setImageResource(R.mipmap.packup);
                             setVisibility(holder1.copyLink, View.VISIBLE);
                             setVisibility(holder1.report, View.VISIBLE);
@@ -105,7 +91,7 @@ public class HotAdapter extends RecyclerView.Adapter {
                             AnimationsUtils.setAnimationSet(1200, holder1.copyLink, x, -(holder1.add.getWidth() * 1.2f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.report, x, -(holder1.add.getWidth() * 3f), 0f, 1f);
                             AnimationsUtils.setAnimationSet(1200, holder1.shade, x, -(holder1.add.getWidth() * 4.2f), 0f, 1f);
-                            //LogUtils.i("onAnimationStart2");
+
                         }
 
                         @Override

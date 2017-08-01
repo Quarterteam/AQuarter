@@ -1,4 +1,4 @@
-package com.a.quarter.view.utils;
+package com.a.quarter.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
-import com.exa.framelib_rrm.base.view.view.BaseThemeManager;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.suke.widget.SwitchButton;
 

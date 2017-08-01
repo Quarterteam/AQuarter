@@ -11,7 +11,7 @@ import com.a.quarter.R;
 import com.a.quarter.view.adapter.main.FragmentVpAdapter;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.main.FollowListFragment;
-import com.a.quarter.view.utils.TabLayoutUtils;
+import com.a.quarter.utils.TabLayoutUtils;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 
 import java.util.ArrayList;
