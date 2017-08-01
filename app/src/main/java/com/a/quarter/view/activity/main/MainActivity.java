@@ -13,17 +13,16 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
-import com.a.quarter.view.activity.MsgInformActivity;
-import com.a.quarter.view.activity.MyCollectaActivity;
-import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
-import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.utils.DrawableUtils;
 import com.a.quarter.utils.SlidingMenuUtils;
+import com.a.quarter.view.activity.MsgInformActivity;
+import com.a.quarter.view.activity.MyCollectActivity;
+import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
+import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
-
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
@@ -141,7 +140,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ActivityUtils.jumpIn(this, SearchFriendActivity.class);
                 break;
             case R.id.tv_my_collection:
-                ActivityUtils.jumpIn(this, MyCollectaActivity.class);
+                ActivityUtils.jumpIn(this, MyCollectActivity.class);
                 break;
             case R.id.tv_my_work:
                 setIntent("mywork");

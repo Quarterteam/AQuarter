@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.utils.AnimUtils;
+import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.media.IjkVideoView;
 import com.exa.framelib_rrm.base.view.view.CircleImageView;
 
@@ -77,7 +78,9 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
         holder.ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popupWindow.showAsDropDown(holder.ivShare);
+                popupWindow.setAnimationStyle(R.style.Animation);
+                popupWindow.showAsDropDown(holder.ivShare,0,-330);
+
             }
         });
 
@@ -93,14 +96,7 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
               setTopIcon(R.mipmap.star_checked_whilt, holder.ivCollect);
             }
         });
-        holder.ivShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popupWindow.setAnimationStyle(R.style.Animation);
-                    popupWindow.showAsDropDown(holder.ivShare,0,-350);
 
-            }
-        });
 
 }
 public void setPopwindow(){
@@ -135,6 +131,7 @@ public void setTopIcon(int imageId,TextView view){
     public void onClick(View view) {
          switch (view.getId()){
              case R.id.pop_qq:
+                 QQLoginShareUtils.setShare("d","分享","djfdjvnm",context);
                  break;
              case R.id.pop_qzone:
                  break;

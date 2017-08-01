@@ -35,5 +35,5 @@ public class JokeFragment extends BaseFragment{
     protected void initDatas() {
 
     }
-    
+
 }

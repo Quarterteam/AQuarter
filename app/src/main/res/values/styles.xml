@@ -363,7 +363,7 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <!--详情界面-->
+    <!-- 用户界面-item-->
     <style name="View.V" parent="Control">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">15dp</item>
@@ -451,7 +451,7 @@
         <item name="android:textSize">@dimen/textSize_joke_woke</item>
         <item name="android:textColor">@color/mainColor</item>
     </style>
-    <!-- 用户界面-item-->
+
     <style name="userpage.Item.texttitle" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

@@ -1,5 +1,6 @@
 package com.a.quarter.model.api;
 
+import com.a.quarter.model.bean.joke.JokeBean;
 import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.model.bean.login.RegisterResponse;
 import com.a.quarter.model.utils.Constants;
@@ -10,6 +11,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -29,5 +31,8 @@ public interface Api {
     @POST(Constants.PUBLISH_ARTICLE)
     @FormUrlEncoded
     Observable<RegisterResponse> publishArticle(@FieldMap HashMap<String, String> map);
-
+    //段子
+    @GET(Constants.JOKEURL)
+    @FormUrlEncoded
+    Observable<JokeBean> jokeData();
 }

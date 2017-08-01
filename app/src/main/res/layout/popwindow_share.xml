@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
   >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,7 +36,7 @@
             />
         <TextView
             style="@style/Dialog.Tv.share"
-            android:text="QQ控件"/>
+            android:text="QQ空间"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/pop_friend"
@@ -68,7 +67,5 @@
         android:id="@+id/pop_cancel"
         android:text="取消"
         style="@style/Dialog.Tv.cancel"/>
-    <View
-        style="@style/View.H"
-       ></View>
+
 </LinearLayout>

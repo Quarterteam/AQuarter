@@ -1,4 +1,4 @@
-package com.a.quarter.view.adapter.userpage;
+package com.a.quarter.view.adapter.mycollect;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -15,10 +15,10 @@ import com.a.quarter.R;
  * date ： 2017/7/28.
  */
 
-public class UserPageItemAdapter extends RecyclerView.Adapter<UserPageItemAdapter.MyHolder>{
+public class MyCollectItemAdapter extends RecyclerView.Adapter<MyCollectItemAdapter.MyHolder>{
     private Context context;
 
-    public UserPageItemAdapter(Context context) {
+    public MyCollectItemAdapter(Context context) {
         this.context = context;
     }
 
