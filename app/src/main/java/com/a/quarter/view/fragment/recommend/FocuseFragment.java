@@ -103,4 +103,21 @@ public class FocuseFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onStop() {
+        if(adapter!=null){
+            adapter.onStop();
+        }
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        if(adapter!=null){
+            adapter.onDestory();
+            adapter = null;
+        }
+        super.onDestroyView();
+    }
+
 }

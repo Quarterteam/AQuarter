@@ -6,11 +6,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,16 +21,19 @@ import android.widget.Toast;
 import com.a.quarter.R;
 //import com.dl7.player.media.IjkPlayerView;
 //import com.dl7.player.media.IjkPlayerView.OnPlayCircleClickListener;
+import com.a.quarter.view.fragment.recommend.BannerFrescoImageLoader;
 import com.a.quarter.view.fragment.recommend.BannerLocalImageLoader;
 import com.a.quarter.model.bean.recommend.ContentListBean;
 import com.a.quarter.view.fragment.recommend.MyIjkVideoView;
 import com.exa.framelib_rrm.utils.NetUtils;
 import com.exa.framelib_rrm.utils.T;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 
 import media.AndroidMediaController;
+import media.IjkVideoView;
 
 /**
  * Created by acer on 2017/7/29.
@@ -40,7 +45,7 @@ import media.AndroidMediaController;
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
 
-    private final Context context;
+    private Context context;
     private ArrayList<ContentListBean> list;
     public static final int TYPE_HEAD1 = 0;//轮播图
     public static final int TYPE_IMG = 1;//图片条目
@@ -97,14 +102,16 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         return list.size();
     }
 
+
+    private Banner banner;
     //轮播图对应的ViewHolder
     class Head1ViewHolder extends RecyclerView.ViewHolder {
-
-        private Banner banner;
+//
+//        private Banner banner;
 
         public Head1ViewHolder(View itemView) {
             super(itemView);
-            this.banner = (Banner) itemView.findViewById(R.id.banner);
+            banner = (Banner) itemView.findViewById(R.id.banner);
 
             ArrayList<Integer> list = new ArrayList<Integer>();
             list.add(R.mipmap.banner1);
@@ -115,8 +122,10 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
             //开始自动轮播
             banner.setImages(list)
-                    .setImageLoader(new BannerLocalImageLoader())
+                    //.setImageLoader(new BannerLocalImageLoader())
+                    .setImageLoader(new BannerFrescoImageLoader())
                     .start();
+
         }
 
     }
@@ -124,7 +133,8 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     //视频条目和图片条目在布局上有一些相同的地方，所以在这里写了一个父类，抽取出相同的部分
     class NormalItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Animation.AnimationListener{
 
-        ImageView ivUserIcon;
+//        ImageView ivUserIcon;
+        SimpleDraweeView ivUserIcon;
         TextView tvUsername;
         TextView tvTime;
         TextView tvContent;
@@ -203,7 +213,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         }
 
         private void findViews(View itemView) {
-            ivUserIcon = (ImageView) itemView.findViewById(R.id.iv_user_icon);
+            ivUserIcon = (SimpleDraweeView) itemView.findViewById(R.id.iv_user_icon);
             tvUsername = (TextView) itemView.findViewById(R.id.tv_user_name);
             tvTime = (TextView) itemView.findViewById(R.id.tv_time);
             tvContent = (TextView) itemView.findViewById(R.id.tv_content);
@@ -405,7 +415,9 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             }
 
             //用户头像
-            ivUserIcon.setImageResource(contentListBean.userIconResourceId);
+//            ivUserIcon.setImageResource(contentListBean.userIconResourceId);
+            ivUserIcon.setActualImageResource(contentListBean.userIconResourceId);
+//            ivUserIcon.setImageURI();
             //用户名称
             tvUsername.setText(contentListBean.userName);
             //时间
@@ -439,12 +451,13 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
     //图片条目
     class ImageViewHolder extends NormalItemViewHolder{
-        ImageView ivImg;
+//        ImageView ivImg;
+        SimpleDraweeView ivImg;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
 
-            ivImg = (ImageView) itemView.findViewById(R.id.iv_img);
+            ivImg = (SimpleDraweeView) itemView.findViewById(R.id.iv_img);
             ivImg.setOnClickListener(this);
         }
 
@@ -459,34 +472,49 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         }
 
         public void showImage() {
-            ivImg.setImageResource(list.get(position).imgResourceId);
+//            ivImg.setImageResource(list.get(position).imgResourceId);
+            ivImg.setActualImageResource(list.get(position).imgResourceId);
         }
     }
 
     private ContentListBean contentListBean;
+    IjkVideoView player;
     //视频条目
     class VideoViewHolder extends NormalItemViewHolder {
 
-        MyIjkVideoView player;
+//        MyIjkVideoView player;
+        FrameLayout videoContainer;
+//        ImageView ivVideoThumb;
+        SimpleDraweeView ivVideoThumb;
+        ImageView ivVideoStartIcon;
 
         public VideoViewHolder(View itemView) {
             super(itemView);
 
-            player = (MyIjkVideoView) itemView.findViewById(R.id.ijkVideoView);
+//            player = (MyIjkVideoView) itemView.findViewById(R.id.ijkVideoView);
+            videoContainer = (FrameLayout) itemView.findViewById(R.id.fl_video_container);
+            ivVideoThumb = (SimpleDraweeView) itemView.findViewById(R.id.iv_video_thumb);
+            ivVideoStartIcon = (ImageView) itemView.findViewById(R.id.iv_video_start_icon);
 
-            player.setMediaController(new AndroidMediaController(context));
-            player.mIvStartIcon.setOnClickListener(this);
+//            player.setMediaController(new AndroidMediaController(context));
+            ivVideoStartIcon.setOnClickListener(this);
         }
 
         public void showVideo() {
-            if(player.isPlaying()){
-                player.stopPlayback();//因为可能是复用的条目，所以先停止播放视频
+            if(player!=null){
+                if(player.isPlaying()){
+                    player.stopPlayback();//因为可能是复用的条目，所以先停止播放视频
+                }
+                player.release(true);
+                ViewGroup parent = (ViewGroup) player.getParent();
+                if(parent!=null){
+                    parent.removeView(player);//所有条目只使用一个IjkVideoView，
+                }
             }
-            player.release(true);
             contentListBean = list.get(position);
-//            player.mIvStartIcon.setVisibility(View.VISIBLE);
-//            player.mIvThumb.setVisibility(View.VISIBLE);
-            player.mIvThumb.setImageResource(contentListBean.videoThumbResourceId);
+            ivVideoStartIcon.setVisibility(View.VISIBLE);
+            ivVideoThumb.setVisibility(View.VISIBLE);
+            ivVideoThumb.setActualImageResource(contentListBean.videoThumbResourceId);
         }
 
         @Override
@@ -494,22 +522,59 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             super.onClick(v);
 
             //点击视频开始图标的时候，才初始化视频
-            if(v == player.mIvStartIcon){
+            if(v == ivVideoStartIcon){
                 if(!NetUtils.isWifiActivity(context)){
                     T.showShort(context, "正在使用不是WiFi，请注意流量！");
                 }
 
+                contentListBean = list.get(position);
                 if(contentListBean.videoUri != null && !TextUtils.isEmpty(contentListBean.videoUri.getPath())){
+                    if(player==null){
+                        player = new IjkVideoView(context);
+                        player.setMediaController(new AndroidMediaController(context));
+                    }else{
+                        player.stopPlayback();
+                        player.release(true);
+                        ViewGroup parent = (ViewGroup) player.getParent();
+                        if(parent!=null){
+                            parent.removeView(player);//所有条目只使用一个IjkVideoView，
+                        }
+                    }
+                    videoContainer.addView(player);
                     player.setVideoURI(contentListBean.videoUri);
                     player.start();
-                    player.mIvStartIcon.setVisibility(View.GONE);
-                    player.mIvThumb.setVisibility(View.GONE);
+                    T.showShort(context, "开始播放视频！");
+                    ivVideoThumb.setVisibility(View.INVISIBLE);
+                    ivVideoStartIcon.setVisibility(View.GONE);
                 }else{
                     T.showShort(context, "视频地址为空！");
                 }
             }
         }
 
+    }
+
+    public void onDestory(){
+        if(player!=null){
+            ViewGroup parent = (ViewGroup) player.getParent();
+            if(parent!=null){
+                parent.removeView(player);//所有条目只使用一个IjkVideoView，
+            }
+            player.stopPlayback();
+            player.release(true);
+            player = null;
+        }
+        if(banner!=null){
+            banner.stopAutoPlay();
+            banner = null;
+        }
+        context = null;
+    }
+
+    public void onStop() {
+        if(player!=null){
+            player.pause();
+        }
     }
 }
 

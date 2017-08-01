@@ -10,6 +10,7 @@ import com.a.quarter.model.bean.recommend.ContentListBean;
 import com.a.quarter.view.adapter.recommend.ContentListAdapter;
 import com.a.quarter.view.base.BaseFragment;
 import com.exa.framelib_rrm.utils.TimeUtils;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class HotFragment extends BaseFragment {
         //设置RecyclerView的header数量，用于绘制分割线的时候header之间，header和第一个非header的条目之间不画分割线
         itemDecoration.setHeaderCount(1);
         //设置分割线左右与屏幕左右的距离
-        //itemDecoration.setDividerInset(30);
+      // itemDecoration.setDividerInset(50);
         //添加分割线
         rv.addItemDecoration(itemDecoration);
         //初始化并设置adapter
@@ -80,12 +81,29 @@ public class HotFragment extends BaseFragment {
                     "天气美美的，适合郊游",
                     503, 655, 67123, "1.1万",
                     "骑猪上高速", "不错",
-                    "骑猪上高速", "不错", false)
+                    "骑猪上高速", "不错", true)
                     .image(R.mipmap.bg11);
             list.add(bean);
         }
         //更新适配器
         adapter.notifyDataSetChanged();
+
     }
 
+    @Override
+    public void onStop() {
+        if(adapter!=null){
+            adapter.onStop();
+        }
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        if(adapter!=null){
+            adapter.onDestory();
+            adapter = null;
+        }
+        super.onDestroyView();
+    }
 }

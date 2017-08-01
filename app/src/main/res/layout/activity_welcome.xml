@@ -37,7 +37,7 @@
             android:layout_marginTop="25dp"
             android:text="正在读取一刻钟..."
             android:textColor="#F55C54"
-            android:textSize="@dimen/textsize_medium" />
+            android:textSize="30px" />
 
     </LinearLayout>
 
