@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@mipmap/bg9"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".view.activity.login.ChangePwdActivity">
+
+    <include layout="@layout/include_login_head"/>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/bg15"
+        android:scaleType="centerInside"
+        app:riv_corner_radius="15dip" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_margin"
+        android:layout_marginRight="@dimen/login_margin"
+        android:layout_marginBottom="@dimen/login_margin"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/shape_bg_rl_login_input">
+
+        <com.exa.framelib_rrm.base.view.view.PasswordEditText
+            android:id="@+id/et_pwd"
+            android:hint="输入大小写和数字，密码不能超过8位"
+            style="@style/EditText.Login"
+            app:pet_iconShow="@drawable/icon_password_visible"
+            app:pet_iconHide="@drawable/icon_password_invisible"
+            android:inputType="textPassword"
+            android:background="@null"/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_below="@id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@color/darkgray"/>
+
+        <com.exa.framelib_rrm.base.view.view.PasswordEditText
+            android:id="@+id/et_pwd_confirm"
+            android:layout_below="@id/line"
+            android:hint="请再次输入密码"
+            app:pet_iconShow="@drawable/icon_password_visible"
+            app:pet_iconHide="@drawable/icon_password_invisible"
+            android:inputType="textPassword"
+            android:background="@null"
+            style="@style/EditText.Login" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_marginLeft="@dimen/login_margin"
+        android:layout_marginRight="@dimen/login_margin"
+        android:layout_marginBottom="@dimen/login_margin"
+        style="@style/Button.Login"
+        android:text="完 成"/>
+
+    <TextView
+        android:id="@+id/tv_visitor_login"
+        style="@style/TextView.FindPwd"
+        android:paddingRight="@dimen/login_margin"
+        android:paddingLeft="@dimen/login_margin"
+        android:textSize="@dimen/textsize_medium"
+        android:layout_gravity="center_horizontal"
+        android:text="游客登录"/>
+
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_type_img"
+    android:layout_width="wrap_content"
+    android:layout_height="230dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:background="@null">
+
+    <CheckBox
+        android:id="@+id/cb_heart_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/selector_item_heart"
+        android:button="@null"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="@dimen/textsize_small"
+        android:textColor="@color/white"
+        android:text="1563"/>
+
+    <CheckBox
+        android:id="@+id/cb_star_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/selector_item_star"
+        android:button="@null"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_small"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:text="655"/>
+
+    <TextView
+        android:id="@+id/tv_transmit_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/transmit_default_small"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_small"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:text="503"/>
+
+    <TextView
+        android:id="@+id/tv_comment_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/comment_count_small"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_small"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:text="1.1万"/>
+</LinearLayout>

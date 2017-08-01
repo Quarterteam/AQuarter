@@ -53,11 +53,9 @@ public class AddPicAdapter extends RecyclerView.Adapter{
         int viewType = list.get(position).type;
         if(viewType == TYPE_NORMAL){
             PicViewHolder picHolder = (PicViewHolder)holder;
-            picHolder.position = position;
-//            picHolder.
+
         }else if(viewType == TYPE_ADD){
             AddIconViewHolder iconHolder = (AddIconViewHolder)holder;
-            iconHolder.ivAddIcon.setImageResource(R.mipmap.add_pic);
         }
     }
 
@@ -79,10 +77,12 @@ public class AddPicAdapter extends RecyclerView.Adapter{
             this.ivDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    position = getAdapterPosition();
                     //删除本条目（本图片）
-                    if(position<list.size()-1){
-                        list.remove(position);// java.lang.IndexOutOfBoundsException: Invalid index 5, size is 5
-                        notifyItemRemoved(position);
+                    if(position<list.size()){
+                        list.remove(position);
+                        notifyItemRemoved(position);//如果不使用position = getAdapterPosition();的话，会导致错乱
+                        //notifyDataSetChanged();
                     }
                 }
             });
@@ -96,7 +96,8 @@ public class AddPicAdapter extends RecyclerView.Adapter{
 
         public AddIconViewHolder(View itemView) {
             super(itemView);
-            this.ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
+            ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
+            ivAddIcon.setImageResource(R.mipmap.add_pic);
             this.ivAddIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

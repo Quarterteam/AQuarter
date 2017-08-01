@@ -1,8 +1,10 @@
 package com.exa.framelib_rrm.utils;
 
 import android.text.TextUtils;
+import android.widget.EditText;
 
 import com.exa.framelib_rrm.app.BaseApp;
+import com.exa.framelib_rrm.base.view.view.PasswordEditText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +16,7 @@ public class TextFormatUtils {
 
     public static final String REGEX_USERNAME = "^[a-z0-9_-]{3,16}$";
     //    public static final String REGEX_PASSWORD = "^[a-z0-9_-]{6,18}$";
-    public static final String REGEX_PASSWORD = "^[a-z0-9_-]{3,18}$";
+    public static final String REGEX_PASSWORD = "^[a-z0-9_-]{3,8}$";
     public static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
     public static final String REGEX_PHONE = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$";
 
@@ -88,7 +90,7 @@ public class TextFormatUtils {
         if(matcher.matches()){
             return null;
         }else{
-            return "密码格式不正确，请输入3-18位字母或数字！";
+            return "密码格式不正确，请输入3-8位字母或数字！";
         }
     }
 
@@ -149,4 +151,7 @@ public class TextFormatUtils {
         return false;
     }
 
+    public static String getTrimedText(EditText et) {
+        return et.getText().toString().trim();
+    }
 }

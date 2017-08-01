@@ -21,5 +21,6 @@ package com.a.quarter.model.bean.login;
  */
 public class LoginResponse {
     public String code;
+    public String message;
     public User user;
 }

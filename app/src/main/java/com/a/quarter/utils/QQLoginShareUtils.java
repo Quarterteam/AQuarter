@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMWeb;
@@ -169,5 +170,12 @@ public class QQLoginShareUtils {
 //        super.onActivityResult(requestCode, resultCode, data);
 //        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
 //    }
+
+    /**
+     * 友盟QQ登录，获取用户资料授权
+     * */
+    public static void qqLogin(Activity ac, UMAuthListener umAuthListener) {
+        UMShareAPI.get(ac).getPlatformInfo(ac, SHARE_MEDIA.QQ, umAuthListener);
+    }
 
 }

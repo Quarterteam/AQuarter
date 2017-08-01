@@ -13,18 +13,38 @@
         android:id="@+id/inc_head"
         layout="@layout/include_head_iv_tv_iv"/>
 
-    <!--<EditText
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_head_height"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@drawable/selector_textcolor_white_mainadd"
+        android:textSize="@dimen/textsize_medium"
+        android:visibility="gone"
+        android:text="取消"/>
+
+    <EditText
         android:id="@+id/et_search"
-        android:layout_width="100dp"
+        android:layout_toLeftOf="@id/tv_cancel"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/inc_head"
         android:layout_alignBottom="@id/inc_head"
-        android:layout_alignParentRight="true"
         android:layout_marginLeft="@dimen/main_head_height"
-        android:layout_marginRight="@dimen/main_head_height"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/gray"/>-->
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        android:visibility="gone"
+        android:background="@drawable/shape_bg_et_search_friend"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
@@ -44,7 +64,6 @@
         android:layout_below="@id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:background="@color/white"/>
 
 </RelativeLayout>

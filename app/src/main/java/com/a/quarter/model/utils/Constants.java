@@ -9,6 +9,10 @@ public class Constants {
     public static final String LOGIN = "user/addLogin";//登录 POST
     public static final String REGISTER = "user/addUser";//注册 POST
     public static final String PUBLISH_ARTICLE = "picture/pictureUpload";//发表文章 POST
-    public static final String JOKEURL="character/getCharacterlist";
+    public static final String GET_VERTIFY_CODE = "";//获取验证码
+    public static final String NEXT_STEP = "";//获取验证码后的下一步
+    public static final String CHANGE_PASSWORD = "";//更改密码
+
+    public static final String JOKEURL="character/select_character";
     //http://169.254.1.100/quarter/
 }

@@ -7,12 +7,12 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/recommand_frgament_tablayout"
         style="@style/TextView.Tablayout.Text1"
-        app:tabIndicatorColor="@color/blue"
+        app:tabIndicatorColor="@color/mainColor"
         app:tabIndicatorHeight="@dimen/frag_recommend_tab_indicate"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/blue"
-        app:tabTextAppearance="@style/TextView.Tablayout.Text"
+        app:tabSelectedTextColor="@color/mainColor"
         app:tabTextColor="@color/black">
+    <!--app:tabTextAppearance="@style/TextView.Tablayout.Text"-->
 
     </android.support.design.widget.TabLayout>
 

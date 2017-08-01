@@ -10,6 +10,8 @@
 
     <color name="mainColor">#03A9F4</color>
     <color name="mainAdd">#0359F4</color>
+    <color name="vedio">@color/translucent</color>
+
     <color name="mainBackground">@color/white</color>
     <color name="mainNav">@color/black</color>
 
