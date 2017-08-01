@@ -127,7 +127,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             case R.id.iv_right:
 //                if(App.isLogin()){
-                ActivityUtils.jumpIn(this, PublishArticleActivity.class);
+                ActivityUtils.jumpIn(this, CreationActivity.class);
 //                }else{
 //                    T.showShort(getApplicationContext(), "没有登录");
 //                }

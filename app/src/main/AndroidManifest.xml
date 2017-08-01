@@ -57,8 +57,9 @@
       <!--设置页面-->
         <activity android:name=".view.activity.UserPageActivity"></activity>
         <activity android:name=".view.activity.MsgInformActivity"></activity>
-       <!--设置页面-->
+        <activity android:name=".view.activity.main.CreationActivity"/>
         <activity android:name=".view.activity.configure.SlidingmenuToActivity"></activity>
+        <activity android:name=".view.activity.main.VideoActivity"></activity>
         <!--QQ登录分享配置-->
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"

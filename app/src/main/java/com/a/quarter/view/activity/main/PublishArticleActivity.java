@@ -33,9 +33,6 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
     TextView tvPublish;
     @Bind(R.id.et_input)
     EditText etInput;
-//    @Bind(R.id.gv)
-//    GridView gv;
-
     @Bind(R.id.rv)
     RecyclerView rv;
 
