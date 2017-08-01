@@ -12,6 +12,7 @@ import com.a.quarter.app.App;
  */
 public class User {
 
+    public String loginType;
     public String userHead;
     public int userId;
     public String userName;
@@ -24,6 +25,7 @@ public class User {
         SharedPreferences sp = App.getInstance().
                 getSharedPreferences("userdata", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
+        editor.putString("loginType",user.loginType);
         editor.putString("userName",user.userName);
         editor.putInt("userId",user.userId);
         editor.putString("userHead",user.userHead);
@@ -37,6 +39,7 @@ public class User {
         SharedPreferences sp = App.getInstance().
                 getSharedPreferences("userdata", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
+        editor.putString("loginType",null);
         editor.putString("userName",null);
         editor.putInt("userId",-1);
         editor.putString("userHead",null);
@@ -54,6 +57,7 @@ public class User {
 
             User user = new User();
             user.userName = username;
+            user.loginType = sp.getString("loginType", null);
             user.userId = sp.getInt("userId",-1);
             user.userHead = sp.getString("userHead",null);
             user.userPassword = sp.getString("userPassword",null);
@@ -67,6 +71,7 @@ public class User {
     }
 
     public void reset() {
+        loginType = null;
         userName = null;
         userId = -1;
         userHead = null;

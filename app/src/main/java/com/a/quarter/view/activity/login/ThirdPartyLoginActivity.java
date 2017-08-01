@@ -3,13 +3,25 @@ package com.a.quarter.view.activity.login;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.a.quarter.R;
+import com.a.quarter.app.App;
+import com.a.quarter.model.bean.login.User;
+import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.LogUtils;
+import com.exa.framelib_rrm.utils.NetUtils;
 import com.exa.framelib_rrm.utils.T;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.OnClick;
 
@@ -40,11 +52,17 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
                 break;
 
             case R.id.ll_qq:
-                T.showShort(getApplicationContext(), "QQ登录");
+                if(NetUtils.isConnected()){
+                    initListenerIfNeed();
+                    QQLoginShareUtils.qqLogin(this, umAuthListener);
+                }else{
+                    T.showShort(getApplicationContext(), "没有连接网络！");
+                }
                 break;
 
             case R.id.ll_wechat:
                 T.showShort(getApplicationContext(), "微信登录");
+                //UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN, umAuthListener);
                 break;
 
             case R.id.tv_other_login:
@@ -55,6 +73,59 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    private UMAuthListener umAuthListener;
+    private void initListenerIfNeed() {
+        if(umAuthListener==null) {
+            umAuthListener = new UMAuthListener() {
+                @Override
+                public void onStart(SHARE_MEDIA platform) {
+                    //授权开始的回调
+                }
+
+                @Override
+                public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+                    Toast.makeText(getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
+                    Set<Map.Entry<String, String>> entries = data.entrySet();
+                    for (Map.Entry<String, String> m : entries) {
+                        Log.i("12312", m.getKey() + " = " + m.getValue());
+                    }
+
+                    //保存用户信息
+//                    name：name（6.2以前用screen_name）
+//                    用户id（openid）：uid
+//                    accesstoken: accessToken （6.2以前用access_token）
+//                    过期时间：expiration （6.2以前用expires_in）
+//                    性别：gender
+//                    头像：iconurl（6.2以前用profile_image_url）
+//                    是否黄钻：is_yellow_year_vip
+//                    黄钻等级：yellow_vip_level
+//                    城市：city
+//                    省份：province
+//                    User user = new User();
+//                    user.loginType = "qq";
+//                    user.userName = data.get("name");
+//                    user.userPassword = ;
+//                    user.userPhone;
+//                    user.userSex;
+//                    App.getInstance().saveUserInfo(response.user);
+//                    setResult(1);
+//                    finish();
+                }
+
+                @Override
+                public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancel(SHARE_MEDIA platform, int action) {
+                    Toast.makeText(getApplicationContext(), "授权取消", Toast.LENGTH_SHORT).show();
+                }
+            };
+        }
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -63,5 +134,14 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
             setResult(1);
             finish();
         }
+        //qq登录
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        UMShareAPI.get(this).release();
+    }
+
 }
