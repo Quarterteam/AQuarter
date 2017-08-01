@@ -1,23 +1,16 @@
 package com.a.quarter.view.fragment.recommend;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.a.quarter.R;
 import com.a.quarter.view.base.BaseFragment;
-import com.a.quarter.view.fragment.joke.JokeFragment;
-import com.a.quarter.view.fragment.video.VideoFragment;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
-import static com.a.quarter.view.utils.TabUnderlineUtil.setIndicator;
+import static com.a.quarter.utils.TabUnderlineUtil.setIndicator;
 
 /**
  * 推荐

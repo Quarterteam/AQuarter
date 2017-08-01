@@ -17,12 +17,13 @@ import com.a.quarter.view.activity.MsgInformActivity;
 import com.a.quarter.view.activity.MyCollectaActivity;
 import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
+import com.a.quarter.utils.DrawableUtils;
+import com.a.quarter.utils.SlidingMenuUtils;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
-import com.a.quarter.view.utils.DrawableUtils;
-import com.a.quarter.view.utils.SlidingMenuUtils;
+
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;

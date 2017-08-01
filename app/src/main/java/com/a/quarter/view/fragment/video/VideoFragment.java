@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 
-import static com.a.quarter.view.utils.TabUnderlineUtil.setIndicator;
+import static com.a.quarter.utils.TabUnderlineUtil.setIndicator;
 
 /**
  * 视频

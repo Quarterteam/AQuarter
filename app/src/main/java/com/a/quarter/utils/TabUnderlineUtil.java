@@ -1,4 +1,4 @@
-package com.a.quarter.view.utils;
+package com.a.quarter.utils;
 
 import android.content.res.Resources;
 import android.support.design.widget.TabLayout;

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.a.quarter.R;
-import com.a.quarter.view.adapter.userpage.UserPageAdapter;
+import com.a.quarter.view.adapter.mycollect.MyCollectAdapter;
 import com.a.quarter.view.base.BaseActivity;
 
 import butterknife.Bind;
@@ -18,7 +18,7 @@ import butterknife.Bind;
  * date ： 2017/7/28.
  */
 
-public class MyCollectaActivity extends BaseActivity implements View.OnClickListener{
+public class MyCollectActivity extends BaseActivity implements View.OnClickListener{
 
     @Bind(R.id.tv_back)
     TextView mtvBack;
@@ -47,8 +47,8 @@ public class MyCollectaActivity extends BaseActivity implements View.OnClickList
     protected void initDatas() {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        UserPageAdapter userPageAdapter = new UserPageAdapter(this);
-        recyclerView.setAdapter(userPageAdapter);
+        MyCollectAdapter adapter = new MyCollectAdapter(this);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

@@ -1,12 +1,10 @@
-package com.a.quarter.view.utils;
+package com.a.quarter.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import com.a.quarter.R;
 
 /**
  * 作者：卡卡

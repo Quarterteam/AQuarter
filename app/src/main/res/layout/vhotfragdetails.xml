@@ -67,14 +67,19 @@
             android:id="@+id/hotdetails_user"
             />
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            >
     <media.IjkVideoView
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:id="@+id/IjkVideoView"
         ></media.IjkVideoView>
+        </LinearLayout>
     <TextView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_width="match_parent"
@@ -111,10 +116,23 @@
             ></ListView>
     </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
     <EditText
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/hotdetails_comment"
         android:hint="评论:..."
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hotdetails_send"
+        android:text="发表"
+        />
+    </LinearLayout>
 </LinearLayout>
