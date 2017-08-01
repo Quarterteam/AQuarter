@@ -15,7 +15,7 @@
         android:padding="12.5dp"
         android:src="@mipmap/arrow_left_light"/>
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <!--<com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/iv_icon_login"
         android:layout_below="@id/iv_back"
@@ -25,7 +25,20 @@
         android:layout_centerHorizontal="true"
         android:src="@mipmap/bg15"
         android:scaleType="centerInside"
-        app:riv_corner_radius="15dip" />
+        app:riv_corner_radius="15dip" />-->
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/iv_icon_login"
+        android:layout_below="@id/iv_back"
+        android:layout_margin="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        fresco:roundAsCircle="false"
+        fresco:roundedCornerRadius="15dp"
+        fresco:actualImageResource="@mipmap/bg15"
+        fresco:actualImageScaleType="centerInside"/>
 
     <TextView
         android:id="@+id/tv_other_login"
@@ -47,8 +60,8 @@
         android:layout_height="40dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape_bg_ll_qq_login">
@@ -75,20 +88,20 @@
         android:layout_height="40dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/shape_bg_ll_wechat_login">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@mipmap/wechat"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:textSize="@dimen/textsize_medium"
             android:textColor="@color/white"
             android:text="微信登录"/>

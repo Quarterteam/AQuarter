@@ -120,7 +120,7 @@
         <item name="android:src">@mipmap/bg5</item>
     </style>
 
-    <style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
+    <!--<style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/red</item>
@@ -158,9 +158,9 @@
 
 
     </style>
+-->
 
-
-
+<!--
     <style name="Fram.Recommend.Item.player" parent="AppTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/frag_recommend_item_player</item>
@@ -169,7 +169,7 @@
         <item name="android:layout_marginBottom">@dimen/frag_recommend_item_distance</item>
 
 
-    </style>
+    </style>-->
 
 
     <style name="EditText.Login" parent="Control">
@@ -324,12 +324,12 @@
         <item name="android:layout_marginBottom">10dp</item>
     </style>
 
-    <style name="re.recycler" parent="Control">
+    <!--<style name="re.recycler" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_below">@id/re_player_item</item>
     </style>
-
+-->
 
     <style name="TabLayout.MyFollow.TextStyle" parent="Control">
         <item name="android:textSize">@dimen/textsize_medium</item>

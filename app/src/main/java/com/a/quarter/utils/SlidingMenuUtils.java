@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.suke.widget.SwitchButton;
 
@@ -18,7 +19,7 @@ public class SlidingMenuUtils implements SwitchButton.OnCheckedChangeListener {
 
     private ImageView ivBg;
     private TextView tvEditSign;
-    public ImageView ivUserIcon;
+    public SimpleDraweeView ivUserIcon;
     public TextView tvUserName;
     public ImageView ivSexIcon;
 
@@ -70,7 +71,7 @@ public class SlidingMenuUtils implements SwitchButton.OnCheckedChangeListener {
 
         this.ivBg = (ImageView)slidingMenu.findViewById(R.id.iv_bg);
         this.tvEditSign = (TextView)slidingMenu.findViewById(R.id.tv_edit_sign);
-        this.ivUserIcon = (ImageView)slidingMenu.findViewById(R.id.iv_user_icon);
+        this.ivUserIcon = (SimpleDraweeView)slidingMenu.findViewById(R.id.iv_user_icon);
         this.tvUserName = (TextView)slidingMenu.findViewById(R.id.tv_user_name);
         this.ivSexIcon = (ImageView)slidingMenu.findViewById(R.id.iv_sex_icon);
         this.tvLightMode = (CheckedTextView)slidingMenu.findViewById(R.id.tv_light_mode);

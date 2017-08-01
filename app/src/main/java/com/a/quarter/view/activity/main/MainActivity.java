@@ -26,6 +26,7 @@ import com.a.quarter.view.fragment.video.VideoFragment;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import butterknife.Bind;
@@ -44,7 +45,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Bind(R.id.tv_title)
     public TextView tvTitle;
     @Bind(R.id.iv_left)
-    public ImageView ivLeft;
+//    public ImageView ivLeft;
+    public SimpleDraweeView ivLeft;
 
     private RecommendFragment recommendFragment;
     private JokeFragment jokeFragment;
@@ -87,18 +89,22 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         if (App.isLogin()) {
             User user = App.getUser();
             slidingMenuUtils.tvUserName.setText(user.userName);
-            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+//            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+            slidingMenuUtils.ivUserIcon.setImageURI(user.userHead);
             if ("男".equals(user.userSex)) {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
             } else {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.user_icon);
             }
-            ivLeft.setImageResource(R.mipmap.user_icon);
+//            ivLeft.setImageResource(R.mipmap.user_icon);
+            ivLeft.setImageURI(user.userHead);
         } else {
             slidingMenuUtils.tvUserName.setText("点击头像登录");
-            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.default_no_avatar);
+//            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.default_no_avatar);
+            slidingMenuUtils.ivUserIcon.setActualImageResource(R.mipmap.default_no_avatar);
             slidingMenuUtils.ivSexIcon.setImageDrawable(null);
-            ivLeft.setImageResource(R.mipmap.default_no_avatar);
+//            ivLeft.setImageResource(R.mipmap.default_no_avatar);
+            ivLeft.setActualImageResource(R.mipmap.default_no_avatar);
         }
 
         //发表文章
@@ -262,13 +268,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         if (requestCode == 1 && resultCode == 1) {
             User user = App.getUser();
             slidingMenuUtils.tvUserName.setText(user.userName);
-            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+//            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
+            slidingMenuUtils.ivUserIcon.setImageURI(user.userHead);
             if ("男".equals(user.userSex)) {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
             } else {
                 slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
             }
-            ivLeft.setImageResource(R.mipmap.user_icon);
+//            ivLeft.setImageResource(R.mipmap.user_icon);
+            ivLeft.setImageURI(user.userHead);
         }
 
 

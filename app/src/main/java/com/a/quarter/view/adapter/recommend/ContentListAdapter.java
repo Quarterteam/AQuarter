@@ -19,12 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a.quarter.R;
-//import com.dl7.player.media.IjkPlayerView;
-//import com.dl7.player.media.IjkPlayerView.OnPlayCircleClickListener;
 import com.a.quarter.view.fragment.recommend.BannerFrescoImageLoader;
 import com.a.quarter.view.fragment.recommend.BannerLocalImageLoader;
 import com.a.quarter.model.bean.recommend.ContentListBean;
-import com.a.quarter.view.fragment.recommend.MyIjkVideoView;
 import com.exa.framelib_rrm.utils.NetUtils;
 import com.exa.framelib_rrm.utils.T;
 import com.facebook.drawee.view.SimpleDraweeView;

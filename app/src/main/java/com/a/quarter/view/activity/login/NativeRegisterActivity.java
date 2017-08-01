@@ -185,7 +185,8 @@ public class NativeRegisterActivity extends BaseActivity<LoginPresenter, NativeR
                 getHost().setResult(1, intent);
                 getHost().finish();
             } else {
-                T.showShort(mAppContext, "注册失败！");
+                //T.showShort(mAppContext, "注册失败！");
+                T.showShort(mAppContext, response.message);
             }
         }
     }

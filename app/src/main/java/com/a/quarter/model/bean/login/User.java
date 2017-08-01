@@ -8,18 +8,20 @@ import com.a.quarter.app.App;
 
 /**
  * Created by acer on 2017/7/21.
- * {"error_code":"200","user":{"userHead":"emmm","userId":6,"userName":"唐清如","userPassword":"111","userPhone":"13011196165","userSex":"女"}}
+ * {"code":500，"message", "用户名或密码有误登陆失败！"}
+ * {"code":"200","user":{"userHead":"打开疯狂的","userId":6,"userName":"小明","userPassword":"111","userPhone":"13011196165","userSex":"男"}}
  */
 public class User {
 
     public String loginType;
     public String userHead;
-    public int userId;
+    public String userId;
     public String userName;
     public String userPassword;
     public String userPhone;
     public String userSex;
     public String userPasswordConfirm;
+    public String expiration;//过期时间（qq登录）
 
     public static boolean saveUserInfo(User user){
         SharedPreferences sp = App.getInstance().
@@ -27,11 +29,12 @@ public class User {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("loginType",user.loginType);
         editor.putString("userName",user.userName);
-        editor.putInt("userId",user.userId);
+        editor.putString("userId",user.userId);
         editor.putString("userHead",user.userHead);
-        editor.putString("userPassword",user.userPassword);
+//        editor.putString("userPassword",user.userPassword);
         editor.putString("userPhone",user.userPhone);
         editor.putString("userSex",user.userSex);
+        editor.putString("expiration",user.expiration);
         return editor.commit();
     }
 
@@ -41,11 +44,12 @@ public class User {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("loginType",null);
         editor.putString("userName",null);
-        editor.putInt("userId",-1);
+        editor.putString("userId",null);
         editor.putString("userHead",null);
-        editor.putString("userPassword",null);
+//        editor.putString("userPassword",null);
         editor.putString("userPhone",null);
         editor.putString("userSex",null);
+        editor.putString("expiration",null);
         return editor.commit();
     }
 
@@ -58,11 +62,12 @@ public class User {
             User user = new User();
             user.userName = username;
             user.loginType = sp.getString("loginType", null);
-            user.userId = sp.getInt("userId",-1);
+            user.userId = sp.getString("userId",null);
             user.userHead = sp.getString("userHead",null);
-            user.userPassword = sp.getString("userPassword",null);
+//            user.userPassword = sp.getString("userPassword",null);
             user.userPhone = sp.getString("userPhone",null);
             user.userSex = sp.getString("userSex",null);
+            user.expiration = sp.getString("expiration",null);
 
             return user;
         }
@@ -73,10 +78,11 @@ public class User {
     public void reset() {
         loginType = null;
         userName = null;
-        userId = -1;
+        userId = null;
         userHead = null;
         userPassword = null;
         userPhone = null;
         userSex = null;
+        expiration = null;
     }
 }

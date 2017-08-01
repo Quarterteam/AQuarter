@@ -41,6 +41,7 @@ public class App extends BaseApp {
         return getInstance().user!=null;
     }
 
+    //保存用户信息
     public void saveUserInfo(User user) {
         if(user!=null && User.saveUserInfo(user)){
             this.user = user;
@@ -49,6 +50,7 @@ public class App extends BaseApp {
         }
     }
 
+    //清空用户信息
     public void clearUserInfo() {
         if(isLogin()){
             User.clearUserInfo();
@@ -56,6 +58,7 @@ public class App extends BaseApp {
         }
     }
 
+    //获取用户对象
     public static User getUser() {
         return getInstance().user;
     }
