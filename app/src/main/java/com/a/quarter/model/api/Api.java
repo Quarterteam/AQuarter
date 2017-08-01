@@ -1,5 +1,6 @@
 package com.a.quarter.model.api;
 
+import com.a.quarter.model.bean.joke.JokeBean;
 import com.a.quarter.model.bean.login.ChangePwdResponse;
 import com.a.quarter.model.bean.login.VertifyCodeResponse;
 import com.a.quarter.model.bean.login.LoginResponse;
@@ -12,6 +13,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -43,4 +45,8 @@ public interface Api {
     @POST(Constants.CHANGE_PASSWORD)
     @FormUrlEncoded
     Observable<ChangePwdResponse> changePwd(@Field("password") String pwd);
+    //段子
+    @GET(Constants.JOKEURL)
+    @FormUrlEncoded
+    Observable<JokeBean> jokeData();
 }

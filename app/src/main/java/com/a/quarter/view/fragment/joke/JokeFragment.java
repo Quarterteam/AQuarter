@@ -12,7 +12,7 @@ import butterknife.Bind;
 /**
  * 段子
  */
-public class JokeFragment extends BaseFragment{
+public class JokeFragment extends BaseFragment {
     @Bind(R.id.joke_recycler)
     RecyclerView mRecyclerView;
     private JokeAdapter adapter;
@@ -33,7 +33,6 @@ public class JokeFragment extends BaseFragment{
 
     @Override
     protected void initDatas() {
-
     }
-    
+
 }

@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
@@ -23,14 +22,14 @@ import butterknife.Bind;
  */
 
 public class MsgInformActivity extends BaseActivity implements View.OnClickListener ,TabLayout.OnTabSelectedListener {
-    @Bind(R.id.iv_back)
-    ImageView mBack;
+    @Bind(R.id.tv_back)
+    TextView mBack;
     @Bind(R.id.tv_head)
     TextView mHead;
     @Bind(R.id.msg_table)
     TabLayout tablayout;
-    @Bind(R.id.msg_image_del)
-    ImageView mDelete;
+    @Bind(R.id.msg_tv_del)
+    TextView mDelete;
     @Bind(R.id.msg_frame)
     FrameLayout mFrameLayout;
     private MsgFragment mMsgFragment;
@@ -74,10 +73,10 @@ public class MsgInformActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-          case R.id.iv_back:
+          case R.id.tv_back:
               finish();
               break;
-            case R.id.msg_image_del:
+            case R.id.msg_tv_del:
                 break;
         }
     }
@@ -85,12 +84,14 @@ public class MsgInformActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         if (tab.getText().equals("消息")){
+            mDelete.setVisibility(View.VISIBLE);
             FragmentManager  manager = getSupportFragmentManager();
             FragmentTransaction  transaction = manager.beginTransaction();
             transaction.show(mMsgFragment).hide(mPrivateLetterFragment);
             transaction.commit();
         }
         if (tab.getText().equals("私信")){
+            mDelete.setVisibility(View.GONE);
             FragmentManager  manager = getSupportFragmentManager();
             FragmentTransaction  transaction = manager.beginTransaction();
             transaction.show(mPrivateLetterFragment).hide(mMsgFragment);

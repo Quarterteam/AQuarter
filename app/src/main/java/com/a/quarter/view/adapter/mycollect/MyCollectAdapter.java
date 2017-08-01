@@ -1,4 +1,4 @@
-package com.a.quarter.view.adapter.userpage;
+package com.a.quarter.view.adapter.mycollect;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
@@ -25,7 +25,7 @@ import com.exa.framelib_rrm.base.view.view.CircleImageView;
  * date ： 2017/7/26.
  */
 
-public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHolder> implements View.OnClickListener {
+public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHolder> implements View.OnClickListener {
     private Context context;
     private boolean flag = true;
     private boolean playBo=false;
@@ -33,7 +33,7 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
     private View popView;
     private PopupWindow popupWindow;
 
-    public UserPageAdapter(Context context) {
+    public MyCollectAdapter(Context context) {
         this.context = context;
     }
 
@@ -54,8 +54,8 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
         holder.tvPublish.setText("妹子智斗抢劫男，标题总是这样滴");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         holder.recyclerView.setLayoutManager(linearLayoutManager);
-        UserPageItemAdapter userPageItemAdapter = new UserPageItemAdapter(context);
-        holder.recyclerView.setAdapter(userPageItemAdapter);
+        MyCollectItemAdapter myCollectItemAdapter = new MyCollectItemAdapter(context);
+        holder.recyclerView.setAdapter(myCollectItemAdapter);
         //动画
         holder.jokeImageRigth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,8 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
             @Override
             public void onClick(View view) {
                 popupWindow.setAnimationStyle(R.style.Animation);
-                popupWindow.showAsDropDown(holder.ivShare,0,-330);
+               popupWindow.showAsDropDown(view1,0,-30);
+
 
             }
         });
@@ -146,7 +147,7 @@ public void setTopIcon(int imageId,TextView view){
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        com.exa.framelib_rrm.base.view.view.CircleImageView ImageTitle;
+        CircleImageView ImageTitle;
         TextView tvTitle;
         TextView tvTime;
         TextView tvPublish;

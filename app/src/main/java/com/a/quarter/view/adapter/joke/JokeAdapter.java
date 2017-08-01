@@ -3,6 +3,7 @@ package com.a.quarter.view.adapter.joke;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.exa.framelib_rrm.base.view.view.CircleImageView;
 public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.MyHolder> {
     private Context context;
     private boolean flag = true;
+    private boolean foolow = false;
 
     public JokeAdapter(Context context) {
         this.context = context;
@@ -38,7 +40,44 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.MyHolder> {
 
     @Override
     public void onBindViewHolder(final MyHolder holder, int position) {
-        holder.likeTextView.setText("1201");
+      //赞
+        holder.followTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (foolow) {
+                    Drawable top = context.getResources().getDrawable(R.mipmap.follow_default);
+                    holder.followTextView.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
+                    String s = holder.followTextView.getText().toString();
+                    int in = Integer.parseInt(s) - 1;
+                    holder.followTextView.setText("" + in);
+                    foolow=false;
+                } else {
+                    Drawable top = context.getResources().getDrawable(R.mipmap.follow_pressed);
+                    holder.followTextView.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
+                    String s = holder.followTextView.getText().toString();
+                    int in = Integer.parseInt(s) + 1;
+                    holder.followTextView.setText("" + in);
+                    foolow=true;
+                }
+
+            }
+        });
+        //分享
+        holder.transmitTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        //评论
+        holder.commentTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        holder.followTextView.setText("1201");
         holder.transmitTextView.setText("1202");
         holder.commentTextView.setText("1203");
         //动画效果
@@ -49,24 +88,25 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.MyHolder> {
                 float likeWidth = -2 * width;
                 float transmitWidth = -4 * width;
                 float commentWidth = -6 * width;
-
+                //动画
                 if (flag == true) {
                     flag = false;
-                    holder.jokeImageRigth.setImageResource(R.mipmap.packup);
-                    AnimatorSet anim1 = AnimUtils.setTransAlpha(holder.likeTextView, 0f, likeWidth, 0f, 1f);
+                    holder.jokeImageRigth.setImageResource(R.mipmap.packuphorizontal);
+                    AnimatorSet anim1 = AnimUtils.setTransAlpha(holder.followTextView, 0f, likeWidth, 0f, 1f);
                     AnimatorSet anim2 = AnimUtils.setTransAlpha(holder.transmitTextView, 0f, transmitWidth, 0f, 1f);
                     AnimatorSet anim3 = AnimUtils.setTransAlpha(holder.commentTextView, 0f, commentWidth, 0f, 1f);
                     AnimUtils.getSetAnimator(anim1, anim2, anim3);
                 } else {
                     flag = true;
                     holder.jokeImageRigth.setImageResource(R.mipmap.icon_open);
-                    AnimatorSet anim1 = AnimUtils.setTransAlpha(holder.likeTextView, likeWidth, 0f, 1f, 0f);
+                    AnimatorSet anim1 = AnimUtils.setTransAlpha(holder.followTextView, likeWidth, 0f, 1f, 0f);
                     AnimatorSet anim2 = AnimUtils.setTransAlpha(holder.transmitTextView, transmitWidth, 0f, 1f, 0f);
                     AnimatorSet anim3 = AnimUtils.setTransAlpha(holder.commentTextView, commentWidth, 0f, 1f, 0f);
                     AnimUtils.getSetAnimator(anim1, anim2, anim3);
                 }
             }
         });
+        //点击头像进入用户界面
         holder.imageTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,13 +122,14 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.MyHolder> {
         return 3;
     }
 
+
     public class MyHolder extends RecyclerView.ViewHolder {
         com.exa.framelib_rrm.base.view.view.CircleImageView imageTitle;
         TextView jokeTextTitle;
         TextView jokeTextTime;
         TextView JokeText;
         ImageView jokeImageRigth;
-        TextView likeTextView;
+        TextView followTextView;
         TextView transmitTextView;
         TextView commentTextView;
 
@@ -99,9 +140,9 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.MyHolder> {
             jokeTextTime = (TextView) itemView.findViewById(R.id.joke_Text_time);
             JokeText = (TextView) itemView.findViewById(R.id.joke_text);
             jokeImageRigth = (ImageView) itemView.findViewById(R.id.joke_image_rigth);
-            likeTextView = (TextView) itemView.findViewById(R.id.joke_text_rigth1);
-            transmitTextView = (TextView) itemView.findViewById(R.id.joke_text_rigth2);
-            commentTextView = (TextView) itemView.findViewById(R.id.joke_text_rigth3);
+            followTextView = (TextView) itemView.findViewById(R.id.joke_text_follow);
+            transmitTextView = (TextView) itemView.findViewById(R.id.joke_text_transmit);
+            commentTextView = (TextView) itemView.findViewById(R.id.joke_text_comment);//评论
 
         }
     }

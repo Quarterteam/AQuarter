@@ -46,4 +46,7 @@
     <dimen name="textSize_joke_inform">16sp</dimen>
     <dimen name="textSize_joke_msg">11sp</dimen>
 
+    <dimen name="textSize_popwindow_share">16sp</dimen>
+    <dimen name="textSize_popwindow_cancel">16sp</dimen>
+
 </resources>
