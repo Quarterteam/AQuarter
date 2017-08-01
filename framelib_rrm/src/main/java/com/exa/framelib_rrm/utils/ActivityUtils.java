@@ -45,4 +45,12 @@ public class ActivityUtils{
         }
     }
 
+    //关闭软键盘
+    public static void closeKeyBoard(Activity ac, EditText et){
+        InputMethodManager ims = (InputMethodManager) ac.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(ims.isActive()) {
+            ims.hideSoftInputFromWindow(et.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
 }

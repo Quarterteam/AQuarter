@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg9"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="com.a.quarter.view.activity.login.FindPwdActivity">
+
+    <include layout="@layout/include_login_head" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_icon_login"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/bg15"
+        app:riv_corner_radius="15dip" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/login_margin"
+        android:layout_marginLeft="@dimen/login_margin"
+        android:layout_marginRight="@dimen/login_margin"
+        android:background="@drawable/shape_bg_rl_login_input"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textColor="@color/gray"
+            android:gravity="center"
+            android:textSize="@dimen/textsize_main_slide"
+            android:text="86+"/>
+
+        <View
+            android:id="@+id/line0"
+            android:layout_width="1px"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@id/tv"
+            android:layout_margin="10dp"
+            android:background="@color/darkgray" />
+
+        <TextView
+            android:id="@+id/tv_get_vertify_code"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@drawable/selector_textcolor_gray_main"
+            android:gravity="center"
+            android:textSize="@dimen/textsize_main_slide"
+            android:text="获取验证码"/>
+
+        <EditText
+            android:layout_toRightOf="@id/line0"
+            android:layout_toLeftOf="@id/tv_get_vertify_code"
+            android:id="@+id/et_phone"
+            style="@style/EditText.Login"
+            android:background="@null"
+            android:hint="请输入手机号" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/et_phone"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@color/darkgray" />
+
+        <EditText
+            android:id="@+id/et_vertify_code"
+            style="@style/EditText.Login"
+            android:layout_below="@id/line"
+            android:background="@null"
+            android:hint="请输入验证码" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_next"
+        style="@style/Button.Login"
+        android:layout_marginLeft="@dimen/login_margin"
+        android:layout_marginRight="@dimen/login_margin"
+        android:layout_marginBottom="@dimen/login_margin"
+        android:text="下一步" />
+
+    <TextView
+        android:id="@+id/tv_visitor_login"
+        style="@style/TextView.FindPwd"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="@dimen/login_margin"
+        android:paddingRight="@dimen/login_margin"
+        android:text="游客登录"
+        android:textSize="@dimen/textsize_medium" />
+
+</LinearLayout>
+

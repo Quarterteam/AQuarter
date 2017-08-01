@@ -69,7 +69,7 @@ public class LinearItemDecoration extends RecyclerView.ItemDecoration {
 
         for (int i = 0; i < childCount - 1; i++) {
             final View child = parent.getChildAt(i);
-            android.support.v7.widget.RecyclerView v = new android.support.v7.widget.RecyclerView(parent.getContext());
+            //android.support.v7.widget.RecyclerView v = new android.support.v7.widget.RecyclerView(parent.getContext());
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
             final int top = child.getBottom() + params.bottomMargin;

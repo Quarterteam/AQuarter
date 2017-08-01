@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.a.quarter">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -31,10 +31,13 @@
 
         <activity android:name=".view.activity.main.MainActivity">
         </activity>
-        <activity android:name=".view.activity.login.NativeLoginActivity"
-            android:theme="@style/Theme.FullScreen"/>
-        <activity android:name=".view.activity.login.NativeRegisterActivity"
-            android:theme="@style/Theme.FullScreen"/>
+        <activity
+            android:name=".view.activity.login.NativeLoginActivity"
+            android:theme="@style/Theme.FullScreen"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".view.activity.login.NativeRegisterActivity"
+            android:theme="@style/Theme.FullScreen" />
         <activity android:name=".view.activity.main.MyFollowActivity" />
         <activity android:name=".view.activity.main.HotFollowActivity" />
         <activity android:name=".view.activity.main.PublishArticleActivity" />
@@ -80,6 +83,13 @@
             android:value="591559b482b635604b0005af"
             >
         </meta-data>
+
+        <activity
+            android:name=".view.activity.login.FindPwdActivity"
+            android:theme="@style/Theme.FullScreen" />
+        <activity
+            android:name=".view.activity.login.ChangePwdActivity"
+            android:theme="@style/Theme.FullScreen"></activity>
     </application>
 
 </manifest>

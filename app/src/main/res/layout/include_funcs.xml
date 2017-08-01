@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:id="@+id/rl_btns"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/iv_shiled"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:src="@mipmap/shiled" />
+
+    <TextView
+        android:id="@+id/tv_shiled"
+        android:layout_below="@id/iv_shiled"
+        android:text="屏蔽"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/textsize_small" />
+
+    <ImageView
+        android:id="@+id/iv_copyLink"
+        android:layout_toRightOf="@id/iv_shiled"
+        android:layout_marginRight="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/copylink" />
+
+    <TextView
+        android:id="@+id/tv_copyLink"
+        android:layout_toRightOf="@id/iv_shiled"
+        android:layout_below="@id/iv_copyLink"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:text="复制"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/textsize_small"/>
+
+    <ImageView
+        android:id="@+id/iv_port"
+        android:layout_toRightOf="@id/iv_copyLink"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="40dp"
+        android:src="@mipmap/report" />
+
+    <TextView
+        android:id="@+id/tv_port"
+        android:layout_toRightOf="@id/iv_copyLink"
+        android:layout_below="@id/iv_port"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
+        android:text="举报"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/textsize_small" />
+
+</RelativeLayout>

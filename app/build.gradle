@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.a.quarter"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -76,4 +76,7 @@ dependencies {
     compile files('libs/umeng_social_tool.jar')
     // 图片加载框架
     compile 'com.facebook.fresco:fresco:1.4.0'
+    //轮播图
+    compile 'com.youth.banner:banner:1.4.9'
+
 }

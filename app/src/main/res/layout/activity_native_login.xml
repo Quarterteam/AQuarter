@@ -88,7 +88,7 @@
     </RelativeLayout>-->
 
     <TextView
-        android:id="@+id/tv_goFindPwd"
+        android:id="@+id/tv_go_find_pwd"
         style="@style/TextView.FindPwd"
         android:layout_marginRight="@dimen/login_margin"
         android:layout_gravity="right"

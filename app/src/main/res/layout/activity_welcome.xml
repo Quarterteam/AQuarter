@@ -37,14 +37,14 @@
             android:layout_marginTop="25dp"
             android:text="正在读取一刻钟..."
             android:textColor="#F55C54"
-            android:textSize="@dimen/textsize_medium" />
+            android:textSize="30px" />
 
     </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_centerInParent="true"
         style="@android:style/Widget.ProgressBar"
         android:indeterminateDrawable="@drawable/welcome_color_progressbar_circle"
