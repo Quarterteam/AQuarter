@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment<P extends BasePresenter, C extends BaseCallback> extends Fragment {
 
     protected View mView;
-    protected FragmentActivity  mActivity;
+    protected FragmentActivity mActivity;
     protected P mPresenter;
     protected C mCallback;
 
@@ -29,7 +29,7 @@ public abstract class BaseFragment<P extends BasePresenter, C extends BaseCallba
         mView = inflater.inflate(getContentViewId(), container, false);
         ButterKnife.bind(this, mView);
 
-       mActivity= getActivity();
+       mActivity = getActivity();
         return mView;
     }
 

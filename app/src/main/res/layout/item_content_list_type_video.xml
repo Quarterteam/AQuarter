@@ -64,18 +64,6 @@
         android:layout_height="30dp"
         android:src="@mipmap/show" />
 
-    <!--<com.a.quarter.view.media.IjkVideoView-->
-    <!--<com.dl7.player.media.IjkPlayerView-->
-    <!--<View-->
-    <!--<media.IjkVideoView-->
-<!--    <com.a.quarter.view.fragment.recommend.MyIjkVideoView
-        android:layout_marginTop="5dp"
-        android:id="@+id/ijkVideoView"
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_below="@id/tv_content"
-        android:background="@color/gray"/>-->
-
     <FrameLayout
         android:id="@+id/fl_video_container"
         android:layout_marginTop="5dp"

@@ -19,12 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a.quarter.R;
-//import com.dl7.player.media.IjkPlayerView;
-//import com.dl7.player.media.IjkPlayerView.OnPlayCircleClickListener;
 import com.a.quarter.view.fragment.recommend.BannerFrescoImageLoader;
 import com.a.quarter.view.fragment.recommend.BannerLocalImageLoader;
 import com.a.quarter.model.bean.recommend.ContentListBean;
-import com.a.quarter.view.fragment.recommend.MyIjkVideoView;
+import com.exa.framelib_rrm.utils.LogUtils;
 import com.exa.framelib_rrm.utils.NetUtils;
 import com.exa.framelib_rrm.utils.T;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -32,6 +30,15 @@ import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 
+import io.reactivex.Emitter;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Cancellable;
+import io.reactivex.schedulers.Schedulers;
 import media.AndroidMediaController;
 import media.IjkVideoView;
 
@@ -42,6 +49,10 @@ import media.IjkVideoView;
  *
  * 是创建ViewHolder的时候，出现的卡顿？
  * 视频停止的问题？
+ *
+ * 所有条目只使用一个IjkVideoView，remove之后可能会出现上个播放视频的条目在视频的位置一片空白的情况
+ * 怎么监听一个条目的完全消失？在条目完全消失的时候，remove掉IjkVideoView
+ *
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
 
@@ -478,9 +489,9 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     }
 
     private ContentListBean contentListBean;
-    IjkVideoView player;
+    public IjkVideoView player;
     //视频条目
-    class VideoViewHolder extends NormalItemViewHolder {
+    public class VideoViewHolder extends NormalItemViewHolder {
 
 //        MyIjkVideoView player;
         FrameLayout videoContainer;
@@ -501,20 +512,22 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         }
 
         public void showVideo() {
-            if(player!=null){
-                if(player.isPlaying()){
-                    player.stopPlayback();//因为可能是复用的条目，所以先停止播放视频
-                }
-                player.release(true);
-                ViewGroup parent = (ViewGroup) player.getParent();
-                if(parent!=null){
-                    parent.removeView(player);//所有条目只使用一个IjkVideoView，
-                }
+//            if(player!=null){
+//                if(player.isPlaying()){
+//                    player.stopPlayback();//因为可能是复用的条目，所以先停止播放视频
+//                }
+//                player.release(true);
+//                ViewGroup parent = (ViewGroup) player.getParent();
+//                if(parent!=null){
+//                    parent.removeView(player);//所有条目只使用一个IjkVideoView，
+//                }
+//            }
+            if(ivVideoStartIcon.getVisibility()!=View.VISIBLE){
+//                contentListBean = list.get(position);
+                ivVideoStartIcon.setVisibility(View.VISIBLE);
+                ivVideoThumb.setVisibility(View.VISIBLE);
             }
-            contentListBean = list.get(position);
-            ivVideoStartIcon.setVisibility(View.VISIBLE);
-            ivVideoThumb.setVisibility(View.VISIBLE);
-            ivVideoThumb.setActualImageResource(contentListBean.videoThumbResourceId);
+            ivVideoThumb.setActualImageResource(list.get(position).videoThumbResourceId);
         }
 
         @Override
@@ -537,7 +550,8 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                         player.release(true);
                         ViewGroup parent = (ViewGroup) player.getParent();
                         if(parent!=null){
-                            parent.removeView(player);//所有条目只使用一个IjkVideoView，
+                            parent.removeView(player);
+                            //所有条目只使用一个IjkVideoView，remove之后可能会出现上个播放视频的条目在视频的位置一片空白的情况
                         }
                     }
                     videoContainer.addView(player);
@@ -552,6 +566,53 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             }
         }
 
+        /**
+         * 回复到未播放的状态，
+         * 该方法里调用player的相关方法时会有轻微的卡顿，所以需要在子线程里释放资源（使用Thread或者RxJava）
+         *
+         * RecyclerView第一次滑动的时候也会有卡顿，为什么？
+         * Slidingmenu滑动的时候，视频的位置会变成透明的，为什么？
+         * */
+        public void resetItem() {
+            //LogUtils.i("resetItem start");
+            if(player!=null){
+                ViewGroup parent = (ViewGroup) player.getParent();
+                if(parent!=null){
+                    long t = System.currentTimeMillis();
+                    parent.removeView(player);//所有条目只使用一个IjkVideoView，
+//                    new Thread(){
+//                        @Override
+//                        public void run() {
+//                            //放在子线程里释放资源，会报错吗？（不会。卡顿也减少了。）
+//                            if(player.isPlaying()){
+//                                player.stopPlayback();
+//                            }
+//                            player.release(true);
+//                        }
+//                    }.start();//耗时：16
+                    Observable.create(new ObservableOnSubscribe<Integer>() {
+                        @Override
+                        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+                            player.release(true);
+                            //LogUtils.i("resetItem release");
+                            emitter.onComplete();
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe();//耗时：42
+
+                    LogUtils.i("resetItem removePlayerView，耗时："+(System.currentTimeMillis()-t));
+                }
+            }
+            if(ivVideoStartIcon.getVisibility()!=View.VISIBLE) {
+                ivVideoStartIcon.setVisibility(View.VISIBLE);
+                ivVideoThumb.setVisibility(View.VISIBLE);
+                ivVideoThumb.setActualImageResource(list.get(position).videoThumbResourceId);
+                //LogUtils.i("resetItem setActualImageResource");
+            }
+            LogUtils.i("resetItem end");
+        }
     }
 
     public void onDestory(){

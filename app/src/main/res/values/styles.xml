@@ -120,7 +120,7 @@
         <item name="android:src">@mipmap/bg5</item>
     </style>
 
-    <style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
+    <!--<style name="Fram.Recommend.Item.Nickname" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/red</item>
@@ -158,9 +158,9 @@
 
 
     </style>
+-->
 
-
-
+<!--
     <style name="Fram.Recommend.Item.player" parent="AppTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/frag_recommend_item_player</item>
@@ -169,7 +169,7 @@
         <item name="android:layout_marginBottom">@dimen/frag_recommend_item_distance</item>
 
 
-    </style>
+    </style>-->
 
 
     <style name="EditText.Login" parent="Control">
@@ -282,6 +282,7 @@
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:layout_marginRight">8dp</item>
+        <item name="android:visibility">invisible</item>
     </style>
 
     <style name="TextView.Joke.Title" parent="Control">
@@ -305,7 +306,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/textSize_joke_time</item>
-        <item name="android:paddingLeft">23dp</item>
+        <item name="android:paddingLeft">15dp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
 
@@ -324,12 +325,12 @@
         <item name="android:layout_marginBottom">10dp</item>
     </style>
 
-    <style name="re.recycler" parent="Control">
+    <!--<style name="re.recycler" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_below">@id/re_player_item</item>
     </style>
-
+-->
 
     <style name="TabLayout.MyFollow.TextStyle" parent="Control">
         <item name="android:textSize">@dimen/textsize_medium</item>
@@ -363,7 +364,7 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <!--详情界面-->
+    <!-- 用户界面-item-->
     <style name="View.V" parent="Control">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">15dp</item>
@@ -433,7 +434,7 @@
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_below">@id/fans</item>
-        <item name="android:layout_toRightOf">@id/detail_image_title</item>
+        <item name="android:layout_toRightOf">@id/userpage_image_title</item>
         <item name="android:background">@drawable/icon_attention_default</item>
     </style>
 
@@ -451,25 +452,73 @@
         <item name="android:textSize">@dimen/textSize_joke_woke</item>
         <item name="android:textColor">@color/mainColor</item>
     </style>
-    <!-- 用户界面-item-->
+
     <style name="userpage.Item.texttitle" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">15dp</item>
         <item name="android:layout_marginLeft">35dp</item>
         <item name="android:textSize">@dimen/textSize_joke_texttitle</item>
-
     </style>
-
+    <style name="userpage.image.open" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
     <style name="userpage.image.text" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textSize_joke_text</item>
-        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:layout_marginRight">8dp</item>
     </style>
+    <style name="userpage.image.text.videoRigth" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textSize_joke_text</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+    <style name="userpage.Item.IjkVideoView" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/textSize_joke_texttitle</item>
+    </style>
+    <style name="userpage.Item.Recycler" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/textSize_joke_texttitle</item>
+    </style>
+    <style name="userpage.Item.tv_name" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/textSize_joke_texttitle</item>
+    </style>
+    <style name="userpage.Item.tv_content" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textSize">@dimen/textSize_joke_texttitle</item>
+    </style>
+
     <!--消息通知-->
     <style name="Tv.Msg.Innform" parent="Control">
         <item name="android:layout_width">wrap_content</item>
@@ -487,5 +536,35 @@
         <item name="android:paddingTop">2dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingBottom">2dp</item>
+    </style>
+    <!--弹框分享-->
+    <style name="Dialog.iv.share" parent="Control">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@drawable/icon_share</item>
+
+    </style>
+    <style name="Dialog.Tv.share" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textSize_popwindow_share</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">3dp</item>
+    </style>
+    <style name="Dialog.Tv.cancel" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textSize_popwindow_cancel</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+    <!-- popupwindow 动画 -->
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_trans_into</item>
+        <item name="android:windowExitAnimation">@anim/pop_trans_out</item>
     </style>
 </resources>

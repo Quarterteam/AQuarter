@@ -54,16 +54,11 @@ public class AddPicAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int viewType = list.get(position).type;
-
         if(viewType == TYPE_NORMAL){
-            ((PicViewHolder) holder).image.setImageResource(R.mipmap.raw_duanz);
             PicViewHolder picHolder = (PicViewHolder)holder;
-            picHolder.position = position;
 
         }else if(viewType == TYPE_ADD){
-
             AddIconViewHolder iconHolder = (AddIconViewHolder)holder;
-            iconHolder.ivAddIcon.setImageResource(R.mipmap.add_pic);
         }
     }
 
@@ -85,10 +80,12 @@ public class AddPicAdapter extends RecyclerView.Adapter{
             this.ivDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    position = getAdapterPosition();
                     //删除本条目（本图片）
                     if(position<list.size()){
-                        list.remove(position);// java.lang.IndexOutOfBoundsException: Invalid index 5, size is 5
-                        notifyItemRemoved(position);
+                        list.remove(position);
+                        notifyItemRemoved(position);//如果不使用position = getAdapterPosition();的话，会导致错乱
+                        //notifyDataSetChanged();
                     }
                 }
             });
@@ -102,6 +99,8 @@ public class AddPicAdapter extends RecyclerView.Adapter{
 
         public AddIconViewHolder(View itemView) {
             super(itemView);
+            ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
+            ivAddIcon.setImageResource(R.mipmap.add_pic);
 
             this.ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
 
@@ -110,9 +109,9 @@ public class AddPicAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     //添加一张新的图片
-                    if(list.size()>1){
-                        list.add(list.size()-2, new AddPicItemBean(TYPE_NORMAL));
-                        notifyItemInserted(list.size()-2);
+                    if(list.size()>=1){
+                        list.add(list.size()-1, new AddPicItemBean(TYPE_NORMAL));
+                        notifyItemInserted(list.size()-1);
                     }else{
                         list.add(0, new AddPicItemBean(TYPE_NORMAL));
                         notifyItemInserted(0);

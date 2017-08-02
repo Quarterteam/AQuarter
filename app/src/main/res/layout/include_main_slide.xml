@@ -23,14 +23,16 @@
         android:layout_marginBottom="30dp"
         android:text="编辑个性签名"/>
 
-    <com.exa.framelib_rrm.base.view.view.CircleImageView
+    <!--<com.exa.framelib_rrm.base.view.view.CircleImageView-->
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_user_icon"
         android:layout_above="@id/tv_edit_sign"
         android:layout_width="150px"
         android:layout_height="150px"
         android:layout_marginLeft="20dp"
         android:padding="5dp"
-        android:src="@mipmap/user_icon"/>
+        app:roundAsCircle="true"
+        app:actualImageResource="@mipmap/user_icon"/>
 
     <TextView
         android:id="@+id/tv_user_name"

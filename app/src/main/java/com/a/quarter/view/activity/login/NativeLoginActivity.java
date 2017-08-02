@@ -144,8 +144,8 @@ public class NativeLoginActivity extends BaseActivity<LoginPresenter, NativeLogi
                 getHost().setResult(1);
                 getHost().finish();
             }else{
-                T.showShort(mAppContext, "登录失败！");
-                App.getInstance().clearUserInfo();
+                T.showShort(mAppContext, response.message);//"登录失败！"+
+                //App.getInstance().clearUserInfo();
             }
         }
 

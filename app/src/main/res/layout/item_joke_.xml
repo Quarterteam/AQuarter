@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="10dp"></View>
 
-    <com.exa.framelib_rrm.base.view.view.CircleImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/joke_Image_title"
         android:layout_below="@id/v_perch"
         android:layout_width="35dp"
@@ -30,24 +30,20 @@
         android:text="2017-7-20" />
 
         <TextView
-            android:id="@+id/joke_text_rigth1"
+            android:id="@+id/joke_text_follow"
             style="@style/Joke.image.text"
             android:drawableTop="@mipmap/follow_default"
-            android:visibility="invisible" />
-
+            />
         <TextView
-            android:id="@+id/joke_text_rigth2"
+            android:id="@+id/joke_text_transmit"
             android:drawableTop="@mipmap/mtransmit"
             style="@style/Joke.image.text"
-            android:visibility="invisible"
              />
-
         <TextView
-            android:id="@+id/joke_text_rigth3"
+            android:id="@+id/joke_text_comment"
             style="@style/Joke.image.text"
             android:drawableTop="@mipmap/message"
-            android:visibility="invisible" />
-
+             />
     <ImageView
         android:id="@+id/joke_image_rigth"
         android:layout_below="@id/v_perch"

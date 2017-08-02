@@ -1,6 +1,7 @@
 package com.a.quarter.model.api;
 
 import com.a.quarter.model.bean.DetailsPraiseBean;
+import com.a.quarter.model.bean.joke.JokeBean;
 import com.a.quarter.model.bean.login.ChangePwdResponse;
 import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.model.bean.login.RegisterResponse;
@@ -49,6 +50,11 @@ public interface Api {
     @POST(Constants.CHANGE_PASSWORD)
     @FormUrlEncoded
     Observable<ChangePwdResponse> changePwd(@Field("password") String pwd);
+    //段子
+    @GET(Constants.JOKEURL)
+    Observable<JokeBean> jokeData();
+
+
 
     @GET(Constants.VIDEO_HOT)  // TODO: 视频中 热门
     Observable<VHotBean> VHotFrag();
