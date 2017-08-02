@@ -1,4 +1,4 @@
-package com.a.quarter.view.activity;
+package com.a.quarter.view.activity.msginform;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;

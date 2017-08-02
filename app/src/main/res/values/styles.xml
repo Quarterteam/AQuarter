@@ -306,7 +306,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/textSize_joke_time</item>
-        <item name="android:paddingLeft">23dp</item>
+        <item name="android:paddingLeft">15dp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
 
@@ -434,7 +434,7 @@
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_below">@id/fans</item>
-        <item name="android:layout_toRightOf">@id/detail_image_title</item>
+        <item name="android:layout_toRightOf">@id/userpage_image_title</item>
         <item name="android:background">@drawable/icon_attention_default</item>
     </style>
 

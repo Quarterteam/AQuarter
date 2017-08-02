@@ -1,6 +1,7 @@
-package com.a.quarter.view.activity;
+package com.a.quarter.view.activity.userpage;
 
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.utils.FrescoCircleUtils;
 import com.a.quarter.view.adapter.userpage.UserPageAdapter;
 import com.a.quarter.view.base.BaseActivity;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.Bind;
 
@@ -31,6 +34,9 @@ public class UserPageActivity extends BaseActivity implements View.OnClickListen
     ImageView mShape;
     @Bind(R.id.userpage_image_comment)
     ImageView mComment;
+    @Bind(R.id.userpage_image_title)
+    SimpleDraweeView mImageTitle;
+
     private boolean TextSelector=false;
     private UserPageAdapter mAdapter;
     private LinearLayoutManager linearLayoutManager;
@@ -43,6 +49,7 @@ public class UserPageActivity extends BaseActivity implements View.OnClickListen
     protected void initViews() {
         mAttention.setOnClickListener(this);
         mBack.setOnClickListener(this);
+        FrescoCircleUtils.setImageViewCircle(mImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
 
     }
 
