@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.a.quarter">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -55,12 +55,13 @@
         <activity android:name=".view.activity.login.ThirdPartyLoginActivity"
             android:theme="@style/Theme.FullScreen"></activity>
 
-        <activity android:name=".view.activity.UserPageActivity"></activity>
-        <activity android:name=".view.activity.MsgInformActivity"></activity>
-        <activity android:name=".view.activity.MyCollectActivity"></activity>
+        <activity android:name=".view.activity.userpage.UserPageActivity"></activity>
+        <activity android:name=".view.activity.msginform.MsgInformActivity"></activity>
+        <activity android:name=".view.activity.mycollect.MyCollectActivity"></activity>
 
+
+<!--设置页面-->
         <activity android:name=".view.activity.main.CreationActivity"/>
-
         <activity android:name=".view.activity.configure.SlidingmenuToActivity"></activity>
         <activity android:name=".view.activity.main.VideoActivity"></activity>
         <!--QQ登录分享配置-->

@@ -3,10 +3,12 @@ package com.a.quarter.view.adapter.mycollect;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -14,15 +16,16 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.utils.AnimUtils;
+import com.a.quarter.utils.FrescoCircleUtils;
 import com.a.quarter.utils.QQLoginShareUtils;
-//import com.a.quarter.view.media.IjkVideoView;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import media.IjkVideoView;
-import com.exa.framelib_rrm.base.view.view.CircleImageView;
 
 /**
  * 类的作用：
  * 实现思路 ：
- * auther:
+ * auther:  郭鸽鸽
  * date ： 2017/7/26.
  */
 
@@ -33,7 +36,6 @@ public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHo
     private View view1;
     private View popView;
     private PopupWindow popupWindow;
-
     public MyCollectAdapter(Context context) {
         this.context = context;
     }
@@ -48,8 +50,10 @@ public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHo
 
     @Override
     public void onBindViewHolder(final MyHolder holder, int position) {
+        //显示
 
         //设置数据
+        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
         holder.tvTitle.setText("天蝎喝牛奶");
         holder.tvTime.setText("2017-7-20  14:20");
         holder.tvPublish.setText("妹子智斗抢劫男，标题总是这样滴");
@@ -99,8 +103,9 @@ public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHo
             }
         });
 
-
 }
+
+
 public void setPopwindow(){
     popView = View.inflate(context, R.layout.popwindow_share,null);
     LinearLayout popQq= (LinearLayout) popView.findViewById(R.id.pop_qq);
@@ -148,7 +153,8 @@ public void setTopIcon(int imageId,TextView view){
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        CircleImageView ImageTitle;
+       CheckBox boxDel;
+        SimpleDraweeView ImageTitle;
         TextView tvTitle;
         TextView tvTime;
         TextView tvPublish;
@@ -167,7 +173,8 @@ public void setTopIcon(int imageId,TextView view){
 
         public MyHolder(View itemView) {
             super(itemView);
-            ImageTitle = (CircleImageView) itemView.findViewById(R.id.item_userpage_Image_title);
+            boxDel= (CheckBox) itemView.findViewById(R.id.box_del);
+            ImageTitle = (SimpleDraweeView) itemView.findViewById(R.id.item_userpage_Image_title);
             tvTitle = (TextView) itemView.findViewById(R.id.item_userpage_Text_title);
             tvTime = (TextView) itemView.findViewById(R.id.item_userpage_Text_time);
             tvPublish = (TextView) itemView.findViewById(R.id.item_userpage_Text);

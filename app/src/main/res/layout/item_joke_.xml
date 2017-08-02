@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="10dp"></View>
 
-    <com.exa.framelib_rrm.base.view.view.CircleImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/joke_Image_title"
         android:layout_below="@id/v_perch"
         android:layout_width="35dp"

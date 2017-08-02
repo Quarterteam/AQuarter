@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -16,8 +15,8 @@ import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
 import com.a.quarter.utils.DrawableUtils;
 import com.a.quarter.utils.SlidingMenuUtils;
-import com.a.quarter.view.activity.MsgInformActivity;
-import com.a.quarter.view.activity.MyCollectActivity;
+import com.a.quarter.view.activity.msginform.MsgInformActivity;
+import com.a.quarter.view.activity.mycollect.MyCollectActivity;
 import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.view.base.BaseActivity;
@@ -166,7 +165,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 }
                 break;
             case R.id.tv_msg_notify:
-
                 ActivityUtils.jumpIn(this, MsgInformActivity.class);
                 break;
             case R.id.iv_user_icon:

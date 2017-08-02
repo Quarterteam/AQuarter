@@ -1,4 +1,4 @@
-package com.a.quarter.view.activity;
+package com.a.quarter.view.activity.mycollect;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,10 +25,11 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
     @Bind(R.id.tv_head)
     TextView mTvHead;
     @Bind(R.id.tv_right)//删除
-    TextView mTvRight;
+    TextView mDelete;
     @Bind(R.id.collect_recycler)
     RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+    private MyCollectAdapter adapter;
 
     @Override
     protected int getContentViewId() {
@@ -38,27 +39,33 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void initViews() {
         mtvBack.setOnClickListener(this);
-        mTvRight.setOnClickListener(this);
+        mDelete.setOnClickListener(this);
         mTvHead.setText("我的收藏");
-        mTvRight.setText("删除");
+        mDelete.setText("删除");
     }
 
     @Override
     protected void initDatas() {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        MyCollectAdapter adapter = new MyCollectAdapter(this);
+        adapter = new MyCollectAdapter(this);
         recyclerView.setAdapter(adapter);
-    }
 
+    }
+public void setVisi(){
+
+}
     @Override
     public void onClick(View view) {
       switch (view.getId()){
           case R.id.tv_back:
               finish();
               break;
-           case R.id.tv_right:
+           case R.id.tv_right://删除
+               System.out.println("删除");
+
           break;
+
       }
     }
 }

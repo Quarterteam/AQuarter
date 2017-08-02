@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Linear_match_hor">
+    <CheckBox
+        android:id="@+id/box_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+<RelativeLayout
 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <View
         android:id="@+id/view_userpage"
         android:layout_width="match_parent"
         android:layout_height="10dp"></View>
 
-    <com.exa.framelib_rrm.base.view.view.CircleImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/item_userpage_Image_title"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_below="@id/view_userpage"
         android:layout_marginLeft="20dp"
-        android:src="@mipmap/user_icon" />
+        />
 
     <TextView
         android:id="@+id/item_userpage_Text_title"
@@ -71,7 +79,7 @@
         android:layout_below="@id/item_userpage_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <com.a.quarter.view.media.IjkVideoView
+        <media.IjkVideoView
             android:id="@+id/item_userpage_video"
             style="@style/userpage.Item.IjkVideoView"
             />
@@ -118,3 +126,4 @@
         style="@style/userpage.Item.Recycler"
        ></android.support.v7.widget.RecyclerView>
 </RelativeLayout>
+</LinearLayout>

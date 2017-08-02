@@ -47,6 +47,7 @@ public interface Api {
     Observable<ChangePwdResponse> changePwd(@Field("password") String pwd);
     //段子
     @GET(Constants.JOKEURL)
-    @FormUrlEncoded
     Observable<JokeBean> jokeData();
+
+
 }

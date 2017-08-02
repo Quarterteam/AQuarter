@@ -3,6 +3,7 @@ package com.a.quarter.view.adapter.userpage;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,10 +15,13 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.utils.AnimUtils;
+import com.a.quarter.utils.FrescoCircleUtils;
 import com.a.quarter.utils.QQLoginShareUtils;
-//import com.a.quarter.view.media.IjkVideoView;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import media.IjkVideoView;
-import com.exa.framelib_rrm.base.view.view.CircleImageView;
+
+//import com.a.quarter.view.media.IjkVideoView;
 
 /**
  * 类的作用：
@@ -50,6 +54,7 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
     public void onBindViewHolder(final MyHolder holder, int position) {
 
         //设置数据
+        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
         holder.tvTitle.setText("天蝎喝牛奶");
         holder.tvTime.setText("2017-7-20  14:20");
         holder.tvPublish.setText("妹子智斗抢劫男，标题总是这样滴");
@@ -147,7 +152,7 @@ public void setTopIcon(int imageId,TextView view){
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        com.exa.framelib_rrm.base.view.view.CircleImageView ImageTitle;
+        SimpleDraweeView ImageTitle;
         TextView tvTitle;
         TextView tvTime;
         TextView tvPublish;
@@ -166,7 +171,7 @@ public void setTopIcon(int imageId,TextView view){
 
         public MyHolder(View itemView) {
             super(itemView);
-            ImageTitle = (CircleImageView) itemView.findViewById(R.id.item_userpage_Image_title);
+            ImageTitle = (SimpleDraweeView) itemView.findViewById(R.id.item_userpage_Image_title);
             tvTitle = (TextView) itemView.findViewById(R.id.item_userpage_Text_title);
             tvTime = (TextView) itemView.findViewById(R.id.item_userpage_Text_time);
             tvPublish = (TextView) itemView.findViewById(R.id.item_userpage_Text);

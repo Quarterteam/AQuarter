@@ -31,8 +31,8 @@
         android:layout_toLeftOf="@id/userpage_image_comment"
         android:background="@mipmap/share" />
 
-    <com.exa.framelib_rrm.base.view.view.CircleImageView
-        android:id="@+id/detail_image_title"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/userpage_image_title"
         style="@style/userpage.Image.Title" />
 
     <TextView
@@ -40,7 +40,7 @@
         style="@style/userpage.Text.Fans"
         android:layout_below="@id/userpage_image_show"
         android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/detail_image_title"
+        android:layout_toRightOf="@id/userpage_image_title"
         android:text="15548545 " />
 
     <TextView
