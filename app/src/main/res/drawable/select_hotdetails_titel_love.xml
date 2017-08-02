@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@mipmap/details_xi2"
+        android:drawable="@mipmap/details_xi_b"
         android:state_checked="false"
         ></item>
     <item
-        android:drawable="@mipmap/details_xi"
+        android:drawable="@mipmap/details_xi_a"
         android:state_checked="true"
         ></item>
 

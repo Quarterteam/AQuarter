@@ -49,7 +49,7 @@
         android:id="@+id/et_input"
         android:layout_below="@id/ll"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:padding="10dp"
         android:textSize="@dimen/textsize_main_nav"
         android:textColorHint="@color/gray"

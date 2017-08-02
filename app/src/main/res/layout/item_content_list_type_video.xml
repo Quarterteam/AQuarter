@@ -66,10 +66,12 @@
 
     <FrameLayout
         android:id="@+id/fl_video_container"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:layout_below="@id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:layout_below="@id/tv_content"
-        android:layout_marginTop="5dp">
+        >
 
         <!--<ImageView-->
         <com.facebook.drawee.view.SimpleDraweeView

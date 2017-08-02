@@ -1,12 +1,17 @@
 package com.a.quarter.view.fragment.video;
 
+import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.a.quarter.R;
-import com.a.quarter.view.base.BaseFragment;
+import com.a.quarter.model.bean.video.VHotBean;
+import com.a.quarter.presenter.video.VHotPresenter;
 import com.a.quarter.view.adapter.video.VHotFragmentAdapter;
+import com.a.quarter.view.base.BaseFragment;
+import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
+import com.exa.framelib_rrm.rx.RxCallback;
 
 import java.util.ArrayList;
 
@@ -19,7 +24,7 @@ import media.AndroidMediaController;
  * & 思路  ：
  */
 
-public class VHotFragment extends BaseFragment{
+public class VHotFragment extends BaseFragment<VHotPresenter,VHotFragment.VHotCallback>{
     @Bind(R.id.vhot_RecyclerView)
     RecyclerView mRecyclerView;
     private ArrayList<Integer> list=new ArrayList<>();
@@ -47,11 +52,55 @@ public class VHotFragment extends BaseFragment{
         VHotFragmentAdapter adapter = new VHotFragmentAdapter(getActivity(),list);
         mRecyclerView.setAdapter(adapter);// No adapter attached; skipping layout
          adapter.notifyDataSetChanged();
+
+
+
     }
 
     @Override
     protected void initDatas() {
 
+        VHotCallback hotCallback = new VHotCallback(this, getContext().getApplicationContext());
+        bindPresenter(new VHotPresenter(),hotCallback);
+
+        mPresenter.Vhot();
+
     }
 
+    static class VHotCallback extends RxCallback<VHotBean, VHotFragment, BaseTag> {
+
+        public VHotCallback(VHotFragment host, Context mContext) {
+            super(host, mContext);
+        }
+
+
+
+        @Override
+        public String onCheckParamsLegality(BaseTag tag, Object... params) {
+            return null;
+        }
+
+        @Override
+        public void onRequestStart(BaseTag tag) {
+//            Log.i("        onRequestStart","======================" +
+//                    "============================" +
+//                    "==================================");
+        }
+
+        @Override
+        public void onRequestEnd(BaseTag tag) {
+//            Log.i("        onRequestEnd","======================" +
+//                    "============================" +
+//                    "==================================");
+        }
+
+        @Override
+        protected void onDealNextResponse(VHotBean response, BaseTag tag) {
+            String string = response.toString();
+//            Log.i("        ============",string);
+//            Log.i("        ============","======================" +
+//                    "============================" +
+//                    "==================================");
+        }
+    }
 }

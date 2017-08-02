@@ -28,6 +28,7 @@ public class AddPicAdapter extends RecyclerView.Adapter{
     public AddPicAdapter(Context context, ArrayList<AddPicItemBean> list) {
         //this.context = context;
         this.list = list;
+
         list.add(new AddPicItemBean(AddPicAdapter.TYPE_ADD));
         inflater = LayoutInflater.from(context);
     }
@@ -40,11 +41,13 @@ public class AddPicAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder = null;
+
         if(viewType == TYPE_NORMAL){
             holder = new PicViewHolder(inflater.inflate(R.layout.item_add_pic_normal, parent, false));
         }else if(viewType == TYPE_ADD){
             holder = new AddIconViewHolder(inflater.inflate(R.layout.item_add_pic_addicon, parent, false));
         }
+
         return holder;
     }
 
@@ -53,7 +56,7 @@ public class AddPicAdapter extends RecyclerView.Adapter{
         int viewType = list.get(position).type;
         if(viewType == TYPE_NORMAL){
             PicViewHolder picHolder = (PicViewHolder)holder;
-
+              ((PicViewHolder) holder).image.setImageResource(R.mipmap.raw_duanz);
         }else if(viewType == TYPE_ADD){
             AddIconViewHolder iconHolder = (AddIconViewHolder)holder;
         }
@@ -66,13 +69,13 @@ public class AddPicAdapter extends RecyclerView.Adapter{
 
     class PicViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView iv;
+        private ImageView image;
         private ImageView ivDelete;
         public int position;
 
         public PicViewHolder(View itemView) {
             super(itemView);
-            this.iv = (ImageView)itemView.findViewById(R.id.iv);
+            this.image = (ImageView)itemView.findViewById(R.id.iv);
             this.ivDelete = (ImageView)itemView.findViewById(R.id.iv_delete);
             this.ivDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -98,13 +101,18 @@ public class AddPicAdapter extends RecyclerView.Adapter{
             super(itemView);
             ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
             ivAddIcon.setImageResource(R.mipmap.add_pic);
+
+            this.ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
+
+            ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
+            ivAddIcon.setImageResource(R.mipmap.add_pic);
             this.ivAddIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //添加一张新的图片
-                    if(list.size()>1){
-                        list.add(list.size()-2, new AddPicItemBean(TYPE_NORMAL));
-                        notifyItemInserted(list.size()-2);
+                    if(list.size()>=1){
+                        list.add(list.size()-1, new AddPicItemBean(TYPE_NORMAL));
+                        notifyItemInserted(list.size()-1);
                     }else{
                         list.add(0, new AddPicItemBean(TYPE_NORMAL));
                         notifyItemInserted(0);

@@ -93,7 +93,7 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
        holder.ivLike.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               setTopIcon(R.mipmap.details_xi, holder.ivLike);
+               setTopIcon(R.mipmap.details_xi_a, holder.ivLike);
            }
        });
         holder.ivCollect.setOnClickListener(new View.OnClickListener() {

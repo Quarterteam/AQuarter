@@ -1,6 +1,9 @@
 package com.a.quarter.view.activity.main;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,6 +16,7 @@ import com.a.quarter.app.App;
 import com.a.quarter.model.bean.main.AddPicItemBean;
 import com.a.quarter.model.bean.main.PublishArticleResponse;
 import com.a.quarter.presenter.publish.PublishArticlePresenter;
+import com.a.quarter.view.activity.login.NativeLoginActivity;
 import com.a.quarter.view.adapter.main.AddPicAdapter;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
@@ -58,6 +62,7 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
         bindPresenter(new PublishArticlePresenter(), new PublishArticleCallback(this, this));
     }
 
+    // TODO:  点击 监听
     @Override
     public void onClick(View v) {
         switch(v.getId()){
@@ -69,9 +74,27 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
                 }
                 break;
             case R.id.tv_publish:
+                boolean login = App.getInstance().isLogin();
+                if(login){
+                    T.showShort(this,"已登录");
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("是否登录");
 
-                if(!App.isLogin()){
-                    T.showShort(getApplicationContext(), "未登录");
+                    builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(PublishArticleActivity.this, NativeLoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    builder.show();
+
                     return;
                 }
                 T.showShort(getApplicationContext(), "发表文章");
@@ -84,7 +107,7 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
 
     //开始请求发表文章的接口
     private HashMap<String, String> map;
-//    private String pictureName = null;
+    //private String pictureName = null;
     private String pictureName = "1";
     private void publish() {
         if(map==null){
