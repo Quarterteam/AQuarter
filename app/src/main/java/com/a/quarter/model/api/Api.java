@@ -71,4 +71,6 @@ public interface Api {
     @GET(Constants.DETAILS_COMMENT)  // TODO: 详情 评论
     Observable<DetailsCommemt> detailsCommemt();
 
+
+
 }

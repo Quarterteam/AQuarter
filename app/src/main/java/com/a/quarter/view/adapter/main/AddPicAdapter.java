@@ -104,7 +104,8 @@ public class AddPicAdapter extends RecyclerView.Adapter{
 
             this.ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
 
-
+            ivAddIcon = (ImageView)itemView.findViewById(R.id.iv_add_icon);
+            ivAddIcon.setImageResource(R.mipmap.add_pic);
             this.ivAddIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

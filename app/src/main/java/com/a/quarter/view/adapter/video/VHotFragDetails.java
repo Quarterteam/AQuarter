@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.utils.QQLoginShareUtils;
-import com.a.quarter.view.activity.UserPageActivity;
+import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.umeng.socialize.UMShareAPI;
