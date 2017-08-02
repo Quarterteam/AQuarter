@@ -102,9 +102,9 @@ public class AddPicAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     //添加一张新的图片
-                    if(list.size()>1){
-                        list.add(list.size()-2, new AddPicItemBean(TYPE_NORMAL));
-                        notifyItemInserted(list.size()-2);
+                    if(list.size()>=1){
+                        list.add(list.size()-1, new AddPicItemBean(TYPE_NORMAL));
+                        notifyItemInserted(list.size()-1);
                     }else{
                         list.add(0, new AddPicItemBean(TYPE_NORMAL));
                         notifyItemInserted(0);

@@ -84,7 +84,7 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
 
     //开始请求发表文章的接口
     private HashMap<String, String> map;
-//    private String pictureName = null;
+    //private String pictureName = null;
     private String pictureName = "1";
     private void publish() {
         if(map==null){
