@@ -3,7 +3,6 @@ package com.exa.framelib_rrm.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.inputmethodservice.InputMethodService;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -52,5 +51,6 @@ public class ActivityUtils{
             ims.hideSoftInputFromWindow(et.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
 
 }

@@ -1,9 +1,14 @@
 package com.a.quarter.model.api;
 
+import com.a.quarter.model.bean.DetailsPraiseBean;
 import com.a.quarter.model.bean.login.ChangePwdResponse;
-import com.a.quarter.model.bean.login.VertifyCodeResponse;
 import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.model.bean.login.RegisterResponse;
+import com.a.quarter.model.bean.login.VertifyCodeResponse;
+import com.a.quarter.model.bean.video.DetailsCommemt;
+import com.a.quarter.model.bean.video.DetailsTrample;
+import com.a.quarter.model.bean.video.VHotBean;
+import com.a.quarter.model.bean.video.VVcicinity;
 import com.a.quarter.model.utils.Constants;
 
 import java.util.HashMap;
@@ -12,6 +17,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -43,4 +49,20 @@ public interface Api {
     @POST(Constants.CHANGE_PASSWORD)
     @FormUrlEncoded
     Observable<ChangePwdResponse> changePwd(@Field("password") String pwd);
+
+    @GET(Constants.VIDEO_HOT)  // TODO: 视频中 热门
+    Observable<VHotBean> VHotFrag();
+
+    @GET(Constants.VIDEO_HOT)  // TODO: 视频中 附近
+    Observable<VVcicinity> vcicinity();
+
+    @GET(Constants.DETAILS_PRAISE)  // TODO: 详情 赞
+    Observable<DetailsPraiseBean> detailsPraise();
+
+    @GET(Constants.DETAILS_TRAMPLE)  // TODO: 详情 踩
+    Observable<DetailsTrample> detailstrample();
+
+    @GET(Constants.DETAILS_COMMENT)  // TODO: 详情 评论
+    Observable<DetailsCommemt> detailsCommemt();
+
 }

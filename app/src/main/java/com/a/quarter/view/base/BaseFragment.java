@@ -57,6 +57,7 @@ public abstract class BaseFragment<P extends BasePresenter, C extends BaseCallba
         mPresenter = presenter;
         mCallback = callback;
         mPresenter.attacView(mCallback);
+
     }
 
     @Override

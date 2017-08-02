@@ -18,10 +18,11 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ItemBean;
-import com.a.quarter.view.media.IjkVideoView;
 import com.a.quarter.utils.AnimationsUtils;
 
 import java.util.ArrayList;
+
+import media.IjkVideoView;
 
 
 /**
