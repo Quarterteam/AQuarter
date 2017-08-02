@@ -6,8 +6,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.collect.MyCollectItemBean;
 import com.a.quarter.view.adapter.mycollect.MyCollectAdapter;
 import com.a.quarter.view.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -28,9 +32,13 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
     TextView mDelete;
     @Bind(R.id.collect_recycler)
     RecyclerView recyclerView;
+    @Bind(R.id.collect_recycler_delete)//删除
+    TextView mTvDelete;
+    @Bind(R.id.collect_recycler_cancel)//取消
+    TextView mCancel;
     private LinearLayoutManager linearLayoutManager;
     private MyCollectAdapter adapter;
-
+    List<MyCollectItemBean>list=new ArrayList<>();
     @Override
     protected int getContentViewId() {
         return R.layout.activity_mycollect;
@@ -40,6 +48,8 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
     protected void initViews() {
         mtvBack.setOnClickListener(this);
         mDelete.setOnClickListener(this);
+        mTvDelete.setOnClickListener(this);
+        mCancel.setOnClickListener(this);
         mTvHead.setText("我的收藏");
         mDelete.setText("删除");
     }
@@ -50,19 +60,38 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new MyCollectAdapter(this);
         recyclerView.setAdapter(adapter);
-
+        for (int i = 0; i <2 ; i++) {
+            MyCollectItemBean myCollectItemBean = new MyCollectItemBean(false,false,false);
+            list.add(myCollectItemBean);
+        }
+         adapter.setData(list);
+        adapter.notifyDataSetChanged();
     }
-public void setVisi(){
 
-}
+
     @Override
     public void onClick(View view) {
       switch (view.getId()){
           case R.id.tv_back:
               finish();
               break;
-           case R.id.tv_right://删除
-               System.out.println("删除");
+           case R.id.tv_right://点击删除 显示编辑框
+               for (int i = 0; i <2 ; i++) {
+                   list.get(i).setVisibility(true);
+               }
+               adapter.notifyDataSetChanged();
+               mTvDelete.setVisibility(View.VISIBLE);
+               mCancel.setVisibility(View.VISIBLE);
+          break;
+           case R.id.collect_recycler_delete:
+               break;
+           case R.id.collect_recycler_cancel://取消隐藏删除条
+               for (int i = 0; i <2 ; i++) {
+                   list.get(i).setVisibility(false);
+               }
+               adapter.notifyDataSetChanged();
+               mTvDelete.setVisibility(View.GONE);
+               mCancel.setVisibility(View.GONE);
 
           break;
 

@@ -7,7 +7,8 @@
         android:id="@+id/userpage_image_show"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@mipmap/bg11" />
+        android:background="@mipmap/bg11"
+        android:layout_alignParentTop="true" />
 
     <ImageView
         android:id="@+id/userpage_image_back"
@@ -79,16 +80,20 @@
         android:id="@+id/userpage_Text_attention"
         style="@style/userpage.Text.attention"
         android:text="+关注" />
-
+   <RelativeLayout
+       android:id="@+id/Relative_id"
+       android:layout_below="@id/userpage_Text_attention"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="50dp"
+       android:layout_marginTop="10dp"
+       >
     <LinearLayout
         android:id="@+id/linwoke"
+        android:layout_marginLeft="10dp"
         style="@style/Linear_wrap_hor"
-        android:layout_below="@id/userpage_Text_attention"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="10dp">
-
+      >
         <TextView
-
             android:id="@+id/wokes1"
             style="@style/userpage.Image.woke"
             android:text="作品  (" />
@@ -108,15 +113,14 @@
         android:layout_width="80dp"
         android:layout_height="3dp"
         android:layout_below="@id/linwoke"
-        android:layout_marginLeft="65dp"
         android:layout_marginTop="5dp"
         android:background="@color/blue"></View>
-
+   </RelativeLayout>
     <View
         android:id="@+id/view_horr"
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:layout_below="@id/view_hor"
+        android:layout_below="@id/Relative_id"
         android:background="@color/grayAdd"></View>
 
     <android.support.v7.widget.RecyclerView

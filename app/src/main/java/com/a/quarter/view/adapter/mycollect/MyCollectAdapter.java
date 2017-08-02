@@ -15,10 +15,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.collect.MyCollectItemBean;
 import com.a.quarter.model.utils.AnimUtils;
 import com.a.quarter.utils.FrescoCircleUtils;
 import com.a.quarter.utils.QQLoginShareUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import media.IjkVideoView;
 
@@ -31,17 +35,26 @@ import media.IjkVideoView;
 
 public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHolder> implements View.OnClickListener {
     private Context context;
-    private boolean flag = true;
-    private boolean playBo=false;
+    private List<MyCollectItemBean>list=new ArrayList<>();
+
     private View view1;
     private View popView;
     private PopupWindow popupWindow;
+    private LinearLayoutManager linearLayoutManager;
+    private MyCollectItemAdapter myCollectItemAdapter;
+
     public MyCollectAdapter(Context context) {
         this.context = context;
     }
-
+    public void setData(List<MyCollectItemBean> mlist){
+        if (mlist!=null){
+            list.addAll(mlist);
+        }
+    };
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        linearLayoutManager = new LinearLayoutManager(context);
+        myCollectItemAdapter = new MyCollectItemAdapter(context);
         view1 = View.inflate(context, R.layout.item_userpage, null);
         MyHolder myHolder = new MyHolder(view1);
         setPopwindow();
@@ -49,31 +62,37 @@ public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHo
     }
 
     @Override
-    public void onBindViewHolder(final MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, final int position) {
         //显示
+if (list.get(position).isVisibility()){
+    holder.boxDel.setVisibility(View.VISIBLE);
+}else{
+    holder.boxDel.setVisibility(View.GONE);
+}
+        //设置头像
+        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://f2.kkmh.com/image/170119/lbejli3bs.webp-w180"));
 
-        //设置数据
-        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
         holder.tvTitle.setText("天蝎喝牛奶");
         holder.tvTime.setText("2017-7-20  14:20");
-        holder.tvPublish.setText("妹子智斗抢劫男，标题总是这样滴");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        holder.tvPublish.setText("天气美美的，适合");
+
         holder.recyclerView.setLayoutManager(linearLayoutManager);
-        MyCollectItemAdapter myCollectItemAdapter = new MyCollectItemAdapter(context);
+
         holder.recyclerView.setAdapter(myCollectItemAdapter);
         //动画
         holder.jokeImageRigth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (flag == true) {
-                    flag = false;
-                    holder.jokeImageRigth.setImageResource(R.mipmap.packup2);
-                    AnimUtils.setTransRot(0f, -90f, 0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
-                } else {
-                    flag = true;
+                if (list.get(position).isAnimshow()) {
+                    list.get(position).setAnimshow(false);
                     holder.jokeImageRigth.setImageResource(R.mipmap.icon_open);
-                    AnimUtils.setTransRot(0f, 90f, 1f, 0f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+                    AnimUtils.setAlpha(1f, 0f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+
+                } else {
+                    list.get(position).setAnimshow(true);
+                    holder.jokeImageRigth.setImageResource(R.mipmap.icon_packup);
+                    AnimUtils.setAlpha(0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
                 }
             }
         });

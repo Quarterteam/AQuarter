@@ -48,7 +48,6 @@ public class SlidingmenuToActivity extends BaseActivity {
     @Override
     public void setIntent(Intent newIntent) {
         super.setIntent(newIntent);
-
         String tag = newIntent.getStringExtra("tag");
         Log.i("alidingmenuto", tag);
     }

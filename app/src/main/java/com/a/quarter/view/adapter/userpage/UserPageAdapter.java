@@ -14,10 +14,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.userpage.UserPageItemBean;
 import com.a.quarter.model.utils.AnimUtils;
 import com.a.quarter.utils.FrescoCircleUtils;
 import com.a.quarter.utils.QQLoginShareUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import media.IjkVideoView;
 
@@ -32,8 +36,8 @@ import media.IjkVideoView;
 
 public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHolder> implements View.OnClickListener {
     private Context context;
-    private boolean flag = true;
-    private boolean playBo=false;
+    private List<UserPageItemBean> list=new ArrayList<>();
+
     private View view1;
     private View popView;
     private PopupWindow popupWindow;
@@ -41,7 +45,11 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
     public UserPageAdapter(Context context) {
         this.context = context;
     }
-
+    public void setData(List<UserPageItemBean> mlist){
+        if (mlist!=null){
+            list.addAll(mlist);
+        }
+    };
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         view1 = View.inflate(context, R.layout.item_userpage, null);
@@ -51,10 +59,10 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
     }
 
     @Override
-    public void onBindViewHolder(final MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, final int position) {
 
         //设置数据
-        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
+        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://f2.kkmh.com/image/170119/lbejli3bs.webp-w180"));
         holder.tvTitle.setText("天蝎喝牛奶");
         holder.tvTime.setText("2017-7-20  14:20");
         holder.tvPublish.setText("妹子智斗抢劫男，标题总是这样滴");
@@ -67,14 +75,15 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
             @Override
             public void onClick(View view) {
 
-                if (flag == true) {
-                    flag = false;
-                    holder.jokeImageRigth.setImageResource(R.mipmap.packup2);
-                    AnimUtils.setTransRot(0f, -90f, 0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
-                } else {
-                    flag = true;
+                if (list.get(position).isAnimshow()) {
+                    list.get(position).setAnimshow(false);
                     holder.jokeImageRigth.setImageResource(R.mipmap.icon_open);
                     AnimUtils.setTransRot(0f, 90f, 1f, 0f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+                } else {
+                    list.get(position).setAnimshow(true);
+                    holder.jokeImageRigth.setImageResource(R.mipmap.packup2);
+                    AnimUtils.setTransRot(0f, -90f, 0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+
                 }
             }
         });

@@ -9,8 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.msginform.MsgInformItemBean;
 import com.a.quarter.utils.FrescoCircleUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 类的作用：
@@ -21,11 +25,15 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.MyHolder> {
     private Context context;
-
+    private List<MsgInformItemBean> list=new ArrayList<>();
     public MsgListAdapter(Context context) {
         this.context = context;
     }
-
+    public void setData(List<MsgInformItemBean> mlist){
+        if (mlist!=null){
+            list.addAll(mlist);
+        }
+    };
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.item_msg, null);
@@ -35,7 +43,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.MyHolder
 
     @Override
     public void onBindViewHolder(final MyHolder holder, int position) {
-        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
+        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://f2.kkmh.com/image/170119/lbejli3bs.webp-w180"));
 
 
     }

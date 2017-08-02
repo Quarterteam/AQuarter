@@ -22,7 +22,7 @@
         android:layout_height="35dp"
         android:layout_below="@id/view_userpage"
         android:layout_marginLeft="20dp"
-        />
+        android:src="@mipmap/user_icon" />
 
     <TextView
         android:id="@+id/item_userpage_Text_title"
