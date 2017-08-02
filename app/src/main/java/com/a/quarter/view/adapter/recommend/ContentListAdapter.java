@@ -48,10 +48,11 @@ import media.IjkVideoView;
  * 目前共有三种条目：1、轮播图banner；2、视频条目；3、图片条目
  *
  * 是创建ViewHolder的时候，出现的卡顿？
- * 视频停止的问题？
  *
+ * 视频停止的问题？
  * 所有条目只使用一个IjkVideoView，remove之后可能会出现上个播放视频的条目在视频的位置一片空白的情况
- * 怎么监听一个条目的完全消失？在条目完全消失的时候，remove掉IjkVideoView
+ * 怎么监听一个条目的完全消失，在条目完全消失的时候，remove掉IjkVideoView？
+ * （使用RecyclerView的OnChildAttachStateChangeListener监听条目从屏幕上移除的时刻，这时停止视频）
  *
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
@@ -86,7 +87,6 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         } else if (viewType == TYPE_VIDEO) {
             //视频条目
             holder = new VideoViewHolder(inflater.inflate(R.layout.item_content_list_type_video, parent, false));
-            //holder = new ImageViewHolder(inflater.inflate(R.layout.item_test_recommend_rv_type2, parent, false));
         }
         return holder;
     }
@@ -113,12 +113,10 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         return list.size();
     }
 
-
     private Banner banner;
     //轮播图对应的ViewHolder
     class Head1ViewHolder extends RecyclerView.ViewHolder {
-//
-//        private Banner banner;
+        //private Banner banner;
 
         public Head1ViewHolder(View itemView) {
             super(itemView);
@@ -462,7 +460,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
     //图片条目
     class ImageViewHolder extends NormalItemViewHolder{
-//        ImageView ivImg;
+        //ImageView ivImg;
         SimpleDraweeView ivImg;
 
         public ImageViewHolder(View itemView) {
@@ -483,7 +481,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         }
 
         public void showImage() {
-//            ivImg.setImageResource(list.get(position).imgResourceId);
+            //ivImg.setImageResource(list.get(position).imgResourceId);
             ivImg.setActualImageResource(list.get(position).imgResourceId);
         }
     }
@@ -493,37 +491,22 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     //视频条目
     public class VideoViewHolder extends NormalItemViewHolder {
 
-//        MyIjkVideoView player;
         FrameLayout videoContainer;
-//        ImageView ivVideoThumb;
         SimpleDraweeView ivVideoThumb;
         ImageView ivVideoStartIcon;
 
         public VideoViewHolder(View itemView) {
             super(itemView);
 
-//            player = (MyIjkVideoView) itemView.findViewById(R.id.ijkVideoView);
             videoContainer = (FrameLayout) itemView.findViewById(R.id.fl_video_container);
             ivVideoThumb = (SimpleDraweeView) itemView.findViewById(R.id.iv_video_thumb);
             ivVideoStartIcon = (ImageView) itemView.findViewById(R.id.iv_video_start_icon);
 
-//            player.setMediaController(new AndroidMediaController(context));
             ivVideoStartIcon.setOnClickListener(this);
         }
 
         public void showVideo() {
-//            if(player!=null){
-//                if(player.isPlaying()){
-//                    player.stopPlayback();//因为可能是复用的条目，所以先停止播放视频
-//                }
-//                player.release(true);
-//                ViewGroup parent = (ViewGroup) player.getParent();
-//                if(parent!=null){
-//                    parent.removeView(player);//所有条目只使用一个IjkVideoView，
-//                }
-//            }
             if(ivVideoStartIcon.getVisibility()!=View.VISIBLE){
-//                contentListBean = list.get(position);
                 ivVideoStartIcon.setVisibility(View.VISIBLE);
                 ivVideoThumb.setVisibility(View.VISIBLE);
             }
@@ -578,18 +561,14 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             if(player!=null){
                 ViewGroup parent = (ViewGroup) player.getParent();
                 if(parent!=null){
-                    long t = System.currentTimeMillis();
-                    parent.removeView(player);//所有条目只使用一个IjkVideoView，
+                    //long t = System.currentTimeMillis();
+                    parent.removeView(player);
 //                    new Thread(){
 //                        @Override
 //                        public void run() {
-//                            //放在子线程里释放资源，会报错吗？（不会。卡顿也减少了。）
-//                            if(player.isPlaying()){
-//                                player.stopPlayback();
-//                            }
 //                            player.release(true);
 //                        }
-//                    }.start();//耗时：16
+//                    }.start();
                     Observable.create(new ObservableOnSubscribe<Integer>() {
                         @Override
                         public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
@@ -602,7 +581,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe();//耗时：42
 
-                    LogUtils.i("resetItem removePlayerView，耗时："+(System.currentTimeMillis()-t));
+                    //LogUtils.i("resetItem removePlayerView，耗时："+(System.currentTimeMillis()-t));
                 }
             }
             if(ivVideoStartIcon.getVisibility()!=View.VISIBLE) {
