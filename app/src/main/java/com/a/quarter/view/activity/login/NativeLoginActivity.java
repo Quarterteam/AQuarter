@@ -137,8 +137,8 @@ public class NativeLoginActivity extends BaseActivity<LoginPresenter, NativeLogi
         protected void onDealNextResponse(LoginResponse response, BaseTag tag) {
             if("200".equals(response.code)){
                 T.showShort(mAppContext, "登录成功！");
+                response.user.loginType = "native";
                 App.getInstance().saveUserInfo(response.user);
-
 
                 //关闭本页面
                 getHost().setResult(1);

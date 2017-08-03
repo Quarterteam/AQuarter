@@ -18,6 +18,8 @@ package media;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -228,10 +230,19 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView {
             mWidth = 0;
             mHeight = 0;
 
+//            if(mSurfaceHolder!=null){
+//                Canvas canvas = mSurfaceHolder.lockCanvas();
+//                if(canvas!=null){
+//                    canvas.drawColor(Color.GRAY);
+//                    mSurfaceHolder.unlockCanvasAndPost(canvas);
+//                }
+//            }
+
             ISurfaceHolder surfaceHolder = new InternalSurfaceHolder(mWeakSurfaceView.get(), mSurfaceHolder);
             for (IRenderCallback renderCallback : mRenderCallbackMap.keySet()) {
                 renderCallback.onSurfaceCreated(surfaceHolder, 0, 0);
             }
+
         }
 
         @Override
@@ -263,6 +274,14 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView {
             for (IRenderCallback renderCallback : mRenderCallbackMap.keySet()) {
                 renderCallback.onSurfaceChanged(surfaceHolder, format, width, height);
             }
+
+//            if(mSurfaceHolder!=null){
+//                Canvas canvas = mSurfaceHolder.lockCanvas();
+//                if(canvas!=null){
+//                    canvas.drawColor(Color.GRAY);
+//                    mSurfaceHolder.unlockCanvasAndPost(canvas);
+//                }
+//            }
         }
     }
 
@@ -284,4 +303,17 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView {
             info.setClassName(SurfaceRenderView.class.getName());
         }
     }
+
+//    @Override
+//    protected void onDraw(Canvas canvas) {
+//        canvas.drawRGB(255,255,255);//背景色  无效
+//        super.onDraw(canvas);
+//    }
+//
+//    @Override
+//    public void onDrawForeground(Canvas canvas) {
+//        canvas.drawRGB(255,255,255);//背景色  无效
+//        super.onDrawForeground(canvas);
+//    }
+
 }

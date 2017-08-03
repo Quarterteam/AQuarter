@@ -1,12 +1,15 @@
 package com.a.quarter.view.adapter.recommend;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -519,6 +522,10 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
             //点击视频开始图标的时候，才初始化视频
             if(v == ivVideoStartIcon){
+                if(!NetUtils.isConnected()){
+                    T.showShort(context, "没有连接网络！");
+                    return;
+                }
                 if(!NetUtils.isWifiActivity(context)){
                     T.showShort(context, "正在使用不是WiFi，请注意流量！");
                 }
@@ -528,8 +535,10 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                     if(player==null){
                         player = new IjkVideoView(context);
                         player.setMediaController(new AndroidMediaController(context));
+                        player.setBackgroundColor(Color.GRAY);
+                        player.setRender(IjkVideoView.RENDER_TEXTURE_VIEW);//如果使用SurfaceView的话，SlidingMenu滑动时视频区域会变透明
                     }else{
-                        player.stopPlayback();
+                        //player.stopPlayback();
                         player.release(true);
                         ViewGroup parent = (ViewGroup) player.getParent();
                         if(parent!=null){
@@ -555,6 +564,35 @@ public class ContentListAdapter extends RecyclerView.Adapter {
          *
          * RecyclerView第一次滑动的时候也会有卡顿，为什么？
          * Slidingmenu滑动的时候，视频的位置会变成透明的，为什么？
+         * case RENDER_SURFACE_VIEW:
+         * SurfaceRenderView renderView.setZOrderOnTop(true);
+         * 一开始视频还没加载好的时候，会是白色的背景。
+         *
+         * 会挡住原来在视频右边的按钮？
+         * 会把视频画面显示在屏幕的最外层，只在状态栏的下层，而且被挡住的按钮也可以点击。
+         *
+         * renderView.setBackgroundColor(Color.GRAY);会导致视频画面被挡住。
+         *
+         * 视频区域在滑动时总是变透明，是因为默认使用的是SurfaceView。
+         *
+         * 使用player.setRender(IjkVideoView.RENDER_TEXTURE_VIEW);可以解决透明问题，
+         * 但是TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)？
+         *
+         *
+         * MediaController不会跟随着移动?
+         * MediaController的本质是一个FrameLayout
+         * 因为使用的是
+         * mWindowManager.addView(mDecor, mDecorLayoutParams);
+         * mWindowManager.removeView(mDecor);
+         * 直接在屏幕上添加，移除MediaController
+         *
+         * renderView.setBackgroundColor(Color.DKGRAY);
+         *
+         * 可以写一个自己的MediaController吗？
+         * 不用，只需要使用updateFloatingWindowLayout
+         *
+         * 点击右上角才出现那些图标
+         *
          * */
         public void resetItem() {
             //LogUtils.i("resetItem start");
@@ -590,7 +628,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                 ivVideoThumb.setActualImageResource(list.get(position).videoThumbResourceId);
                 //LogUtils.i("resetItem setActualImageResource");
             }
-            LogUtils.i("resetItem end");
+            //LogUtils.i("resetItem end");
         }
     }
 

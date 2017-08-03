@@ -20,6 +20,8 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -33,6 +35,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.MediaController;
 import android.widget.TableLayout;
@@ -193,6 +196,10 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                 LayoutParams.WRAP_CONTENT,
                 Gravity.CENTER);
         renderUIView.setLayoutParams(lp);
+//
+//        renderUIView.setBackgroundColor(Color.DKGRAY);//视频会被挡住
+//        renderUIView.set
+
         addView(renderUIView);
 
         mRenderView.addRenderCallback(mSHCallback);
@@ -212,11 +219,26 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                     renderView.setVideoSampleAspectRatio(mMediaPlayer.getVideoSarNum(), mMediaPlayer.getVideoSarDen());
                     renderView.setAspectRatio(mCurrentAspectRatio);
                 }
+                //renderView.setBackgroundColor(Color.DKGRAY);
                 setRenderView(renderView);
                 break;
             }
             case RENDER_SURFACE_VIEW: {
                 SurfaceRenderView renderView = new SurfaceRenderView(getContext());
+//                renderView.setBackgroundColor(Color.DKGRAY);
+
+                //renderView.setZOrderOnTop(true);//滑动页面时，视频位置背景透明的问题
+                // 最近发现一个新的问题，这个方法必须在布局一开始绘制时进行调用才会生效，
+                // 并且设置了该方法后videoview上的别的空间会被遮挡，虽然依然能够被点击。
+                // http://blog.csdn.net/ccw0054/article/details/54948934
+
+//                renderView.getView().setBackgroundColor(Color.DKGRAY);
+//                renderView.setBackgroundColor(Color.DKGRAY);
+//                renderView.setZOrderOnTop(true);
+////                renderView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+//                renderView.setZOrderMediaOverlay(true);
+// 无效
+
                 setRenderView(renderView);
                 break;
             }
