@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     slidingMenu.toggle();
                 }
                 break;
-            case R.id.iv_right:
+            case R.id.iv_right: // TODO: 编译
 //                if(App.isLogin()){
                 ActivityUtils.jumpIn(this, CreationActivity.class);
 //                }else{

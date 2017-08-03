@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -28,7 +27,17 @@
         <meta-data
             android:name="design_height"
             android:value="1280" />
+        <activity
+            android:name=".view.activity.welcome.WelcomeActivity"
+            android:theme="@style/Theme.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--设置页面-->
         <activity android:name=".view.activity.main.MainActivity">
         </activity>
         <activity
@@ -40,28 +49,18 @@
             android:theme="@style/Theme.FullScreen" />
         <activity android:name=".view.activity.main.MyFollowActivity" />
         <activity android:name=".view.activity.main.HotFollowActivity" />
-        <activity android:name=".view.activity.main.PublishArticleActivity" />
         <activity android:name=".view.adapter.video.VHotFragDetails"/>
-        <activity
-            android:name=".view.activity.welcome.WelcomeActivity"
-            android:theme="@style/Theme.FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".view.activity.main.SearchFriendActivity" />
         <activity android:name=".view.activity.login.ThirdPartyLoginActivity"
-            android:theme="@style/Theme.FullScreen"></activity>
-
-        <activity android:name=".view.activity.userpage.UserPageActivity"></activity>
-        <activity android:name=".view.activity.msginform.MsgInformActivity"></activity>
-        <activity android:name=".view.activity.mycollect.MyCollectActivity"></activity>
-
-
-<!--设置页面-->
-        <activity android:name=".view.activity.configure.SlidingmenuToActivity"></activity>
+            android:theme="@style/Theme.FullScreen"
+            />
+        <activity android:name=".view.activity.userpage.UserPageActivity"/>
+        <activity android:name=".view.activity.msginform.MsgInformActivity"/>
+        <activity android:name=".view.activity.mycollect.MyCollectActivity"/>
+        <activity android:name=".view.activity.configure.SlidingmenuToActivity"/>
+        <activity android:name=".view.activity.compile.CreationActivity"/>
+        <activity android:name=".view.activity.compile.VideoActivity"/>
+        <activity android:name=".view.activity.compile.PublishArticleActivity"/>
         <!--QQ登录分享配置-->
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
