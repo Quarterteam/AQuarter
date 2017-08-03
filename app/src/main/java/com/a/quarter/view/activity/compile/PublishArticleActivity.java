@@ -1,9 +1,9 @@
-package com.a.quarter.view.activity.main;
+package com.a.quarter.view.activity.compile;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -134,7 +134,7 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
     }
 
     //发表文章的结果监听
-    static class PublishArticleCallback extends RxCallback<PublishArticleResponse, PublishArticleActivity, BaseTag>{
+    static class PublishArticleCallback extends RxCallback<PublishArticleResponse, PublishArticleActivity, BaseTag> {
 
         public PublishArticleCallback(PublishArticleActivity host, Context mContext) {
             super(host, mContext);

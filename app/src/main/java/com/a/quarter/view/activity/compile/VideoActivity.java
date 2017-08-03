@@ -1,4 +1,4 @@
-package com.a.quarter.view.activity.main;
+package com.a.quarter.view.activity.compile;
 
 import android.view.View;
 import android.widget.TextView;
