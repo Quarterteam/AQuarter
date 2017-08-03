@@ -17,6 +17,7 @@ import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.utils.ActivityUtils;
+import com.exa.framelib_rrm.utils.T;
 import com.umeng.socialize.UMShareAPI;
 
 import butterknife.Bind;
@@ -56,7 +57,7 @@ public class VHotFragDetails extends BaseActivity {
     @Bind(R.id.hotdetails_send)
     Button hotdetailsSend;
     private AndroidMediaController mMediaController;
-    private  String url="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud";
+    private String url = "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud";
     private MediaMetadataRetriever mMetadataRetriever;
     private boolean mBackPressed;
 
@@ -90,30 +91,64 @@ public class VHotFragDetails extends BaseActivity {
 
     }
 
-    @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user,R.id.hotdetails_send})
+//    @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user,R.id.hotdetails_send})
+//    public void onClick(View view) {
+//        switch (view.getId()) {
+//            case R.id.hotdetails_return://// TODO: 返回键
+//                finish();
+//                break;
+//            case R.id.hotdetails_love:// TODO: 喜欢
+//
+//                break;
+//            case R.id.hotdetails_nolove:// TODO: 不喜欢
+//                break;
+//            case R.id.hotdetails_share:// TODO: 分享
+//              {
+//                  QQLoginShareUtils uti = new QQLoginShareUtils();
+//                  String titele="视频标题";
+//                  String content="视频内容";
+//                  Log.e("111111111111",titele);
+//                //  QQLoginShareUtils.setShare(url,titele,content,VHotFragDetails.this);
+//
+//            //   uti.setShare(url,titele,content,context);
+//               }
+//                break;
+//            case R.id.hotdetails_user:// TODO: 用户
+//                ActivityUtils.jumpIn(this, UserPageActivity.class);
+//                break;
+//            case R.id.hotdetails_send:// TODO: 发表
+//                break;
+//
+//        }
+//    }
+
+    @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user, R.id.hotdetails_send})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.hotdetails_return://// TODO: 返回键
+            case R.id.hotdetails_return:
+                T.showShort(this,"回退");
                 finish();
                 break;
-            case R.id.hotdetails_love:// TODO: 喜欢
-
+            case R.id.hotdetails_love:
                 break;
-            case R.id.hotdetails_nolove:// TODO: 不喜欢
+            case R.id.hotdetails_nolove:
                 break;
-            case R.id.hotdetails_share:// TODO: 分享
-              {
+            case R.id.hotdetails_share:
+//                QQLoginShareUtils uti = new QQLoginShareUtils();
                   String titele="视频标题";
                   String content="视频内容";
+//
+//                uti.setShare(url,titele,content,context);
                   QQLoginShareUtils.setShare(url,titele,content,VHotFragDetails.this);
-               }
+                T.showShort(this,"分享");
                 break;
-            case R.id.hotdetails_user:// TODO: 用户
+            case R.id.hotdetails_user:
+
+                T.showShort(this,"用户");
                 ActivityUtils.jumpIn(this, UserPageActivity.class);
                 break;
-            case R.id.hotdetails_send:// TODO: 发表
+            case R.id.hotdetails_send:
                 break;
-
         }
     }
 
@@ -127,6 +162,7 @@ public class VHotFragDetails extends BaseActivity {
     @OnClick(R.id.hotdetails_send)
     public void onClick() {
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

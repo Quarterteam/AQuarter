@@ -31,8 +31,7 @@ public class QQLoginShareUtils {
     static Button login;
     static SharedPreferences sp;
 
-    public QQLoginShareUtils(Context context, SimpleDraweeView draweeView,
-                         Button login,SharedPreferences sp ){
+    public QQLoginShareUtils(){
         this.context = context;
         this.draweeView = draweeView;
         this.login = login;
@@ -76,7 +75,7 @@ public class QQLoginShareUtils {
         }
     };
 
-    public static UMAuthListener getumAuthListener(){
+    public  UMAuthListener getumAuthListener(){
         return umAuthListener;
     }
 
@@ -96,7 +95,7 @@ public class QQLoginShareUtils {
                 . setCallback(shareListener)//回调监听器
                 .open();
 
-        Log.i("   setShare ","  ===========");
+     //   Log.i("   setShare ","  ===========");
 
     }
     private static UMShareListener shareListener = new UMShareListener() {
