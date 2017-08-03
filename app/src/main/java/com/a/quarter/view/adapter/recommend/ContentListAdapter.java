@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a.quarter.R;
+import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.fragment.recommend.BannerFrescoImageLoader;
 import com.a.quarter.view.fragment.recommend.BannerLocalImageLoader;
 import com.a.quarter.model.bean.recommend.ContentListBean;
@@ -41,6 +42,8 @@ import io.reactivex.functions.Cancellable;
 import io.reactivex.schedulers.Schedulers;
 import media.AndroidMediaController;
 import media.IjkVideoView;
+import tv.danmaku.ijk.media.player.IMediaPlayer;
+import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * Created by acer on 2017/7/29.
@@ -289,7 +292,8 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                     break;
 
                 case R.id.tv_transmit_count:
-                    Toast.makeText(context, "转发？", Toast.LENGTH_SHORT).show();
+
+                    QQLoginShareUtils.setShare("","hello","hello",context);
                     break;
 
                 case R.id.tv_comment_count:
@@ -491,6 +495,8 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     //视频条目
     public class VideoViewHolder extends NormalItemViewHolder {
 
+        private final View include_video;
+        //        MyIjkVideoView player;
         FrameLayout videoContainer;
         SimpleDraweeView ivVideoThumb;
         ImageView ivVideoStartIcon;
@@ -501,6 +507,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             videoContainer = (FrameLayout) itemView.findViewById(R.id.fl_video_container);
             ivVideoThumb = (SimpleDraweeView) itemView.findViewById(R.id.iv_video_thumb);
             ivVideoStartIcon = (ImageView) itemView.findViewById(R.id.iv_video_start_icon);
+            include_video = (View) itemView.findViewById(R.id.include_video);
 
             ivVideoStartIcon.setOnClickListener(this);
         }
@@ -527,7 +534,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                 if(contentListBean.videoUri != null && !TextUtils.isEmpty(contentListBean.videoUri.getPath())){
                     if(player==null){
                         player = new IjkVideoView(context);
-                        player.setMediaController(new AndroidMediaController(context));
+//                        player.setMediaController(new AndroidMediaController(context));
                     }else{
                         player.stopPlayback();
                         player.release(true);
@@ -540,9 +547,23 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                     videoContainer.addView(player);
                     player.setVideoURI(contentListBean.videoUri);
                     player.start();
+                    //开始播放 让右边的include出现
+                    include_video.setVisibility(View.VISIBLE);
+
                     T.showShort(context, "开始播放视频！");
                     ivVideoThumb.setVisibility(View.INVISIBLE);
                     ivVideoStartIcon.setVisibility(View.GONE);
+                    // TODO: 2017/8/2   //设置播放完成地监听
+
+                    player.setOnCompletionListener(new IMediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(IMediaPlayer iMediaPlayer) {
+                            include_video.setVisibility(View.GONE);
+                            ivVideoThumb.setVisibility(View.VISIBLE);
+
+                        }
+                    });
+
                 }else{
                     T.showShort(context, "视频地址为空！");
                 }
@@ -601,6 +622,8 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                 parent.removeView(player);//所有条目只使用一个IjkVideoView，
             }
             player.stopPlayback();
+
+
             player.release(true);
             player = null;
         }

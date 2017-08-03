@@ -158,11 +158,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             case R.id.tv_my_work:
                 setIntent("mywork");
+
+                break;
             case R.id.tv_settings:
                 setIntent("setting");
-                if (slidingMenu != null) {
-                    slidingMenu.toggle();
-                }
                 break;
             case R.id.tv_msg_notify:
                 ActivityUtils.jumpIn(this, MsgInformActivity.class);

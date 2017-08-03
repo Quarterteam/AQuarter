@@ -78,5 +78,4 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.4.0'
     //轮播图
     compile 'com.youth.banner:banner:1.4.9'
-
 }

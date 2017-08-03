@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#EBEBEB">
 
-    <include
-        android:id="@+id/setting_include_head"
-        layout="@layout/include_main_head"></include>
+    <TextView
+        android:id="@+id/setting_text_update"
+        style="@style/Setting.Update.Type" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/setting_recycler"
-        style="@style/SlidMenuto.Setting.Recycler.Type"></android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/setting_text_version"
+        style="@style/Setting.Version.Type"></TextView>
+
+    <ImageView
+        style="@style/Setting.Image.Type"></ImageView>
+
+    <View
+        android:id="@+id/view01"
+        style="@style/Setting.View.Type"
+        ></View>
+    <TextView
+        android:id="@+id/setting_text_suggestionBack"
+        style="@style/Setting.Suggestion.Type"
+
+       />
+    <ImageView
+        style="@style/Setting.Image02.Type"
+        ></ImageView>
+
+    <TextView
+      style="@style/Setting.OnInfo.Type"
+        android:id="@+id/setting_text_oninfo"
+
+      />
+    <ImageView
+        style="@style/Setting.Imageoninfo.Type"
+        android:id="@+id/imageView"></ImageView>
+    <View
+        style="@style/Setting.View02.Type"
+        android:id="@+id/view02"
+        ></View>
+
+    <TextView
+        style="@style/Setting.ClearCache.Type"
+        android:id="@+id/setting_text_clearCache"
+        />
+    <TextView
+        style="@style/Setting.CacheSize.Type"
+        />
+    <ImageView
+        style="@style/Setting.ImageClearCache.Type"
+        android:layout_below="@+id/setting_text_oninfo"
+      ></ImageView>
+
 
     <Button
-        android:id="@+id/setting_button_exit"
-        style="@style/SlidMenuto.Setting.Button.Type" />
+    android:id="@+id/setting_button_exit"
+    style="@style/SlidMenuto.Setting.Button.Type"
+         />
 </RelativeLayout>
