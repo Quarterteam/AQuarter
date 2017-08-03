@@ -87,16 +87,12 @@ public class QQLoginShareUtils {
         web.setTitle(title);//标题
         //   web.setThumb(thumb);  //缩略图
         web.setDescription(Description);//描述
-
         new ShareAction((Activity) con)
                //
                 .setDisplayList( SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE)
                 .withMedia(web)
                 . setCallback(shareListener)//回调监听器
                 .open();
-
-     //   Log.i("   setShare ","  ===========");
-
     }
     private static UMShareListener shareListener = new UMShareListener() {
         /**

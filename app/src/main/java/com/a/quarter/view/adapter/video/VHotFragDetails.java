@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +16,6 @@ import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.utils.ActivityUtils;
-import com.exa.framelib_rrm.utils.T;
 import com.umeng.socialize.UMShareAPI;
 
 import butterknife.Bind;
@@ -95,12 +93,12 @@ public class VHotFragDetails extends BaseActivity {
     @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user,R.id.hotdetails_send})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.hotdetails_return://// TODO: 返回键
+            case R.id.hotdetails_return:// TODO: 返回键
                 finish();
                 break;
-            case R.id.hotdetails_love:
+            case R.id.hotdetails_love:// TODO: 点赞
                 break;
-            case R.id.hotdetails_nolove:
+            case R.id.hotdetails_nolove:// TODO: 踩
                 break;
             case R.id.hotdetails_share:// TODO: 分享
               {
