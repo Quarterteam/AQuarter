@@ -24,16 +24,6 @@ import butterknife.ButterKnife;
 
 public class SettingFragment extends BaseFragment {
 
-    @Bind(R.id.iv_left)
-    CircleImageView ivLeft;
-    @Bind(R.id.tv_title)
-    TextView tvTitle;
-    @Bind(R.id.iv_right)
-    ImageView ivRight;
-    @Bind(R.id.text_back)
-    TextView textBack;
-    @Bind(R.id.setting_recycler)
-    RecyclerView recycler;
     @Bind(R.id.setting_button_exit)
     Button buttonExit;
 
@@ -45,9 +35,6 @@ public class SettingFragment extends BaseFragment {
     @Override
     protected void initViews() {
 
-        ivLeft.setVisibility(View.INVISIBLE);
-        textBack.setVisibility(View.VISIBLE);
-        tvTitle.setText("设置");
 
 
 

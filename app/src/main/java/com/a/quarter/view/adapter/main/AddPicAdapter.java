@@ -56,7 +56,7 @@ public class AddPicAdapter extends RecyclerView.Adapter{
         int viewType = list.get(position).type;
         if(viewType == TYPE_NORMAL){
             PicViewHolder picHolder = (PicViewHolder)holder;
-
+              ((PicViewHolder) holder).image.setImageResource(R.mipmap.raw_duanz);
         }else if(viewType == TYPE_ADD){
             AddIconViewHolder iconHolder = (AddIconViewHolder)holder;
         }

@@ -69,7 +69,8 @@ public class VHotFragDetails extends BaseActivity {
     protected void initViews() {
         Intent intent = getIntent();
         String key = intent.getStringExtra("key");
-        Log.e("key", key);
+//        Log.e("key", key);
+
 
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
@@ -105,6 +106,8 @@ public class VHotFragDetails extends BaseActivity {
               {
                   String titele="视频标题";
                   String content="视频内容";
+
+                  Log.i("share","successful");
                   QQLoginShareUtils.setShare(url,titele,content,VHotFragDetails.this);
                }
                 break;
