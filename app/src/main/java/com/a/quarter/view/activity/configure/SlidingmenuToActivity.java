@@ -1,6 +1,7 @@
 package com.a.quarter.view.activity.configure;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -13,9 +14,10 @@ import com.a.quarter.R;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.slidingmenu.MyWorkFragment;
 import com.a.quarter.view.fragment.slidingmenu.SettingFragment;
-import com.exa.framelib_rrm.base.view.view.CircleImageView;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * desc:
@@ -23,11 +25,11 @@ import butterknife.Bind;
  * date:
  */
 
-public class SlidingmenuToActivity extends BaseActivity {
+public class SlidingmenuToActivity extends BaseActivity implements View.OnClickListener {
 
 
     @Bind(R.id.iv_left)
-    CircleImageView ivLeft;
+    SimpleDraweeView ivLeft;
     @Bind(R.id.tv_title)
     TextView tvTitle;
     @Bind(R.id.iv_right)
@@ -35,7 +37,7 @@ public class SlidingmenuToActivity extends BaseActivity {
     @Bind(R.id.text_back)
     TextView textBack;
     @Bind(R.id.slidTo_container_fram)
-    FrameLayout container;
+    FrameLayout slidToContainerFram;
     private SettingFragment settFragment;
     private FragmentTransaction transaction;
     private MyWorkFragment myWorkFragment;
@@ -55,16 +57,28 @@ public class SlidingmenuToActivity extends BaseActivity {
     @Override
     protected void initViews() {
         textBack.setVisibility(View.VISIBLE);
-        tvTitle.setText("设置");
+        ivRight.setVisibility(View.INVISIBLE);
+
         ivLeft.setVisibility(View.INVISIBLE);
 
+        textBack.setOnClickListener(this);
+        Intent intent = getIntent();
+        String tag = intent.getStringExtra("tag");
+
+
+        Log.i("tag", tag);
         FragmentManager fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
 
-        showFrag(0);
-//        hideFrag(0);
-        showFrag(1);
-        hideFrag(1);
+
+        if (tag.equals("setting")) {
+            tvTitle.setText("设置");
+            showFrag(0);
+        } else {
+            tvTitle.setText("我的作品");
+            showFrag(1);
+        }
+
         transaction.commit();
 
 
@@ -100,25 +114,19 @@ public class SlidingmenuToActivity extends BaseActivity {
         }
     }
 
-    private void hideFrag(int i) {
-        switch (i) {
-            case 0:
-                if (settFragment != null) {
-                    transaction.hide(settFragment);
-                }
-                break;
-            case 1:
-                if (myWorkFragment != null) {
-                    transaction.hide(myWorkFragment);
-                }
-                break;
-
-            default:
-                break;
-
-
-        }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.text_back:
+                finish();
+                break;
+        }
+    }
 }

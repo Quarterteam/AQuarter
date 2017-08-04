@@ -2,13 +2,9 @@ package com.a.quarter.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -26,60 +22,36 @@ import java.util.Set;
  */
 
 public class QQLoginShareUtils {
-    private static Context context;
-    static SimpleDraweeView draweeView;
-    static Button login;
-    static SharedPreferences sp;
-
-    public QQLoginShareUtils(Context context, SimpleDraweeView draweeView,
-                         Button login,SharedPreferences sp ){
-        this.context = context;
-        this.draweeView = draweeView;
-        this.login = login;
-        this.sp = sp;
-    }
 
 
-    private  static UMAuthListener umAuthListener = new UMAuthListener() {
-        @Override
-        public void onStart(SHARE_MEDIA platform) {
-            //授权开始的回调
-        }
-        @Override
-        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            Toast.makeText(context, "Authorize 成功", Toast.LENGTH_SHORT).show();
-            Set<String> strings = data.keySet();
-            SharedPreferences.Editor edit = sp.edit();
-            for (String string : strings) {
-                // 设置头像
-                String touxiang = data.get("profile_image_url");
-                // 设置昵称
-                String nicheng = data.get("screen_name");
-                edit.putString("头像",touxiang);
-                edit.putString("昵称",nicheng);
-                edit.putBoolean("状态",true);
-                draweeView.setImageURI(Uri.parse(touxiang));
-                login.setText(nicheng);
-                edit.commit();
+    public static UMAuthListener getUMAuthListener(final Context context){
+        //return umAuthListener;
+        return new UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA platform) {
+                //授权开始的回调
             }
-        }
-        @Override
-        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            Toast.makeText( context, "Authorize 失败", Toast.LENGTH_SHORT).show();
-            Log.e("---------------------","失败");
-        }
+            @Override
+            public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+                Toast.makeText(context, "Authorize 成功", Toast.LENGTH_SHORT).show();
+                Set<String> strings = data.keySet();
+                for (String string : strings) {
+                    Log.e("---------------------",string+":"+data.get(string));
+                }
+            }
+            @Override
+            public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+                Toast.makeText( context, "Authorize 失败", Toast.LENGTH_SHORT).show();
+                Log.e("---------------------","失败");
+            }
 
-        @Override
-        public void onCancel(SHARE_MEDIA platform, int action) {
-            Toast.makeText( context, "Authorize 取消", Toast.LENGTH_SHORT).show();
-            Log.e("---------------------","取消");
-        }
-    };
-
-    public static UMAuthListener getumAuthListener(){
-        return umAuthListener;
+            @Override
+            public void onCancel(SHARE_MEDIA platform, int action) {
+                Toast.makeText( context, "Authorize 取消", Toast.LENGTH_SHORT).show();
+                Log.e("---------------------","取消");
+            }
+        };
     }
-
 
     // TODO: 链接分享
     public static void setShare(String url, String title, String Description,Context con){
@@ -88,18 +60,14 @@ public class QQLoginShareUtils {
         web.setTitle(title);//标题
         //   web.setThumb(thumb);  //缩略图
         web.setDescription(Description);//描述
-
         new ShareAction((Activity) con)
-               //
                 .setDisplayList( SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE)
                 .withMedia(web)
-                . setCallback(shareListener)//回调监听器
+                . setCallback(shareListener(con))//回调监听器
                 .open();
-
-        Log.i("   setShare ","  ===========");
-
     }
-    private static UMShareListener shareListener = new UMShareListener() {
+    private static UMShareListener shareListener(final Context context){
+     return new UMShareListener() {
         /**
          * @descrption 分享开始的回调
          * @param platform 平台类型
@@ -138,6 +106,7 @@ public class QQLoginShareUtils {
 
         }
     };
+    }
 
     /**
      *  下面的  方法 在点击事件中调用
@@ -154,7 +123,7 @@ public class QQLoginShareUtils {
 //        login.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                UMShareAPI.get(MainActivity.this).getPlatformInfo(MainActivity.this, SHARE_MEDIA.QQ, umAuthListener);
+//                UMShareAPImedia.get(MainActivity.this).getPlatformInfo(MainActivity.this, SHARE_MEDIA.QQ, umAuthListener);
 //            }
 //        });
 //    }

@@ -47,9 +47,9 @@
         <solid android:color="@color/translucent"/>
 
         <stroke
-            android:width="3dp"
+            android:width="2dp"
             android:dashWidth="25dp"
-            android:dashGap="25dp"
+            android:dashGap="20dp"
             android:color="@color/dimgray"/>
 
         <!--<gradient

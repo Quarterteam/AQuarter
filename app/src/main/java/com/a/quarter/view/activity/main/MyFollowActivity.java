@@ -67,27 +67,8 @@ public class MyFollowActivity extends BaseActivity implements View.OnClickListen
         mViewPager.setAdapter(mAdapter);
         //将TabLayout和ViewPager关联起来。
         mTabLayout.setupWithViewPager(mViewPager);
-//        //给TabLayout设置适配器
-//        mTabLayout.setTabsFromPagerAdapter(mAdapter);
 
         TabLayoutUtils.setIndicator(mTabLayout, 0);
-
-//        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
 
     }
 

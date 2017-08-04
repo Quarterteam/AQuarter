@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">一刻钟</string>
 
-
     <string name="re_btn01">屏蔽他</string>
 
     <string name="re_btn02">举报</string>
@@ -81,5 +80,11 @@
     <!--configure button-->
     <string name="Button_Configure_exitLogin">退出登录</string>
     <string name="title_Configure_back">返回</string>
+    <string name="text_setting_update">检查更新</string>
+    <string name="text_setting_version">0.1.1</string>
+    <string name="text_setting_suggestion">意见反馈</string>
+    <string name="text_setting_onInfo">关于一刻钟</string>
+    <string name="text_setting_cleatcache">清除缓存</string>
+    <string name="text_setting_cacheSize">128M</string>
 
 </resources>

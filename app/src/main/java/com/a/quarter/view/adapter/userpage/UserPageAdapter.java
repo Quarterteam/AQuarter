@@ -109,6 +109,7 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
                    IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi);
                }
 
+
            }
        });
         holder.ivCollect.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +159,9 @@ public void setTopIcon(int imageId,TextView view){
     public void onClick(View view) {
          switch (view.getId()){
              case R.id.pop_qq:
-                 QQLoginShareUtils.setShare("d","分享","djfdjvnm",context);
+               //  QQLoginShareUtils.setShare("d","分享","djfdjvnm",context);
+                 QQLoginShareUtils utils = new QQLoginShareUtils();
+                 utils.setShare("d","分享","djfdjvnm",context);
                  break;
              case R.id.pop_qzone:
                  break;

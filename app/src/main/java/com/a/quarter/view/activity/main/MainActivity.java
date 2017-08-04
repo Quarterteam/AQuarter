@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,10 +15,11 @@ import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
 import com.a.quarter.utils.DrawableUtils;
 import com.a.quarter.utils.SlidingMenuUtils;
-import com.a.quarter.view.activity.msginform.MsgInformActivity;
-import com.a.quarter.view.activity.mycollect.MyCollectActivity;
+import com.a.quarter.view.activity.compile.CreationActivity;
 import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
+import com.a.quarter.view.activity.msginform.MsgInformActivity;
+import com.a.quarter.view.activity.mycollect.MyCollectActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
@@ -85,29 +87,37 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         slidingMenuUtils = new SlidingMenuUtils();
         slidingMenu = slidingMenuUtils.initSlidingMenu(this, this);
         slidingMenuUtils.initDrawables();
-        if (App.isLogin()) {
-            User user = App.getUser();
-            slidingMenuUtils.tvUserName.setText(user.userName);
-//            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
-            slidingMenuUtils.ivUserIcon.setImageURI(user.userHead);
-            if ("男".equals(user.userSex)) {
-                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
-            } else {
-                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.user_icon);
-            }
-//            ivLeft.setImageResource(R.mipmap.user_icon);
-            ivLeft.setImageURI(user.userHead);
-        } else {
+        if (App.isLogin()) {//已登录
+            //显示用户信息
+            showUserInfo(App.getUser());
+        } else {//未登录
             slidingMenuUtils.tvUserName.setText("点击头像登录");
-//            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.default_no_avatar);
             slidingMenuUtils.ivUserIcon.setActualImageResource(R.mipmap.default_no_avatar);
-            slidingMenuUtils.ivSexIcon.setImageDrawable(null);
-//            ivLeft.setImageResource(R.mipmap.default_no_avatar);
             ivLeft.setActualImageResource(R.mipmap.default_no_avatar);
+            slidingMenuUtils.ivSexIcon.setImageDrawable(null);
         }
 
         //发表文章
         findViewById(R.id.iv_right).setOnClickListener(this);
+    }
+
+    private void showUserInfo(User user) {
+        //显示用户名
+        slidingMenuUtils.tvUserName.setText(user.userName);
+        //显示头像
+        if(!TextUtils.isEmpty(user.userHead)){
+            slidingMenuUtils.ivUserIcon.setImageURI(user.userHead);
+            ivLeft.setImageURI(user.userHead);
+        }else{
+            slidingMenuUtils.ivUserIcon.setActualImageResource(R.mipmap.default_no_avatar);
+            ivLeft.setActualImageResource(R.mipmap.default_no_avatar);
+        }
+        //显示性别图标
+        if ("男".equals(user.userSex)) {
+            slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
+        } else {
+            slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
+        }
     }
 
     private void initRadioButton() {
@@ -130,7 +140,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     slidingMenu.toggle();
                 }
                 break;
-            case R.id.iv_right:
+            case R.id.iv_right: // TODO: 编译
 //                if(App.isLogin()){
                 ActivityUtils.jumpIn(this, CreationActivity.class);
 //                }else{
@@ -149,11 +159,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             case R.id.tv_my_work:
                 setIntent("mywork");
+
+                break;
             case R.id.tv_settings:
                 setIntent("setting");
-                if (slidingMenu != null) {
-                    slidingMenu.toggle();
-                }
                 break;
             case R.id.tv_msg_notify:
                 ActivityUtils.jumpIn(this, MsgInformActivity.class);
@@ -236,7 +245,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         intent.putExtra("tag", tag);
         startActivity(intent);
 
-//        finish();
+        //finish();
     }
 
     private void hideFrag(int i) {
@@ -266,19 +275,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         super.onActivityResult(requestCode, resultCode, data);
         //登录成功后，从登录页面返回
         if (requestCode == 1 && resultCode == 1) {
-            User user = App.getUser();
-            slidingMenuUtils.tvUserName.setText(user.userName);
-//            slidingMenuUtils.ivUserIcon.setImageResource(R.mipmap.user_icon);
-            slidingMenuUtils.ivUserIcon.setImageURI(user.userHead);
-            if ("男".equals(user.userSex)) {
-                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
-            } else {
-                slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
-            }
-//            ivLeft.setImageResource(R.mipmap.user_icon);
-            ivLeft.setImageURI(user.userHead);
+            //显示用户信息
+            showUserInfo(App.getUser());
         }
-
 
     }//13567890550
 

@@ -4,17 +4,18 @@ import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.utils.QQLoginShareUtils;
+import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.base.BaseActivity;
+import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.umeng.socialize.UMShareAPI;
 
 import butterknife.Bind;
@@ -36,9 +37,9 @@ public class VHotFragDetails extends BaseActivity {
     @Bind(R.id.hotdetails_return)
     TextView hotdetailsReturn;
     @Bind(R.id.hotdetails_love)
-    CheckBox hotdetailsLove;
+    RadioButton hotdetailsLove;
     @Bind(R.id.hotdetails_nolove)
-    CheckBox hotdetailsNolove;
+    RadioButton hotdetailsNolove;
     @Bind(R.id.hotdetails_share)
     TextView hotdetailsShare;
     @Bind(R.id.hotdetails_user)
@@ -54,7 +55,7 @@ public class VHotFragDetails extends BaseActivity {
     @Bind(R.id.hotdetails_send)
     Button hotdetailsSend;
     private AndroidMediaController mMediaController;
-    private  String url="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud";
+    private String url = "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud";
     private MediaMetadataRetriever mMetadataRetriever;
     private boolean mBackPressed;
 
@@ -67,7 +68,8 @@ public class VHotFragDetails extends BaseActivity {
     protected void initViews() {
         Intent intent = getIntent();
         String key = intent.getStringExtra("key");
-        Log.e("key", key);
+
+
 
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
@@ -80,22 +82,6 @@ public class VHotFragDetails extends BaseActivity {
         mIjkVideoView.setVideoURI(Uri.parse
                 (url));
         mIjkVideoView.start();
-   //     mIjkVideoView.s
-        mMetadataRetriever = new MediaMetadataRetriever();
-        //mPath本地视频地址
-      //  mMetadataRetriever.setDataSource("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud");
-      //  mMetadataRetriever.setDataSource(VHotFragDetails.this,uri);
-
-        //这个时候就可以通过mMetadataRetriever来获取这个视频的一些视频信息了
-        String duration = mMetadataRetriever.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_DURATION);//时长(毫秒)
-        String width = mMetadataRetriever.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);//宽
-        String height = mMetadataRetriever.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);//高
-//        int i = Integer.parseInt(height);
-//        //上面三行代码可以获取这个视频的宽高和播放总时长
-//        //下面这行代码才是关键，用来获取当前视频某一时刻(毫秒*1000)的一帧
-//        Bitmap bitmap = mMetadataRetriever.getFrameAtTime(10000L *
-//                i);
-        //  imageView.setImageBitmap(bitmap);
 
     }
 
@@ -107,19 +93,12 @@ public class VHotFragDetails extends BaseActivity {
     @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user,R.id.hotdetails_send})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.hotdetails_return://// TODO: 返回键
+            case R.id.hotdetails_return:// TODO: 返回键
                 finish();
                 break;
-            case R.id.hotdetails_love:// TODO: 喜欢
-                CheckBox cb = (CheckBox) view;
-                boolean checked = cb.isChecked();
-                if (checked) {
-
-                } else {
-
-                }
+            case R.id.hotdetails_love:// TODO: 点赞
                 break;
-            case R.id.hotdetails_nolove:// TODO: 不喜欢
+            case R.id.hotdetails_nolove:// TODO: 踩
                 break;
             case R.id.hotdetails_share:// TODO: 分享
               {
@@ -129,6 +108,7 @@ public class VHotFragDetails extends BaseActivity {
                }
                 break;
             case R.id.hotdetails_user:// TODO: 用户
+                ActivityUtils.jumpIn(this, UserPageActivity.class);
                 break;
             case R.id.hotdetails_send:// TODO: 发表
                 break;

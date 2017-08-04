@@ -36,7 +36,7 @@
         <item name="android:background">@drawable/selector_bg_transparent_graytranslucent</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textsize_main_nav</item>
-        <item name="android:textColor">@drawable/selector_textcolor_mainnav</item>
+        <item name="android:textColor">@drawable/selector_textcolor_main_nav</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:paddingBottom">5dp</item>
@@ -339,29 +339,13 @@
 
   
 
-    <!--设置页面的recycler-->
-    <style name="SlidMenuto.Setting.Recycler.Type" parent="Control">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_below">@id/setting_include_head</item>
-    </style>
 
 
-<!--设置页面的button-->
-    <style name="SlidMenuto.Setting.Button.Type" parent="Control">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/button</item>
-        <item name="android:layout_marginTop">@dimen/frag_recommend_item_distance</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:layout_below">@id/setting_recycler</item>
-        <item name="android:text">@string/Button_Configure_exitLogin</item>
-        <item name="android:textSize">@dimen/textSize_configure_exitLogin</item>
-    </style>
 
     <style name="SlidMenuto.Configure.Type" parent="Control">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_below">@id/slidMenuTo_include_title</item>
     </style>
 
     <!-- 用户界面-item-->
@@ -567,5 +551,176 @@
     <style name="Animation">
         <item name="android:windowEnterAnimation">@anim/pop_trans_into</item>
         <item name="android:windowExitAnimation">@anim/pop_trans_out</item>
+    </style>
+
+
+    <style name="Setting.Update.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:gravity">center_vertical</item>
+
+        <item name="android:text">@string/text_setting_update</item>
+
+    </style>
+
+
+
+
+    <style name="Setting.Version.Type" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">30dp</item>
+
+        <item name="android:text">@string/text_setting_version</item>
+
+    </style>
+
+
+
+    <style name="Setting.Image.Type" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:src">@mipmap/arrow_right_small</item>
+
+
+    </style>
+
+
+
+    <style name="Setting.View.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_alignBottom">@id/setting_text_update</item>
+        <item name="android:background">#DBDBDB</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <!---->
+
+    </style>
+
+
+    <style name="Setting.Suggestion.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_below">@id/setting_text_update</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:text">@string/text_setting_suggestion</item>
+
+    </style>
+
+
+    <style name="Setting.Image02.Type" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:src">@mipmap/arrow_right_small</item>
+        <item name="android:layout_below">@id/setting_text_update</item>
+
+    </style>
+    <style name="Setting.OnInfo.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:text">@string/text_setting_onInfo</item>
+        <item name="android:layout_below">@id/setting_text_suggestionBack</item>
+
+    </style>
+
+
+
+    <style name="Setting.Imageoninfo.Type" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:src">@mipmap/arrow_right_small</item>
+        <item name="android:layout_below">@id/setting_text_suggestionBack</item>
+        <item name="android:layout_marginTop">10dp</item>
+
+
+    </style>
+
+    <style name="Setting.View02.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_alignBottom">@id/setting_text_oninfo</item>
+        <item name="android:background">#DBDBDB</item>
+        <item name="android:layout_marginLeft">15dp</item>
+
+
+    </style>
+
+
+
+    <style name="Setting.ClearCache.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">15sp</item>
+
+        <item name="android:text">@string/text_setting_cleatcache</item>
+        <item name="android:layout_below">@id/setting_text_oninfo</item>
+
+    </style>
+
+    <style name="Setting.CacheSize.Type" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">30dp</item>
+
+        <item name="android:layout_below">@id/setting_text_oninfo</item>
+        <item name="android:text">@string/text_setting_cacheSize</item>
+
+    </style>
+
+
+
+    <style name="Setting.ImageClearCache.Type" parent="Control">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:src">@mipmap/arrow_right_small</item>
+
+        <item name="android:layout_below">@id/setting_text_oninfo</item>
+    </style>
+
+    <style name="SlidMenuto.Setting.Button.Type" parent="Control">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/white</item>
+
+        <item name="android:text">@string/Button_Configure_exitLogin</item>
+        <item name="android:layout_below">@id/setting_text_clearCache</item>
     </style>
 </resources>

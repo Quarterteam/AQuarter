@@ -16,8 +16,9 @@
         >
     <LinearLayout
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -28,28 +29,33 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/back"
             android:id="@+id/hotdetails_return"
+            android:layout_gravity="center"
         />
-        <CheckBox
+        <RadioButton
             android:layout_marginLeft="10dp"
-            android:button="@drawable/select_hotdetails_titel_love"
+            android:button="@null"
+            android:background="@drawable/select_hotdetails_titel_love"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:checked="false"
             android:id="@+id/hotdetails_love"
             />
-        <CheckBox
+        <RadioButton
             android:layout_marginLeft="10dp"
             android:checked="false"
+            android:button="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@drawable/select_hotdetails_titel_nolove"
-            android:background="@mipmap/details_xin1"
+            android:background="@drawable/select_hotdetails_titel_nolove"
+            android:layout_gravity="center"
             android:id="@+id/hotdetails_nolove"
             />
         <TextView
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@mipmap/details_share"
             android:id="@+id/hotdetails_share"
             />
@@ -63,16 +69,18 @@
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/details_xin1"
+            android:layout_gravity="center"
+            android:background="@mipmap/details_touxing"
             android:id="@+id/hotdetails_user"
             />
     </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             >
     <media.IjkVideoView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/IjkVideoView"
