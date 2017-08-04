@@ -43,6 +43,7 @@ import io.reactivex.functions.Cancellable;
 import io.reactivex.schedulers.Schedulers;
 import media.AndroidMediaController;
 import media.IjkVideoView;
+import media.Settings;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
@@ -540,8 +541,9 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                     if(player==null){
                         player = new IjkVideoView(context);
                         player.setMediaController(new AndroidMediaController(context));
+                        //player.createPlayer(Settings.PV_PLAYER__IjkMediaPlayer);
                         player.setBackgroundColor(Color.GRAY);
-                        player.setRender(IjkVideoView.RENDER_TEXTURE_VIEW);//如果使用SurfaceView的话，SlidingMenu滑动时视频区域会变透明
+                        player.setTextureRender();//如果使用SurfaceView的话，SlidingMenu滑动时视频区域会变透明
                     }else{
                         //player.stopPlayback();
                         player.release(true);
@@ -595,20 +597,18 @@ public class ContentListAdapter extends RecyclerView.Adapter {
          * 视频区域在滑动时总是变透明，是因为默认使用的是SurfaceView。
          *
          * 使用player.setRender(IjkVideoView.RENDER_TEXTURE_VIEW);可以解决透明问题，
-         * 但是TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)？
+         * 但是TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
          *
          *
          * MediaController不会跟随着移动?
          * MediaController的本质是一个FrameLayout
-         * 因为使用的是
+         * 因为源码使用的是
          * mWindowManager.addView(mDecor, mDecorLayoutParams);
          * mWindowManager.removeView(mDecor);
          * 直接在屏幕上添加，移除MediaController
          *
-         * renderView.setBackgroundColor(Color.DKGRAY);
          *
-         * 可以写一个自己的MediaController吗？
-         * 不用，只需要使用updateFloatingWindowLayout
+         *
          *
          * 点击右上角才出现那些图标
          *

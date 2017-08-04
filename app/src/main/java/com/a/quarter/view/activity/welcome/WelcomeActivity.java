@@ -8,9 +8,12 @@ import android.widget.ProgressBar;
 import com.a.quarter.R;
 import com.a.quarter.view.activity.main.MainActivity;
 import com.exa.framelib_rrm.utils.ActivityUtils;
+import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.autolayout.utils.AutoUtils;
 
 //启动页
-public class WelcomeActivity extends AppCompatActivity {
+//public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AutoLayoutActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
         final View ll = findViewById(R.id.ll);
         final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
         MaskImageView iv = (MaskImageView) findViewById(R.id.iv_entering_logo);
+        //AutoUtils.autoSize(iv);
         iv.setAnimListener(new MaskImageView.AnimationListener() {
             @Override
             public void onAnimEnd() {

@@ -206,6 +206,12 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         mRenderView.setVideoRotation(mVideoRotationDegree);
     }
 
+    public void setTextureRender(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            setRender(RENDER_TEXTURE_VIEW);
+        }
+    }
+
     public void setRender(int render) {
         switch (render) {
             case RENDER_NONE:
