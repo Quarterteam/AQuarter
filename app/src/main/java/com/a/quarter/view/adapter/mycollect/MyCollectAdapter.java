@@ -1,9 +1,6 @@
 package com.a.quarter.view.adapter.mycollect;
 
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,8 +14,7 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.model.bean.collect.MyCollectItemBean;
 import com.a.quarter.model.utils.AnimUtils;
-import com.a.quarter.utils.FrescoCircleUtils;
-import com.a.quarter.utils.QQLoginShareUtils;
+import com.a.quarter.utils.IconChangeUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -33,7 +29,7 @@ import media.IjkVideoView;
  * date ： 2017/7/26.
  */
 
-public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHolder> implements View.OnClickListener {
+public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHolder>  {
     private Context context;
     private List<MyCollectItemBean>list=new ArrayList<>();
 
@@ -53,33 +49,32 @@ public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHo
     };
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        linearLayoutManager = new LinearLayoutManager(context);
-        myCollectItemAdapter = new MyCollectItemAdapter(context);
+
         view1 = View.inflate(context, R.layout.item_userpage, null);
         MyHolder myHolder = new MyHolder(view1);
-        setPopwindow();
+
         return myHolder;
     }
 
     @Override
     public void onBindViewHolder(final MyHolder holder, final int position) {
-        //显示
-if (list.get(position).isVisibility()){
+        //显示 删除编辑框
+if (list.get(position).isDelVisibility()){
     holder.boxDel.setVisibility(View.VISIBLE);
 }else{
     holder.boxDel.setVisibility(View.GONE);
 }
         //设置头像
-        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://f2.kkmh.com/image/170119/lbejli3bs.webp-w180"));
 
         holder.tvTitle.setText("天蝎喝牛奶");
         holder.tvTime.setText("2017-7-20  14:20");
         holder.tvPublish.setText("天气美美的，适合");
-
+        System.out.println("--co--"+holder.boxDel);
+        LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(context);
         holder.recyclerView.setLayoutManager(linearLayoutManager);
-
+        myCollectItemAdapter = new MyCollectItemAdapter(context);
         holder.recyclerView.setAdapter(myCollectItemAdapter);
-        //动画
+        //点击展开动画
         holder.jokeImageRigth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,78 +93,46 @@ if (list.get(position).isVisibility()){
         });
 
 
-        //分享
-        holder.ivShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popupWindow.setAnimationStyle(R.style.Animation);
-               popupWindow.showAsDropDown(view1,0,-30);
-
-
-            }
-        });
 
        holder.ivLike.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               setTopIcon(R.mipmap.details_xi, holder.ivLike);
+               if (list.get(position).isLike()){
+                   list.get(position).setLike(false);
+                   IconChangeUtils.setIconChangeDefault(context,holder.ivLike,R.mipmap.details_xi_whilt);
+               }else{
+                   list.get(position).setLike(true);
+                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi);
+               }
+
            }
        });
         holder.ivCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              setTopIcon(R.mipmap.star_checked_whilt, holder.ivCollect);
+                if (list.get(position).isCollect()){
+                    list.get(position).setCollect(false);
+                    IconChangeUtils.setIconChangeDefault(context,holder.ivCollect,R.mipmap.my_collect_whilt);
+                }else{
+                    list.get(position).setCollect(true);
+                    IconChangeUtils.setIconChangeCheck(context,holder.ivCollect,R.mipmap.star_checked_whilt);
+                }
+
             }
         });
 
 }
 
 
-public void setPopwindow(){
-    popView = View.inflate(context, R.layout.popwindow_share,null);
-    LinearLayout popQq= (LinearLayout) popView.findViewById(R.id.pop_qq);
-    LinearLayout popQzone= (LinearLayout) popView.findViewById(R.id.pop_qzone);
-    LinearLayout popFriend= (LinearLayout) popView.findViewById(R.id.pop_friend);
-    LinearLayout popWeixin= (LinearLayout) popView.findViewById(R.id.pop_weixin);
-    TextView popCancel= (TextView) popView.findViewById(R.id.pop_cancel);
-    popQq.setOnClickListener(this);
-    popQzone.setOnClickListener(this);
-    popFriend.setOnClickListener(this);
-    popWeixin.setOnClickListener(this);
-    popCancel.setOnClickListener(this);
 
-    popupWindow = new PopupWindow(popView, RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.MATCH_PARENT);
-    popupWindow.setOutsideTouchable(true);
-    popupWindow.setBackgroundDrawable(new BitmapDrawable());
-    popupWindow.setFocusable(true);
-}
 
-public void setTopIcon(int imageId,TextView view){
-    Drawable top = context.getResources().getDrawable(imageId);
-    view.setCompoundDrawablesWithIntrinsicBounds(null, top , null, null);
-}
     @Override
     public int getItemCount() {
         return 2;
     }
 
-    @Override
-    public void onClick(View view) {
-         switch (view.getId()){
-             case R.id.pop_qq:
-                 QQLoginShareUtils.setShare("d","分享","djfdjvnm",context);
-                 break;
-             case R.id.pop_qzone:
-                 break;
-             case R.id.pop_friend:
-                 break;
-             case R.id.pop_weixin:
-                 break;
-             case R.id.pop_cancel:
-                 popupWindow.dismiss();
-                 break;
-         }
-    }
+
+
 
     public class MyHolder extends RecyclerView.ViewHolder {
        CheckBox boxDel;

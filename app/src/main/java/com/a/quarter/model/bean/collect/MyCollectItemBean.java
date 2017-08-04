@@ -8,22 +8,26 @@ package com.a.quarter.model.bean.collect;
  */
 
 public class MyCollectItemBean {
-    private boolean isVisibility;
+    private boolean isDelVisibility;
     private boolean isAnimshow;
     private boolean isPlay;
+    private boolean isLike;
+    private boolean isCollect;
 
-    public MyCollectItemBean(boolean isVisibility, boolean isAnimshow, boolean isPlay) {
-        this.isVisibility = isVisibility;
+    public MyCollectItemBean(boolean isDelVisibility, boolean isAnimshow, boolean isPlay, boolean isLike, boolean isCollect) {
+        this.isDelVisibility = isDelVisibility;
         this.isAnimshow = isAnimshow;
         this.isPlay = isPlay;
+        this.isLike = isLike;
+        this.isCollect = isCollect;
     }
 
-    public boolean isVisibility() {
-        return isVisibility;
+    public boolean isDelVisibility() {
+        return isDelVisibility;
     }
 
-    public void setVisibility(boolean visibility) {
-        isVisibility = visibility;
+    public void setDelVisibility(boolean delVisibility) {
+        isDelVisibility = delVisibility;
     }
 
     public boolean isAnimshow() {
@@ -40,5 +44,21 @@ public class MyCollectItemBean {
 
     public void setPlay(boolean play) {
         isPlay = play;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
+    }
+
+    public boolean isCollect() {
+        return isCollect;
+    }
+
+    public void setCollect(boolean collect) {
+        isCollect = collect;
     }
 }

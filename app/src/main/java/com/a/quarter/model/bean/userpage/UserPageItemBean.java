@@ -10,10 +10,14 @@ package com.a.quarter.model.bean.userpage;
 public class UserPageItemBean {
     private boolean isAnimshow;//动画展开
     private boolean isPlay;
+    private boolean isLike;
+    private boolean isCollect;
 
-    public UserPageItemBean(boolean isAnimshow, boolean isPlay) {
+    public UserPageItemBean(boolean isAnimshow, boolean isPlay, boolean isLike, boolean isCollect) {
         this.isAnimshow = isAnimshow;
         this.isPlay = isPlay;
+        this.isLike = isLike;
+        this.isCollect = isCollect;
     }
 
     public boolean isAnimshow() {
@@ -30,5 +34,21 @@ public class UserPageItemBean {
 
     public void setPlay(boolean play) {
         isPlay = play;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
+    }
+
+    public boolean isCollect() {
+        return isCollect;
+    }
+
+    public void setCollect(boolean collect) {
+        isCollect = collect;
     }
 }

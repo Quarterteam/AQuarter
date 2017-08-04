@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="5dp"
@@ -10,7 +11,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
-        android:src="@mipmap/user_icon" />
+        fresco:roundAsCircle="true"
+        fresco:placeholderImage="@mipmap/user_icon" />
     <ImageView
         android:id="@+id/Iv_msg_rigth"
         android:layout_width="50dp"

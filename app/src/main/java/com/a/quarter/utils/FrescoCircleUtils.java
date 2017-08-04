@@ -24,4 +24,5 @@ public class FrescoCircleUtils {
         //mRoundParams2.setOverlayColor(Color.parseColor("#ffffff"));//用来绘制非圆角颜色
         icon.getHierarchy().setRoundingParams(mRoundParams2);
     }
+
 }

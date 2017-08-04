@@ -61,7 +61,7 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
         adapter = new MyCollectAdapter(this);
         recyclerView.setAdapter(adapter);
         for (int i = 0; i <2 ; i++) {
-            MyCollectItemBean myCollectItemBean = new MyCollectItemBean(false,false,false);
+            MyCollectItemBean myCollectItemBean = new MyCollectItemBean(false,false,false,false,false);
             list.add(myCollectItemBean);
         }
          adapter.setData(list);
@@ -77,7 +77,7 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
               break;
            case R.id.tv_right://点击删除 显示编辑框
                for (int i = 0; i <2 ; i++) {
-                   list.get(i).setVisibility(true);
+                   list.get(i).setDelVisibility(true);
                }
                adapter.notifyDataSetChanged();
                mTvDelete.setVisibility(View.VISIBLE);
@@ -85,9 +85,9 @@ public class MyCollectActivity extends BaseActivity implements View.OnClickListe
           break;
            case R.id.collect_recycler_delete:
                break;
-           case R.id.collect_recycler_cancel://取消隐藏删除条
+           case R.id.collect_recycler_cancel://点击取消  隐藏删除条
                for (int i = 0; i <2 ; i++) {
-                   list.get(i).setVisibility(false);
+                   list.get(i).setDelVisibility(false);
                }
                adapter.notifyDataSetChanged();
                mTvDelete.setVisibility(View.GONE);

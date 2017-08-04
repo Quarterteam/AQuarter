@@ -2,7 +2,6 @@ package com.a.quarter.view.activity.userpage;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.model.bean.userpage.UserPageItemBean;
 import com.a.quarter.presenter.userpage.UserPagePresenter;
-import com.a.quarter.utils.FrescoCircleUtils;
 import com.a.quarter.view.adapter.userpage.UserPageAdapter;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
@@ -70,7 +68,6 @@ public class UserPageActivity extends BaseActivity<UserPagePresenter,UserPageAct
     protected void initViews() {
         mAttention.setOnClickListener(this);
         mBack.setOnClickListener(this);
-        FrescoCircleUtils.setImageViewCircle(mImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
 
     }
 
@@ -82,7 +79,7 @@ public class UserPageActivity extends BaseActivity<UserPagePresenter,UserPageAct
         mRecyclerView.setAdapter(mAdapter);
 
         for (int i = 0; i <2 ; i++) {
-            UserPageItemBean userPageItemBean = new UserPageItemBean(false, false);
+            UserPageItemBean userPageItemBean = new UserPageItemBean(false,false,false, false);
             list.add(userPageItemBean);
         }
         mAdapter.setData(list);

@@ -1,7 +1,6 @@
 package com.a.quarter.view.adapter.msginform;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.msginform.MsgInformItemBean;
-import com.a.quarter.utils.FrescoCircleUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -43,7 +41,6 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.MyHolder
 
     @Override
     public void onBindViewHolder(final MyHolder holder, int position) {
-        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://f2.kkmh.com/image/170119/lbejli3bs.webp-w180"));
 
 
     }

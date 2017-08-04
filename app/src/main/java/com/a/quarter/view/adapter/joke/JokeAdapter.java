@@ -3,8 +3,6 @@ package com.a.quarter.view.adapter.joke;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,7 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.model.bean.joke.JokeItemBean;
 import com.a.quarter.model.utils.AnimUtils;
-import com.a.quarter.utils.FrescoCircleUtils;
+import com.a.quarter.utils.IconChangeUtils;
 import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -52,14 +50,14 @@ public void setData(List<JokeItemBean> mlist){
 
     @Override
     public void onBindViewHolder(final MyHolder holder, final int position) {
-
-        FrescoCircleUtils.setImageViewCircle(holder.imageTitle,Uri.parse("http://169.254.1.100/ic_ss.jpg"));
-        holder.jokeTextTitle.setText(list.get(position).getJokeBean().getUser().getUserName());
-        holder.jokeTextTime.setText(list.get(position).getJokeBean().getCharacter_uptime());
-        holder.jokeText.setText("内容展示内容展示示内内容展示内容展示内示内示内容展示内容展示内容展示内示内示内容展示内容展示内容展示内示内示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示");
+       holder.imageTitle.setImageURI("http://169.254.1.100/ic_ss.jpg");
+ //       FrescoCircleUtils.setImageViewCircle(holder.imageTitle,Uri.parse("http://169.254.1.100/ic_ss.jpg"));
+//        holder.jokeTextTitle.setText(list.get(position).getJokeBean().getUser().getUserName());
+//        holder.jokeTextTime.setText(list.get(position).getJokeBean().getCharacter_uptime());
+//        holder.jokeText.setText("内容展示内容展示示内内容展示内容展示内示内示内容展示内容展示内容展示内示内示内容展示内容展示内容展示内示内示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示内容展示");
         holder.followTextView.setText("1201");
-        holder.transmitTextView.setText(list.get(position).getJokeBean().getCharacter_forward_num()+"");
-        holder.commentTextView.setText(list.get(position).getJokeBean().getCharacter_comment_num()+"");
+        holder.transmitTextView.setText("1201");
+        holder.commentTextView.setText("1201");
 
         //点击头像进入用户界面
         holder.imageTitle.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +86,6 @@ public void setData(List<JokeItemBean> mlist){
         holder.transmitTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
         //评论
@@ -103,7 +100,7 @@ public void setData(List<JokeItemBean> mlist){
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return 4;
     }
 
 
@@ -132,22 +129,16 @@ public void setAnim(MyHolder holder,int position){
 }
 //点击心型
 public void setFollow(MyHolder holder,int position){
-    if (list.get(position).isfollow()) {
-        Drawable top = context.getResources().getDrawable(R.mipmap.follow_default);
-        holder.followTextView.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
-        String s = holder.followTextView.getText().toString();
-        int in = Integer.parseInt(s) - 1;
-        holder.followTextView.setText("" + in);
+
+    if (list.get(position).isfollow()){
         list.get(position).setIsfollow(false);
-    } else {
-        Drawable top = context.getResources().getDrawable(R.mipmap.follow_pressed);
-        holder.followTextView.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
-        String s = holder.followTextView.getText().toString();
-        int in = Integer.parseInt(s) + 1;
-        holder.followTextView.setText("" + in);
+        IconChangeUtils.setIconChangeDefault(context,holder.followTextView,R.mipmap.follow_default);
+    }else{
         list.get(position).setIsfollow(true);
+        IconChangeUtils.setIconChangeCheck(context,holder.followTextView,R.mipmap.follow_pressed);
     }
 }
+
     public class MyHolder extends RecyclerView.ViewHolder{
        SimpleDraweeView imageTitle;
         TextView jokeTextTitle;
