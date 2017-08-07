@@ -15,7 +15,8 @@ public class User {
 
     public String loginType;
     public String userHead;
-    public String userId;
+//    public String userId;
+    public int userId;
     public String userName;
     public String userPassword;
     public String userPhone;
@@ -29,7 +30,7 @@ public class User {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("loginType",user.loginType);
         editor.putString("userName",user.userName);
-        editor.putString("userId",user.userId);
+        editor.putInt("userId",user.userId);
         editor.putString("userHead",user.userHead);
 //        editor.putString("userPassword",user.userPassword);
         editor.putString("userPhone",user.userPhone);
@@ -44,7 +45,7 @@ public class User {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("loginType",null);
         editor.putString("userName",null);
-        editor.putString("userId",null);
+        editor.putInt("userId",-1);
         editor.putString("userHead",null);
 //        editor.putString("userPassword",null);
         editor.putString("userPhone",null);
@@ -62,7 +63,7 @@ public class User {
             User user = new User();
             user.userName = username;
             user.loginType = sp.getString("loginType", null);
-            user.userId = sp.getString("userId",null);
+            user.userId = sp.getInt("userId",-1);
             user.userHead = sp.getString("userHead",null);
 //            user.userPassword = sp.getString("userPassword",null);
             user.userPhone = sp.getString("userPhone",null);
@@ -78,7 +79,7 @@ public class User {
     public void reset() {
         loginType = null;
         userName = null;
-        userId = null;
+        userId = -1;
         userHead = null;
         userPassword = null;
         userPhone = null;

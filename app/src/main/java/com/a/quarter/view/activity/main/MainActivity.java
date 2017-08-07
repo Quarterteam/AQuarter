@@ -27,6 +27,7 @@ import com.a.quarter.view.fragment.video.VideoFragment;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
+import com.exa.framelib_rrm.utils.T;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -46,7 +47,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Bind(R.id.tv_title)
     public TextView tvTitle;
     @Bind(R.id.iv_left)
-//    public ImageView ivLeft;
+    //public ImageView ivLeft;
     public SimpleDraweeView ivLeft;
 
     private RecommendFragment recommendFragment;
@@ -59,7 +60,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected int getContentViewId() {
-//        return R.layout.activity_main;
+        //return R.layout.activity_main;
         return R.layout.slidingmenu_wraper;
     }
 
@@ -148,8 +149,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //                }
                 break;
             case R.id.tv_my_follow:
-                ActivityUtils.jumpIn(this, MyFollowActivity.class);
-
+                if(App.isLogin()){
+                    ActivityUtils.jumpIn(this, MyFollowActivity.class);
+                }else{
+                    T.showShort(getApplicationContext(), "未登录");
+                }
                 break;
             case R.id.tv_search_friend:
                 ActivityUtils.jumpIn(this, SearchFriendActivity.class);

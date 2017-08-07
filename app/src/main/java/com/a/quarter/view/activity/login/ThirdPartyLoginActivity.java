@@ -142,7 +142,7 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
                         }
                         user.userName = data.get("name");
 //                        user.userPassword = ;
-                        user.userId = data.get("uid");
+//                        user.userId = data.get("uid");
 //                        user.userPhone = data.get("");
                         user.userSex = data.get("gender");
                         user.userHead = data.get("iconurl");
@@ -160,7 +160,8 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
                 @Override
                 public void onError(SHARE_MEDIA platform, int action, Throwable t) {
                     llQq.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

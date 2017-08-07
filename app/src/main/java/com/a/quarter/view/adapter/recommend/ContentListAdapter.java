@@ -659,7 +659,6 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             }
             player.stopPlayback();
 
-
             player.release(true);
             player = null;
         }

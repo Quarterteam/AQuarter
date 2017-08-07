@@ -6,6 +6,7 @@ import com.a.quarter.model.bean.login.ChangePwdResponse;
 import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.model.bean.login.RegisterResponse;
 import com.a.quarter.model.bean.login.VertifyCodeResponse;
+import com.a.quarter.model.bean.main.MyFollowResponse;
 import com.a.quarter.model.bean.video.DetailsCommemt;
 import com.a.quarter.model.bean.video.DetailsTrample;
 import com.a.quarter.model.bean.video.VHotBean;
@@ -20,6 +21,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by acer on 2017/7/21.
@@ -71,6 +73,9 @@ public interface Api {
     @GET(Constants.DETAILS_COMMENT)  // TODO: 详情 评论
     Observable<DetailsCommemt> detailsCommemt();
 
+    //我的关注
+    @GET(Constants.MY_FOLLOW)
+    Observable<MyFollowResponse> getMyFollowList(@Query("Userid") int Userid);
 
 
 }
