@@ -48,6 +48,13 @@ public class SlidingmenuToActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
+    public void setIntent(Intent newIntent) {
+        super.setIntent(newIntent);
+        String tag = newIntent.getStringExtra("tag");
+        Log.i("alidingmenuto", tag);
+    }
+
+    @Override
     protected void initViews() {
         textBack.setVisibility(View.VISIBLE);
         ivRight.setVisibility(View.INVISIBLE);

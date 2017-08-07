@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 <View
     android:id="@+id/v_perch"
     android:layout_width="match_parent"
@@ -10,11 +10,14 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/joke_Image_title"
-        android:layout_below="@id/v_perch"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginLeft="20dp"
-        android:src="@mipmap/user_icon" />
+        android:layout_below="@id/v_perch"
+        fresco:roundAsCircle="true"
+        fresco:placeholderImage="@mipmap/user_icon"
+
+        />
 
     <TextView
         android:id="@+id/joke_Text_title"

@@ -4,8 +4,7 @@ package com.a.quarter.model.utils;
  * Created by acer on 2017/7/21.
  */
 public class Constants {
-    //public static final String BASE_URL = "http://169.254.1.100/quarter/";
-    //服务器ip 更改为 192.168.1.100  必须是连着路由器的网才能访问
+
     public static final String BASE_URL = "http://192.168.1.100/quarter/";
 
     public static final String LOGIN = "user/addLogin";//登录 POST

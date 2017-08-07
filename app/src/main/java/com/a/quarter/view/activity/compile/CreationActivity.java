@@ -13,7 +13,7 @@ import butterknife.OnClick;
 
 /**
  * 王 ：王万鹏
- * & 作用  ：
+ * & 作用  ：  编译页面
  * & 思路  ：
  */
 
@@ -45,13 +45,13 @@ public class CreationActivity extends BaseActivity {
     @OnClick({R.id.tv_cancel, R.id.creation_vedio, R.id.creation_text})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_cancel:
+            case R.id.tv_cancel: // TODO: 退出此页面
                 finish();
                 break;
-            case R.id.creation_vedio:
+            case R.id.creation_vedio:// TODO: 视频
                 ActivityUtils.jumpIn(this, VideoActivity.class);
                 break;
-            case R.id.creation_text:
+            case R.id.creation_text:// TODO: 段子
                 ActivityUtils.jumpIn(this, PublishArticleActivity.class);
                 break;
         }

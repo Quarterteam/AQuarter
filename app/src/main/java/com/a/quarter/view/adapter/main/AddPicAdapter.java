@@ -1,6 +1,8 @@
 package com.a.quarter.view.adapter.main;
 
 import android.content.Context;
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.main.AddPicItemBean;
+import com.a.quarter.view.activity.compile.PublishArticleActivity;
 
 import java.util.ArrayList;
 
@@ -18,7 +21,7 @@ import java.util.ArrayList;
  */
 public class AddPicAdapter extends RecyclerView.Adapter{
 
-    //private Context context;
+    private Context context;
     private ArrayList<AddPicItemBean> list;
     public static final int TYPE_NORMAL = 0;
     public static final int TYPE_ADD = 1;
@@ -26,7 +29,7 @@ public class AddPicAdapter extends RecyclerView.Adapter{
     private final LayoutInflater inflater;
 
     public AddPicAdapter(Context context, ArrayList<AddPicItemBean> list) {
-        //this.context = context;
+        this.context = context;
         this.list = list;
 
         list.add(new AddPicItemBean(AddPicAdapter.TYPE_ADD));
@@ -56,7 +59,7 @@ public class AddPicAdapter extends RecyclerView.Adapter{
         int viewType = list.get(position).type;
         if(viewType == TYPE_NORMAL){
             PicViewHolder picHolder = (PicViewHolder)holder;
-              ((PicViewHolder) holder).image.setImageResource(R.mipmap.raw_duanz);
+              ((PicViewHolder) holder).image.setImageResource(R.mipmap.liang1);
         }else if(viewType == TYPE_ADD){
             AddIconViewHolder iconHolder = (AddIconViewHolder)holder;
         }
@@ -109,17 +112,22 @@ public class AddPicAdapter extends RecyclerView.Adapter{
             this.ivAddIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //添加一张新的图片
-                    if(list.size()>=1){
-                        list.add(list.size()-1, new AddPicItemBean(TYPE_NORMAL));
-                        notifyItemInserted(list.size()-1);
-                    }else{
-                        list.add(0, new AddPicItemBean(TYPE_NORMAL));
-                        notifyItemInserted(0);
-                    }
+                    Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                    ((PublishArticleActivity)context).startActivityForResult(intent, 1001);
+//                    //添加一张新的图片
+//                    if(list.size()>=1){
+
+//                        list.add(list.size()-1, new AddPicItemBean(TYPE_NORMAL));
+//                        notifyItemInserted(list.size()-1);
+//                    }else{
+//                        list.add(0, new AddPicItemBean(TYPE_NORMAL));
+//                        notifyItemInserted(0);
+//                    }
                 }
             });
         }
 
     }
+
 }

@@ -3,12 +3,15 @@ package com.a.quarter.view.activity.compile;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
@@ -28,7 +31,9 @@ import java.util.HashMap;
 
 import butterknife.Bind;
 
-/*发表文章*/
+/**
+ *   段子页面
+ */
 public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter, PublishArticleActivity.PublishArticleCallback> implements View.OnClickListener{
 
     @Bind(R.id.tv_cancel)
@@ -39,6 +44,7 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
     EditText etInput;
     @Bind(R.id.rv)
     RecyclerView rv;
+    private ImageView ima;
 
     @Override
     protected int getContentViewId() {
@@ -47,6 +53,7 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
 
     @Override
     protected void initViews() {
+        ima= (ImageView) findViewById(R.id.IMAGE_VIEW);
         tvCancel.setOnClickListener(this);
         tvPublish.setOnClickListener(this);
 
@@ -73,7 +80,7 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
                     T.showShort(getApplicationContext(), "正在发表文章，请稍候...");
                 }
                 break;
-            case R.id.tv_publish:
+            case R.id.tv_publish:// TODO: 发表
                 boolean login = App.getInstance().isLogin();
                 if(login){
                     T.showShort(this,"已登录");
@@ -94,7 +101,6 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
                         }
                     });
                     builder.show();
-
                     return;
                 }
                 T.showShort(getApplicationContext(), "发表文章");
@@ -173,5 +179,17 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
         }else{
             T.showShort(getApplicationContext(), "正在发表文章，请稍候...");
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //                    //添加一张新的图片
+
+
+            Uri data2 = data.getData();
+        Log.e("地址     ",data2.getPath()+"");
+            ima.setImageURI(data2);
+
     }
 }

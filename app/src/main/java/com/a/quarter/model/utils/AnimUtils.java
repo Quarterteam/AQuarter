@@ -68,4 +68,23 @@ public static PointF getWei(View t){
 
 
     }
+    /*
+
+    渐变
+     */
+    public static void setAlpha( Float alpStart, Float alpEnd, int visible, View... view) {
+
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(view[0], "alpha", alpStart, alpEnd);
+        ObjectAnimator alpha2 = ObjectAnimator.ofFloat(view[1], "alpha", alpStart, alpEnd);
+        ObjectAnimator alpha3 = ObjectAnimator.ofFloat(view[2], "alpha", alpStart, alpEnd);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(alpha).with(alpha2).with(alpha3);
+        animatorSet.setDuration(500);
+        animatorSet.start();
+        for (int i = 0; i < view.length - 1; i++) {
+            view[i].setVisibility(visible);
+        }
+
+
+    }
 }

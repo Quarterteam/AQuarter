@@ -55,7 +55,7 @@ public class VHotFragDetails extends BaseActivity {
     @Bind(R.id.hotdetails_send)
     Button hotdetailsSend;
     private AndroidMediaController mMediaController;
-    private String url = "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud";
+    private String url = "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22211&editionType=default&source=ucloud";
     private MediaMetadataRetriever mMetadataRetriever;
     private boolean mBackPressed;
 
@@ -68,7 +68,6 @@ public class VHotFragDetails extends BaseActivity {
     protected void initViews() {
         Intent intent = getIntent();
         String key = intent.getStringExtra("key");
-
 
 
         IjkMediaPlayer.loadLibrariesOnce(null);
