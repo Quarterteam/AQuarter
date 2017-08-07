@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -102,12 +103,17 @@ public class RetrofitHelper {
         Cache cache = new Cache(cacheFile, 10 * 1024 * 1024);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new HttpRequestInterceptor())
+                .readTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(new CacheInterceptor())
                 .addNetworkInterceptor(new CacheInterceptor())
                 .cache(cache)
                 .connectTimeout(Constants.DEFAILT_TIMEOUT, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(false);
         if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            builder.addInterceptor(interceptor);
 //                builder.addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
 //                    @Override
 //                    public void log(String message) {
