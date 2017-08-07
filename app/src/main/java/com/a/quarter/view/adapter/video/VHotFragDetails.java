@@ -70,7 +70,6 @@ public class VHotFragDetails extends BaseActivity {
         String key = intent.getStringExtra("key");
 
 
-
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
         // TODO: 显示播放进度
