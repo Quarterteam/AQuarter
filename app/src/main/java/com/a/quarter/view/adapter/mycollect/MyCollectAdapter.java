@@ -91,9 +91,6 @@ if (list.get(position).isDelVisibility()){
                 }
             }
         });
-
-
-
        holder.ivLike.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -102,6 +99,7 @@ if (list.get(position).isDelVisibility()){
                    IconChangeUtils.setIconChangeDefault(context,holder.ivLike,R.mipmap.details_xi_whilt);
                }else{
                    list.get(position).setLike(true);
+                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.xi);
                    IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi_a);
                }
 
@@ -126,6 +124,11 @@ if (list.get(position).isDelVisibility()){
     public int getItemCount() {
         return 2;
     }
+
+
+
+
+
 
     public class MyHolder extends RecyclerView.ViewHolder {
        CheckBox boxDel;

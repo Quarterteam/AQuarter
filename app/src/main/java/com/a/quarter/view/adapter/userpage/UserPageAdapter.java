@@ -106,7 +106,7 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
                    IconChangeUtils.setIconChangeDefault(context,holder.ivLike,R.mipmap.details_xi_whilt);
                }else{
                    list.get(position).setLike(true);
-                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi);
+                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.xi);
                }
 
 
