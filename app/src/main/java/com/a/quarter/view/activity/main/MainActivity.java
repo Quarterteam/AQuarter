@@ -15,10 +15,11 @@ import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
 import com.a.quarter.utils.DrawableUtils;
 import com.a.quarter.utils.SlidingMenuUtils;
-import com.a.quarter.view.activity.msginform.MsgInformActivity;
-import com.a.quarter.view.activity.mycollect.MyCollectActivity;
+import com.a.quarter.view.activity.compile.CreationActivity;
 import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
+import com.a.quarter.view.activity.msginform.MsgInformActivity;
+import com.a.quarter.view.activity.mycollect.MyCollectActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
@@ -139,7 +140,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     slidingMenu.toggle();
                 }
                 break;
-            case R.id.iv_right:
+            case R.id.iv_right: // TODO: 编译
 //                if(App.isLogin()){
                 ActivityUtils.jumpIn(this, CreationActivity.class);
 //                }else{

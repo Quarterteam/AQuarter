@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,7 +55,7 @@ public class VHotFragDetails extends BaseActivity {
     @Bind(R.id.hotdetails_send)
     Button hotdetailsSend;
     private AndroidMediaController mMediaController;
-    private  String url="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud";
+    private String url = "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud";
     private MediaMetadataRetriever mMetadataRetriever;
     private boolean mBackPressed;
 
@@ -69,7 +68,7 @@ public class VHotFragDetails extends BaseActivity {
     protected void initViews() {
         Intent intent = getIntent();
         String key = intent.getStringExtra("key");
-//        Log.e("key", key);
+
 
 
         IjkMediaPlayer.loadLibrariesOnce(null);
@@ -94,20 +93,17 @@ public class VHotFragDetails extends BaseActivity {
     @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user,R.id.hotdetails_send})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.hotdetails_return://// TODO: 返回键
+            case R.id.hotdetails_return:// TODO: 返回键
                 finish();
                 break;
-            case R.id.hotdetails_love:// TODO: 喜欢
-
+            case R.id.hotdetails_love:// TODO: 点赞
                 break;
-            case R.id.hotdetails_nolove:// TODO: 不喜欢
+            case R.id.hotdetails_nolove:// TODO: 踩
                 break;
             case R.id.hotdetails_share:// TODO: 分享
               {
                   String titele="视频标题";
                   String content="视频内容";
-
-                  Log.i("share","successful");
                   QQLoginShareUtils.setShare(url,titele,content,VHotFragDetails.this);
                }
                 break;
