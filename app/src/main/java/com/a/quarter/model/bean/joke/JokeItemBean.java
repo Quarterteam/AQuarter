@@ -11,13 +11,13 @@ public class JokeItemBean {
     private boolean isRigth;
     private boolean isfollow;
     private boolean iscomment;
-    private JokeBean.Characterp jokeBean;
+    //private JokeBean.Characterp jokeBean;
 
-    public JokeItemBean(boolean isRigth, boolean isfollow, boolean iscomment, JokeBean.Characterp jokeBean) {
+
+    public JokeItemBean(boolean isRigth, boolean isfollow, boolean iscomment) {
         this.isRigth = isRigth;
         this.isfollow = isfollow;
         this.iscomment = iscomment;
-        this.jokeBean = jokeBean;
     }
 
     public boolean isRigth() {
@@ -44,11 +44,5 @@ public class JokeItemBean {
         this.iscomment = iscomment;
     }
 
-    public JokeBean.Characterp getJokeBean() {
-        return jokeBean;
-    }
 
-    public void setJokeBean(JokeBean.Characterp jokeBean) {
-        this.jokeBean = jokeBean;
-    }
 }

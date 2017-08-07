@@ -504,6 +504,7 @@
     </style>
 
     <!--消息通知-->
+
     <style name="Tv.Msg.Innform" parent="Control">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

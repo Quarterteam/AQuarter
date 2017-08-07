@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     style="@style/Linear_match_hor">
     <CheckBox
         android:id="@+id/box_del"
@@ -17,12 +18,13 @@
         android:layout_height="10dp"></View>
 
     <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_below="@id/view_userpage"
         android:id="@+id/item_userpage_Image_title"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_below="@id/view_userpage"
         android:layout_marginLeft="20dp"
-        />
+        fresco:roundAsCircle="true"
+        fresco:placeholderImage="@mipmap/user_icon" />
 
     <TextView
         android:id="@+id/item_userpage_Text_title"
@@ -115,7 +117,6 @@
            android:id="@+id/item_userpage_iv_comment"
            style="@style/userpage.image.text.videoRigth"
            android:drawableTop="@mipmap/comment_whilt"
-
            android:text="1254"/>
    </LinearLayout>
     </RelativeLayout>

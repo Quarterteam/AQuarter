@@ -1,7 +1,6 @@
 package com.a.quarter.view.adapter.msginform;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a.quarter.R;
-import com.a.quarter.utils.FrescoCircleUtils;
+import com.a.quarter.model.bean.msginform.MsgInformItemBean;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 类的作用：
@@ -21,11 +23,15 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.MyHolder> {
     private Context context;
-
+    private List<MsgInformItemBean> list=new ArrayList<>();
     public MsgListAdapter(Context context) {
         this.context = context;
     }
-
+    public void setData(List<MsgInformItemBean> mlist){
+        if (mlist!=null){
+            list.addAll(mlist);
+        }
+    };
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.item_msg, null);
@@ -35,7 +41,6 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.MyHolder
 
     @Override
     public void onBindViewHolder(final MyHolder holder, int position) {
-        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
 
 
     }

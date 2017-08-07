@@ -32,12 +32,12 @@ public class MyCollectItemAdapter extends RecyclerView.Adapter<MyCollectItemAdap
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
        holder.name.setText("骑猪上高速");
-       holder.content.setText(":骑猪上高速");
+       holder.content.setText(":不错");
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 2;
     }
 
     public class MyHolder extends RecyclerView.ViewHolder{

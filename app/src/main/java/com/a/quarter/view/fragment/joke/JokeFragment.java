@@ -24,6 +24,7 @@ import butterknife.Bind;
 public class JokeFragment extends BaseFragment <JokePresenter,JokeFragment.JokeCallBack>{
     @Bind(R.id.joke_recycler)
     RecyclerView mRecyclerView;
+
     private JokeAdapter adapter;
     private List<JokeItemBean> list=new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
@@ -35,19 +36,27 @@ public class JokeFragment extends BaseFragment <JokePresenter,JokeFragment.JokeC
 
     @Override
     protected void initViews() {
-        linearLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new JokeAdapter(getActivity());
-        mRecyclerView.setAdapter(adapter);
+
+
     }
 
     @Override
     protected void initDatas() {
-        bindPresenter(new JokePresenter(),new JokeCallBack(JokeFragment.this,getActivity()));
-      mPresenter.getDataFrom();
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new JokeAdapter(getActivity());
+        mRecyclerView.setAdapter(adapter);
+        for (int i = 0; i <4 ; i++) {
+            JokeItemBean jokeItemBean = new JokeItemBean(false,false,false);
+            list.add(jokeItemBean);
+        }
+         adapter.setData(list);
+        adapter.notifyDataSetChanged();
+//        bindPresenter(new JokePresenter(),new JokeCallBack(JokeFragment.this,getActivity()));
+//        mPresenter.getDataFrom();
     }
 
-     class JokeCallBack extends RxCallback<JokeBean,JokeFragment,BaseTag> {
+   static  class JokeCallBack extends RxCallback<JokeBean,JokeFragment,BaseTag> {
 
         public JokeCallBack(JokeFragment host, Context mContext) {
             super(host, mContext);
@@ -60,6 +69,7 @@ public class JokeFragment extends BaseFragment <JokePresenter,JokeFragment.JokeC
 
         @Override
         public void onRequestStart(BaseTag tag) {
+
         }
 
         @Override
@@ -69,12 +79,12 @@ public class JokeFragment extends BaseFragment <JokePresenter,JokeFragment.JokeC
         @Override
         protected void onDealNextResponse(JokeBean response, BaseTag tag) {
 
-            for (int i = 0; i <response.getCharacter().size() ; i++) {
-                JokeItemBean jokeItemBean = new JokeItemBean(false,false,false,response.getCharacter().get(i));
-                list.add(jokeItemBean);
-            }
-            adapter.setData(list);
-            adapter.notifyDataSetChanged();
+//            for (int i = 0; i <response.getCharacter().size() ; i++) {
+//                JokeItemBean jokeItemBean = new JokeItemBean(false,false,false,response.getCharacter().get(i));
+//                getHost().list.add(jokeItemBean);
+//            }
+//            getHost().adapter.setData(getHost().list);
+//            getHost().adapter.notifyDataSetChanged();
         }
     }
 }

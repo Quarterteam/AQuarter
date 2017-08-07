@@ -1,9 +1,6 @@
 package com.a.quarter.view.adapter.mycollect;
 
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,10 +12,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.collect.MyCollectItemBean;
 import com.a.quarter.model.utils.AnimUtils;
-import com.a.quarter.utils.FrescoCircleUtils;
-import com.a.quarter.utils.QQLoginShareUtils;
+import com.a.quarter.utils.IconChangeUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import media.IjkVideoView;
 
@@ -29,110 +29,110 @@ import media.IjkVideoView;
  * date ： 2017/7/26.
  */
 
-public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHolder> implements View.OnClickListener {
+public class MyCollectAdapter extends RecyclerView.Adapter<MyCollectAdapter.MyHolder>  {
     private Context context;
-    private boolean flag = true;
-    private boolean playBo=false;
+    private List<MyCollectItemBean>list=new ArrayList<>();
+
     private View view1;
     private View popView;
     private PopupWindow popupWindow;
+    private LinearLayoutManager linearLayoutManager;
+    private MyCollectItemAdapter myCollectItemAdapter;
+
     public MyCollectAdapter(Context context) {
         this.context = context;
     }
-
+    public void setData(List<MyCollectItemBean> mlist){
+        if (mlist!=null){
+            list.addAll(mlist);
+        }
+    };
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         view1 = View.inflate(context, R.layout.item_userpage, null);
         MyHolder myHolder = new MyHolder(view1);
-        setPopwindow();
+
         return myHolder;
     }
 
     @Override
-    public void onBindViewHolder(final MyHolder holder, int position) {
-        //显示
+    public void onBindViewHolder(final MyHolder holder, final int position) {
+        //显示 删除编辑框
+if (list.get(position).isDelVisibility()){
+    holder.boxDel.setVisibility(View.VISIBLE);
+}else{
+    holder.boxDel.setVisibility(View.GONE);
+}
+        //设置头像
 
-        //设置数据
-        FrescoCircleUtils.setImageViewCircle(holder.ImageTitle, Uri.parse("http://169.254.1.100/ic_ss.jpg"));
         holder.tvTitle.setText("天蝎喝牛奶");
         holder.tvTime.setText("2017-7-20  14:20");
-        holder.tvPublish.setText("妹子智斗抢劫男，标题总是这样滴");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        holder.tvPublish.setText("天气美美的，适合");
+        System.out.println("--co--"+holder.boxDel);
+        LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(context);
         holder.recyclerView.setLayoutManager(linearLayoutManager);
-        MyCollectItemAdapter myCollectItemAdapter = new MyCollectItemAdapter(context);
+        myCollectItemAdapter = new MyCollectItemAdapter(context);
         holder.recyclerView.setAdapter(myCollectItemAdapter);
-        //动画
+        //点击展开动画
         holder.jokeImageRigth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (flag == true) {
-                    flag = false;
-                    holder.jokeImageRigth.setImageResource(R.mipmap.packup2);
-                    AnimUtils.setTransRot(0f, -90f, 0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
-                } else {
-                    flag = true;
+                if (list.get(position).isAnimshow()) {
+                    list.get(position).setAnimshow(false);
                     holder.jokeImageRigth.setImageResource(R.mipmap.icon_open);
-                    AnimUtils.setTransRot(0f, 90f, 1f, 0f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+                    AnimUtils.setAlpha(1f, 0f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+
+                } else {
+                    list.get(position).setAnimshow(true);
+                    holder.jokeImageRigth.setImageResource(R.mipmap.icon_packup);
+                    AnimUtils.setAlpha(0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
                 }
             }
         });
 
 
-        //分享
-        holder.ivShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popupWindow.setAnimationStyle(R.style.Animation);
-               popupWindow.showAsDropDown(view1,0,-30);
-
-
-            }
-        });
 
        holder.ivLike.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               setTopIcon(R.mipmap.details_xi_a, holder.ivLike);
+               if (list.get(position).isLike()){
+                   list.get(position).setLike(false);
+                   IconChangeUtils.setIconChangeDefault(context,holder.ivLike,R.mipmap.details_xi_whilt);
+               }else{
+                   list.get(position).setLike(true);
+                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi);
+               }
+
+
            }
        });
         holder.ivCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              setTopIcon(R.mipmap.star_checked_whilt, holder.ivCollect);
+                if (list.get(position).isCollect()){
+                    list.get(position).setCollect(false);
+                    IconChangeUtils.setIconChangeDefault(context,holder.ivCollect,R.mipmap.my_collect_whilt);
+                }else{
+                    list.get(position).setCollect(true);
+                    IconChangeUtils.setIconChangeCheck(context,holder.ivCollect,R.mipmap.star_checked_whilt);
+                }
+
             }
         });
 
 }
 
 
-public void setPopwindow(){
-    popView = View.inflate(context, R.layout.popwindow_share,null);
-    LinearLayout popQq= (LinearLayout) popView.findViewById(R.id.pop_qq);
-    LinearLayout popQzone= (LinearLayout) popView.findViewById(R.id.pop_qzone);
-    LinearLayout popFriend= (LinearLayout) popView.findViewById(R.id.pop_friend);
-    LinearLayout popWeixin= (LinearLayout) popView.findViewById(R.id.pop_weixin);
-    TextView popCancel= (TextView) popView.findViewById(R.id.pop_cancel);
-    popQq.setOnClickListener(this);
-    popQzone.setOnClickListener(this);
-    popFriend.setOnClickListener(this);
-    popWeixin.setOnClickListener(this);
-    popCancel.setOnClickListener(this);
 
-    popupWindow = new PopupWindow(popView, RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.MATCH_PARENT);
-    popupWindow.setOutsideTouchable(true);
-    popupWindow.setBackgroundDrawable(new BitmapDrawable());
-    popupWindow.setFocusable(true);
-}
 
-public void setTopIcon(int imageId,TextView view){
-    Drawable top = context.getResources().getDrawable(imageId);
-    view.setCompoundDrawablesWithIntrinsicBounds(null, top , null, null);
-}
     @Override
     public int getItemCount() {
         return 2;
     }
+
+
 
     @Override
     public void onClick(View view) {
