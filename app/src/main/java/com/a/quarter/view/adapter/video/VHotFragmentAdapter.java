@@ -3,12 +3,14 @@ package com.a.quarter.view.adapter.video;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.a.quarter.R;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -20,8 +22,8 @@ import java.util.ArrayList;
 
 public class VHotFragmentAdapter extends RecyclerView.Adapter<VHotFragmentAdapter.MyViewHolder>{
     private Context context;
-    private ArrayList<Integer> list;
-    public VHotFragmentAdapter(Context context, ArrayList<Integer> list) {
+    private ArrayList<String> list;
+    public VHotFragmentAdapter(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
 
@@ -37,8 +39,9 @@ public class VHotFragmentAdapter extends RecyclerView.Adapter<VHotFragmentAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-          //    Log.i("111111111",list.get(position)+"");
-              holder.mImageView.setImageResource(R.mipmap.ic_launcher);
+        Log.i("11111111111",list.toString());
+          //    holder.mImageView.setImageResource(R.mipmap.ic_launcher);
+        Glide.with(context).load(list.get(position)).into(holder.mImageView);
             holder.mImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

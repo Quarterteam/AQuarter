@@ -81,7 +81,6 @@ public class VHotFragDetails extends BaseActivity {
         mIjkVideoView.setVideoURI(Uri.parse
                 (url));
         mIjkVideoView.start();
-
     }
 
     @Override
