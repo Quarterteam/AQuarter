@@ -101,6 +101,7 @@ if (list.get(position).isDelVisibility()){
                    list.get(position).setLike(true);
                    IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.xi);
                    IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi_a);
+
                }
 
            }
@@ -167,7 +168,7 @@ if (list.get(position).isDelVisibility()){
             ivShare= (TextView) itemView.findViewById(R.id.item_userpage_iv_share);
             ivComment= (TextView) itemView.findViewById(R.id.item_userpage_iv_comment);
             linear= (LinearLayout) itemView.findViewById(R.id.item_userpage_linear);
-            ivPlay= (ImageView) itemView.findViewById(R.id.item_userpage_play);
+              ivPlay= (ImageView) itemView.findViewById(R.id.item_userpage_play);
         }
     }
 }

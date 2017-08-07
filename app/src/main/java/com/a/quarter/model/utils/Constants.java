@@ -5,7 +5,7 @@ package com.a.quarter.model.utils;
  */
 public class Constants {
 
-    public static final String BASE_URL = "http://169.254.1.100/quarter/";
+    public static final String BASE_URL = "http://192.168.1.100/quarter/";
 
     public static final String LOGIN = "user/addLogin";//登录 POST
     public static final String REGISTER = "user/addUser";//注册 POST
