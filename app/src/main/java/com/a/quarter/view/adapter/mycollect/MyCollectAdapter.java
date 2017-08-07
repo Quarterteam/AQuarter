@@ -91,9 +91,6 @@ if (list.get(position).isDelVisibility()){
                 }
             }
         });
-
-
-
        holder.ivLike.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -102,7 +99,7 @@ if (list.get(position).isDelVisibility()){
                    IconChangeUtils.setIconChangeDefault(context,holder.ivLike,R.mipmap.details_xi_whilt);
                }else{
                    list.get(position).setLike(true);
-                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi);
+                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.xi);
                }
 
 
@@ -134,25 +131,8 @@ if (list.get(position).isDelVisibility()){
 
 
 
-    @Override
-    public void onClick(View view) {
-         switch (view.getId()){
-             case R.id.pop_qq:
-              //   QQLoginShareUtils.setShare("d","分享","djfdjvnm",context);
-                 QQLoginShareUtils utils = new QQLoginShareUtils();
-                 utils.setShare("d","分享","djfdjvnm",context);
-                 break;
-             case R.id.pop_qzone:
-                 break;
-             case R.id.pop_friend:
-                 break;
-             case R.id.pop_weixin:
-                 break;
-             case R.id.pop_cancel:
-                 popupWindow.dismiss();
-                 break;
-         }
-    }
+
+
 
     public class MyHolder extends RecyclerView.ViewHolder {
        CheckBox boxDel;

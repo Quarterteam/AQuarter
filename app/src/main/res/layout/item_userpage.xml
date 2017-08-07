@@ -84,6 +84,7 @@
         <media.IjkVideoView
             android:id="@+id/item_userpage_video"
             style="@style/userpage.Item.IjkVideoView"
+
             />
         <ImageView
             android:id="@+id/item_userpage_play"
