@@ -1,64 +1,125 @@
 package com.a.quarter.view.adapter.recommend;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a.quarter.R;
+import com.a.quarter.model.bean.recommend.ContentListBean;
 import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.fragment.recommend.BannerFrescoImageLoader;
-import com.a.quarter.view.fragment.recommend.BannerLocalImageLoader;
-import com.a.quarter.model.bean.recommend.ContentListBean;
-import com.exa.framelib_rrm.utils.LogUtils;
-import com.exa.framelib_rrm.utils.NetUtils;
-import com.exa.framelib_rrm.utils.T;
+import com.a.quarter.view.view.ItemIjkPlayerView ;
+import com.dl7.player.media.IjkPlayerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 
-import io.reactivex.Emitter;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Cancellable;
 import io.reactivex.schedulers.Schedulers;
-import media.AndroidMediaController;
-import media.IjkVideoView;
-import media.Settings;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
-import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * Created by acer on 2017/7/29.
  * 首页热门推荐，RecyclerView的适配器，使用了多条目加载
  * 目前共有三种条目：1、轮播图banner；2、视频条目；3、图片条目
  *
- * 是创建ViewHolder的时候，出现的卡顿？
+ * 遇到过的问题：
  *
- * 视频停止的问题？
- * 所有条目只使用一个IjkVideoView，remove之后可能会出现上个播放视频的条目在视频的位置一片空白的情况
- * 怎么监听一个条目的完全消失，在条目完全消失的时候，remove掉IjkVideoView？
- * （使用RecyclerView的OnChildAttachStateChangeListener监听条目从屏幕上移除的时刻，这时停止视频）
+ * 1、调用player的相关方法时会有轻微的卡顿，所以需要在子线程里释放资源（使用Thread或者RxJava）
+ * 代码示例见VideoViewHolder类的resetItem方法。
  *
+ * 2、RecyclerView前几次滑动的时候也会有卡顿，为什么？
+ * （是因为需要创建ViewHolder吗？？？）
+ * 待解决。
+ *
+ * 3、Slidingmenu滑动的时候，视频的位置会变成透明的，为什么？
+ *
+ * 过程中找到的解决视频区域透明的办法：
+ *
+ * 方法一（不推荐用）：在IjkVideoView类里
+ * case RENDER_SURFACE_VIEW:
+ * renderView.setZOrderOnTop(true);//renderView是SurfaceRenderView
+ * 缺点：这样会把视频画面显示在屏幕除了状态栏之外的最外层，会遮挡住同一位置的其他一切视图（比如滑动的时候也会遮挡住页面的头部布局），
+ * 而且被挡住的按钮等可点击的控件也可以点击。
+ *
+ * 方法二（不推荐用）：
+ * renderView.setBackgroundColor(Color.GRAY);//renderView是SurfaceRenderView
+ * 缺点：会导致视频画面被挡住，只能看见设置的背景色，看不到播放的视频。
+ *
+ *
+ * ###视频区域透明的原因###：
+ * 结合IjkPlayerView框架的源码发现，视频区域在滑动时总是变透明，是因为IjkVideoView默认使用了SurfaceView，而不是TextureView。
+ * 大概是SurfaceView的特性导致的，暂时不知道怎么从SurfaceView方面解决透明的问题（待解决）。
+ * 所以改用TextureView，IjkPlayerView框架里使用的也是TextureView。
+ * （IjkPlayerView框架是对原生IjkPlayer的二次封装）
+ *
+ * 方法三（可以使用）：
+ * 在使用原生IjkVideoView时，使用TextureView，具体代码是ijkVideoView.setRender(IjkVideoView.RENDER_TEXTURE_VIEW);
+ * 或者使用IjkPlayerView框架（框架内部也是使用了TextureView）。
+ * 缺点：
+ * 使用TextureView，需要TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)，也就是API等级14，Android 4.0
+ *
+ *
+ * 4、MediaController不会跟随着SlidingMenu的滑动而移动?
+ *
+ * ###原因分析###：
+ * 使用了原生IjkPlayer里的AndroidMediaController，
+ * 查看源码，发现MediaController的本质是一个FrameLayout，源码里使用的是
+ * mWindowManager.addView(mDecor, mDecorLayoutParams);
+ * mWindowManager.removeView(mDecor);
+ * 直接在屏幕上添加，移除MediaController，
+ * 而不是添加到条目布局上了。
+ *
+ * 解决办法：改用IjkPlayerView视频框架，不再直接使用IjkVideoView，
+ * 这样不会有MediaController不跟随着SlidingMenu的滑动而移动的问题
+ * （因为IjkPlayerView视频框架里没有使用IjkPlayer提供的AndroidMediaController，而是自己封装了controller相关的控件），
+ * 也可以同时解决SlidingMenu滑动时视频区域变透明的问题，
+ * 并且IjkPlayerView功能也更全，比如已经有弹幕，全屏切换，滑动屏幕调节音量、亮度，截图，加载失败重试等功能。
+ *
+ *
+ * 5、视频停止的问题？
+ * 怎么监听一个条目的完全消失，在条目完全消失的时候，停止播放该条目的视频？
+ * 使用RecyclerView的OnChildAttachStateChangeListener监听条目从屏幕上完全消失的时刻，这时停止视频，并重置该条目状态。
+ * 代码在HotFragment里。
+ *
+ * 6、避免内存泄露
+ * IjkPlayerView类里一个全局变量是关联的Activity，怎么在Fragment销毁的时候置为null？
+ * IjkPlayerView类里注册了锁屏状态，网络状态，电量改变三个广播，怎么在Fragment销毁的时候注销广播？（不手动注销的话，logcat里会有提示）
+ * 怎么在Fragment销毁的时候停止轮播图？
+ *
+ // * IjkPlayerView是在VideoViewHolder里用到的，但是因为使用了条目复用，VideoViewHolder对象的创建和复用是系统自行分配的，
+ // * 到底在哪个条目上创建新的VideoViewHolder对象，在哪个条目上复用VideoViewHolder对象，确定不了，
+ // * 也无法确定到底创建了几个VideoViewHolder对象，也就无法确定到底创建了几个IjkPlayerView对象；
+ *
+ * 一个条目从屏幕上完全消失了，下一刻可能该条目的view对象就会被重新添加到屏幕上，让下一个条目使用，达到复用条目的目的，
+ * 复用条目的时候，条目上的IjkPlayerView也会被复用，
+ * 如果在条目从屏幕上完全消失的时候注销广播，复用的时候IjkPlayerView里就不能再接收到广播，会出现错误。
+ * 条目可能被复用，所以不应该在条目从屏幕上完全消失的时候注销广播。
+ *
+ * 使用集合保存每一个新建的IjkPlayerView对象，在Activity或者Fragment销毁的时候，遍历集合，注销每一个IjkPlayerView里的广播。
+ * 使用集合保存每一个新建的Banner对象，在Activity或者Fragment销毁的时候，遍历集合，停止每一个轮播图。
+ *
+ * 缩略图控件改成SimpleDraweeView
+ * com.a.quarter.view.view.ItemIjkPlayerView
+ *
+ * TODO
+ *
+ * 点击右上角才出现那些图标
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
 
@@ -68,6 +129,9 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     public static final int TYPE_IMG = 1;//图片条目
     public static final int TYPE_VIDEO = 2;//视频条目
     private final LayoutInflater inflater;
+
+    private ArrayList<ItemIjkPlayerView> players;
+    private ArrayList<Banner> banners;
 
     public ContentListAdapter(Context context, ArrayList<ContentListBean> list) {
         this.context = context;
@@ -118,14 +182,18 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         return list.size();
     }
 
-    private Banner banner;
+    //    private Banner banner;
     //轮播图对应的ViewHolder
     class Head1ViewHolder extends RecyclerView.ViewHolder {
-        //private Banner banner;
+        private Banner banner;
 
         public Head1ViewHolder(View itemView) {
             super(itemView);
             banner = (Banner) itemView.findViewById(R.id.banner);
+            if(banners==null){
+                banners = new ArrayList<Banner>();
+            }
+            banners.add(banner);
 
             ArrayList<Integer> list = new ArrayList<Integer>();
             list.add(R.mipmap.banner1);
@@ -142,12 +210,19 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
         }
 
+//        public void onDestory(){
+//            if(banner!=null){
+//                banner.stopAutoPlay();
+//                banner = null;
+//            }
+//        }
+
     }
 
     //视频条目和图片条目在布局上有一些相同的地方，所以在这里写了一个父类，抽取出相同的部分
     class NormalItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Animation.AnimationListener{
 
-//        ImageView ivUserIcon;
+        //ImageView ivUserIcon;
         SimpleDraweeView ivUserIcon;
         TextView tvUsername;
         TextView tvTime;
@@ -430,9 +505,9 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             }
 
             //用户头像
-//            ivUserIcon.setImageResource(contentListBean.userIconResourceId);
+            //ivUserIcon.setImageResource(contentListBean.userIconResourceId);
             ivUserIcon.setActualImageResource(contentListBean.userIconResourceId);
-//            ivUserIcon.setImageURI();
+            //ivUserIcon.setImageURI();
             //用户名称
             tvUsername.setText(contentListBean.userName);
             //时间
@@ -474,6 +549,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
             ivImg = (SimpleDraweeView) itemView.findViewById(R.id.iv_img);
             ivImg.setOnClickListener(this);
+
         }
 
         private int id;
@@ -490,189 +566,137 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             //ivImg.setImageResource(list.get(position).imgResourceId);
             ivImg.setActualImageResource(list.get(position).imgResourceId);
         }
+
     }
 
     private ContentListBean contentListBean;
-    public IjkVideoView player;
     //视频条目
-    public class VideoViewHolder extends NormalItemViewHolder {
+    public class VideoViewHolder extends NormalItemViewHolder implements ItemIjkPlayerView.OnPlayCircleClickListener {
 
         private final View include_video;
-        //        MyIjkVideoView player;
-        FrameLayout videoContainer;
-        SimpleDraweeView ivVideoThumb;
-        ImageView ivVideoStartIcon;
+        //        public IjkPlayerView player;
+        public ItemIjkPlayerView player;
 
         public VideoViewHolder(View itemView) {
             super(itemView);
 
-            videoContainer = (FrameLayout) itemView.findViewById(R.id.fl_video_container);
-            ivVideoThumb = (SimpleDraweeView) itemView.findViewById(R.id.iv_video_thumb);
-            ivVideoStartIcon = (ImageView) itemView.findViewById(R.id.iv_video_start_icon);
+//            player = (IjkPlayerView) itemView.findViewById(R.id.ijkPlayerView);
+            player = (ItemIjkPlayerView) itemView.findViewById(R.id.ijkPlayerView);
+            player.setOnPlayCircleClickListener(this);
+            player.init(true);
+            if(players==null){
+                players = new ArrayList<ItemIjkPlayerView>();
+            }
+            players.add(player);
             include_video = (View) itemView.findViewById(R.id.include_video);
-
-            ivVideoStartIcon.setOnClickListener(this);
         }
 
+        //刚显示该条目的时候，加载该条目对应的视频缩略图
         public void showVideo() {
-            if(ivVideoStartIcon.getVisibility()!=View.VISIBLE){
-                ivVideoStartIcon.setVisibility(View.VISIBLE);
-                ivVideoThumb.setVisibility(View.VISIBLE);
-            }
-            ivVideoThumb.setActualImageResource(list.get(position).videoThumbResourceId);
-        }
-
-        @Override
-        public void onClick(View v) {
-            super.onClick(v);
-
-            //点击视频开始图标的时候，才初始化视频
-            if(v == ivVideoStartIcon){
-                if(!NetUtils.isConnected()){
-                    T.showShort(context, "没有连接网络！");
-                    return;
-                }
-                if(!NetUtils.isWifiActivity(context)){
-                    T.showShort(context, "正在使用不是WiFi，请注意流量！");
-                }
-
-                contentListBean = list.get(position);
-                if(contentListBean.videoUri != null && !TextUtils.isEmpty(contentListBean.videoUri.getPath())){
-                    if(player==null){
-                        player = new IjkVideoView(context);
-                        player.setMediaController(new AndroidMediaController(context));
-                        //player.createPlayer(Settings.PV_PLAYER__IjkMediaPlayer);
-                        player.setBackgroundColor(Color.GRAY);
-                        player.setTextureRender();//如果使用SurfaceView的话，SlidingMenu滑动时视频区域会变透明
-                    }else{
-                        //player.stopPlayback();
-                        player.release(true);
-                        ViewGroup parent = (ViewGroup) player.getParent();
-                        if(parent!=null){
-                            parent.removeView(player);
-                            //所有条目只使用一个IjkVideoView，remove之后可能会出现上个播放视频的条目在视频的位置一片空白的情况
-                        }
-                    }
-                    videoContainer.addView(player);
-                    player.setVideoURI(contentListBean.videoUri);
-                    player.start();
-                    //开始播放 让右边的include出现
-                    include_video.setVisibility(View.VISIBLE);
-
-                    T.showShort(context, "开始播放视频！");
-                    ivVideoThumb.setVisibility(View.INVISIBLE);
-                    ivVideoStartIcon.setVisibility(View.GONE);
-                    // TODO: 2017/8/2   //设置播放完成地监听
-
-                    player.setOnCompletionListener(new IMediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(IMediaPlayer iMediaPlayer) {
-                            include_video.setVisibility(View.GONE);
-                            ivVideoThumb.setVisibility(View.VISIBLE);
-
-                        }
-                    });
-
-                }else{
-                    T.showShort(context, "视频地址为空！");
-                }
-            }
+            player.mPlayerThumb.setActualImageResource(list.get(position).videoThumbResourceId);
+            //player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
         }
 
         /**
-         * 回复到未播放的状态，
-         * 该方法里调用player的相关方法时会有轻微的卡顿，所以需要在子线程里释放资源（使用Thread或者RxJava）
+         * 重置视频条目，回复到未播放的状态。（重新显示视频缩略图和开始播放的图标，隐藏其他相关的视频控制控件）
          *
-         * RecyclerView第一次滑动的时候也会有卡顿，为什么？
-         * Slidingmenu滑动的时候，视频的位置会变成透明的，为什么？
-         * case RENDER_SURFACE_VIEW:
-         * SurfaceRenderView renderView.setZOrderOnTop(true);
-         * 一开始视频还没加载好的时候，会是白色的背景。
-         *
-         * 会挡住原来在视频右边的按钮？
-         * 会把视频画面显示在屏幕的最外层，只在状态栏的下层，而且被挡住的按钮也可以点击。
-         *
-         * renderView.setBackgroundColor(Color.GRAY);会导致视频画面被挡住。
-         *
-         * 视频区域在滑动时总是变透明，是因为默认使用的是SurfaceView。
-         *
-         * 使用player.setRender(IjkVideoView.RENDER_TEXTURE_VIEW);可以解决透明问题，
-         * 但是TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-         *
-         *
-         * MediaController不会跟随着移动?
-         * MediaController的本质是一个FrameLayout
-         * 因为源码使用的是
-         * mWindowManager.addView(mDecor, mDecorLayoutParams);
-         * mWindowManager.removeView(mDecor);
-         * 直接在屏幕上添加，移除MediaController
-         *
-         *
-         *
-         *
-         * 点击右上角才出现那些图标
          *
          * */
         public void resetItem() {
             //LogUtils.i("resetItem start");
-            if(player!=null){
-                ViewGroup parent = (ViewGroup) player.getParent();
-                if(parent!=null){
-                    //long t = System.currentTimeMillis();
-                    parent.removeView(player);
-//                    new Thread(){
-//                        @Override
-//                        public void run() {
-//                            player.release(true);
-//                        }
-//                    }.start();
-                    Observable.create(new ObservableOnSubscribe<Integer>() {
-                        @Override
-                        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-                            player.release(true);
-                            //LogUtils.i("resetItem release");
-                            emitter.onComplete();
-                        }
-                    })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe();//耗时：42
+//            if(player!=null && player.mPlayerThumb.getVisibility()!=View.VISIBLE){
+            if(player!=null && player.mIvPlayCircle.getVisibility()!=View.VISIBLE){
+                //long t = System.currentTimeMillis();
+                Observable.create(new ObservableOnSubscribe<Integer>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+                        player.resetVideoView();//因为MediaPlayer.release()释放资源的时候，会有些耗时，所以放在子线程里
+                        emitter.onComplete();
+                    }
+                })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe();//耗时：42
 
-                    //LogUtils.i("resetItem removePlayerView，耗时："+(System.currentTimeMillis()-t));
-                }
+                //player.resetVideoView();放在主线程，会有些卡顿
+                player.resetPlayerView();//player.init()
+                //TODO LogUtils.i("resetItem removePlayerView，耗时："+(System.currentTimeMillis()-t));
             }
-            if(ivVideoStartIcon.getVisibility()!=View.VISIBLE) {
-                ivVideoStartIcon.setVisibility(View.VISIBLE);
-                ivVideoThumb.setVisibility(View.VISIBLE);
-                ivVideoThumb.setActualImageResource(list.get(position).videoThumbResourceId);
-                //LogUtils.i("resetItem setActualImageResource");
-            }
+//            player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
+            player.mPlayerThumb.setActualImageResource(list.get(position).videoThumbResourceId);
             //LogUtils.i("resetItem end");
         }
+
+        @Override
+        public void onPlayCircleClicked() {
+            //初始化需要播放的视频的信息
+            contentListBean = list.get(position);
+            player.setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
+                    .setSkipTip(1000*60*1)
+                    .enableDanmaku()
+                    .setDanmakuSource(context.getResources().openRawResource(R.raw.bili))
+                    //.setVideoSource(null, contentListBean.videoUri.getPath(), null, null, null)得到的是网址的后半段
+                    //比如/videolib3/1611/28/GbgsL3639/SD/movie_index.m3u8: No such file or directory
+                    .setVideoSource(null, contentListBean.videoUri.toString(), null, null, null)
+                    .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);
+
+            //开始播放 让右边的include出现
+            include_video.setVisibility(View.VISIBLE);
+
+            //T.showShort(context, "开始播放视频！");
+
+            // TODO: 2017/8/2   //设置播放完成地监听
+            player.setOnCompletionListener(new IMediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(IMediaPlayer iMediaPlayer) {
+                    include_video.setVisibility(View.GONE);
+                }
+            });
+        }
+
     }
 
-    public void onDestory(){
-        if(player!=null){
-            ViewGroup parent = (ViewGroup) player.getParent();
-            if(parent!=null){
-                parent.removeView(player);//所有条目只使用一个IjkVideoView，
+    /**
+     * Activity的onPause()或者Fragment的onPause()里调用
+     */
+    public void onPause() {
+        //暂停轮播图
+        if(banners!=null){
+            for (int i = 0; i < banners.size(); i++) {
+                banners.get(i).stopAutoPlay();
             }
-            player.stopPlayback();
-
-            player.release(true);
-            player = null;
         }
-        if(banner!=null){
-            banner.stopAutoPlay();
-            banner = null;
-        }
-        context = null;
-    }
-
-    public void onStop() {
-        if(player!=null){
-            player.pause();
+        //暂停视频播放
+        if(players!=null) {
+            for (int i = 0; i < players.size(); i++) {
+                players.get(i).onPause();
+            }
         }
     }
+
+    /**
+     * Activity的onDestroy()或者Fragment的onDestroyView()里调用
+     */
+    public void onDestroy(){
+        //停止轮播图
+        if(banners!=null) {
+            for (int i = 0; i < banners.size(); i++) {
+                banners.get(i).releaseBanner();
+                //LogUtils.i("onDestroy releaseBanner "+banners.get(i));
+            }
+            banners.clear();
+            banners = null;
+        }
+        //停止视频播放
+        if(players!=null) {
+            for (int i = 0; i < players.size(); i++) {
+                players.get(i).onDestroy();
+                //LogUtils.i("onDestroy player "+players.get(i));
+            }
+            players.clear();
+            players = null;
+        }
+    }
+
 }
 

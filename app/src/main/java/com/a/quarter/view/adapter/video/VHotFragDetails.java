@@ -15,14 +15,16 @@ import com.a.quarter.R;
 import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.base.BaseActivity;
+import com.a.quarter.view.view.ItemIjkPlayerView;
+import com.dl7.player.media.IjkPlayerView;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.umeng.socialize.UMShareAPI;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import media.AndroidMediaController;
-import media.IjkVideoView;
+//import media.AndroidMediaController;
+//import media.IjkVideoView;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
@@ -31,7 +33,7 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  * & 思路  ：
  */
 
-public class VHotFragDetails extends BaseActivity {
+public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.OnPlayCircleClickListener {
 
 
     @Bind(R.id.hotdetails_return)
@@ -44,8 +46,8 @@ public class VHotFragDetails extends BaseActivity {
     TextView hotdetailsShare;
     @Bind(R.id.hotdetails_user)
     TextView hotdetailsUser;
-    @Bind(R.id.IjkVideoView)
-    IjkVideoView mIjkVideoView;
+//    @Bind(R.id.IjkVideoView)
+//    IjkVideoView mIjkVideoView;
     @Bind(R.id.hotdetails_video_name)
     TextView hotdetailsVideoName;
     @Bind(R.id.hotdetails_ListView)
@@ -54,10 +56,11 @@ public class VHotFragDetails extends BaseActivity {
     EditText hotdetailsComment;
     @Bind(R.id.hotdetails_send)
     Button hotdetailsSend;
-    private AndroidMediaController mMediaController;
+//    private AndroidMediaController mMediaController;
     private String url = "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22211&editionType=default&source=ucloud";
     private MediaMetadataRetriever mMetadataRetriever;
     private boolean mBackPressed;
+    private ItemIjkPlayerView player;
 
     @Override
     protected int getContentViewId() {
@@ -70,22 +73,43 @@ public class VHotFragDetails extends BaseActivity {
         String key = intent.getStringExtra("key");
 
 
-        IjkMediaPlayer.loadLibrariesOnce(null);
-        IjkMediaPlayer.native_profileBegin("libijkplayer.so");
-        // TODO: 显示播放进度
-        mMediaController = new AndroidMediaController(this, false);
-        mIjkVideoView.setMediaController(mMediaController);
-        // TODO: 设置播放地址
-        //Environment.getExternalStorageDirectory().getPath() + "/oppo.mp4"
-        Uri uri = Uri.parse("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud");
-        mIjkVideoView.setVideoURI(Uri.parse
-                (url));
-        mIjkVideoView.start();
+//        IjkMediaPlayer.loadLibrariesOnce(null);
+//        IjkMediaPlayer.native_profileBegin("libijkplayer.so");
+//        // TODO: 显示播放进度
+//        mMediaController = new AndroidMediaController(this, false);
+//        mIjkVideoView.setMediaController(mMediaController);
+//        // TODO: 设置播放地址
+//        //Environment.getExternalStorageDirectory().getPath() + "/oppo.mp4"
+//        Uri uri = Uri.parse("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=22111&editionType=default&source=ucloud");
+//        mIjkVideoView.setVideoURI(Uri.parse
+//                (url));
+//        mIjkVideoView.start();
+
+
+        player = (ItemIjkPlayerView) findViewById(R.id.ijkPlayerView);
+        player.setOnPlayCircleClickListener(this);
+        player.init(false);
+        player.mPlayerThumb.setActualImageResource(R.mipmap.bg5);
+        //player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
+
     }
 
     @Override
     protected void initDatas() {
 
+    }
+
+
+    @Override
+    public void onPlayCircleClicked() {
+        player.setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
+                .setSkipTip(1000*60*1)
+                .enableDanmaku()
+                .setDanmakuSource(getResources().openRawResource(R.raw.bili))
+                //.setVideoSource(null, contentListBean.videoUri.getPath(), null, null, null)得到的是网址的后半段
+                //比如/videolib3/1611/28/GbgsL3639/SD/movie_index.m3u8: No such file or directory
+                .setVideoSource(null, url, null, null, null)
+                .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);
     }
 
     @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user,R.id.hotdetails_send})
@@ -139,14 +163,30 @@ public class VHotFragDetails extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (mBackPressed || !mIjkVideoView.isBackgroundPlayEnabled()) {
-            mIjkVideoView.stopPlayback();
-            mIjkVideoView.release(true);
-            mIjkVideoView.stopBackgroundPlay();
-        } else {
-            mIjkVideoView.enterBackground();
-        }
-        IjkMediaPlayer.native_profileEnd();
+//        if (mBackPressed || !mIjkVideoView.isBackgroundPlayEnabled()) {
+//            mIjkVideoView.stopPlayback();
+//            mIjkVideoView.release(true);
+//            mIjkVideoView.stopBackgroundPlay();
+//        } else {
+//            mIjkVideoView.enterBackground();
+//        }
+//        IjkMediaPlayer.native_profileEnd();
+
     }
 
+    @Override
+    protected void onPause() {
+        if(player!=null){
+            player.onPause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(player!=null){
+            player.onDestroy();
+        }
+        super.onDestroy();
+    }
 }

@@ -130,4 +130,15 @@ public class RecommendFragment extends BaseFragment implements TabLayout.OnTabSe
         });
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if(hotFragment!=null){
+            hotFragment.onHiddenChanged(hidden);
+        }
+        if(focuseFragment!=null){
+            focuseFragment.onHiddenChanged(hidden);
+        }
+        super.onHiddenChanged(hidden);
+    }
+
 }

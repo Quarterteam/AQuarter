@@ -81,7 +81,8 @@
         android:layout_below="@id/item_userpage_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <media.IjkVideoView
+        <!--<media.IjkVideoView-->
+        <com.dl7.player.media.IjkVideoView
             android:id="@+id/item_userpage_video"
             style="@style/userpage.Item.IjkVideoView"
 

@@ -60,39 +60,29 @@ public class HotFragment extends BaseFragment {
 
         //监听条目的消失
         onChildAttachStateChangeListener =
-        new RecyclerView.OnChildAttachStateChangeListener(){
+                new RecyclerView.OnChildAttachStateChangeListener(){
 
-            ViewGroup parent = null;
-            RecyclerView.ViewHolder holder;
-            @Override
-            public void onChildViewAttachedToWindow(View view) {
+                    RecyclerView.ViewHolder holder;
+                    @Override
+                    public void onChildViewAttachedToWindow(View view) {
 
-            }
+                    }
 
-            /**
-             * 在条目从屏幕上消失的时候，如果是视频条目，移除视频控件，恢复未开始的状态；
-             * 解决remove之后可能会出现上个播放视频的条目上在视频的位置一片空白的情况；
-             * 这个方法有效；
-             * */
-            @Override
-            public void onChildViewDetachedFromWindow(View view) {
-                //LogUtils.i("onChildViewDetachedFromWindow,view="+view);
-                //获取到该条目的ViewHolder
-                holder = rv.getChildViewHolder(view);
-                if(holder instanceof ContentListAdapter.VideoViewHolder){//如果是视频条目
-                    if(adapter.player!=null) {//如果视频控件不是null
-                        parent = (ViewGroup)adapter.player.getParent();
-                        if (parent!=null){//如果视频控件已经被添加到某个条目上了
-                            if(parent.getParent() == view){//如果视频控件是在该view对应的条目上
-                                //LogUtils.i("移除视频控件,view="+view);
-                                ((ContentListAdapter.VideoViewHolder)holder).resetItem();
-                            }
+                    /**
+                     * 在条目从屏幕上完全消失的时候，如果是视频条目，重置条目，恢复到未开始的状态；
+                     * 避免可能因为条目复用出现视频和视频缩略图显示混乱的情况。
+                     * */
+                    @Override
+                    public void onChildViewDetachedFromWindow(View view) {
+                        //获取到该条目的ViewHolder
+                        holder = rv.getChildViewHolder(view);
+                        if(holder instanceof ContentListAdapter.VideoViewHolder){
+                            //如果是视频条目，重置该条目
+                            ((ContentListAdapter.VideoViewHolder)holder).resetItem();
                         }
                     }
-                }
-            }
 
-        };
+                };
         rv.addOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
     }
 
@@ -133,11 +123,11 @@ public class HotFragment extends BaseFragment {
     }
 
     @Override
-    public void onStop() {
+    public void onPause() {
         if(adapter!=null){
-            adapter.onStop();
+            adapter.onPause();
         }
-        super.onStop();
+        super.onPause();
     }
 
     @Override
@@ -146,9 +136,16 @@ public class HotFragment extends BaseFragment {
             rv.removeOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
         }
         if(adapter!=null){
-            adapter.onDestory();
-            adapter = null;
+            adapter.onDestroy();
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if(hidden && adapter!=null){
+            adapter.onPause();
+        }
+        super.onHiddenChanged(hidden);
     }
 }

@@ -15,7 +15,7 @@ public class User {
 
     public String loginType;
     public String userHead;
-//    public String userId;
+    //public String userId;
     public int userId;
     public String userName;
     public String userPassword;
@@ -32,7 +32,7 @@ public class User {
         editor.putString("userName",user.userName);
         editor.putInt("userId",user.userId);
         editor.putString("userHead",user.userHead);
-//        editor.putString("userPassword",user.userPassword);
+        //editor.putString("userPassword",user.userPassword);
         editor.putString("userPhone",user.userPhone);
         editor.putString("userSex",user.userSex);
         editor.putString("expiration",user.expiration);
@@ -47,7 +47,7 @@ public class User {
         editor.putString("userName",null);
         editor.putInt("userId",-1);
         editor.putString("userHead",null);
-//        editor.putString("userPassword",null);
+        //editor.putString("userPassword",null);
         editor.putString("userPhone",null);
         editor.putString("userSex",null);
         editor.putString("expiration",null);
@@ -65,7 +65,7 @@ public class User {
             user.loginType = sp.getString("loginType", null);
             user.userId = sp.getInt("userId",-1);
             user.userHead = sp.getString("userHead",null);
-//            user.userPassword = sp.getString("userPassword",null);
+            //user.userPassword = sp.getString("userPassword",null);
             user.userPhone = sp.getString("userPhone",null);
             user.userSex = sp.getString("userSex",null);
             user.expiration = sp.getString("expiration",null);

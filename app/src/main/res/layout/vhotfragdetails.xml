@@ -74,17 +74,24 @@
             android:id="@+id/hotdetails_user"
             />
     </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="5dp"
+        <!--<LinearLayout-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="300dp"-->
+        <!--&gt;-->
+        <!--<media.IjkVideoView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/IjkVideoView"-->
+            <!--&gt;</media.IjkVideoView>-->
+            <!---->
+            <!---->
+        <!--</LinearLayout>-->
+
+        <com.a.quarter.view.view.ItemIjkPlayerView
             android:layout_width="match_parent"
             android:layout_height="300dp"
-        >
-        <media.IjkVideoView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/IjkVideoView"
-            ></media.IjkVideoView>
-        </LinearLayout>
+            android:id="@+id/ijkPlayerView"/>
     <TextView
         android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"

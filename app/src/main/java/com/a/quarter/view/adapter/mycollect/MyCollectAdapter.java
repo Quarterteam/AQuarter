@@ -15,12 +15,13 @@ import com.a.quarter.R;
 import com.a.quarter.model.bean.collect.MyCollectItemBean;
 import com.a.quarter.model.utils.AnimUtils;
 import com.a.quarter.utils.IconChangeUtils;
+import com.dl7.player.media.IjkVideoView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import media.IjkVideoView;
+//import media.IjkVideoView;
 
 /**
  * 类的作用：
@@ -168,7 +169,7 @@ if (list.get(position).isDelVisibility()){
             ivShare= (TextView) itemView.findViewById(R.id.item_userpage_iv_share);
             ivComment= (TextView) itemView.findViewById(R.id.item_userpage_iv_comment);
             linear= (LinearLayout) itemView.findViewById(R.id.item_userpage_linear);
-              ivPlay= (ImageView) itemView.findViewById(R.id.item_userpage_play);
+            ivPlay= (ImageView) itemView.findViewById(R.id.item_userpage_play);
         }
     }
 }

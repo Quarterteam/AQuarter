@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ContentListBean;
@@ -41,6 +42,7 @@ public class FocuseFragment extends BaseFragment {
     RecyclerView rv;
     private ArrayList<ContentListBean> list;
     private ContentListAdapter adapter;
+    private RecyclerView.OnChildAttachStateChangeListener onChildAttachStateChangeListener;
 
     @Override
     protected int getContentViewId() {
@@ -65,7 +67,37 @@ public class FocuseFragment extends BaseFragment {
         rv.addItemDecoration(itemDecoration);
         //初始化并设置adapter
         list = new ArrayList<ContentListBean>();
+
         rv.setAdapter(adapter = new ContentListAdapter(getActivity(), list));
+
+
+        //监听条目的消失
+        onChildAttachStateChangeListener =
+                new RecyclerView.OnChildAttachStateChangeListener() {
+
+                    RecyclerView.ViewHolder holder;
+
+                    @Override
+                    public void onChildViewAttachedToWindow(View view) {
+
+                    }
+
+                    /**
+                     * 在条目从屏幕上完全消失的时候，如果是视频条目，重置条目，恢复到未开始的状态；
+                     * 避免可能因为条目复用出现视频和视频缩略图显示混乱的情况。
+                     * */
+                    @Override
+                    public void onChildViewDetachedFromWindow(View view) {
+                        //获取到该条目的ViewHolder
+                        holder = rv.getChildViewHolder(view);
+                        if (holder instanceof ContentListAdapter.VideoViewHolder) {
+                            //如果是视频条目，重置该条目
+                            ((ContentListAdapter.VideoViewHolder) holder).resetItem();
+                        }
+                    }
+
+                };
+        rv.addOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
     }
 
     @Override
@@ -104,20 +136,29 @@ public class FocuseFragment extends BaseFragment {
     }
 
     @Override
-    public void onStop() {
-        if(adapter!=null){
-            adapter.onStop();
+    public void onPause() {
+        if (adapter != null) {
+            adapter.onPause();
         }
-        super.onStop();
+        super.onPause();
     }
 
     @Override
     public void onDestroyView() {
-        if(adapter!=null){
-            adapter.onDestory();
-            adapter = null;
+        if (rv != null && onChildAttachStateChangeListener != null) {
+            rv.removeOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
+        }
+        if (adapter != null) {
+            adapter.onDestroy();
         }
         super.onDestroyView();
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if(hidden && adapter!=null){
+            adapter.onPause();
+        }
+        super.onHiddenChanged(hidden);
+    }
 }

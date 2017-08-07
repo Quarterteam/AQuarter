@@ -64,29 +64,38 @@
         android:layout_alignParentRight="true"
         android:src="@mipmap/show" />
 
-    <FrameLayout
-        android:id="@+id/fl_video_container"
+    <!--<FrameLayout-->
+        <!--android:id="@+id/fl_video_container"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:background="@color/white"-->
+        <!--android:layout_below="@id/tv_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="230dp">-->
+
+        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+        <!--<com.facebook.drawee.view.SimpleDraweeView-->
+            <!--android:id="@+id/iv_video_thumb"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_video_start_icon"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@mipmap/video_icon" />-->
+
+    <!--</FrameLayout>-->
+
+    <!--<com.dl7.player.media.IjkPlayerView-->
+    <!--<com.dl7.player.custom.ItemIjkPlayerView-->
+    <com.a.quarter.view.view.ItemIjkPlayerView
+        android:id="@+id/ijkPlayerView"
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:layout_below="@id/tv_content"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        >
-
-        <!--<ImageView-->
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/iv_video_thumb"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/iv_video_start_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/video_icon" />
-
-    </FrameLayout>
+        android:layout_height="230dp"/>
 
     <include
         android:id="@+id/include_video"
@@ -103,7 +112,7 @@
         android:id="@+id/tv_name1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fl_video_container"
+        android:layout_below="@id/ijkPlayerView"
         android:layout_marginTop="10dp"
         android:text="用户名："
         android:textColor="@color/mainColor"
@@ -113,7 +122,7 @@
         android:id="@+id/tv_comment1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fl_video_container"
+        android:layout_below="@id/ijkPlayerView"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/tv_name1"
         android:text="不错"
@@ -146,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/fl_video_container"
+        android:layout_below="@id/ijkPlayerView"
         android:layout_marginRight="-10dp"
         android:layout_marginTop="5dp"
         android:rotation="45"
