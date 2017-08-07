@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.a.quarter.view.activity.main.PublishArticleActivity">
+    >
 
     <LinearLayout
         android:id="@+id/ll"
@@ -57,7 +57,12 @@
         android:gravity="top"
         android:background="@null"
         android:hint="请输入内容，禁止输入色情，暴力等违反国家法律的内容，违者将以封号处理!"/>
-
+    <ImageView
+        android:layout_below="@+id/et_input"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/IMAGE_VIEW"
+        />
     <!--<GridView
         android:id="@+id/gv"
         android:layout_below="@id/et_input"
@@ -67,7 +72,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
-        android:layout_below="@id/et_input"
+        android:layout_below="@id/IMAGE_VIEW"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
