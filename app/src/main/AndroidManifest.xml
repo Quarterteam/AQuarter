@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.a.quarter">
 
-    //调用相机
+    <!--调用相机-->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
@@ -94,6 +94,15 @@
         <activity
             android:name=".view.activity.login.ChangePwdActivity"
             android:theme="@style/Theme.FullScreen"></activity>
+
+        <activity
+            android:name="com.seu.cameraandimage.activity.CameraActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.seu.cameraandimage.image.ImageActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.seu.cameraandimage.image.ShareActivity"></activity>
     </application>
 
 </manifest>

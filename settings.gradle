@@ -1,4 +1,4 @@
 
-include ':app', ':framelib_rrm', ':slidingmenulibrary', ':playerview'
+include ':app', ':framelib_rrm', ':slidingmenulibrary', ':playerview', ':cameraandimage'
 
 

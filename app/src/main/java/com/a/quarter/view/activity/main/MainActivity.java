@@ -60,8 +60,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected int getContentViewId() {
-        //return R.layout.activity_main;
-        return R.layout.slidingmenu_wraper;
+        return R.layout.activity_main;
+        //return R.layout.slidingmenu_wraper;
+        //改成还是使用new SlidingMenu()的方式创建侧滑菜单，可以减少一层布局
     }
 
     @Override

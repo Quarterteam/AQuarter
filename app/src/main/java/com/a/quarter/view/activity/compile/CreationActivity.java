@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.view.base.BaseActivity;
 import com.exa.framelib_rrm.utils.ActivityUtils;
+import com.seu.cameraandimage.activity.CameraActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -49,7 +50,8 @@ public class CreationActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.creation_vedio:// TODO: 视频
-                ActivityUtils.jumpIn(this, VideoActivity.class);
+//                ActivityUtils.jumpIn(this, VideoActivity.class);
+                ActivityUtils.jumpIn(this, CameraActivity.class);
                 break;
             case R.id.creation_text:// TODO: 段子
                 ActivityUtils.jumpIn(this, PublishArticleActivity.class);
