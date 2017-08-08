@@ -143,8 +143,12 @@ public class HotFragment extends BaseFragment {
 
     @Override
     public void onHiddenChanged(boolean hidden) {
-        if(hidden && adapter!=null){
-            adapter.onPause();
+        if(adapter!=null){
+            if(hidden){
+                adapter.onPause();
+            }else{
+                adapter.onResume();
+            }
         }
         super.onHiddenChanged(hidden);
     }

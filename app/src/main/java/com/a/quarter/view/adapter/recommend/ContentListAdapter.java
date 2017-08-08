@@ -116,7 +116,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  *
  * TODO
  * 点击右上角才出现收藏等图标？
- * 前两次滑动RecyclerView的时候会有很明显的卡顿，怎么优化？
+ * 前几次滑动RecyclerView的时候会有很明显的卡顿，怎么优化？
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
 
@@ -654,7 +654,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     }
 
     /**
-     * Activity的onPause()或者Fragment的onPause()里调用
+     * Activity的onPause()或者Fragment的onPause()或者Fragment的onHiddenChanged()方法里调用
      */
     public void onPause() {
         //暂停轮播图
@@ -667,6 +667,18 @@ public class ContentListAdapter extends RecyclerView.Adapter {
         if(players!=null) {
             for (int i = 0; i < players.size(); i++) {
                 players.get(i).onPause();
+            }
+        }
+    }
+
+    /**
+     * Fragment的onHiddenChanged()里调用
+     */
+    public void onResume() {
+        //恢复轮播图的播放
+        if(banners!=null){
+            for (int i = 0; i < banners.size(); i++) {
+                banners.get(i).startAutoPlay();
             }
         }
     }

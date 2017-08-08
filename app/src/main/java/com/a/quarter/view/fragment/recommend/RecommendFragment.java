@@ -132,10 +132,16 @@ public class RecommendFragment extends BaseFragment implements TabLayout.OnTabSe
 
     @Override
     public void onHiddenChanged(boolean hidden) {
-        if(hotFragment!=null){
+        //如果本Fragment的显示隐藏状态切换了，并且内部的hotFragment正处于显示状态的话，
+        //把Fragment的状态变化传递给内部的hotFragment，
+        //当切换到的是隐藏状态时，暂停内部hotFragment正在播放的视频或轮播图
+        //当切换到的是显示状态时，重新开始播放内部hotFragment上的轮播图
+        if(hotFragment!=null && !hotFragment.isHidden()){
             hotFragment.onHiddenChanged(hidden);
         }
-        if(focuseFragment!=null){
+
+        //原理同上
+        if(focuseFragment!=null && !focuseFragment.isHidden()){
             focuseFragment.onHiddenChanged(hidden);
         }
         super.onHiddenChanged(hidden);
