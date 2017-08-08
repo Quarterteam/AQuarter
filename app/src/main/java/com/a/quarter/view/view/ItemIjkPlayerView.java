@@ -106,8 +106,7 @@ import static tv.danmaku.ijk.media.player.IMediaPlayer.OnInfoListener;
 /**
  * Created by acer on 2017/08/04.
  *
- * 用于列表条目，
- * 在IjkPlayerView的基础上，隐藏一些控件
+ * 在IjkPlayerView的基础上，当用在列表条目上时，可以选择隐藏一些控件
  * 视频缩略图控件从ImageView改为Fresco的SimpleDraweeView
  */
 public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListener {

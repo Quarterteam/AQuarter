@@ -20,5 +20,4 @@
         android:id="@+id/recommad_framlayout"
         style="@style/Fram.Recommend.Type"></FrameLayout>
 
-
 </RelativeLayout>

@@ -51,7 +51,8 @@ public class CreationActivity extends BaseActivity {
                 break;
             case R.id.creation_vedio:// TODO: 视频
 //                ActivityUtils.jumpIn(this, VideoActivity.class);
-                ActivityUtils.jumpIn(this, CameraActivity.class);
+//                ActivityUtils.jumpIn(this, CameraActivity.class);
+                ActivityUtils.jumpIn(this, UseCameraActivity.class);
                 break;
             case R.id.creation_text:// TODO: 段子
                 ActivityUtils.jumpIn(this, PublishArticleActivity.class);
