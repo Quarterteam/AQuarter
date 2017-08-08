@@ -102,24 +102,21 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * IjkPlayerView类里注册了锁屏状态，网络状态，电量改变三个广播，怎么在Fragment销毁的时候注销广播？（不手动注销的话，logcat里会有提示）
  * 怎么在Fragment销毁的时候停止轮播图？
  *
- // * IjkPlayerView是在VideoViewHolder里用到的，但是因为使用了条目复用，VideoViewHolder对象的创建和复用是系统自行分配的，
- // * 到底在哪个条目上创建新的VideoViewHolder对象，在哪个条目上复用VideoViewHolder对象，确定不了，
- // * 也无法确定到底创建了几个VideoViewHolder对象，也就无法确定到底创建了几个IjkPlayerView对象；
- *
  * 一个条目从屏幕上完全消失了，下一刻可能该条目的view对象就会被重新添加到屏幕上，让下一个条目使用，达到复用条目的目的，
  * 复用条目的时候，条目上的IjkPlayerView也会被复用，
  * 如果在条目从屏幕上完全消失的时候注销广播，复用的时候IjkPlayerView里就不能再接收到广播，会出现错误。
  * 条目可能被复用，所以不应该在条目从屏幕上完全消失的时候注销广播。
  *
+ * 解决办法：
  * 使用集合保存每一个新建的IjkPlayerView对象，在Activity或者Fragment销毁的时候，遍历集合，注销每一个IjkPlayerView里的广播。
  * 使用集合保存每一个新建的Banner对象，在Activity或者Fragment销毁的时候，遍历集合，停止每一个轮播图。
  *
- * 缩略图控件改成SimpleDraweeView
+ * IjkPlayerView中的视频缩略图控件改成SimpleDraweeView
  * com.a.quarter.view.view.ItemIjkPlayerView
  *
  * TODO
- *
- * 点击右上角才出现那些图标
+ * 点击右上角才出现收藏等图标？
+ * 前两次滑动RecyclerView的时候会有卡顿，怎么优化？
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
 
