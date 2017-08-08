@@ -116,7 +116,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  *
  * TODO
  * 点击右上角才出现收藏等图标？
- * 前两次滑动RecyclerView的时候会有卡顿，怎么优化？
+ * 前两次滑动RecyclerView的时候会有很明显的卡顿，怎么优化？
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
 
