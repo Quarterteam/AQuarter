@@ -102,7 +102,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity android:name="com.seu.cameraandimage.image.ShareActivity" />
-        <activity android:name=".view.activity.compile.UseCameraActivity"
+        <activity android:name=".view.activity.compile.MakeVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"></activity>
     </application>

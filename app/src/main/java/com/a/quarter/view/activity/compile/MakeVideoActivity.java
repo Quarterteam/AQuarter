@@ -12,7 +12,6 @@ import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -33,8 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-//拍照或录制视频页面
-public class UseCameraActivity extends BaseActivity {
+//拍照或录制视频页面，设置滤镜
+public class MakeVideoActivity extends BaseActivity {
     private RecyclerView mFilterListView;
     private FilterAdapter mAdapter;
     private MagicEngine magicEngine;
@@ -167,9 +166,9 @@ public class UseCameraActivity extends BaseActivity {
                 switchMode();
 
             } else if (i == R.id.btn_camera_shutter) {
-                if (PermissionChecker.checkSelfPermission(UseCameraActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                if (PermissionChecker.checkSelfPermission(MakeVideoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(UseCameraActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    ActivityCompat.requestPermissions(MakeVideoActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             v.getId());
                 } else {
                     if (mode == MODE_PIC)
@@ -184,7 +183,7 @@ public class UseCameraActivity extends BaseActivity {
                 magicEngine.switchCamera();
 
             } else if (i == R.id.btn_camera_beauty) {
-                new AlertDialog.Builder(UseCameraActivity.this)
+                new AlertDialog.Builder(MakeVideoActivity.this)
                         .setSingleChoiceItems(new String[]{"关闭", "1", "2", "3", "4", "5"}, MagicParams.beautyLevel,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {

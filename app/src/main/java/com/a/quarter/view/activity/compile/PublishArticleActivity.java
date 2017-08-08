@@ -187,9 +187,11 @@ public class PublishArticleActivity extends BaseActivity<PublishArticlePresenter
         //                    //添加一张新的图片
 
 
+        if(data!=null){
             Uri data2 = data.getData();
-        Log.e("地址     ",data2.getPath()+"");
+            Log.e("地址     ",data2.getPath()+"");
             ima.setImageURI(data2);
+        }
 
     }
 }
