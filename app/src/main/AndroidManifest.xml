@@ -52,7 +52,7 @@
         <activity android:name=".view.activity.main.MyFollowActivity" />
         <activity android:name=".view.activity.main.HotFollowActivity" />
         <activity android:name=".view.adapter.video.VHotFragDetails"
-            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"/>
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".view.activity.main.SearchFriendActivity" />
         <activity
             android:name=".view.activity.login.ThirdPartyLoginActivity"

@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,8 +92,18 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
 
 
         player = (ItemIjkPlayerView) findViewById(R.id.ijkPlayerView);
-        player.setOnPlayCircleClickListener(this);
+        //player.setOnPlayCircleClickListener(this);
         player.init(false);
+        player.setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
+                //.setSkipTip(1000*60*1)设置上次的播放进度的提示
+                //.enableOrientation()//设置可自动旋转
+                .enableDanmaku()//显示弹幕
+                .setDanmakuSource(getResources().openRawResource(R.raw.bili))//设置弹幕资源
+                //.setVideoSource(null, contentListBean.videoUri.getPath(), null, null, null)得到的是网址的后半段
+                //比如/videolib3/1611/28/GbgsL3639/SD/movie_index.m3u8: No such file or directory
+//                .setVideoSource(null, url, null, null, null)//设置不同清晰度的视频资源
+//                .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);//设置当前选择的清晰度
+                .setVideoPath(url);
         player.mPlayerThumb.setActualImageResource(R.mipmap.bg5);
         //player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
 
@@ -104,9 +115,13 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
 
     }
 
+    //在AndroidManifest.xml里设置VHotFragDetails
+    //为android:configChanges="orientation|keyboardHidden|screenSize"
+    //保证横竖屏切换的时候VHotFragDetails Activity不会销毁重建
+    //重写onConfigurationChanged方法，执行横竖屏切换时需要进行的操作
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        LogUtils.i("newConfig.orientation="+newConfig.orientation);
+        //LogUtils.i("newConfig.orientation="+newConfig.orientation);
         //if(newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){//横屏
         if(newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_USER){//横屏？
             T.showShort(this, "横屏了");
@@ -114,19 +129,21 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
         }else if(newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){//竖屏
             T.showShort(this, "竖屏了");
         }
+        player.configurationChanged(newConfig);
         super.onConfigurationChanged(newConfig);
     }
 
     @Override
     public void onPlayCircleClicked() {
-        player.setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
-                .setSkipTip(1000*60*1)
-                .enableDanmaku()
-                .setDanmakuSource(getResources().openRawResource(R.raw.bili))
-                //.setVideoSource(null, contentListBean.videoUri.getPath(), null, null, null)得到的是网址的后半段
-                //比如/videolib3/1611/28/GbgsL3639/SD/movie_index.m3u8: No such file or directory
-                .setVideoSource(null, url, null, null, null)
-                .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);
+//        player.setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
+////                .setSkipTip(1000*60*1)
+//                .enableOrientation()
+//                .enableDanmaku()
+//                .setDanmakuSource(getResources().openRawResource(R.raw.bili))
+//                //.setVideoSource(null, contentListBean.videoUri.getPath(), null, null, null)得到的是网址的后半段
+//                //比如/videolib3/1611/28/GbgsL3639/SD/movie_index.m3u8: No such file or directory
+//                .setVideoSource(null, url, null, null, null)
+//                .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);
     }
 
     @OnClick({R.id.hotdetails_return, R.id.hotdetails_love, R.id.hotdetails_nolove, R.id.hotdetails_share, R.id.hotdetails_user,R.id.hotdetails_send})
@@ -167,7 +184,18 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
     @Override
     public void onBackPressed() {
         mBackPressed = true;
+        if (player.onBackPressed()) {
+            return;
+        }
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (player.handleVolumeKey(keyCode)) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
