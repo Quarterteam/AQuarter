@@ -1,5 +1,7 @@
 package com.a.quarter.view.activity.main;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +15,9 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
+import com.a.quarter.model.bean.main.EditSignResponse;
+import com.a.quarter.presenter.main.MainPresenter;
+import com.a.quarter.utils.DialogUtils;
 import com.a.quarter.utils.DrawableUtils;
 import com.a.quarter.utils.SlidingMenuUtils;
 import com.a.quarter.view.activity.compile.CreationActivity;
@@ -24,6 +29,8 @@ import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
+import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
+import com.exa.framelib_rrm.rx.RxCallback;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
@@ -34,7 +41,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainCallback> implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     @Bind(R.id.radioGroupNav)
     public RadioGroup radioGroupNav;
@@ -120,6 +127,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         } else {
             slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
         }
+        //显示个性签名
+        slidingMenuUtils.tvEditSign.setText(user.userSignature);
     }
 
     private void initRadioButton() {
@@ -150,11 +159,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //                }
                 break;
             case R.id.tv_my_follow:
-                if(App.isLogin()){
+                //if(App.isLogin()){
                     ActivityUtils.jumpIn(this, MyFollowActivity.class);
-                }else{
-                    T.showShort(getApplicationContext(), "未登录");
-                }
+//                }else{
+//                    T.showShort(getApplicationContext(), "未登录");
+//                }
                 break;
             case R.id.tv_search_friend:
                 ActivityUtils.jumpIn(this, SearchFriendActivity.class);
@@ -179,8 +188,29 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //                    T.showShort(getApplicationContext(), "已登录");
 //                }
                 break;
+            case R.id.tv_edit_sign:
+                if(!App.isLogin()){
+                    ActivityUtils.jumpForResult(1, this, ThirdPartyLoginActivity.class);
+                }else{
+                    //T.showShort(getApplicationContext(), "已登录");
+                    //TODO 显示编辑个性签名的对话框？
+                    initPresenterInNeed();
+                    if(dialog==null){
+                        dialog = DialogUtils.getSignEditDialog(this, mPresenter);
+                    }else{
+                        dialog.show();
+                    }
+                    dialog.etSign.setText(App.getUser().userSignature);
+                }
+                break;
             default:
                 break;
+        }
+    }
+
+    private void initPresenterInNeed() {
+        if(mPresenter==null){
+            bindPresenter(new MainPresenter(), new MainCallback(this, getApplicationContext()));
         }
     }
 
@@ -286,4 +316,45 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     }//13567890550
 
+    private DialogUtils.SignEditDialog dialog;
+
+    //// TODO: 2017/8/8 dialog上的button禁止点击
+    static class MainCallback extends RxCallback<EditSignResponse, MainActivity, BaseTag>{
+        private String newSign;
+
+        public MainCallback(MainActivity host, Context mContext) {
+            super(host, mContext);
+        }
+
+        @Override
+        protected void onDealNextResponse(EditSignResponse response, BaseTag tag) {
+            if("200!message:个性签名修改成功!!!!".equals(response.code)){
+                getHost().dialog.dismiss();
+                getHost().slidingMenuUtils.tvEditSign.setText(newSign);
+                App.getUser().saveUserSignature(newSign);
+                T.showShort(mAppContext, response.code);
+            }else{
+                T.showShort(mAppContext, response.code);
+            }
+        }
+
+        @Override
+        public String onCheckParamsLegality(BaseTag tag, Object... params) {
+            newSign = params.length>0 ? (String)params[0]:null;
+            if(TextUtils.isEmpty(newSign)){
+                return "还没输入个性签名";
+            }
+            return null;
+        }
+
+        @Override
+        public void onRequestStart(BaseTag tag) {
+            getHost().dialog.btnOk.setEnabled(false);
+        }
+
+        @Override
+        public void onRequestEnd(BaseTag tag) {
+            getHost().dialog.btnOk.setEnabled(true);
+        }
+    }
 }

@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/mainBackground"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.main.MyFollowActivity">
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
 
     <include
         layout="@layout/include_myfollow_head"/>
 
-    <android.support.design.widget.TabLayout
+    <!--<android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +25,38 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/>-->
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:background="@color/lightgray"
+                android:paddingTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_empty_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@color/white"
+                android:visibility="gone"
+                android:text="没有数据"/>
+
+        </FrameLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

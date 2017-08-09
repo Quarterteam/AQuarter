@@ -25,4 +25,6 @@ public class Constants {
 
     public static final String MY_FOLLOW="user/myFollow";//我的关注
 
+    public static final String EDIT_SIGN="user/upUsersign";//用户修改个性签名
+
 }

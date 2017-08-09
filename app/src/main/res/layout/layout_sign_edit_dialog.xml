@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/shape_bg_roundrect_white"
+    android:layout_margin="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--padding和layout_margin好像没有起作用。
+        layout_margin没有起作用，
+        在style里设置了android:windowBackground的话，padding有作用-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_large"
+        android:textColor="@color/black"
+        android:text="修改个性签名"/>
+
+    <EditText
+        android:id="@+id/et_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/textsize_medium"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:background="@drawable/shape_bg_et_search_friend"
+        android:hint="输入新的个性签名"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/textsize_medium"
+            android:background="@drawable/selector_bg_maincolor_graytranslucent"
+            android:textColor="@color/white"
+            android:text="确定"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/textsize_medium"
+            android:background="@drawable/selector_bg_maincolor_graytranslucent"
+            android:textColor="@color/white"
+            android:text="取消"/>
+
+    </LinearLayout>
+
+</LinearLayout>

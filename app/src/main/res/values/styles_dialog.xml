@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--背景昏暗，宽或高可以全屏的对话框，适用于Dialog，不适用于AlertDialog-->
+    <!--参考com.a.quarter.utils.DialogUtils-->
+    <style name="Dialog.FullScreen.DarkDimOutside" parent="Theme.AppCompat.Light.Dialog">
+        <!--背景透明-->
+        <!--背景色为什么会影响到可不可以全屏显示？不管设置什么颜色都可以全屏显示，但是颜色看不出有什么变化??与主题有关系？？？-->
+        <!--不设置windowBackground的话dialog周围距离屏幕边缘默认会有一段距离，dialog使用的xml里自己给根布局设置的padding，margin都不起作用-->
+        <!--设置之后距离屏幕边缘默认不会有一段距离，dialog使用的xml里自己给根布局设置的padding起作用，margin不起作用-->
+        <!--设置之后还需要结合代码中的dialog.getWindow().getAttributes()，得到LayputParams，修改宽高，padding，margin-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <!--昏暗，设置为false之后dialog之外的区域会是完全透明的-->
+        <!--<item name="android:backgroundDimEnabled">false</item>-->
+        <!--昏暗，设置为true之后dialog之外的区域会是黑色半透明，默认就是true-->
+        <item name="android:backgroundDimEnabled">true</item>
+
+        <!--设置dialog内容距离屏幕边缘的距离-->
+        <!--对应代码中的getWindow().getDecorView().setPadding();-->
+        <!--<item name="android:padding">50dp</item>-->
+    </style>
+
+</resources>

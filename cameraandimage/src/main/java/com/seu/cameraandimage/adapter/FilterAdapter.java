@@ -29,20 +29,21 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterHold
 
     @Override
     public FilterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.filter_item_layout,
-                parent, false);
-        FilterHolder viewHolder = new FilterHolder(view);
-        viewHolder.thumbImage = (ImageView) view
-                .findViewById(R.id.filter_thumb_image);
-        viewHolder.filterName = (TextView) view
-                .findViewById(R.id.filter_thumb_name);
-        viewHolder.filterRoot = (FrameLayout)view
-                .findViewById(R.id.filter_root);
-        viewHolder.thumbSelected = (FrameLayout) view
-                .findViewById(R.id.filter_thumb_selected);
-        viewHolder.thumbSelected_bg = view.
-                findViewById(R.id.filter_thumb_selected_bg);
-        return viewHolder;
+//        View view = LayoutInflater.from(context).inflate(R.layout.filter_item_layout,
+//                parent, false);
+//        FilterHolder viewHolder = new FilterHolder(view);
+//        viewHolder.thumbImage = (ImageView) view
+//                .findViewById(R.id.filter_thumb_image);
+//        viewHolder.filterName = (TextView) view
+//                .findViewById(R.id.filter_thumb_name);
+//        viewHolder.filterRoot = (FrameLayout)view
+//                .findViewById(R.id.filter_root);
+//        viewHolder.thumbSelected = (FrameLayout) view
+//                .findViewById(R.id.filter_thumb_selected);
+//        viewHolder.thumbSelected_bg = view.
+//                findViewById(R.id.filter_thumb_selected_bg);
+//        return viewHolder;
+        return new FilterHolder(LayoutInflater.from(context).inflate(R.layout.filter_item_layout, parent, false));
     }
 
     @Override
@@ -60,19 +61,19 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterHold
             holder.thumbSelected.setVisibility(View.GONE);
         }
 
-        holder.filterRoot.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if(selected == position)
-                    return;
-                int lastSelected = selected;
-                selected = position;
-                notifyItemChanged(lastSelected);
-                notifyItemChanged(position);
-                onFilterChangeListener.onFilterChanged(filters[position]);
-            }
-        });
+//        holder.filterRoot.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                if(selected == position)
+//                    return;
+//                int lastSelected = selected;
+//                selected = position;
+//                notifyItemChanged(lastSelected);
+//                notifyItemChanged(position);
+//                onFilterChangeListener.onFilterChanged(filters[position]);
+//            }
+//        });
     }
 
     @Override
@@ -86,9 +87,29 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterHold
         FrameLayout thumbSelected;
         FrameLayout filterRoot;
         View thumbSelected_bg;
+        int position = -1;
 
         public FilterHolder(View itemView) {
             super(itemView);
+            thumbImage = (ImageView) itemView.findViewById(R.id.filter_thumb_image);
+            filterName = (TextView) itemView.findViewById(R.id.filter_thumb_name);
+            filterRoot = (FrameLayout)itemView.findViewById(R.id.filter_root);
+            thumbSelected = (FrameLayout) itemView.findViewById(R.id.filter_thumb_selected);
+            thumbSelected_bg = itemView.findViewById(R.id.filter_thumb_selected_bg);
+
+            filterRoot.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    position = getAdapterPosition();
+                    if(selected == position)
+                        return;
+                    int lastSelected = selected;
+                    selected = position;
+                    notifyItemChanged(lastSelected);
+                    notifyItemChanged(position);
+                    onFilterChangeListener.onFilterChanged(filters[position]);
+                }
+            });
         }
     }
 

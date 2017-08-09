@@ -18,7 +18,7 @@ import com.suke.widget.SwitchButton;
 public class SlidingMenuUtils implements SwitchButton.OnCheckedChangeListener {
 
     private ImageView ivBg;
-    private TextView tvEditSign;
+    public TextView tvEditSign;
     public SimpleDraweeView ivUserIcon;
     public TextView tvUserName;
     public ImageView ivSexIcon;
@@ -43,6 +43,7 @@ public class SlidingMenuUtils implements SwitchButton.OnCheckedChangeListener {
         //(参考 http://blog.csdn.net/zf19921020/article/details/46840383
         // 和   http://blog.csdn.net/lmj623565791/article/details/36677279)
 
+        //-------------------------
         //放弃上面的在xml里定义的方式，重新换回new的方式，可以减少一层布局，有利于界面卡顿的优化
         //想要与上面完全一样的效果，需要在下面的attachToActivity的方法里传入第三个参数，并且传入true
         //原生SlidingMenu不支持使用状态栏所占的空间的主要原因是在于重写了fitSystemWindows方法。

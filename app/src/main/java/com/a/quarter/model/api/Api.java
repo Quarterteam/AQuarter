@@ -6,6 +6,7 @@ import com.a.quarter.model.bean.login.ChangePwdResponse;
 import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.model.bean.login.RegisterResponse;
 import com.a.quarter.model.bean.login.VertifyCodeResponse;
+import com.a.quarter.model.bean.main.EditSignResponse;
 import com.a.quarter.model.bean.main.MyFollowResponse;
 import com.a.quarter.model.bean.video.DetailsCommemt;
 import com.a.quarter.model.bean.video.DetailsTrample;
@@ -76,6 +77,13 @@ public interface Api {
     //我的关注
     @GET(Constants.MY_FOLLOW)
     Observable<MyFollowResponse> getMyFollowList(@Query("Userid") int Userid);
+
+    //用户修改个性签名
+//    @GET(Constants.EDIT_SIGN)
+//    Observable<EditSignResponse> editSign(@Query("userId") int userId, @Query("userSignature") String newSign);
+    @POST(Constants.EDIT_SIGN)
+    @FormUrlEncoded
+    Observable<EditSignResponse> editSign(@Field("userId") int userId, @Field("userSignature") String newSign);
 
 
 }

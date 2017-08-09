@@ -23,6 +23,7 @@ public class User {
     public String userSex;
     public String userPasswordConfirm;
     public String expiration;//过期时间（qq登录）
+    public String userSignature;//个性签名
 
     public static boolean saveUserInfo(User user){
         SharedPreferences sp = App.getInstance().
@@ -36,6 +37,7 @@ public class User {
         editor.putString("userPhone",user.userPhone);
         editor.putString("userSex",user.userSex);
         editor.putString("expiration",user.expiration);
+        editor.putString("userSignature",user.userSignature);
         return editor.commit();
     }
 
@@ -51,6 +53,7 @@ public class User {
         editor.putString("userPhone",null);
         editor.putString("userSex",null);
         editor.putString("expiration",null);
+        editor.putString("userSignature",null);
         return editor.commit();
     }
 
@@ -69,6 +72,7 @@ public class User {
             user.userPhone = sp.getString("userPhone",null);
             user.userSex = sp.getString("userSex",null);
             user.expiration = sp.getString("expiration",null);
+            user.userSignature = sp.getString("userSignature",null);
 
             return user;
         }
@@ -85,5 +89,19 @@ public class User {
         userPhone = null;
         userSex = null;
         expiration = null;
+        userSignature = null;
+    }
+
+    //保存个性签名
+    public boolean saveUserSignature(String newSign) {
+        SharedPreferences sp = App.getInstance().
+                getSharedPreferences("userdata", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("userSignature",newSign);
+        boolean saved = editor.commit();
+        if(saved){
+            this.userSignature = newSign;
+        }
+        return saved;
     }
 }
