@@ -153,7 +153,7 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
     private FrameLayout mWindowTopBar;
     // 播放键
     private ImageView mIvPlay;
-//    private ImageView mIvPlayCircle;
+    //private ImageView mIvPlayCircle;
     public ImageView mIvPlayCircle;
     // 当前时间
     private TextView mTvCurTime;
@@ -162,7 +162,7 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
     // 结束时间
     private TextView mTvEndTime;
     // 全屏切换按钮
-//    private ImageView mIvFullscreen;
+    //private ImageView mIvFullscreen;
     public ImageView mIvFullscreen;
     // BottomBar
     private LinearLayout mLlBottomBar;
@@ -275,45 +275,45 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
             throw new IllegalArgumentException("Context must be AppCompatActivity");
         }
         View.inflate(context, R.layout.layout_player_view_fresco, this);
-        mVideoView = (IjkVideoView) findViewById(com.dl7.player.R.id.video_view);
-//        mPlayerThumb = (ImageView) findViewById(R.id.iv_thumb);
-        mPlayerThumb = (SimpleDraweeView) findViewById(com.dl7.player.R.id.iv_thumb);
-        mLoadingView = (ProgressBar) findViewById(com.dl7.player.R.id.pb_loading);
-        mTvVolume = (TextView) findViewById(com.dl7.player.R.id.tv_volume);
-        mTvBrightness = (TextView) findViewById(com.dl7.player.R.id.tv_brightness);
-        mTvFastForward = (TextView) findViewById(com.dl7.player.R.id.tv_fast_forward);
-        mFlTouchLayout = (FrameLayout) findViewById(com.dl7.player.R.id.fl_touch_layout);
-        mIvBack = (ImageView) findViewById(com.dl7.player.R.id.iv_back);
-        mTvTitle = (MarqueeTextView) findViewById(com.dl7.player.R.id.tv_title);
-        mFullscreenTopBar = (LinearLayout) findViewById(com.dl7.player.R.id.fullscreen_top_bar);
-        mIvBackWindow = (ImageView) findViewById(com.dl7.player.R.id.iv_back_window);
-        mWindowTopBar = (FrameLayout) findViewById(com.dl7.player.R.id.window_top_bar);
-        mIvPlay = (ImageView) findViewById(com.dl7.player.R.id.iv_play);
-        mTvCurTime = (TextView) findViewById(com.dl7.player.R.id.tv_cur_time);
-        mPlayerSeek = (SeekBar) findViewById(com.dl7.player.R.id.player_seek);
-        mTvEndTime = (TextView) findViewById(com.dl7.player.R.id.tv_end_time);
-        mIvFullscreen = (ImageView) findViewById(com.dl7.player.R.id.iv_fullscreen);
-        mLlBottomBar = (LinearLayout) findViewById(com.dl7.player.R.id.ll_bottom_bar);
-        mFlVideoBox = (FrameLayout) findViewById(com.dl7.player.R.id.fl_video_box);
-        mIvPlayerLock = (ImageView) findViewById(com.dl7.player.R.id.iv_player_lock);
-        mIvPlayCircle = (ImageView) findViewById(com.dl7.player.R.id.iv_play_circle);
-        mTvRecoverScreen = (TextView) findViewById(com.dl7.player.R.id.tv_recover_screen);
-        mTvReload = (TextView) findViewById(com.dl7.player.R.id.tv_reload);
-        mFlReload = findViewById(com.dl7.player.R.id.fl_reload_layout);
+        mVideoView = (IjkVideoView) findViewById(R.id.video_view);
+        //mPlayerThumb = (ImageView) findViewById(R.id.iv_thumb);
+        mPlayerThumb = (SimpleDraweeView) findViewById(R.id.iv_thumb);
+        mLoadingView = (ProgressBar) findViewById(R.id.pb_loading);
+        mTvVolume = (TextView) findViewById(R.id.tv_volume);
+        mTvBrightness = (TextView) findViewById(R.id.tv_brightness);
+        mTvFastForward = (TextView) findViewById(R.id.tv_fast_forward);
+        mFlTouchLayout = (FrameLayout) findViewById(R.id.fl_touch_layout);
+        mIvBack = (ImageView) findViewById(R.id.iv_back);
+        mTvTitle = (MarqueeTextView) findViewById(R.id.tv_title);
+        mFullscreenTopBar = (LinearLayout) findViewById(R.id.fullscreen_top_bar);
+        mIvBackWindow = (ImageView) findViewById(R.id.iv_back_window);
+        mWindowTopBar = (FrameLayout) findViewById(R.id.window_top_bar);
+        mIvPlay = (ImageView) findViewById(R.id.iv_play);
+        mTvCurTime = (TextView) findViewById(R.id.tv_cur_time);
+        mPlayerSeek = (SeekBar) findViewById(R.id.player_seek);
+        mTvEndTime = (TextView) findViewById(R.id.tv_end_time);
+        mIvFullscreen = (ImageView) findViewById(R.id.iv_fullscreen);
+        mLlBottomBar = (LinearLayout) findViewById(R.id.ll_bottom_bar);
+        mFlVideoBox = (FrameLayout) findViewById(R.id.fl_video_box);
+        mIvPlayerLock = (ImageView) findViewById(R.id.iv_player_lock);
+        mIvPlayCircle = (ImageView) findViewById(R.id.iv_play_circle);
+        mTvRecoverScreen = (TextView) findViewById(R.id.tv_recover_screen);
+        mTvReload = (TextView) findViewById(R.id.tv_reload);
+        mFlReload = findViewById(R.id.fl_reload_layout);
         // 视频宽高比设置
-        mTvSettings = (TextView) findViewById(com.dl7.player.R.id.tv_settings);
-        mAspectRatioOptions = (RadioGroup) findViewById(com.dl7.player.R.id.aspect_ratio_group);
-        mAspectOptionsHeight = getResources().getDimensionPixelSize(com.dl7.player.R.dimen.aspect_btn_size) * 4;
+        mTvSettings = (TextView) findViewById(R.id.tv_settings);
+        mAspectRatioOptions = (RadioGroup) findViewById(R.id.aspect_ratio_group);
+        mAspectOptionsHeight = getResources().getDimensionPixelSize(R.dimen.aspect_btn_size) * 4;
         mAspectRatioOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == com.dl7.player.R.id.aspect_fit_parent) {
+                if (checkedId == R.id.aspect_fit_parent) {
                     mVideoView.setAspectRatio(IRenderView.AR_ASPECT_FIT_PARENT);
-                } else if (checkedId == com.dl7.player.R.id.aspect_fit_screen) {
+                } else if (checkedId == R.id.aspect_fit_screen) {
                     mVideoView.setAspectRatio(IRenderView.AR_ASPECT_FILL_PARENT);
-                } else if (checkedId == com.dl7.player.R.id.aspect_16_and_9) {
+                } else if (checkedId == R.id.aspect_16_and_9) {
                     mVideoView.setAspectRatio(IRenderView.AR_16_9_FIT_PARENT);
-                } else if (checkedId == com.dl7.player.R.id.aspect_4_and_3) {
+                } else if (checkedId == R.id.aspect_4_and_3) {
                     mVideoView.setAspectRatio(IRenderView.AR_4_3_FIT_PARENT);
                 }
                 AnimHelper.doClipViewHeight(mAspectRatioOptions, mAspectOptionsHeight, 0, 150);
@@ -988,62 +988,62 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
     public void onClick(View v) {
         _refreshHideRunnable();
         int id = v.getId();
-        if (id == com.dl7.player.R.id.iv_back) {
+        if (id == R.id.iv_back) {
             if (mIsAlwaysFullScreen) {
                 _exit();
                 return;
             }
             mAttachActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if (id == com.dl7.player.R.id.iv_back_window) {
+        } else if (id == R.id.iv_back_window) {
             mAttachActivity.finish();
-        } else if (id == com.dl7.player.R.id.iv_play || id == com.dl7.player.R.id.iv_play_circle) {
-            if(onPlayCircleClickListener!=null && id == com.dl7.player.R.id.iv_play_circle){//新增代码
+        } else if (id == R.id.iv_play || id == R.id.iv_play_circle) {
+            if(onPlayCircleClickListener!=null && id == R.id.iv_play_circle){//新增代码
                 onPlayCircleClickListener.onPlayCircleClicked();
             }
             _togglePlayStatus();
-        } else if (id == com.dl7.player.R.id.iv_fullscreen) {
+        } else if (id == R.id.iv_fullscreen) {
             _toggleFullScreen();
-        } else if (id == com.dl7.player.R.id.iv_player_lock) {
+        } else if (id == R.id.iv_player_lock) {
             _togglePlayerLock();
-        } else if (id == com.dl7.player.R.id.iv_media_quality) {
+        } else if (id == R.id.iv_media_quality) {
             if (!mIsShowQuality) {
                 _toggleMediaQuality();
             }
-        } else if (id == com.dl7.player.R.id.iv_cancel_skip) {
+        } else if (id == R.id.iv_cancel_skip) {
             mHandler.removeCallbacks(mHideSkipTipRunnable);
             _hideSkipTip();
-        } else if (id == com.dl7.player.R.id.tv_do_skip) {
+        } else if (id == R.id.tv_do_skip) {
             mLoadingView.setVisibility(VISIBLE);
             // 视频跳转
             seekTo(mSkipPosition);
             mHandler.removeCallbacks(mHideSkipTipRunnable);
             _hideSkipTip();
             _setProgress();
-        } else if (id == com.dl7.player.R.id.iv_danmaku_control) {
+        } else if (id == R.id.iv_danmaku_control) {
             _toggleDanmakuShow();
-        } else if (id == com.dl7.player.R.id.tv_open_edit_danmaku) {
+        } else if (id == R.id.tv_open_edit_danmaku) {
             if (mDanmakuListener == null || mDanmakuListener.isValid()) {
                 editVideo();
                 mEditDanmakuLayout.setVisibility(VISIBLE);
                 SoftInputUtils.setEditFocusable(mAttachActivity, mEtDanmakuContent);
             }
-        } else if (id == com.dl7.player.R.id.iv_cancel_send) {
+        } else if (id == R.id.iv_cancel_send) {
             recoverFromEditVideo();
-        } else if (id == com.dl7.player.R.id.iv_do_send) {
+        } else if (id == R.id.iv_do_send) {
             recoverFromEditVideo();
             sendDanmaku(mEtDanmakuContent.getText().toString(), false);
             mEtDanmakuContent.setText("");
-        } else if (id == com.dl7.player.R.id.input_options_more) {
+        } else if (id == R.id.input_options_more) {
             _toggleMoreColorOptions();
-        } else if (id == com.dl7.player.R.id.iv_screenshot) {
+        } else if (id == R.id.iv_screenshot) {
             _doScreenshot();
-        } else if (id == com.dl7.player.R.id.tv_recover_screen) {
+        } else if (id == R.id.tv_recover_screen) {
             mVideoView.resetVideoView(true);
             mIsNeedRecoverScreen = false;
             mTvRecoverScreen.setVisibility(GONE);
-        } else if (id == com.dl7.player.R.id.tv_settings) {
+        } else if (id == R.id.tv_settings) {
             _showAspectRatioOptions(true);
-        } else if (id == com.dl7.player.R.id.tv_reload) {
+        } else if (id == R.id.tv_reload) {
             reload();
         }
     }
@@ -1084,7 +1084,7 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
         mIvFullscreen.setSelected(isFullscreen);
         mHandler.post(mHideBarRunnable);
         mIvMediaQuality.setVisibility(isFullscreen ? VISIBLE : GONE);
-        mLlBottomBar.setBackgroundResource(isFullscreen ? com.dl7.player.R.color.bg_video_view : android.R.color.transparent);
+        mLlBottomBar.setBackgroundResource(isFullscreen ? R.color.bg_video_view : android.R.color.transparent);
         if (mIsShowQuality && !isFullscreen) {
             _toggleMediaQuality();
         }
@@ -1808,8 +1808,8 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
 //    public static final int MEDIA_QUALITY_BD = IjkPlayerView.MEDIA_QUALITY_BD;
 
     private static final int QUALITY_DRAWABLE_RES[] = new int[]{
-            com.dl7.player.R.mipmap.ic_media_quality_smooth, com.dl7.player.R.mipmap.ic_media_quality_medium, com.dl7.player.R.mipmap.ic_media_quality_high,
-            com.dl7.player.R.mipmap.ic_media_quality_super, com.dl7.player.R.mipmap.ic_media_quality_bd
+            R.mipmap.ic_media_quality_smooth, R.mipmap.ic_media_quality_medium, R.mipmap.ic_media_quality_high,
+            R.mipmap.ic_media_quality_super, R.mipmap.ic_media_quality_bd
     };
     // 保存Video Url
     private SparseArray<String> mVideoSource = new SparseArray<>();
@@ -1844,11 +1844,11 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
      * 初始化视频分辨率处理
      */
     private void _initMediaQuality() {
-        mMediaQualityDesc = getResources().getStringArray(com.dl7.player.R.array.media_quality);
-        mFlMediaQuality = findViewById(com.dl7.player.R.id.fl_media_quality);
-        mIvMediaQuality = (TextView) findViewById(com.dl7.player.R.id.iv_media_quality);
+        mMediaQualityDesc = getResources().getStringArray(R.array.media_quality);
+        mFlMediaQuality = findViewById(R.id.fl_media_quality);
+        mIvMediaQuality = (TextView) findViewById(R.id.iv_media_quality);
         mIvMediaQuality.setOnClickListener(this);
-        mLvMediaQuality = (ListView) findViewById(com.dl7.player.R.id.lv_media_quality);
+        mLvMediaQuality = (ListView) findViewById(R.id.lv_media_quality);
         mQualityAdapter = new AdapterMediaQuality(mAttachActivity);
         mLvMediaQuality.setAdapter(mQualityAdapter);
         mLvMediaQuality.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -1985,10 +1985,10 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
      * 跳转提示初始化
      */
     private void _initVideoSkip() {
-        mLlSkipLayout = findViewById(com.dl7.player.R.id.ll_skip_layout);
-        mIvCancelSkip = (ImageView) findViewById(com.dl7.player.R.id.iv_cancel_skip);
-        mTvSkipTime = (TextView) findViewById(com.dl7.player.R.id.tv_skip_time);
-        mTvDoSkip = (TextView) findViewById(com.dl7.player.R.id.tv_do_skip);
+        mLlSkipLayout = findViewById(R.id.ll_skip_layout);
+        mIvCancelSkip = (ImageView) findViewById(R.id.iv_cancel_skip);
+        mTvSkipTime = (TextView) findViewById(R.id.tv_skip_time);
+        mTvDoSkip = (TextView) findViewById(R.id.tv_do_skip);
         mIvCancelSkip.setOnClickListener(this);
         mTvDoSkip.setOnClickListener(this);
     }
@@ -2143,15 +2143,15 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
      */
     private void _initDanmaku() {
         // 弹幕控制
-        mDanmakuView = (IDanmakuView) findViewById(com.dl7.player.R.id.sv_danmaku);
-        mIvDanmakuControl = (ImageView) findViewById(com.dl7.player.R.id.iv_danmaku_control);
-        mTvOpenEditDanmaku = (TextView) findViewById(com.dl7.player.R.id.tv_open_edit_danmaku);
-        mTvTimeSeparator = (TextView) findViewById(com.dl7.player.R.id.tv_separator);
-        mEditDanmakuLayout = findViewById(com.dl7.player.R.id.ll_edit_danmaku);
-        mEtDanmakuContent = (EditText) findViewById(com.dl7.player.R.id.et_danmaku_content);
-        mIvCancelSend = (ImageView) findViewById(com.dl7.player.R.id.iv_cancel_send);
-        mIvDoSend = (ImageView) findViewById(com.dl7.player.R.id.iv_do_send);
-        mDanmakuPlayerSeek = (SeekBar) findViewById(com.dl7.player.R.id.danmaku_player_seek);
+        mDanmakuView = (IDanmakuView) findViewById(R.id.sv_danmaku);
+        mIvDanmakuControl = (ImageView) findViewById(R.id.iv_danmaku_control);
+        mTvOpenEditDanmaku = (TextView) findViewById(R.id.tv_open_edit_danmaku);
+        mTvTimeSeparator = (TextView) findViewById(R.id.tv_separator);
+        mEditDanmakuLayout = findViewById(R.id.ll_edit_danmaku);
+        mEtDanmakuContent = (EditText) findViewById(R.id.et_danmaku_content);
+        mIvCancelSend = (ImageView) findViewById(R.id.iv_cancel_send);
+        mIvDoSend = (ImageView) findViewById(R.id.iv_do_send);
+        mDanmakuPlayerSeek = (SeekBar) findViewById(R.id.danmaku_player_seek);
         mDanmakuPlayerSeek.setMax(MAX_VIDEO_SEEK);
         mDanmakuPlayerSeek.setOnSeekBarChangeListener(mSeekListener);
 
@@ -2167,23 +2167,23 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
         mIvDoSend.setOnClickListener(this);
 
         // 这些为弹幕配置处理
-        int oneBtnWidth = getResources().getDimensionPixelOffset(com.dl7.player.R.dimen.danmaku_input_options_color_radio_btn_size);
+        int oneBtnWidth = getResources().getDimensionPixelOffset(R.dimen.danmaku_input_options_color_radio_btn_size);
         // 布局宽度为每个选项卡宽度 * 12 个，有12种可选颜色
         mMoreOptionsWidth = oneBtnWidth * 12;
-        mDanmakuOptionsBasic = findViewById(com.dl7.player.R.id.input_options_basic);
-        mDanmakuMoreOptions = findViewById(com.dl7.player.R.id.input_options_more);
+        mDanmakuOptionsBasic = findViewById(R.id.input_options_basic);
+        mDanmakuMoreOptions = findViewById(R.id.input_options_more);
         mDanmakuMoreOptions.setOnClickListener(this);
-        mDanmakuCurColor = (RadioButton) findViewById(com.dl7.player.R.id.input_options_color_current);
-        mDanmakuMoreColorIcon = (ImageView) findViewById(com.dl7.player.R.id.input_options_color_more_icon);
-        mDanmakuTextSizeOptions = (RadioGroup) findViewById(com.dl7.player.R.id.input_options_group_textsize);
-        mDanmakuTypeOptions = (RadioGroup) findViewById(com.dl7.player.R.id.input_options_group_type);
-        mDanmakuColorOptions = (RadioGroup) findViewById(com.dl7.player.R.id.input_options_color_group);
+        mDanmakuCurColor = (RadioButton) findViewById(R.id.input_options_color_current);
+        mDanmakuMoreColorIcon = (ImageView) findViewById(R.id.input_options_color_more_icon);
+        mDanmakuTextSizeOptions = (RadioGroup) findViewById(R.id.input_options_group_textsize);
+        mDanmakuTypeOptions = (RadioGroup) findViewById(R.id.input_options_group_type);
+        mDanmakuColorOptions = (RadioGroup) findViewById(R.id.input_options_color_group);
         mDanmakuTextSizeOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == com.dl7.player.R.id.input_options_small_textsize) {
+                if (checkedId == R.id.input_options_small_textsize) {
                     mDanmakuTextSize = 25f * (mDanmakuParser.getDisplayer().getDensity() - 0.6f) * 0.7f;
-                } else if (checkedId == com.dl7.player.R.id.input_options_medium_textsize) {
+                } else if (checkedId == R.id.input_options_medium_textsize) {
                     mDanmakuTextSize = 25f * (mDanmakuParser.getDisplayer().getDensity() - 0.6f);
                 }
             }
@@ -2191,11 +2191,11 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
         mDanmakuTypeOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == com.dl7.player.R.id.input_options_rl_type) {
+                if (checkedId == R.id.input_options_rl_type) {
                     mDanmakuType = BaseDanmaku.TYPE_SCROLL_RL;
-                } else if (checkedId == com.dl7.player.R.id.input_options_top_type) {
+                } else if (checkedId == R.id.input_options_top_type) {
                     mDanmakuType = BaseDanmaku.TYPE_FIX_TOP;
-                } else if (checkedId == com.dl7.player.R.id.input_options_bottom_type) {
+                } else if (checkedId == R.id.input_options_bottom_type) {
                     mDanmakuType = BaseDanmaku.TYPE_FIX_BOTTOM;
                 }
             }
@@ -2600,8 +2600,8 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
      * 初始化电量、锁屏、时间处理
      */
     private void _initReceiver() {
-        mPbBatteryLevel = (ProgressBar) findViewById(com.dl7.player.R.id.pb_battery);
-        mTvSystemTime = (TextView) findViewById(com.dl7.player.R.id.tv_system_time);
+        mPbBatteryLevel = (ProgressBar) findViewById(R.id.pb_battery);
+        mTvSystemTime = (TextView) findViewById(R.id.tv_system_time);
         mTvSystemTime.setText(StringUtils.getCurFormatTime());
         mBatteryReceiver = new BatteryBroadcastReceiver();
         mScreenReceiver = new ScreenBroadcastReceiver();
@@ -2610,7 +2610,7 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
         mAttachActivity.registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         mAttachActivity.registerReceiver(mScreenReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
         mAttachActivity.registerReceiver(mNetReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-        mIvScreenshot = (ImageView) findViewById(com.dl7.player.R.id.iv_screenshot);
+        mIvScreenshot = (ImageView) findViewById(R.id.iv_screenshot);
         mIvScreenshot.setOnClickListener(this);
         if (SDCardUtils.isAvailable()) {
             _createSaveDir(SDCardUtils.getRootPath() + File.separator + "IjkPlayView");
@@ -2703,15 +2703,15 @@ public class ItemIjkPlayerView extends FrameLayout implements View.OnClickListen
                 if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
                     mPbBatteryLevel.setSecondaryProgress(0);
                     mPbBatteryLevel.setProgress(curPower);
-                    mPbBatteryLevel.setBackgroundResource(com.dl7.player.R.mipmap.ic_battery_charging);
+                    mPbBatteryLevel.setBackgroundResource(R.mipmap.ic_battery_charging);
                 } else if (curPower < BATTERY_LOW_LEVEL) {
                     mPbBatteryLevel.setProgress(0);
                     mPbBatteryLevel.setSecondaryProgress(curPower);
-                    mPbBatteryLevel.setBackgroundResource(com.dl7.player.R.mipmap.ic_battery_red);
+                    mPbBatteryLevel.setBackgroundResource(R.mipmap.ic_battery_red);
                 } else {
                     mPbBatteryLevel.setSecondaryProgress(0);
                     mPbBatteryLevel.setProgress(curPower);
-                    mPbBatteryLevel.setBackgroundResource(com.dl7.player.R.mipmap.ic_battery);
+                    mPbBatteryLevel.setBackgroundResource(R.mipmap.ic_battery);
                 }
             }
         }

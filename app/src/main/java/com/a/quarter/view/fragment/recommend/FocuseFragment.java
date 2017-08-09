@@ -23,20 +23,6 @@ import butterknife.Bind;
  */
 
 public class FocuseFragment extends BaseFragment {
-//    @Override
-//    protected int getContentViewId() {
-//        return R.layout.frag_focuse;
-//    }
-//
-//    @Override
-//    protected void initViews() {
-//
-//    }
-//
-//    @Override
-//    protected void initDatas() {
-//
-//    }
 
     @Bind(R.id.rv)
     RecyclerView rv;
@@ -70,7 +56,6 @@ public class FocuseFragment extends BaseFragment {
 
         rv.setAdapter(adapter = new ContentListAdapter(getActivity(), list));
 
-
         //监听条目的消失
         onChildAttachStateChangeListener =
                 new RecyclerView.OnChildAttachStateChangeListener() {
@@ -90,14 +75,15 @@ public class FocuseFragment extends BaseFragment {
                     public void onChildViewDetachedFromWindow(View view) {
                         //获取到该条目的ViewHolder
                         holder = rv.getChildViewHolder(view);
-                        if (holder instanceof ContentListAdapter.VideoViewHolder) {
+                        if(holder instanceof ContentListAdapter.VideoViewHolder){
                             //如果是视频条目，重置该条目
-                            ((ContentListAdapter.VideoViewHolder) holder).resetItem();
+                            ((ContentListAdapter.VideoViewHolder)holder).resetItem();
                         }
                     }
 
                 };
         rv.addOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.a.quarter.view.activity.welcome;
+package com.a.quarter.view.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

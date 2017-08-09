@@ -1,6 +1,8 @@
 package com.a.quarter.view.adapter.video;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.view.ItemIjkPlayerView;
 import com.dl7.player.media.IjkPlayerView;
 import com.exa.framelib_rrm.utils.ActivityUtils;
+import com.exa.framelib_rrm.utils.LogUtils;
+import com.exa.framelib_rrm.utils.T;
 import com.umeng.socialize.UMShareAPI;
 
 import butterknife.Bind;
@@ -92,6 +96,7 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
         player.mPlayerThumb.setActualImageResource(R.mipmap.bg5);
         //player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
 
+
     }
 
     @Override
@@ -99,6 +104,18 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
 
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        LogUtils.i("newConfig.orientation="+newConfig.orientation);
+        //if(newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){//横屏
+        if(newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_USER){//横屏？
+            T.showShort(this, "横屏了");
+            //LogUtils.i("横屏了");
+        }else if(newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){//竖屏
+            T.showShort(this, "竖屏了");
+        }
+        super.onConfigurationChanged(newConfig);
+    }
 
     @Override
     public void onPlayCircleClicked() {
@@ -138,13 +155,6 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick(R.id.hotdetails_send)
     public void onClick() {
     }
@@ -181,6 +191,14 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
         }
         super.onPause();
     }
+
+//    @Override
+//    protected void onResume() {
+//        if(player!=null){
+//            player.onResume();
+//        }
+//        super.onResume();
+//    }
 
     @Override
     protected void onDestroy() {

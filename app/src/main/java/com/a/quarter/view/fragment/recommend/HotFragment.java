@@ -5,16 +5,12 @@ import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ContentListBean;
 import com.a.quarter.view.adapter.recommend.ContentListAdapter;
 import com.a.quarter.view.base.BaseFragment;
-import com.exa.framelib_rrm.utils.LogUtils;
 import com.exa.framelib_rrm.utils.TimeUtils;
-import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
 
@@ -51,7 +47,7 @@ public class HotFragment extends BaseFragment {
         //设置RecyclerView的header数量，用于绘制分割线的时候header之间，header和第一个非header的条目之间不画分割线
         itemDecoration.setHeaderCount(1);
         //设置分割线左右与屏幕左右的距离
-      // itemDecoration.setDividerInset(50);
+        //itemDecoration.setDividerInset(50);
         //添加分割线
         rv.addItemDecoration(itemDecoration);
         //初始化并设置adapter
@@ -84,6 +80,7 @@ public class HotFragment extends BaseFragment {
 
                 };
         rv.addOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
+
     }
 
     @Override

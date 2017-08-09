@@ -1,15 +1,14 @@
 package com.a.quarter.view.activity.welcome;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.a.quarter.R;
 import com.a.quarter.view.activity.main.MainActivity;
+import com.a.quarter.view.view.MaskImageView;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
-import com.zhy.autolayout.utils.AutoUtils;
 
 //启动页
 //public class WelcomeActivity extends AppCompatActivity {

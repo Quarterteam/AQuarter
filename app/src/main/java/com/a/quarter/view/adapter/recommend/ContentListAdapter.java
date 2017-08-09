@@ -19,8 +19,9 @@ import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ContentListBean;
 import com.a.quarter.utils.QQLoginShareUtils;
 import com.a.quarter.view.fragment.recommend.BannerFrescoImageLoader;
-import com.a.quarter.view.view.ItemIjkPlayerView ;
+import com.a.quarter.view.view.ItemIjkPlayerView;
 import com.dl7.player.media.IjkPlayerView;
+import com.exa.framelib_rrm.utils.LogUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.youth.banner.Banner;
 
@@ -43,11 +44,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * 1、调用player的相关方法时会有轻微的卡顿，所以需要在子线程里释放资源（使用Thread或者RxJava）
  * 代码示例见VideoViewHolder类的resetItem方法。
  *
- * 2、RecyclerView前几次滑动的时候也会有卡顿，为什么？
- * （是因为需要创建ViewHolder吗？？？）
- * 待解决。
- *
- * 3、Slidingmenu滑动的时候，视频的位置会变成透明的，为什么？
+ * 2、Slidingmenu滑动的时候，视频的位置会变成透明的，为什么？
  *
  * 过程中找到的解决视频区域透明的办法：
  *
@@ -75,7 +72,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * 使用TextureView，需要TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)，也就是API等级14，Android 4.0
  *
  *
- * 4、MediaController不会跟随着SlidingMenu的滑动而移动?
+ * 3、MediaController不会跟随着SlidingMenu的滑动而移动?
  *
  * ###原因分析###：
  * 使用了原生IjkPlayer里的AndroidMediaController，
@@ -92,12 +89,12 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * 并且IjkPlayerView功能也更全，比如已经有弹幕，全屏切换，滑动屏幕调节音量、亮度，截图，加载失败重试等功能。
  *
  *
- * 5、视频停止的问题？
+ * 4、视频停止的问题？
  * 怎么监听一个条目的完全消失，在条目完全消失的时候，停止播放该条目的视频？
  * 使用RecyclerView的OnChildAttachStateChangeListener监听条目从屏幕上完全消失的时刻，这时停止视频，并重置该条目状态。
  * 代码在HotFragment里。
  *
- * 6、避免内存泄露
+ * 5、避免内存泄露
  * IjkPlayerView类里一个全局变量是关联的Activity，怎么在Fragment销毁的时候置为null？
  * IjkPlayerView类里注册了锁屏状态，网络状态，电量改变三个广播，怎么在Fragment销毁的时候注销广播？（不手动注销的话，logcat里会有提示）
  * 怎么在Fragment销毁的时候停止轮播图？
@@ -114,9 +111,37 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * IjkPlayerView中的视频缩略图控件改成SimpleDraweeView
  * com.a.quarter.view.view.ItemIjkPlayerView
  *
- * TODO
- * 点击右上角才出现收藏等图标？
- * 前几次滑动RecyclerView的时候会有很明显的卡顿，怎么优化？
+ * 6、卡顿问题，滑动过程中会突然卡顿一下然后恢复
+ * 问题描述：
+ * 前几次滑动RecyclerView的时候会有很明显的卡顿，为什么？怎么优化？
+ *
+ * 原因分析：
+ * 观察发现，卡顿是在一个新条目刚显示的时候出现的；
+ * 经过实验，打印log，发现卡顿是在创建新的ViewHolder时出现的；
+ * 是因为MainActivity页面的布局嵌套层级太多，而且RecyclerView视频条目的布局有点复杂，
+ * 所以inflate view耗时过长，产生的卡顿。
+ *
+ * 解决办法：
+ * 预先创建几个ViewHolder对象，保存到集合中，
+ * （具体需要创建几个ViewHolder对象，是根据在没有使用预先创建ViewHolder的方法的情况下，
+ * 实际运行时会在onCreateViewHolder方法里新建几个ViewHolder来决定的）
+ * 在onCreateViewHolder方法里判断集合里还有没有可用的预先创建的ViewHolder，
+ * 如果有的话，就使用已经预先创建好的，并从集合中移除该ViewHolder对象
+ * （因为此时该ViewHolder对象被使用了，而集合中保存的都应该是没被使用过的），
+ * 如果没有的话，还是按原来的步骤创建新的ViewHolder对象。
+ *
+ * 实际运行效果：
+ * 视频条目用到的时候再新建VideoViewHolder，耗时一般是120ms左右，卡顿很明显
+ * 视频条目使用预先创建的VideoViewHolder，耗时一般是0ms，几乎感觉不到卡顿
+ *
+ * 图片条目用到的时候再新建ImageViewHolder，耗时一般是40ms左右，能看到卡顿
+ * 图片条目使用预先创建的ImageViewHolder，耗时一般是0ms，几乎感觉不到卡顿
+ *
+ * 遗留问题：
+ * 因为MainActivity页面的布局嵌套层级太多，滑动的时候，感觉还不是特别流畅。TODO
+ *
+ * 7、点击右上角才出现收藏等图标？
+ *
  */
 public class ContentListAdapter extends RecyclerView.Adapter {
 
@@ -125,15 +150,17 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     public static final int TYPE_HEAD1 = 0;//轮播图
     public static final int TYPE_IMG = 1;//图片条目
     public static final int TYPE_VIDEO = 2;//视频条目
-    private final LayoutInflater inflater;
+    private LayoutInflater inflater;
 
     private ArrayList<ItemIjkPlayerView> players;
     private ArrayList<Banner> banners;
+    private ArrayList<RecyclerView.ViewHolder> preNewHolders;
 
     public ContentListAdapter(Context context, ArrayList<ContentListBean> list) {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);
+        initPreNewHolders();
     }
 
     @Override
@@ -143,25 +170,56 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder holder = null;
+        //long t = System.currentTimeMillis();
         if (viewType == TYPE_HEAD1) {
             //轮播图
-            holder = new Head1ViewHolder(inflater.inflate(R.layout.item_content_list_type_banner, parent, false));
+            //long t = System.currentTimeMillis();
+            return new Head1ViewHolder(inflater.inflate(R.layout.item_content_list_type_banner, parent, false));
+            //LogUtils.i("创建Head1ViewHolder耗时:"+(System.currentTimeMillis()-t)+"ms");//创建Head1ViewHolder耗时:6ms
+            //LogUtils.i("创建新的ViewHolder banner");
         } else if (viewType == TYPE_IMG) {
             //图片条目
-            holder = new ImageViewHolder(inflater.inflate(R.layout.item_content_list_type_image, parent, false));
-        } else if (viewType == TYPE_VIDEO) {
-            //视频条目
-            holder = new VideoViewHolder(inflater.inflate(R.layout.item_content_list_type_video, parent, false));
+            //long t = System.currentTimeMillis();
+            if(preNewHolders!=null){
+                for (RecyclerView.ViewHolder h: preNewHolders) {
+                    if(h instanceof ImageViewHolder){
+                        //LogUtils.i("使用已创建的ImageViewHolder 耗时:"+(System.currentTimeMillis()-t)+"ms");
+                        //使用已创建的ImageViewHolder 耗时:0ms
+                        preNewHolders.remove(h);
+                        return h;
+                    }
+                }
+            }
+            return new ImageViewHolder(inflater.inflate(R.layout.item_content_list_type_image, parent, false));
+            //LogUtils.i("创建ImageViewHolder耗时:"+(System.currentTimeMillis()-t)+"ms");//创建ImageViewHolder耗时:41ms
+            //LogUtils.i("创建新的ViewHolder image");
+        }else if (viewType == TYPE_VIDEO) {//视频条目
+            //long t = System.currentTimeMillis();
+            //如果能使用预先创建好的ViewHolder，就不新建ViewHolder对象
+            if(preNewHolders!=null){
+                for (RecyclerView.ViewHolder h: preNewHolders) {
+                    if(h instanceof VideoViewHolder){
+                        //LogUtils.i("使用已创建的VideoViewHolder 耗时:"+(System.currentTimeMillis()-t)+"ms");
+                        //使用已创建的VideoViewHolder 耗时:0ms
+                        preNewHolders.remove(h);
+                        return h;
+                    }
+                }
+            }
+            //如果不能使用预先创建好的ViewHolder，就新建ViewHolder对象
+            return new VideoViewHolder(inflater.inflate(R.layout.item_content_list_type_video, parent, false));
+            //LogUtils.i("创建VideoViewHolder耗时:"+(System.currentTimeMillis()-t)+"ms");//创建VideoViewHolder耗时:135ms
+            //LogUtils.i("创建新的ViewHolder video");
         }
-        return holder;
+        return null;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int viewType = list.get(position).type;
+        //long t = System.currentTimeMillis();
         if (viewType == TYPE_HEAD1) {//轮播图
-            Head1ViewHolder head1Holder = (Head1ViewHolder) holder;
+            //Head1ViewHolder head1Holder = (Head1ViewHolder) holder;
 
         } else if (viewType == TYPE_VIDEO) {//视频条目
             VideoViewHolder videoHolder = (VideoViewHolder) holder;
@@ -172,14 +230,35 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             imageHolder.initCommon(position);
             imageHolder.showImage();
         }
+        //LogUtils.i("bindViewHolder耗时:"+(System.currentTimeMillis()-t)+"ms");//bindViewHolder耗时:2ms
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list!=null?list.size():0;
     }
 
-    //    private Banner banner;
+    //卡顿问题解决办法：
+    //预先填充布局，解决在onCreateViewHolder方法里因为条目布局比较复杂，创建ViewHolder时inflate耗时太长导致滑动时卡顿的问题
+    //原理是利用了RecyclerView提供了RecycledViewPool，用来存放可被复用的ViewHolder
+    //该方法只能改善卡顿问题，并不能保证完全解决卡顿问题
+    public void initPreNewHolders() {
+        preNewHolders = new ArrayList<RecyclerView.ViewHolder>();
+        //预先填充三个视频条目对应的条目布局，并创建三个视频条目对应的ViewHolder
+        //三是根据不预先创建时系统会在onCreateViewHolder方法里新建的ViewHolder的个数来设置的
+        View v;
+        for (int i = 0; i < 3; i++) {
+            v = View.inflate(context, R.layout.item_content_list_type_video, null);
+            preNewHolders.add(new VideoViewHolder(v));
+        }
+        //预先填充三个图片条目对应的条目布局，并创建三个图片条目对应的ViewHolder
+        for (int i = 0; i < 3; i++) {
+            v = View.inflate(context, R.layout.item_content_list_type_image, null);
+            preNewHolders.add(new ImageViewHolder(v));
+        }
+    }
+
+    //private Banner banner;
     //轮播图对应的ViewHolder
     class Head1ViewHolder extends RecyclerView.ViewHolder {
         private Banner banner;
@@ -206,13 +285,6 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                     .start();
 
         }
-
-//        public void onDestory(){
-//            if(banner!=null){
-//                banner.stopAutoPlay();
-//                banner = null;
-//            }
-//        }
 
     }
 
@@ -537,7 +609,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     }
 
     //图片条目
-    class ImageViewHolder extends NormalItemViewHolder{
+    public class ImageViewHolder extends NormalItemViewHolder{
         //ImageView ivImg;
         SimpleDraweeView ivImg;
 
@@ -571,13 +643,13 @@ public class ContentListAdapter extends RecyclerView.Adapter {
     public class VideoViewHolder extends NormalItemViewHolder implements ItemIjkPlayerView.OnPlayCircleClickListener {
 
         private final View include_video;
-        //        public IjkPlayerView player;
+        //public IjkPlayerView player;
         public ItemIjkPlayerView player;
 
         public VideoViewHolder(View itemView) {
             super(itemView);
 
-//            player = (IjkPlayerView) itemView.findViewById(R.id.ijkPlayerView);
+            //player = (IjkPlayerView) itemView.findViewById(R.id.ijkPlayerView);
             player = (ItemIjkPlayerView) itemView.findViewById(R.id.ijkPlayerView);
             player.setOnPlayCircleClickListener(this);
             player.init(true);
@@ -596,12 +668,10 @@ public class ContentListAdapter extends RecyclerView.Adapter {
 
         /**
          * 重置视频条目，回复到未播放的状态。（重新显示视频缩略图和开始播放的图标，隐藏其他相关的视频控制控件）
-         *
-         *
          * */
         public void resetItem() {
             //LogUtils.i("resetItem start");
-//            if(player!=null && player.mPlayerThumb.getVisibility()!=View.VISIBLE){
+            //if(player!=null && player.mPlayerThumb.getVisibility()!=View.VISIBLE){
             if(player!=null && player.mIvPlayCircle.getVisibility()!=View.VISIBLE){
                 //long t = System.currentTimeMillis();
                 Observable.create(new ObservableOnSubscribe<Integer>() {
@@ -611,15 +681,14 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                         emitter.onComplete();
                     }
                 })
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe();//耗时：42
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
 
                 //player.resetVideoView();放在主线程，会有些卡顿
                 player.resetPlayerView();//player.init()
-                //TODO LogUtils.i("resetItem removePlayerView，耗时："+(System.currentTimeMillis()-t));
             }
-//            player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
+            //player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
             player.mPlayerThumb.setActualImageResource(list.get(position).videoThumbResourceId);
             //LogUtils.i("resetItem end");
         }
@@ -650,6 +719,7 @@ public class ContentListAdapter extends RecyclerView.Adapter {
                 }
             });
         }
+
 
     }
 
@@ -704,6 +774,11 @@ public class ContentListAdapter extends RecyclerView.Adapter {
             }
             players.clear();
             players = null;
+        }
+        inflater = null;
+        if(preNewHolders!=null){
+            preNewHolders.clear();
+            preNewHolders = null;
         }
     }
 

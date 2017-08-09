@@ -318,7 +318,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
 
     private DialogUtils.SignEditDialog dialog;
 
-    //// TODO: 2017/8/8 dialog上的button禁止点击
+    //// TODO: 2017/8/8 正在请求网络时，dialog上的button禁止点击
     static class MainCallback extends RxCallback<EditSignResponse, MainActivity, BaseTag>{
         private String newSign;
 
