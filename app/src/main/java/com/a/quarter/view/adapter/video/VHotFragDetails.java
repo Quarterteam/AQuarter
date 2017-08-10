@@ -93,17 +93,15 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
 
         player = (ItemIjkPlayerView) findViewById(R.id.ijkPlayerView);
         //player.setOnPlayCircleClickListener(this);
-        player.init(false);
-        player.setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
-                //.setSkipTip(1000*60*1)设置上次的播放进度的提示
-                //.enableOrientation()//设置可自动旋转
-                .enableDanmaku()//显示弹幕
-                .setDanmakuSource(getResources().openRawResource(R.raw.bili))//设置弹幕资源
-                //.setVideoSource(null, contentListBean.videoUri.getPath(), null, null, null)得到的是网址的后半段
-                //比如/videolib3/1611/28/GbgsL3639/SD/movie_index.m3u8: No such file or directory
-//                .setVideoSource(null, url, null, null, null)//设置不同清晰度的视频资源
-//                .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);//设置当前选择的清晰度
-                .setVideoPath(url);
+        player.init(false)
+              .setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
+              //.setSkipTip(1000*60*1)设置上次的播放进度的提示
+              //.enableOrientation()//设置可自动旋转
+              .enableDanmaku()//显示弹幕
+              .setDanmakuSource(getResources().openRawResource(R.raw.bili))//设置弹幕资源
+              //.setVideoSource(null, url, null, null, null)//设置不同清晰度的视频资源
+              //.setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);//设置当前选择的清晰度
+            .setVideoPath(url);
         player.mPlayerThumb.setActualImageResource(R.mipmap.bg5);
         //player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
 
