@@ -44,6 +44,7 @@
         android:singleLine="true"
         android:imeOptions="actionSearch"
         android:visibility="gone"
+        android:textSize="@dimen/textsize_medium"
         android:background="@drawable/shape_bg_et_search_friend"/>
 
     <android.support.design.widget.TabLayout

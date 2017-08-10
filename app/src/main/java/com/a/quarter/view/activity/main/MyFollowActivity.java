@@ -15,6 +15,7 @@ import com.a.quarter.model.bean.login.User;
 import com.a.quarter.model.bean.main.FollowListItemBean;
 import com.a.quarter.model.bean.main.MyFollowResponse;
 import com.a.quarter.presenter.main.MyFollowPresenter;
+import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.adapter.main.FollowListAdapter;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.base.LinearItemDecoration;
@@ -112,6 +113,12 @@ public class MyFollowActivity extends BaseActivity<MyFollowPresenter, MyFollowAc
             }
         };
         srl.setOnRefreshListener(onRefreshListener);
+        adapter.setOnItemClickListener(new FollowListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                ActivityUtils.jumpIn(MyFollowActivity.this, UserPageActivity.class);
+            }
+        });
     }
 
     @Override
@@ -162,6 +169,16 @@ public class MyFollowActivity extends BaseActivity<MyFollowPresenter, MyFollowAc
                         bean.time = TimeUtils.getStringTime(System.currentTimeMillis());
                         getHost().list.add(bean);
                     }
+                }
+                //测试数据
+                FollowListItemBean bean = null;
+                for (int i = 0; i < 15; i++) {
+                    bean = new FollowListItemBean();
+                    bean.imgUrl = "";
+                    bean.info = "吃货们快戳我";
+                    bean.name = "测试数据"+i;
+                    bean.time = TimeUtils.getStringTime(System.currentTimeMillis());
+                    getHost().list.add(bean);
                 }
                 getHost().adapter.notifyDataSetChanged();
                 if (getHost().list.isEmpty()) {

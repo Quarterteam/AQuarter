@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/mainBackground"
+    android:background="#EBEBEB"
     tools:context=".view.activity.main.MyFollowActivity">
     <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
 
@@ -27,23 +27,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>-->
 
+    <TextView
+        android:id="@+id/tv_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:text="没有数据"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
+            &lt;!&ndash;FrameLayout会导致SwipeRefreshLayout上拉不了&ndash;&gt;
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:background="@color/lightgray"
+                android:background="#EBEBEB"
                 android:paddingTop="10dp"/>
 
             <TextView
@@ -55,7 +63,14 @@
                 android:visibility="gone"
                 android:text="没有数据"/>
 
-        </FrameLayout>
+        </FrameLayout>-->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="10dp"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
