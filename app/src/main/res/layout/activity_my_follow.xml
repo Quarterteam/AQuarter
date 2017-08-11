@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#EBEBEB"
     tools:context=".view.activity.main.MyFollowActivity">
     <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
 
     <include
+        android:id="@+id/inc_head"
         layout="@layout/include_myfollow_head"/>
 
     <!--<android.support.design.widget.TabLayout
@@ -29,6 +29,7 @@
 
     <TextView
         android:id="@+id/tv_empty_view"
+        android:layout_below="@id/inc_head"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -38,6 +39,7 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl"
+        android:layout_below="@id/inc_head"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -74,4 +76,4 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+</RelativeLayout>

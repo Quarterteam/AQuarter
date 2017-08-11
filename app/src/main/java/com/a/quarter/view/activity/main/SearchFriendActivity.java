@@ -244,7 +244,7 @@ public class SearchFriendActivity extends BaseActivity<FollowPresenter, SearchFr
                         T.showShort(mAppContext, "搜索失败，"+response.code);
                     }
                     //HTTP 500 Internal Server Error
-                    //是因为传入的keyword是中文，所以乱码了吗？
+                    //是因为传入的keyword是中文，所以乱码了吗？（对）
                 }else if(tag.tag == getHost().TAG_ADD_CONCERN){
                     String json = (String) obj;
                     if(json!=null && json.contains("\"code\":\"200\"")){

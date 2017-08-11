@@ -25,6 +25,7 @@ import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.view.activity.msginform.MsgInformActivity;
 import com.a.quarter.view.activity.mycollect.MyCollectActivity;
+import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
@@ -142,6 +143,8 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
 
     }
 
+    private static final int REQUEST_CODE_LOGIN = 1;
+    private static final int REQUEST_CODE_SETTINGS_LOGIN = 2;//用于已经登录时前往设置页面
     @OnClick(R.id.iv_left)
     @Override
     public void onClick(View v) {
@@ -182,18 +185,19 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
                 ActivityUtils.jumpIn(this, MsgInformActivity.class);
                 break;
             case R.id.iv_user_icon:
-//                if(!App.isLogin()){
-                ActivityUtils.jumpForResult(1, this, ThirdPartyLoginActivity.class);
-//                }else{TODO 跳转到个人中心页面
-//                    T.showShort(getApplicationContext(), "已登录");
-//                }
+                if(!App.isLogin()){
+                    ActivityUtils.jumpForResult(REQUEST_CODE_LOGIN, this, ThirdPartyLoginActivity.class);
+                }else{//TODO 跳转到个人中心页面
+                    //T.showShort(getApplicationContext(), "已登录");
+                    ActivityUtils.jumpIn(this, UserPageActivity.class);
+                }
                 break;
             case R.id.tv_edit_sign:
                 if(!App.isLogin()){
-                    ActivityUtils.jumpForResult(1, this, ThirdPartyLoginActivity.class);
+                    ActivityUtils.jumpForResult(REQUEST_CODE_LOGIN, this, ThirdPartyLoginActivity.class);
                 }else{
                     //T.showShort(getApplicationContext(), "已登录");
-                    //TODO 显示编辑个性签名的对话框？
+                    //TODO 显示编辑个性签名的对话框
                     initPresenterInNeed();
                     if(dialog==null){
                         dialog = DialogUtils.getSignEditDialog(this, mPresenter);
@@ -278,8 +282,13 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
     public void setIntent(String tag) {
         Intent intent = new Intent(this, SlidingmenuToActivity.class);
         intent.putExtra("tag", tag);
+        if("setting".equals(tag) && App.isLogin()){
+            //如果是已经登录时前往设置页面，使用startActivityForResult的方式，
+            //用来判断有没有在设置里面点击退出登录，如果点击了，从设置页面返回的时候，就需要修改用户名用户头像等为未登录的状态
+            startActivityForResult(intent, REQUEST_CODE_SETTINGS_LOGIN);
+            return;
+        }
         startActivity(intent);
-
         //finish();
     }
 
@@ -305,20 +314,36 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
         }
     }
 
+    //退出登录
+    public void resetUserInfo(){
+        //重置用户名
+        slidingMenuUtils.tvUserName.setText("点击头像登录");
+        //重置头像
+        slidingMenuUtils.ivUserIcon.setActualImageResource(R.mipmap.default_no_avatar);
+        ivLeft.setActualImageResource(R.mipmap.default_no_avatar);
+        //重置性别图标
+        slidingMenuUtils.ivSexIcon.setImageResource(0);
+        //重置个性签名
+        slidingMenuUtils.tvEditSign.setText("编辑个性签名");
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //登录成功后，从登录页面返回
-        if (requestCode == 1 && resultCode == 1) {
+        if (requestCode == REQUEST_CODE_LOGIN && resultCode == 1) {
             //显示用户信息
             showUserInfo(App.getUser());
+        }else if(requestCode == REQUEST_CODE_SETTINGS_LOGIN){
+            if(!App.isLogin()){//如果用户在设置页面点击了退出登录
+                resetUserInfo();
+            }
         }
 
     }//13567890550
 
     private DialogUtils.SignEditDialog dialog;
 
-    //// TODO: 2017/8/8 正在请求网络时，dialog上的button禁止点击
     static class MainCallback extends RxCallback<EditSignResponse, MainActivity, BaseTag>{
         private String newSign;
 
@@ -329,7 +354,9 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
         @Override
         protected void onDealNextResponse(EditSignResponse response, BaseTag tag) {
             if("200!message:个性签名修改成功!!!!".equals(response.code)){
-                getHost().dialog.dismiss();
+                if(getHost().dialog.isShowing()){
+                    getHost().dialog.dismiss();
+                }
                 getHost().slidingMenuUtils.tvEditSign.setText(newSign);
                 App.getUser().saveUserSignature(newSign);
                 T.showShort(mAppContext, response.code);
@@ -349,6 +376,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
 
         @Override
         public void onRequestStart(BaseTag tag) {
+            //正在请求网络时，dialog上的button禁止点击
             getHost().dialog.btnOk.setEnabled(false);
         }
 
