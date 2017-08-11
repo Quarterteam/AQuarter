@@ -13,7 +13,9 @@ import com.a.quarter.R;
 import com.a.quarter.model.bean.main.MultiTypeItemBean;
 import com.a.quarter.model.bean.main.SearchFriendBean;
 import com.a.quarter.utils.SearchFriendHistoryUtils;
+import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.exa.framelib_rrm.base.view.view.CircleImageView;
+import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.T;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -222,6 +224,7 @@ public class SearchFriendListAdapter extends RecyclerView.Adapter{
         private TextView tvName;
         private TextView tvInfo;
         private View line;
+        private View itemView;
 
         public InterestHolder(View view) {
             super(view);
@@ -231,6 +234,8 @@ public class SearchFriendListAdapter extends RecyclerView.Adapter{
             tvInfo = (TextView) view.findViewById(R.id.tv_info);
             line = view.findViewById(R.id.line);
             tvFollow.setOnClickListener(this);
+            this.itemView = view;
+            this.itemView.setOnClickListener(this);
         }
 
         //2011-1993 = 7+11
@@ -250,6 +255,12 @@ public class SearchFriendListAdapter extends RecyclerView.Adapter{
                 }else{
                     //如果已经关注过，什么都不做
                 }
+            }else if(v == itemView){
+//                if(onItemClickListener!=null){
+//                    int position = getAdapterPosition();
+//                    onItemClickListener.onItemClick(TYPE_INTEREST, v, position);
+//                }
+                ActivityUtils.jumpIn(v.getContext(), UserPageActivity.class);
             }
         }
     }

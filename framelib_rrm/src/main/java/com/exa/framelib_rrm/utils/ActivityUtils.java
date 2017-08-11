@@ -18,6 +18,11 @@ public class ActivityUtils{
         ac.startActivity(intent);
     }
 
+    public static void jumpIn(Context ctx, Class<?> clazz){
+        Intent intent = new Intent(ctx, clazz);
+        ctx.startActivity(intent);
+    }
+
     public static void jumpIn(Fragment frag, Class<?> clazz){
         Intent intent = new Intent(frag.getActivity(), clazz);
         frag.startActivity(intent);

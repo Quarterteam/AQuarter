@@ -235,6 +235,8 @@ public class SearchFriendActivity extends BaseActivity<FollowPresenter, SearchFr
                                 getHost().list.add(user);
                             }
                             getHost().adapter.notifyDataSetChanged();
+                            //getHost().rv.smoothScrollToPosition(0);
+                            getHost().rv.scrollToPosition(0);
                         }else{
                             T.showShort(mAppContext, "没有符合条件的");
                         }
