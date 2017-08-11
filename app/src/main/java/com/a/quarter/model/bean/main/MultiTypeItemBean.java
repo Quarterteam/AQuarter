@@ -11,4 +11,8 @@ public class MultiTypeItemBean {
     public MultiTypeItemBean(int itemType) {
         this.itemType = itemType;
     }
+
+    public MultiTypeItemBean() {
+    }
+
 }

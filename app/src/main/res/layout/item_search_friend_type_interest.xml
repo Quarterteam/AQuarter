@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/myfollow_list_item_height">
+    android:layout_height="@dimen/myfollow_list_item_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.exa.framelib_rrm.base.view.view.CircleImageView
+    <!--<com.exa.framelib_rrm.base.view.view.CircleImageView-->
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_margin="@dimen/myfollow_list_item_widget_margin"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/bg10"/>
+        app:actualImageResource="@mipmap/bg10"
+        app:roundAsCircle="true"/>
 
     <TextView
         android:id="@+id/tv_follow"

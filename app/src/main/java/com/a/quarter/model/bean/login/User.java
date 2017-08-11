@@ -16,7 +16,7 @@ public class User {
     public String loginType;
     public String userHead;
     //public String userId;
-    public int userId;
+    public int userId = -1;
     public String userName;
     public String userPassword;
     public String userPhone;

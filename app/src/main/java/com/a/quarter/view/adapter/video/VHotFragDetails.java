@@ -90,10 +90,10 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
 //                (url));
 //        mIjkVideoView.start();
 
-
         player = (ItemIjkPlayerView) findViewById(R.id.ijkPlayerView);
         //player.setOnPlayCircleClickListener(this);
-        player.init(false)
+        //player.init(false)
+        player.init(true)//隐藏全屏按钮
               .setTitle("这是个跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
               //.setSkipTip(1000*60*1)设置上次的播放进度的提示
               //.enableOrientation()//设置可自动旋转
@@ -101,10 +101,9 @@ public class VHotFragDetails extends BaseActivity implements ItemIjkPlayerView.O
               .setDanmakuSource(getResources().openRawResource(R.raw.bili))//设置弹幕资源
               //.setVideoSource(null, url, null, null, null)//设置不同清晰度的视频资源
               //.setMediaQuality(IjkPlayerView.MEDIA_QUALITY_MEDIUM);//设置当前选择的清晰度
-            .setVideoPath(url);
+              .setVideoPath(url);
         player.mPlayerThumb.setActualImageResource(R.mipmap.bg5);
         //player.mPlayerThumb.setImageResource(list.get(position).videoThumbResourceId);
-
 
     }
 

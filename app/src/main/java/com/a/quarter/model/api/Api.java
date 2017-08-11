@@ -7,6 +7,7 @@ import com.a.quarter.model.bean.login.LoginResponse;
 import com.a.quarter.model.bean.login.RegisterResponse;
 import com.a.quarter.model.bean.login.VertifyCodeResponse;
 import com.a.quarter.model.bean.main.EditSignResponse;
+import com.a.quarter.model.bean.main.FindUserResponse;
 import com.a.quarter.model.bean.main.MyFollowResponse;
 import com.a.quarter.model.bean.video.DetailsCommemt;
 import com.a.quarter.model.bean.video.DetailsTrample;
@@ -85,5 +86,13 @@ public interface Api {
     @FormUrlEncoded
     Observable<EditSignResponse> editSign(@Field("userId") int userId, @Field("userSignature") String newSign);
 
+    //根据条件查询用户查询用
+    @POST(Constants.FIND_USER_BY)
+    Observable<FindUserResponse> findUserBy(@Query("value") String value);
+
+    //5.用户添加关注接口
+    @POST(Constants.ADD_CONCERN)
+    @FormUrlEncoded
+    Observable<String> addConcern(@Field("UserId") int UserId, @Field("Beuserid") int Beuserid);
 
 }

@@ -53,6 +53,7 @@ public class CacheInterceptor implements Interceptor{
             Log.d("CacheInterceptor","no network");
         }
         Response originalResponse = chain.proceed(request);
+        //偶尔会出现java.io.IOException: unexpected end of stream on Connection{192.168.1.100:80, proxy=DIRECT@ hostAddress=/192.168.1.100:80 cipherSuite=none protocol=http/1.1}
         if(NetUtils.isConnected()){
             //这里大家看点开源码看看.header .removeHeader做了什么操作很简答，就是的加字段和减字段的。
             //String cacheControl = request.cacheControl().toString();

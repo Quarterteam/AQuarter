@@ -2,7 +2,6 @@ package com.a.quarter.view.activity.main;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +13,7 @@ import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
 import com.a.quarter.model.bean.main.FollowListItemBean;
 import com.a.quarter.model.bean.main.MyFollowResponse;
-import com.a.quarter.presenter.main.MyFollowPresenter;
+import com.a.quarter.presenter.main.FollowPresenter;
 import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.adapter.main.FollowListAdapter;
 import com.a.quarter.view.base.BaseActivity;
@@ -28,22 +27,15 @@ import com.exa.framelib_rrm.utils.TimeUtils;
 import java.util.ArrayList;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * 我的关注页面
  */
-public class MyFollowActivity extends BaseActivity<MyFollowPresenter, MyFollowActivity.MyFollowCallback> implements View.OnClickListener {
+public class MyFollowActivity extends BaseActivity<FollowPresenter, MyFollowActivity.MyFollowCallback> implements View.OnClickListener {
 
-    //    @Bind(R.id.iv_back)
-//    ImageView ivBack;
     @Bind(R.id.tv_head)
     TextView tvHead;
-    //    @Bind(R.id.tabLayout)
-//    TabLayout mTabLayout;
-//    @Bind(R.id.vp)
-//    ViewPager mViewPager;
     @Bind(R.id.rv)
     RecyclerView rv;
     @Bind(R.id.srl)
@@ -63,33 +55,6 @@ public class MyFollowActivity extends BaseActivity<MyFollowPresenter, MyFollowAc
     protected void initViews() {
         //设置标题
         tvHead.setText("我的关注");
-
-//        //初始化TabLayout和ViewPager
-//        ArrayList<String> mTitleList = new ArrayList<String>();
-//        mTitleList.add("全部");
-//        mTitleList.add("爆笑");
-//        mTitleList.add("感人");
-//        mTitleList.add("美食");
-//        mTitleList.add("网红");
-//        mTitleList.add("颜值");
-//        for (int i = 0; i < mTitleList.size(); i++) {
-//            mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(i)));
-//        }
-//
-//        //添加 Fragment
-//        ArrayList<Fragment> mFragList = new ArrayList<Fragment>();
-//        for (int i = 0; i < mTitleList.size(); i++) {
-//            mFragList.add(new FollowListFragment());
-//        }
-//
-//        FragmentVpAdapter mAdapter = new FragmentVpAdapter(getSupportFragmentManager(), mFragList, mTitleList);
-//
-//        //给ViewPager设置适配器
-//        mViewPager.setAdapter(mAdapter);
-//        //将TabLayout和ViewPager关联起来。
-//        mTabLayout.setupWithViewPager(mViewPager);
-//
-//        TabLayoutUtils.setIndicator(mTabLayout, 0);
 
         //初始化关注列表控件
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -123,7 +88,8 @@ public class MyFollowActivity extends BaseActivity<MyFollowPresenter, MyFollowAc
 
     @Override
     protected void initDatas() {
-        bindPresenter(new MyFollowPresenter(), new MyFollowCallback(this, getApplicationContext()));
+        bindPresenter(new FollowPresenter(), new MyFollowCallback(this, getApplicationContext()));
+        //开始请求默认数据
         srl.post(new Runnable() {
             @Override
             public void run() {
@@ -170,16 +136,16 @@ public class MyFollowActivity extends BaseActivity<MyFollowPresenter, MyFollowAc
                         getHost().list.add(bean);
                     }
                 }
-                //测试数据
-                FollowListItemBean bean = null;
-                for (int i = 0; i < 15; i++) {
-                    bean = new FollowListItemBean();
-                    bean.imgUrl = "";
-                    bean.info = "吃货们快戳我";
-                    bean.name = "测试数据"+i;
-                    bean.time = TimeUtils.getStringTime(System.currentTimeMillis());
-                    getHost().list.add(bean);
-                }
+//                //测试数据（因为还没有关注过别人，从服务器请求下来的数据是0条，所以添加假数据测试一下）
+//                FollowListItemBean bean = null;
+//                for (int i = 0; i < 15; i++) {
+//                    bean = new FollowListItemBean();
+//                    bean.imgUrl = "";
+//                    bean.info = "吃货们快戳我";
+//                    bean.name = "测试数据"+i;
+//                    bean.time = TimeUtils.getStringTime(System.currentTimeMillis());
+//                    getHost().list.add(bean);
+//                }
                 getHost().adapter.notifyDataSetChanged();
                 if (getHost().list.isEmpty()) {
                     getHost().showEmptyView(true);
