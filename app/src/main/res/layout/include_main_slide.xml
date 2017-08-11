@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/bg9"/>
+        android:src="@mipmap/raw_bei2"/>
 
     <TextView
         android:id="@+id/tv_edit_sign"

@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainC
         }
         //显示性别图标
         if ("男".equals(user.userSex)) {
-            slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
+            slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.male);
         } else {
             slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
         }
