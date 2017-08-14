@@ -81,11 +81,15 @@
         android:layout_below="@id/item_userpage_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/item_userpage_image"
+            style="@style/userpage.Item.IjkVideoView"
+            android:visibility="gone"/>
         <media.IjkVideoView
             android:id="@+id/item_userpage_video"
             style="@style/userpage.Item.IjkVideoView"
-
             />
+
         <ImageView
             android:id="@+id/item_userpage_play"
             android:layout_width="50dp"

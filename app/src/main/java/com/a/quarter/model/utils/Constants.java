@@ -5,7 +5,7 @@ package com.a.quarter.model.utils;
  */
 public class Constants {
 
-    public static final String BASE_URL = "http://169.254.1.100/quarter/";
+    public static final String BASE_URL = "http://192.168.1.100/quarter/";
 
     public static final String LOGIN = "user/addLogin";//登录 POST
     public static final String REGISTER = "user/addUser";//注册 POST
@@ -21,6 +21,9 @@ public class Constants {
 
     public static final String DETAILS_COMMENT = "picture/AddComment";//详情  评论
 
-    public static final String JOKEURL="character/select_character";
+    public static final String JOKE_URL="character/getCharacterlist?"; //段子 信息
+    public static final String JOKE_ADDFORWARD="character/AddForward?";//段子 转发
+    public static final String JOKE_ADDNICE="character/AddNice";       //段子 点赞
+    public static final String JOKE_ADDBAD="character/AddBad";         //段子  踩
 
 }
