@@ -17,12 +17,13 @@ import com.a.quarter.model.bean.userpage.UserPageItemBean;
 import com.a.quarter.utils.AnimUtils;
 import com.a.quarter.utils.IconChangeUtils;
 import com.a.quarter.utils.QQLoginShareUtils;
+import com.dl7.player.media.IjkVideoView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import media.IjkVideoView;
+//import media.IjkVideoView;
 
 //import com.a.quarter.view.media.IjkVideoView;
 

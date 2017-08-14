@@ -18,11 +18,14 @@ public class VHotPresenter extends RxBasePresenter{
 
     // TODO: 热门
     public  void    Vhot(){
+
         if(preCheck(true, null)) {
+
             Observable<VHotBean> vhot = RetrofitHelper
                     .createApi(Api.class)
                     .VHotFrag();
             RxHelper.asyncGet(vhot, null, this);
+
         }
     }
 

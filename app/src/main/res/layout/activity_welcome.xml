@@ -15,7 +15,7 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
-        <com.a.quarter.view.activity.welcome.MaskImageView
+        <com.a.quarter.view.view.MaskImageView
             android:id="@+id/iv_entering_logo"
             android:layout_width="200px"
             android:layout_height="200px"

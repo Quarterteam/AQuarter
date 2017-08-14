@@ -15,4 +15,7 @@ public class FollowListItemBean {
         this.info = info;
         this.time = time;
     }
+
+    public FollowListItemBean() {
+    }
 }

@@ -23,7 +23,6 @@ public class App extends BaseApp {
     public void onCreate() {
         super.onCreate();
         RetrofitHelper.init(Constants.BASE_URL);
-
         //获取用户信息
         user = User.getUserInfo();
         //LogUtils.i("userid="+user.userId);//userid=113 15910488415
@@ -53,11 +52,14 @@ public class App extends BaseApp {
     }
 
     //清空用户信息
-    public void clearUserInfo() {
+    public boolean clearUserInfo() {
         if(isLogin()){
-            User.clearUserInfo();
-            this.user = null;
+            if(User.clearUserInfo()){
+                this.user = null;
+                return true;
+            }
         }
+        return false;
     }
 
     //获取用户对象

@@ -5,16 +5,12 @@ import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.recommend.ContentListBean;
 import com.a.quarter.view.adapter.recommend.ContentListAdapter;
 import com.a.quarter.view.base.BaseFragment;
-import com.exa.framelib_rrm.utils.LogUtils;
 import com.exa.framelib_rrm.utils.TimeUtils;
-import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
 
@@ -51,7 +47,7 @@ public class HotFragment extends BaseFragment {
         //设置RecyclerView的header数量，用于绘制分割线的时候header之间，header和第一个非header的条目之间不画分割线
         itemDecoration.setHeaderCount(1);
         //设置分割线左右与屏幕左右的距离
-      // itemDecoration.setDividerInset(50);
+        //itemDecoration.setDividerInset(50);
         //添加分割线
         rv.addItemDecoration(itemDecoration);
         //初始化并设置adapter
@@ -60,40 +56,31 @@ public class HotFragment extends BaseFragment {
 
         //监听条目的消失
         onChildAttachStateChangeListener =
-        new RecyclerView.OnChildAttachStateChangeListener(){
+                new RecyclerView.OnChildAttachStateChangeListener(){
 
-            ViewGroup parent = null;
-            RecyclerView.ViewHolder holder;
-            @Override
-            public void onChildViewAttachedToWindow(View view) {
+                    RecyclerView.ViewHolder holder;
+                    @Override
+                    public void onChildViewAttachedToWindow(View view) {
 
-            }
+                    }
 
-            /**
-             * 在条目从屏幕上消失的时候，如果是视频条目，移除视频控件，恢复未开始的状态；
-             * 解决remove之后可能会出现上个播放视频的条目上在视频的位置一片空白的情况；
-             * 这个方法有效；
-             * */
-            @Override
-            public void onChildViewDetachedFromWindow(View view) {
-                //LogUtils.i("onChildViewDetachedFromWindow,view="+view);
-                //获取到该条目的ViewHolder
-                holder = rv.getChildViewHolder(view);
-                if(holder instanceof ContentListAdapter.VideoViewHolder){//如果是视频条目
-                    if(adapter.player!=null) {//如果视频控件不是null
-                        parent = (ViewGroup)adapter.player.getParent();
-                        if (parent!=null){//如果视频控件已经被添加到某个条目上了
-                            if(parent.getParent() == view){//如果视频控件是在该view对应的条目上
-                                //LogUtils.i("移除视频控件,view="+view);
-                                ((ContentListAdapter.VideoViewHolder)holder).resetItem();
-                            }
+                    /**
+                     * 在条目从屏幕上完全消失的时候，如果是视频条目，重置条目，恢复到未开始的状态；
+                     * 避免可能因为条目复用出现视频和视频缩略图显示混乱的情况。
+                     * */
+                    @Override
+                    public void onChildViewDetachedFromWindow(View view) {
+                        //获取到该条目的ViewHolder
+                        holder = rv.getChildViewHolder(view);
+                        if(holder instanceof ContentListAdapter.VideoViewHolder){
+                            //如果是视频条目，重置该条目
+                            ((ContentListAdapter.VideoViewHolder)holder).resetItem();
                         }
                     }
-                }
-            }
 
-        };
+                };
         rv.addOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
+
     }
 
     @Override
@@ -133,11 +120,11 @@ public class HotFragment extends BaseFragment {
     }
 
     @Override
-    public void onStop() {
+    public void onPause() {
         if(adapter!=null){
-            adapter.onStop();
+            adapter.onPause();
         }
-        super.onStop();
+        super.onPause();
     }
 
     @Override
@@ -146,9 +133,20 @@ public class HotFragment extends BaseFragment {
             rv.removeOnChildAttachStateChangeListener(onChildAttachStateChangeListener);
         }
         if(adapter!=null){
-            adapter.onDestory();
-            adapter = null;
+            adapter.onDestroy();
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if(adapter!=null){
+            if(hidden){
+                adapter.onPause();
+            }else{
+                adapter.onResume();
+            }
+        }
+        super.onHiddenChanged(hidden);
     }
 }

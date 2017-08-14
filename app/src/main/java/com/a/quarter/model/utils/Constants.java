@@ -26,4 +26,8 @@ public class Constants {
     public static final String JOKE_ADDNICE="character/AddNice";       //段子 点赞
     public static final String JOKE_ADDBAD="character/AddBad";         //段子  踩
 
+    public static final String MY_FOLLOW="user/myFollow";//我的关注
+    public static final String EDIT_SIGN="user/upUsersign";//用户修改个性签名
+    public static final String FIND_USER_BY="user/findUserBy";//根据条件查询用户查询用
+    public static final String ADD_CONCERN="user/addConcern";//5.用户添加关注接口
 }

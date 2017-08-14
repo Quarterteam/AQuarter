@@ -1,5 +1,7 @@
 package com.a.quarter.view.activity.main;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +15,9 @@ import android.widget.TextView;
 import com.a.quarter.R;
 import com.a.quarter.app.App;
 import com.a.quarter.model.bean.login.User;
+import com.a.quarter.model.bean.main.EditSignResponse;
+import com.a.quarter.presenter.main.MainPresenter;
+import com.a.quarter.utils.DialogUtils;
 import com.a.quarter.utils.DrawableUtils;
 import com.a.quarter.utils.SlidingMenuUtils;
 import com.a.quarter.view.activity.compile.CreationActivity;
@@ -20,20 +25,24 @@ import com.a.quarter.view.activity.configure.SlidingmenuToActivity;
 import com.a.quarter.view.activity.login.ThirdPartyLoginActivity;
 import com.a.quarter.view.activity.msginform.MsgInformActivity;
 import com.a.quarter.view.activity.mycollect.MyCollectActivity;
+import com.a.quarter.view.activity.userpage.UserPageActivity;
 import com.a.quarter.view.base.BaseActivity;
 import com.a.quarter.view.fragment.joke.JokeFragment;
 import com.a.quarter.view.fragment.recommend.RecommendFragment;
 import com.a.quarter.view.fragment.video.VideoFragment;
+import com.exa.framelib_rrm.base.model.http.tag.BaseTag;
+import com.exa.framelib_rrm.rx.RxCallback;
 import com.exa.framelib_rrm.utils.ActivityUtils;
 import com.exa.framelib_rrm.utils.ScreenUtils;
 import com.exa.framelib_rrm.utils.StatusBarCompat;
+import com.exa.framelib_rrm.utils.T;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class MainActivity extends BaseActivity<MainPresenter, MainActivity.MainCallback> implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     @Bind(R.id.radioGroupNav)
     public RadioGroup radioGroupNav;
@@ -46,7 +55,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Bind(R.id.tv_title)
     public TextView tvTitle;
     @Bind(R.id.iv_left)
-//    public ImageView ivLeft;
+    //public ImageView ivLeft;
     public SimpleDraweeView ivLeft;
 
     private RecommendFragment recommendFragment;
@@ -59,8 +68,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected int getContentViewId() {
-//        return R.layout.activity_main;
-        return R.layout.slidingmenu_wraper;
+        return R.layout.activity_main;
+        //return R.layout.slidingmenu_wraper;
+        //改成还是使用new SlidingMenu()的方式创建侧滑菜单，可以减少一层布局
     }
 
     @Override
@@ -114,10 +124,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
         //显示性别图标
         if ("男".equals(user.userSex)) {
-            slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.ic_launcher);
+            slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.male);
         } else {
             slidingMenuUtils.ivSexIcon.setImageResource(R.mipmap.female);
         }
+        //显示个性签名
+        slidingMenuUtils.tvEditSign.setText(user.userSignature);
     }
 
     private void initRadioButton() {
@@ -131,6 +143,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     }
 
+    private static final int REQUEST_CODE_LOGIN = 1;
+    private static final int REQUEST_CODE_SETTINGS_LOGIN = 2;//用于已经登录时前往设置页面
     @OnClick(R.id.iv_left)
     @Override
     public void onClick(View v) {
@@ -148,8 +162,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //                }
                 break;
             case R.id.tv_my_follow:
-                ActivityUtils.jumpIn(this, MyFollowActivity.class);
-
+                //if(App.isLogin()){
+                    ActivityUtils.jumpIn(this, MyFollowActivity.class);
+//                }else{
+//                    T.showShort(getApplicationContext(), "未登录");
+//                }
                 break;
             case R.id.tv_search_friend:
                 ActivityUtils.jumpIn(this, SearchFriendActivity.class);
@@ -168,14 +185,36 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ActivityUtils.jumpIn(this, MsgInformActivity.class);
                 break;
             case R.id.iv_user_icon:
-//                if(!App.isLogin()){
-                ActivityUtils.jumpForResult(1, this, ThirdPartyLoginActivity.class);
-//                }else{TODO 跳转到个人中心页面
-//                    T.showShort(getApplicationContext(), "已登录");
-//                }
+                if(!App.isLogin()){
+                    ActivityUtils.jumpForResult(REQUEST_CODE_LOGIN, this, ThirdPartyLoginActivity.class);
+                }else{//TODO 跳转到个人中心页面
+                    //T.showShort(getApplicationContext(), "已登录");
+                    ActivityUtils.jumpIn(this, UserPageActivity.class);
+                }
+                break;
+            case R.id.tv_edit_sign:
+                if(!App.isLogin()){
+                    ActivityUtils.jumpForResult(REQUEST_CODE_LOGIN, this, ThirdPartyLoginActivity.class);
+                }else{
+                    //T.showShort(getApplicationContext(), "已登录");
+                    //TODO 显示编辑个性签名的对话框
+                    initPresenterInNeed();
+                    if(dialog==null){
+                        dialog = DialogUtils.getSignEditDialog(this, mPresenter);
+                    }else{
+                        dialog.show();
+                    }
+                    dialog.etSign.setText(App.getUser().userSignature);
+                }
                 break;
             default:
                 break;
+        }
+    }
+
+    private void initPresenterInNeed() {
+        if(mPresenter==null){
+            bindPresenter(new MainPresenter(), new MainCallback(this, getApplicationContext()));
         }
     }
 
@@ -243,8 +282,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void setIntent(String tag) {
         Intent intent = new Intent(this, SlidingmenuToActivity.class);
         intent.putExtra("tag", tag);
+        if("setting".equals(tag) && App.isLogin()){
+            //如果是已经登录时前往设置页面，使用startActivityForResult的方式，
+            //用来判断有没有在设置里面点击退出登录，如果点击了，从设置页面返回的时候，就需要修改用户名用户头像等为未登录的状态
+            startActivityForResult(intent, REQUEST_CODE_SETTINGS_LOGIN);
+            return;
+        }
         startActivity(intent);
-
         //finish();
     }
 
@@ -270,15 +314,75 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
     }
 
+    //退出登录
+    public void resetUserInfo(){
+        //重置用户名
+        slidingMenuUtils.tvUserName.setText("点击头像登录");
+        //重置头像
+        slidingMenuUtils.ivUserIcon.setActualImageResource(R.mipmap.default_no_avatar);
+        ivLeft.setActualImageResource(R.mipmap.default_no_avatar);
+        //重置性别图标
+        slidingMenuUtils.ivSexIcon.setImageResource(0);
+        //重置个性签名
+        slidingMenuUtils.tvEditSign.setText("编辑个性签名");
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //登录成功后，从登录页面返回
-        if (requestCode == 1 && resultCode == 1) {
+        if (requestCode == REQUEST_CODE_LOGIN && resultCode == 1) {
             //显示用户信息
             showUserInfo(App.getUser());
+        }else if(requestCode == REQUEST_CODE_SETTINGS_LOGIN){
+            if(!App.isLogin()){//如果用户在设置页面点击了退出登录
+                resetUserInfo();
+            }
         }
 
     }//13567890550
 
+    private DialogUtils.SignEditDialog dialog;
+
+    static class MainCallback extends RxCallback<EditSignResponse, MainActivity, BaseTag>{
+        private String newSign;
+
+        public MainCallback(MainActivity host, Context mContext) {
+            super(host, mContext);
+        }
+
+        @Override
+        protected void onDealNextResponse(EditSignResponse response, BaseTag tag) {
+            if("200!message:个性签名修改成功!!!!".equals(response.code)){
+                if(getHost().dialog.isShowing()){
+                    getHost().dialog.dismiss();
+                }
+                getHost().slidingMenuUtils.tvEditSign.setText(newSign);
+                App.getUser().saveUserSignature(newSign);
+                T.showShort(mAppContext, response.code);
+            }else{
+                T.showShort(mAppContext, response.code);
+            }
+        }
+
+        @Override
+        public String onCheckParamsLegality(BaseTag tag, Object... params) {
+            newSign = params.length>0 ? (String)params[0]:null;
+            if(TextUtils.isEmpty(newSign)){
+                return "还没输入个性签名";
+            }
+            return null;
+        }
+
+        @Override
+        public void onRequestStart(BaseTag tag) {
+            //正在请求网络时，dialog上的button禁止点击
+            getHost().dialog.btnOk.setEnabled(false);
+        }
+
+        @Override
+        public void onRequestEnd(BaseTag tag) {
+            getHost().dialog.btnOk.setEnabled(true);
+        }
+    }
 }

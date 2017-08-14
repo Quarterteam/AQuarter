@@ -58,9 +58,15 @@ public class SlidingActivityHelper {
 
 		mOnPostCreateCalled = true;
 
-		mSlidingMenu.attachToActivity(mActivity, 
+		mSlidingMenu.attachToActivity(mActivity,
 				mEnableSlide ? SlidingMenu.SLIDING_WINDOW : SlidingMenu.SLIDING_CONTENT);
-		
+
+		//解决沉浸式状态栏模式下，SlidingMenu使用不了状态栏空间的第二种方法（第一种是在xml里设置第一个控件为TextView）
+//		mEnableSlide=false;
+//		this.mSlidingMenu.attachToActivity(this.mActivity,
+//				this.mEnableSlide ? SlidingMenu.SLIDING_WINDOW : SlidingMenu.SLIDING_CONTENT, true);
+		//是因为根本就没有用这个类？
+
 		final boolean open;
 		final boolean secondary;
 		if (savedInstanceState != null) {

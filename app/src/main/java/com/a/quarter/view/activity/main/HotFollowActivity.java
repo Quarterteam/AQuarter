@@ -75,6 +75,8 @@ public class HotFollowActivity extends BaseActivity implements View.OnClickListe
 
     private void search() {
         //TODO
+        //String keyword = etSearch.getText().toString().trim();
+
 
     }
 

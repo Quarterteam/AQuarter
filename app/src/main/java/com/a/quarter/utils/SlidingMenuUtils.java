@@ -18,7 +18,7 @@ import com.suke.widget.SwitchButton;
 public class SlidingMenuUtils implements SwitchButton.OnCheckedChangeListener {
 
     private ImageView ivBg;
-    private TextView tvEditSign;
+    public TextView tvEditSign;
     public SimpleDraweeView ivUserIcon;
     public TextView tvUserName;
     public ImageView ivSexIcon;
@@ -36,19 +36,29 @@ public class SlidingMenuUtils implements SwitchButton.OnCheckedChangeListener {
     public SlidingMenu initSlidingMenu(Activity activity, final View.OnClickListener onClickListener) {
         this.context = activity.getApplicationContext();
         int pixels = activity.getResources().getDisplayMetrics().widthPixels;
-        final SlidingMenu slidingMenu = (SlidingMenu)activity.findViewById(R.id.slidingmenulayout);
+        //final SlidingMenu slidingMenu = (SlidingMenu)activity.findViewById(R.id.slidingmenulayout);
         //改为在xml里定义的方式，是为了实现既能使用状态栏的空间，又能自由设置状态栏的颜色。
         //因为SlidingMenu属于自定义控件，对于这样的控件是整个Activity第一个控件的情况，沉浸效果无法实现，
         //所以在slidingmenu_wraper.xml里添加一个系统规定的可以支持沉浸效果的TextView作为第一个控件。
         //(参考 http://blog.csdn.net/zf19921020/article/details/46840383
         // 和   http://blog.csdn.net/lmj623565791/article/details/36677279)
 
+        //-------------------------
+        //放弃上面的在xml里定义的方式，重新换回new的方式，可以减少一层布局，有利于界面卡顿的优化
+        //想要与上面完全一样的效果，需要在下面的attachToActivity的方法里传入第三个参数，并且传入true
+        //原生SlidingMenu不支持使用状态栏所占的空间的主要原因是在于重写了fitSystemWindows方法。
+
+        //(参考 http://blog.csdn.net/a458339341/article/details/54021887)
+        //(fitSystemWindows方法是通过设置padding来实现能不能使用状态栏所占空间的，参考源码)
+        SlidingMenu slidingMenu = new SlidingMenu(activity);
         //从左边滑出
         slidingMenu.setMode(SlidingMenu.LEFT);
         //设置滑出后屏幕的剩余宽度
         slidingMenu.setBehindOffset(pixels/4);
 
         //slidingMenu.attachToActivity(HomeActivity.this, SlidingMenu.SLIDING_CONTENT);
+        slidingMenu.attachToActivity(activity, SlidingMenu.SLIDING_CONTENT, true);
+        //attachToActivity第三个参数设置为true，是因为SlidingMenu类里重写了fitSystemWindows方法，用到了第三个参数，设置为true可以使用状态栏所占空间
         slidingMenu.setMenu(R.layout.include_main_slide);
         tvMyFollow = (TextView)slidingMenu.findViewById(R.id.tv_my_follow);
         tvMyFollow.setOnClickListener(onClickListener);

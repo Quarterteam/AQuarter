@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.a.quarter"
-        minSdkVersion 14
+        minSdkVersion 18//14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -17,39 +17,58 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    //指明ijkplayerlib包
+    //指明so包所在位置
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
     }
 
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'x86', 'armeabi-v7a'
-            universalApk true
-        }
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+//            include 'x86', 'armeabi-v7a'
+//            universalApk true
+//        }
+//    }
+
+    //避免com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK lib/armeabi/libMagicSDK.so
+    packagingOptions {
+        pickFirst 'lib/armeabi/libMagicSDK.so'
+        pickFirst 'lib/armeabi/libMagicBeautify.so'
+        pickFirst 'lib/armeabi-v7a/libMagicSDK.so'
+        pickFirst 'lib/armeabi-v7a/libMagicBeautify.so'
+        pickFirst 'lib/arm64-v8a/libMagicSDK.so'
+        pickFirst 'lib/arm64-v8a/libMagicBeautify.so'
+        pickFirst 'lib/mips64/libMagicSDK.so'
+        pickFirst 'lib/mips64/libMagicBeautify.so'
+        pickFirst 'lib/mips/libMagicSDK.so'
+        pickFirst 'lib/mips/libMagicBeautify.so'
+        pickFirst 'lib/x86/libMagicSDK.so'
+        pickFirst 'lib/x86/libMagicBeautify.so'
+        pickFirst 'lib/x86_64/libMagicSDK.so'
+        pickFirst 'lib/x86_64/libMagicBeautify.so'
     }
 }
+//repositories {
+//    mavenCentral()
+//    flatDir {
+//        dirs 'libs' //this way we can find the .aar file in libs folder
+//    }
+//
+//}
+
+//指明aar的位置
 repositories {
     mavenCentral()
     flatDir {
-        dirs 'libs' //this way we can find the .aar file in libs folder
-    }
-
-}
-
-//指明ijkplayer.aar的位置
-repositories {
-    mavenCentral()
-    flatDir {
-        dirs 'libs' //this way we can find the .aar file in libs folder
+//        dirs 'libs' //this way we can find the .aar file in libs folder
+        dirs 'libs','../cameraandimage/libs' //this way we can find the .aar file in libs folder
     }
 }
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile project(':framelib_rrm')
@@ -58,15 +77,16 @@ dependencies {
     //ButterKnife
     compile 'com.jakewharton:butterknife:7.0.1'
     compile project(':slidingmenulibrary')
+    //recyclerview
     compile 'com.android.support:recyclerview-v7:23.2.1'
     //tablayout
     compile 'com.android.support:design:23.2.1'
-    //recycler
-    compile 'com.android.support:recyclerview-v7:23.2.0'
+    //    //recycler
+    //    compile 'com.android.support:recyclerview-v7:23.2.0'
     //Ijkplayer 使用
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.6.1'
-    compile(name: 'ijkplayer-java-release', ext: 'aar')
+    //    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.1'
+    //    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.6.1'
+    //    compile(name: 'ijkplayer-java-release', ext: 'aar')
     //todo QQ 的登陆 分享
     compile files('libs/SocialSDK_QQ_Simplify.jar')
     compile files('libs/umeng_shareboard_widget.jar')
@@ -78,4 +98,8 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.4.0'
     //轮播图
     compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.github.bumptech.glide:glide:3.5.2'
+    //IjkPlayerView
+    compile project(':playerview')
+    compile project(':cameraandimage')
 }

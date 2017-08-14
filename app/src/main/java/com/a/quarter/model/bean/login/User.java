@@ -15,13 +15,15 @@ public class User {
 
     public String loginType;
     public String userHead;
-    public String userId;
+    //public String userId;
+    public int userId = -1;
     public String userName;
     public String userPassword;
     public String userPhone;
     public String userSex;
     public String userPasswordConfirm;
     public String expiration;//过期时间（qq登录）
+    public String userSignature;//个性签名
 
     public static boolean saveUserInfo(User user){
         SharedPreferences sp = App.getInstance().
@@ -29,12 +31,13 @@ public class User {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("loginType",user.loginType);
         editor.putString("userName",user.userName);
-        editor.putString("userId",user.userId);
+        editor.putInt("userId",user.userId);
         editor.putString("userHead",user.userHead);
-//        editor.putString("userPassword",user.userPassword);
+        //editor.putString("userPassword",user.userPassword);
         editor.putString("userPhone",user.userPhone);
         editor.putString("userSex",user.userSex);
         editor.putString("expiration",user.expiration);
+        editor.putString("userSignature",user.userSignature);
         return editor.commit();
     }
 
@@ -44,12 +47,13 @@ public class User {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("loginType",null);
         editor.putString("userName",null);
-        editor.putString("userId",null);
+        editor.putInt("userId",-1);
         editor.putString("userHead",null);
-//        editor.putString("userPassword",null);
+        //editor.putString("userPassword",null);
         editor.putString("userPhone",null);
         editor.putString("userSex",null);
         editor.putString("expiration",null);
+        editor.putString("userSignature",null);
         return editor.commit();
     }
 
@@ -62,12 +66,13 @@ public class User {
             User user = new User();
             user.userName = username;
             user.loginType = sp.getString("loginType", null);
-            user.userId = sp.getString("userId",null);
+            user.userId = sp.getInt("userId",-1);
             user.userHead = sp.getString("userHead",null);
-//            user.userPassword = sp.getString("userPassword",null);
+            //user.userPassword = sp.getString("userPassword",null);
             user.userPhone = sp.getString("userPhone",null);
             user.userSex = sp.getString("userSex",null);
             user.expiration = sp.getString("expiration",null);
+            user.userSignature = sp.getString("userSignature",null);
 
             return user;
         }
@@ -78,11 +83,25 @@ public class User {
     public void reset() {
         loginType = null;
         userName = null;
-        userId = null;
+        userId = -1;
         userHead = null;
         userPassword = null;
         userPhone = null;
         userSex = null;
         expiration = null;
+        userSignature = null;
+    }
+
+    //保存个性签名
+    public boolean saveUserSignature(String newSign) {
+        SharedPreferences sp = App.getInstance().
+                getSharedPreferences("userdata", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("userSignature",newSign);
+        boolean saved = editor.commit();
+        if(saved){
+            this.userSignature = newSign;
+        }
+        return saved;
     }
 }

@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
@@ -320,6 +321,14 @@ public class SlidingMenu extends RelativeLayout {
 			decor.removeView(decorChild);
 			decor.addView(this);
 			setContent(decorChild);
+
+
+//			RelativeLayout relativeLayout = new RelativeLayout(activity);
+//			TextView textView = new TextView(activity);
+//			textView.setFitsSystemWindows(true);
+//			relativeLayout.addView(textView);
+//			relativeLayout.addView(this);
+//			decor.addView(relativeLayout);
 			break;
 		case SLIDING_CONTENT:
 			mActionbarOverlay = actionbarOverlay;
@@ -332,6 +341,7 @@ public class SlidingMenu extends RelativeLayout {
 			// save people from having transparent backgrounds
 			if (content.getBackground() == null)
 				content.setBackgroundResource(background);
+
 			break;
 		}
 	}

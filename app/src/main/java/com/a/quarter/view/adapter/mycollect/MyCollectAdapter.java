@@ -15,12 +15,13 @@ import com.a.quarter.R;
 import com.a.quarter.model.bean.collect.MyCollectItemBean;
 import com.a.quarter.utils.AnimUtils;
 import com.a.quarter.utils.IconChangeUtils;
+import com.dl7.player.media.IjkVideoView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import media.IjkVideoView;
+//import media.IjkVideoView;
 
 /**
  * 类的作用：
@@ -99,8 +100,9 @@ if (list.get(position).isDelVisibility()){
                }else{
                    list.get(position).setLike(true);
                    IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.xi);
-               }
+                   IconChangeUtils.setIconChangeCheck(context,holder.ivLike,R.mipmap.details_xi_a);
 
+               }
 
            }
        });
@@ -119,10 +121,6 @@ if (list.get(position).isDelVisibility()){
         });
 
 }
-
-
-
-
     @Override
     public int getItemCount() {
         return 2;

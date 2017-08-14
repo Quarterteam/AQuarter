@@ -9,19 +9,22 @@
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/bg9"/>
+        android:src="@mipmap/raw_bei2"/>
 
     <TextView
         android:id="@+id/tv_edit_sign"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/textsize_small"
         android:textColor="@color/white"
         android:layout_alignBottom="@id/iv_bg"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="50dp"
         android:text="编辑个性签名"/>
+    <!--android:layout_marginLeft="30dp"-->
+    <!--android:layout_marginTop="30dp"-->
+    <!--android:layout_marginBottom="30dp"-->
 
     <!--<com.exa.framelib_rrm.base.view.view.CircleImageView-->
     <com.facebook.drawee.view.SimpleDraweeView

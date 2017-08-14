@@ -85,7 +85,8 @@
             android:id="@+id/item_userpage_image"
             style="@style/userpage.Item.IjkVideoView"
             android:visibility="gone"/>
-        <media.IjkVideoView
+
+        <com.dl7.player.media.IjkVideoView
             android:id="@+id/item_userpage_video"
             style="@style/userpage.Item.IjkVideoView"
             />

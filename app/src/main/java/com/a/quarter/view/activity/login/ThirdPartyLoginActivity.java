@@ -120,28 +120,6 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
 //                        Log.i("12312", m.getKey() + " = " + m.getValue());
 //                    }
 
-//                    unionid =
-//                    is_yellow_vip = 0
-//                    screen_name = 飞
-//                    msg =
-//                    vip = 0
-//                    city = 周口
-//                    accessToken = 038298202D4A80C697AE07EC5747F9CF
-//                    gender = 男
-//                    province = 河南
-//                    is_yellow_year_vip = 0
-//                    openid = E44CDAB9D4F48EB3077DC50F722B08D0
-//                    yellow_vip_level = 0
-//                    profile_image_url = http://q.qlogo.cn/qqapp/1106087531/E44CDAB9D4F48EB3077DC50F722B08D0/100
-//                    access_token = 038298202D4A80C697AE07EC5747F9CF
-//                    iconurl = http://q.qlogo.cn/qqapp/1106087531/E44CDAB9D4F48EB3077DC50F722B08D0/100
-//                    name = 飞
-//                    uid = E44CDAB9D4F48EB3077DC50F722B08D0
-//                    expiration = 1509325440785
-//                    expires_in = 1509325440785
-//                    ret = 0
-//                    level = 0
-                    //保存用户信息
 //                    name：name（6.2以前用screen_name）
 //                    用户id（openid）：uid
 //                    accesstoken: accessToken （6.2以前用access_token）
@@ -152,14 +130,19 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
 //                    黄钻等级：yellow_vip_level
 //                    城市：city
 //                    省份：province
-
                     if (data != null) {
                         //保存用户信息
                         User user = new User();
-                        user.loginType = "qq";
+                        if(platform==SHARE_MEDIA.QQ){
+                            user.loginType = "qq";
+                        }else if(platform==SHARE_MEDIA.WEIXIN){
+                            user.loginType = "weixin";
+                        }else{
+                            user.loginType = "other";
+                        }
                         user.userName = data.get("name");
 //                        user.userPassword = ;
-                        user.userId = data.get("uid");
+//                        user.userId = data.get("uid");
 //                        user.userPhone = data.get("");
                         user.userSex = data.get("gender");
                         user.userHead = data.get("iconurl");
@@ -177,7 +160,8 @@ public class ThirdPartyLoginActivity extends BaseActivity implements View.OnClic
                 @Override
                 public void onError(SHARE_MEDIA platform, int action, Throwable t) {
                     llQq.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

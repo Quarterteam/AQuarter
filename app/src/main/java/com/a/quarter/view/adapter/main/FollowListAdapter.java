@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.main.FollowListItemBean;
+import com.exa.framelib_rrm.utils.ActivityUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,7 @@ public class FollowListAdapter extends RecyclerView.Adapter<FollowListAdapter.My
 
     private ArrayList<FollowListItemBean> list;
     private final LayoutInflater inflater;
+    private OnItemClickListener onItemClickListener;
 
     public FollowListAdapter(Context context, ArrayList<FollowListItemBean> list) {
         this.list = list;
@@ -33,6 +36,7 @@ public class FollowListAdapter extends RecyclerView.Adapter<FollowListAdapter.My
 
     @Override
     public void onBindViewHolder(MyFollowViewHolder holder, int position) {
+        holder.ivIcon.setActualImageResource(R.mipmap.bg10);
         holder.tvName.setText(list.get(position).name);
         holder.tvInfo.setText(list.get(position).info);
         holder.tvTime.setText(list.get(position).time);
@@ -43,8 +47,8 @@ public class FollowListAdapter extends RecyclerView.Adapter<FollowListAdapter.My
         return list.size();
     }
 
-    static class MyFollowViewHolder extends RecyclerView.ViewHolder{
-        private ImageView iv;
+    class MyFollowViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private SimpleDraweeView ivIcon;
         private ImageView ivArrowRight;
         private TextView tvName;
         private TextView tvInfo;
@@ -53,12 +57,28 @@ public class FollowListAdapter extends RecyclerView.Adapter<FollowListAdapter.My
 
         public MyFollowViewHolder(View itemView) {
             super(itemView);
-            this.iv = (ImageView)itemView.findViewById(R.id.iv);
+            this.ivIcon = (SimpleDraweeView)itemView.findViewById(R.id.iv_icon);
             this.ivArrowRight = (ImageView)itemView.findViewById(R.id.iv_arrow_right);
             this.tvName = (TextView)itemView.findViewById(R.id.tv_name);
             this.tvInfo = (TextView)itemView.findViewById(R.id.tv_info);
             this.tvTime = (TextView)itemView.findViewById(R.id.tv_time);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if(onItemClickListener!=null){
+                onItemClickListener.onItemClick(v, getAdapterPosition());
+            }
+        }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(View v, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
     }
 
 }

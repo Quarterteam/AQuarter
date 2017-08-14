@@ -3,7 +3,7 @@
     android:fromDegrees="0"
     android:pivotX="50%"
     android:pivotY="50%"
-    android:toDegrees="720">
+    android:toDegrees="1080">
     <!--android:toDegrees 这个属性 就是控制转动幅度的 可以设置大于360 数值大 就看起来转动快些了的-->
 
     <!--<shape
