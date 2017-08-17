@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.userpage.UserPageItemBean;
-import com.a.quarter.model.utils.AnimUtils;
+import com.a.quarter.utils.AnimUtils;
 import com.a.quarter.utils.IconChangeUtils;
 import com.a.quarter.utils.QQLoginShareUtils;
 import com.dl7.player.media.IjkVideoView;
@@ -70,18 +70,18 @@ public class UserPageAdapter extends RecyclerView.Adapter<UserPageAdapter.MyHold
         UserPageItemAdapter userPageItemAdapter = new UserPageItemAdapter(context);
         holder.recyclerView.setAdapter(userPageItemAdapter);
         //动画
-        holder.jokeImageRigth.setOnClickListener(new View.OnClickListener() {
+        holder.ImageRigth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (list.get(position).isAnimshow()) {
                     list.get(position).setAnimshow(false);
-                    holder.jokeImageRigth.setImageResource(R.mipmap.icon_open);
-                    AnimUtils.setTransRot(0f, 90f, 1f, 0f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+                    holder.ImageRigth.setImageResource(R.mipmap.icon_open);
+                    AnimUtils.setTransRot(0f, 90f, 1f, 0f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.ImageRigth);
                 } else {
                     list.get(position).setAnimshow(true);
-                    holder.jokeImageRigth.setImageResource(R.mipmap.packup2);
-                    AnimUtils.setTransRot(0f, -90f, 0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.jokeImageRigth);
+                    holder.ImageRigth.setImageResource(R.mipmap.packup2);
+                    AnimUtils.setTransRot(0f, -90f, 0f, 1f, View.VISIBLE, holder.copylinkTextView, holder.reportTextView, holder.shiledTextView, holder.ImageRigth);
 
                 }
             }
@@ -160,9 +160,9 @@ public void setTopIcon(int imageId,TextView view){
     public void onClick(View view) {
          switch (view.getId()){
              case R.id.pop_qq:
-               //  QQLoginShareUtils.setShare("d","分享","djfdjvnm",context);
                  QQLoginShareUtils utils = new QQLoginShareUtils();
-                 utils.setShare("d","分享","djfdjvnm",context);
+                 utils.setShare("http://www.baidu.com", "标题", "描述内容", context);
+
                  break;
              case R.id.pop_qzone:
                  break;
@@ -181,12 +181,13 @@ public void setTopIcon(int imageId,TextView view){
         TextView tvTitle;
         TextView tvTime;
         TextView tvPublish;
-        ImageView jokeImageRigth;
+        ImageView ImageRigth;
         TextView copylinkTextView;
         TextView reportTextView;
         TextView shiledTextView;
         RecyclerView recyclerView;
         IjkVideoView ijkVideoView;
+        SimpleDraweeView userpageImage;
         ImageView ivPlay;
         LinearLayout linear;
         TextView ivLike;
@@ -197,10 +198,11 @@ public void setTopIcon(int imageId,TextView view){
         public MyHolder(View itemView) {
             super(itemView);
             ImageTitle = (SimpleDraweeView) itemView.findViewById(R.id.item_userpage_Image_title);
+            userpageImage = (SimpleDraweeView) itemView.findViewById(R.id.item_userpage_image);
             tvTitle = (TextView) itemView.findViewById(R.id.item_userpage_Text_title);
             tvTime = (TextView) itemView.findViewById(R.id.item_userpage_Text_time);
             tvPublish = (TextView) itemView.findViewById(R.id.item_userpage_Text);
-            jokeImageRigth = (ImageView) itemView.findViewById(R.id.item_userpage_image_show);
+            ImageRigth = (ImageView) itemView.findViewById(R.id.item_userpage_image_show);
             copylinkTextView = (TextView) itemView.findViewById(R.id.item_userpage_text_copylink);
             reportTextView = (TextView) itemView.findViewById(R.id.item_userpage_text_report);
             shiledTextView = (TextView) itemView.findViewById(R.id.item_userpage_text_shiled);

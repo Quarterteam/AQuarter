@@ -21,7 +21,10 @@ public class Constants {
 
     public static final String DETAILS_COMMENT = "picture/AddComment";//详情  评论
 
-    public static final String JOKEURL="character/select_character";
+    public static final String JOKE_URL="character/getCharacterlist?"; //段子 信息
+    public static final String JOKE_ADDFORWARD="character/AddForward?";//段子 转发
+    public static final String JOKE_ADDNICE="character/AddNice";       //段子 点赞
+    public static final String JOKE_ADDBAD="character/AddBad";         //段子  踩
 
     public static final String MY_FOLLOW="user/myFollow";//我的关注
     public static final String EDIT_SIGN="user/upUsersign";//用户修改个性签名

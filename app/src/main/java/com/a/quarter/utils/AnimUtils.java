@@ -1,4 +1,4 @@
-package com.a.quarter.model.utils;
+package com.a.quarter.utils;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

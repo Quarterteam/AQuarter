@@ -39,13 +39,13 @@
             />
         <TextView
             android:id="@+id/joke_text_transmit"
-            android:drawableTop="@mipmap/mtransmit"
+            android:drawableTop="@mipmap/transmit_x"
             style="@style/Joke.image.text"
              />
         <TextView
             android:id="@+id/joke_text_comment"
             style="@style/Joke.image.text"
-            android:drawableTop="@mipmap/message"
+            android:drawableTop="@mipmap/message_x"
              />
     <ImageView
         android:id="@+id/joke_image_rigth"

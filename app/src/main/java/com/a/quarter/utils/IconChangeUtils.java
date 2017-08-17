@@ -16,9 +16,9 @@ public class IconChangeUtils {
    public static void setIconChangeCheck(Context context, TextView textView, int imageId){
        Drawable top = context.getResources().getDrawable(imageId);
        textView.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
-       String str = textView.getText().toString();
-       int num = Integer.parseInt(str)+1;
-       textView.setText("" + num);
+//       String str = textView.getText().toString();
+//       int num = Integer.parseInt(str)+1;
+//       textView.setText("" + num);
    }
     //数量的减少 图片的改变
     public static void setIconChangeDefault(Context context,TextView textView,int imageId){

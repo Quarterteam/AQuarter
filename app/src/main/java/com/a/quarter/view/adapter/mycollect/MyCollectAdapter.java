@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.a.quarter.R;
 import com.a.quarter.model.bean.collect.MyCollectItemBean;
-import com.a.quarter.model.utils.AnimUtils;
+import com.a.quarter.utils.AnimUtils;
 import com.a.quarter.utils.IconChangeUtils;
 import com.dl7.player.media.IjkVideoView;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -66,11 +66,10 @@ if (list.get(position).isDelVisibility()){
     holder.boxDel.setVisibility(View.GONE);
 }
         //设置头像
-
+        holder.ImageTitle.setImageURI("http://f2.kkmh.com/image/161226/qcezbh4i7.webp-w180");
         holder.tvTitle.setText("天蝎喝牛奶");
         holder.tvTime.setText("2017-7-20  14:20");
         holder.tvPublish.setText("天气美美的，适合");
-        System.out.println("--co--"+holder.boxDel);
         LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(context);
         holder.recyclerView.setLayoutManager(linearLayoutManager);
         myCollectItemAdapter = new MyCollectItemAdapter(context);

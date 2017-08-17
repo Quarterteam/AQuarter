@@ -57,9 +57,6 @@ public interface Api {
     @POST(Constants.CHANGE_PASSWORD)
     @FormUrlEncoded
     Observable<ChangePwdResponse> changePwd(@Field("password") String pwd);
-    //段子
-    @GET(Constants.JOKEURL)
-    Observable<JokeBean> jokeData();
 
 
 
@@ -97,6 +94,18 @@ public interface Api {
     @POST(Constants.ADD_CONCERN)
     @FormUrlEncoded
     Observable<String> addConcern(@Field("UserId") int UserId, @Field("Beuserid") int Beuserid);
+    //段子接口 信息
+    @GET(Constants.JOKE_URL)
+    Observable<JokeBean> jokeData(@Query("currentpage") int currentpage);
+    //段子点赞数
+    @GET(Constants.JOKE_ADDNICE)
+    Observable<String> jokeAddNice(@Query("nicekey") String nicekey);
+    //段子转发数
+    @GET(Constants.JOKE_ADDFORWARD)
+    Observable<String> jokeAddForward(@Query("forwardkey") String forwardkey);
+    //段子踩数
+    @GET(Constants.JOKE_ADDBAD)
+    Observable<String> jokeAddBad(@Query("badkey") String badkey);
 
     @POST(Constants.PUBLISH_VIDEO)
     Observable<String> publishVideo(@Body RequestBody Body);

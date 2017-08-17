@@ -479,8 +479,6 @@
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>
         <item name="android:layout_marginTop">5dp</item>
-        <item name="android:textColor">@color/blue</item>
-        <item name="android:textSize">@dimen/textSize_joke_texttitle</item>
     </style>
     <style name="userpage.Item.Recycler" parent="Control">
         <item name="android:layout_width">match_parent</item>
