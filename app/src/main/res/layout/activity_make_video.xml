@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ccc"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true">
+        <!--android:background="#A2DEFA"-->
+
+        <ImageView
+            android:id="@+id/button_capture"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/selector_bg_btn_capture" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/vedio"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="录像"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_main_title" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="返回"
+            android:textColor="@drawable/selector_textcolor_white_mainadd"
+            android:textSize="@dimen/textsize_medium" />
+        <!--android:textColor="@drawable/selector_textcolor_white_mainadd"-->
+
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/button_change_mode"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:button="@null"
+                android:checked="true"
+                android:background="@drawable/selector_change_camera_mode" />
+
+            <ImageView
+                android:id="@+id/more_options"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/more" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/ll"
+            android:background="@color/white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_more_options"
+        android:layout_below="@id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/buttonQuality"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:gravity="center"
+            android:text="分辨率(720p)"
+            android:drawablePadding="5dp"
+            android:textSize="@dimen/textsize_small"
+            android:textColor="@android:color/white"
+            android:background="@null"
+            android:textAllCaps="false" />
+        <!--android:drawableTop="@mipmap/ic_launcher"-->
+
+        <CheckBox
+            android:id="@+id/buttonFlash"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:drawablePadding="5dp"
+            android:textSize="@dimen/textsize_small"
+            android:textColor="@android:color/white"
+            android:background="@null"
+            android:button="@null"
+            android:text="闪光灯" />
+        <!--android:drawableTop="@drawable/selector_bg_checkbox_flash"-->
+
+        <CheckBox
+            android:id="@+id/button_change_camera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:drawablePadding="5dp"
+            android:textSize="@dimen/textsize_small"
+            android:button="@null"
+            android:background="@null"
+            android:textColor="@android:color/white"
+            android:text="切换摄像头" />
+        <!--android:drawableTop="@drawable/selector_rewardcamera"-->
+        <!---->
+        <!--<View-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_weight="1"/>-->
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listOfQualities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_more_options"
+        android:layout_margin="10dp"
+        android:background="@color/grayTranslucent"
+        android:visibility="gone" />
+
+    <Chronometer
+        android:id="@+id/textChrono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/rl_bottom"
+        android:layout_margin="10dp"
+        android:text="00:00"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/chronoRecordingImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/textChrono"
+        android:layout_alignTop="@id/textChrono"
+        android:layout_toLeftOf="@id/textChrono"
+        android:adjustViewBounds="true"
+        android:scaleType="fitEnd"
+        android:src="@mipmap/ic_launcher"
+        android:visibility="gone" />
+
+</RelativeLayout>

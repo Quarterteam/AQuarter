@@ -14,6 +14,18 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
+    <!-- camera相关 -->
+    <!-- <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/> -->
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/> -->
+    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission-sdk-23 android:name="android.permission.RECORD_AUDIO" />
+    <!-- <uses-permission android:name="android.permission.CAMERA"/> -->
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -39,9 +51,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.activity.main.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"></activity>
+        <activity
+            android:name=".view.activity.main.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection" />
         <activity
             android:name=".view.activity.login.NativeLoginActivity"
             android:launchMode="singleTask"
@@ -51,8 +63,9 @@
             android:theme="@style/Theme.FullScreen" />
         <activity android:name=".view.activity.main.MyFollowActivity" />
         <activity android:name=".view.activity.main.HotFollowActivity" />
-        <activity android:name=".view.adapter.video.VHotFragDetails"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".view.adapter.video.VHotFragDetails"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name=".view.activity.main.SearchFriendActivity" />
         <activity
             android:name=".view.activity.login.ThirdPartyLoginActivity"
@@ -86,7 +99,7 @@
         <!-- 配置友盟的Appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="591559b482b635604b0005af"></meta-data>
+            android:value="591559b482b635604b0005af" />
 
         <activity
             android:name=".view.activity.login.FindPwdActivity"
@@ -94,18 +107,22 @@
         <activity
             android:name=".view.activity.login.ChangePwdActivity"
             android:theme="@style/Theme.FullScreen" />
-        <activity
-            android:name="com.seu.cameraandimage.activity.CameraActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
+        <!--<activity-->
+            <!--android:name="com.seu.cameraandimage.activity.CameraActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+            <!--android:screenOrientation="portrait" />-->
         <activity
             android:name="com.seu.cameraandimage.image.ImageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity android:name="com.seu.cameraandimage.image.ShareActivity" />
-        <activity android:name=".view.activity.compile.MakeVideoActivity"
+        <activity
+            android:name=".view.activity.compile.MakeVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.activity.compile.PicturePreviewActivity" />
+        <activity android:name=".view.activity.compile.VideoPreviewActivity" />
+        <activity android:name=".view.activity.compile.PublishVideoActivity"></activity>
     </application>
 
 </manifest>

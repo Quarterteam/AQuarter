@@ -43,4 +43,16 @@ public class DrawableUtils {
         tv.setCompoundDrawables(drawables[0], drawableTop, drawables[2], drawables[3]);
     }
 
+    //设置TextView的DrawableTop，并根据文字大小控制图片的大小，factor代表图标宽度是几个文字的总宽度
+    public static void scaleDrawableTop(Context context, int id, TextView tv, float factor){
+        if(factor < 1){
+            factor = 1;
+        }
+        int width = (int)(tv.getTextSize()*factor);
+        Drawable drawableTop = ContextCompat.getDrawable(context, id);
+        drawableTop.setBounds(0, 0, width, width);//设置图片宽度和高度为2个字的宽度
+        Drawable[] drawables = tv.getCompoundDrawables();
+        tv.setCompoundDrawables(drawables[0], drawableTop, drawables[2], drawables[3]);
+    }
+
 }

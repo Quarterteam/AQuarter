@@ -27,4 +27,5 @@ public class Constants {
     public static final String EDIT_SIGN="user/upUsersign";//用户修改个性签名
     public static final String FIND_USER_BY="user/findUserBy";//根据条件查询用户查询用
     public static final String ADD_CONCERN="user/addConcern";//5.用户添加关注接口
+    public static final String PUBLISH_VIDEO="media/uploadMedia";//13.用户上传视频的接口
 }

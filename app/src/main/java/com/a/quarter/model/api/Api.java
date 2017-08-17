@@ -18,10 +18,13 @@ import com.a.quarter.model.utils.Constants;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -95,4 +98,6 @@ public interface Api {
     @FormUrlEncoded
     Observable<String> addConcern(@Field("UserId") int UserId, @Field("Beuserid") int Beuserid);
 
+    @POST(Constants.PUBLISH_VIDEO)
+    Observable<String> publishVideo(@Body RequestBody Body);
 }

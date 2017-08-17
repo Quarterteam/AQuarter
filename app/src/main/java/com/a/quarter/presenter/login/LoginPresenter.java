@@ -11,6 +11,8 @@ import com.exa.framelib_rrm.rx.RxHelper;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * Created by acer on 2017/7/21.

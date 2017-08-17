@@ -36,19 +36,19 @@ android {
     //避免com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK lib/armeabi/libMagicSDK.so
     packagingOptions {
         pickFirst 'lib/armeabi/libMagicSDK.so'
-        pickFirst 'lib/armeabi/libMagicBeautify.so'
+//        pickFirst 'lib/armeabi/libMagicBeautify.so'
         pickFirst 'lib/armeabi-v7a/libMagicSDK.so'
-        pickFirst 'lib/armeabi-v7a/libMagicBeautify.so'
+//        pickFirst 'lib/armeabi-v7a/libMagicBeautify.so'
         pickFirst 'lib/arm64-v8a/libMagicSDK.so'
-        pickFirst 'lib/arm64-v8a/libMagicBeautify.so'
+//        pickFirst 'lib/arm64-v8a/libMagicBeautify.so'
         pickFirst 'lib/mips64/libMagicSDK.so'
-        pickFirst 'lib/mips64/libMagicBeautify.so'
+//        pickFirst 'lib/mips64/libMagicBeautify.so'
         pickFirst 'lib/mips/libMagicSDK.so'
-        pickFirst 'lib/mips/libMagicBeautify.so'
+//        pickFirst 'lib/mips/libMagicBeautify.so'
         pickFirst 'lib/x86/libMagicSDK.so'
-        pickFirst 'lib/x86/libMagicBeautify.so'
+//        pickFirst 'lib/x86/libMagicBeautify.so'
         pickFirst 'lib/x86_64/libMagicSDK.so'
-        pickFirst 'lib/x86_64/libMagicBeautify.so'
+//        pickFirst 'lib/x86_64/libMagicBeautify.so'
     }
 }
 //repositories {

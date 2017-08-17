@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.a.quarter.view.activity.compile.VideoPreviewActivity">
+
+    <TextView
+        android:id="@+id/tv_next_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/textsize_medium"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:gravity="center"
+        android:background="@drawable/selector_bg_maincolor_graytranslucent"
+        android:text="下一步"/>
+
+    <com.a.quarter.view.view.ItemIjkPlayerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_next_step"
+        android:id="@+id/ijkPlayerView"/>
+
+    <include
+        layout="@layout/include_head_tv_tv_tv_camera"/>
+
+</RelativeLayout>

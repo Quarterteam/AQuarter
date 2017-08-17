@@ -1,12 +1,15 @@
 package com.a.quarter.view.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.a.quarter.R;
 
 /**
  * Created by acer on 2017/7/23.
@@ -28,6 +31,7 @@ public class MaskImageView extends ImageView{
 
     public MaskImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
         init();
     }
 
